@@ -29,16 +29,22 @@ namespace Test
         protected void Button5_Click(object sender, EventArgs e)
         { 
             
-            if (DropDownList2.SelectedValue == "2")
+            if (DropDownList2.SelectedValue == "1")
             {
-                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
+                RadHtmlChart2.ChartTitle.Text = "Total Monthly Sales";
+                RadHtmlChart2.PlotArea.XAxis.TitleAppearance.Text = "Month";
             }
             else
             {
-                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
-            }
+                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                RadHtmlChart2.ChartTitle.Text = "Total Yearly Sales";
+                RadHtmlChart2.PlotArea.XAxis.TitleAppearance.Text = "Year";
+            };
+
             RadHtmlChart2.DataBind();
 
+            
         }
 
 

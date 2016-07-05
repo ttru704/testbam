@@ -36,9 +36,9 @@
 
                 <br />
                 <%--For the GridView--%>
-                <telerik:RadDatePicker ID="NumberOfNewClientsStartDate" runat="server" PopupDirection="BottomLeft">
+                <telerik:RadDatePicker ID="NumberOfNewClientsStartDate" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="Start Date">
                 </telerik:RadDatePicker>
-                <telerik:RadDatePicker ID="NumberOfNewClientsStartEnd" runat="server" PopupDirection="BottomLeft">
+                <telerik:RadDatePicker ID="NumberOfNewClientsStartEnd" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="End Date">
                 </telerik:RadDatePicker>
                 <asp:DropDownList ID="DropDownList3" runat="server" Width="58px">
                     <asp:ListItem> 1 </asp:ListItem>
@@ -106,8 +106,8 @@
                 <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export RadHtmlChart to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                 <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
                 </telerik:RadClientExportManager>
-                <telerik:RadDatePicker ID="RDPMonth1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-                <telerik:RadDatePicker ID="RDPMonth2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
+                <telerik:RadDatePicker ID="RDPMonth1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2014-01-01"></telerik:RadDatePicker>
+                <telerik:RadDatePicker ID="RDPMonth2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2018-01-01"></telerik:RadDatePicker>
                 <asp:DropDownList ID="DropDownList1" runat="server" Width="58px">
                     <asp:ListItem> 1 </asp:ListItem>
                     <asp:ListItem> 2 </asp:ListItem>
@@ -140,15 +140,15 @@
                             <MinorGridLines Visible="false" />
                         </YAxis>
                     </PlotArea>
-                    <ChartTitle Text="Total Monthly Sales">
+                    <ChartTitle Text="Total Sales">
                     </ChartTitle>
                     <Zoom Enabled="False"></Zoom>
                 </telerik:RadHtmlChart>
                 <telerik:RadMonthYearPicker ID="RadMonthYearPicker1" runat="server"></telerik:RadMonthYearPicker>
                 <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="GetTotalSalesMonth" TypeName="Test.BLL.GetTotalSalesMonthBL">
                     <SelectParameters>
-                        <asp:ControlParameter ControlID="RDPMonth1" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                        <asp:ControlParameter ControlID="RDPMonth2" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                        <asp:ControlParameter ControlID="RDPMonth1" Name="start" PropertyName="SelectedDate" Type="DateTime" DefaultValue="2014-01-01" />
+                        <asp:ControlParameter ControlID="RDPMonth2" Name="end" PropertyName="SelectedDate" Type="DateTime" DefaultValue="2018-01-01" />
                         <asp:ControlParameter ControlID="DropDownList1" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
                         <asp:ControlParameter ControlID="DropDownList2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
