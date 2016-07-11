@@ -306,22 +306,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="KPIModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="KPIModel.Store.sp_upgraddiagrams" />
-    <FunctionImportMapping FunctionImportName="GetNumberofAnimalSeen" FunctionName="KPIModel.Store.GetNumberofAnimalSeen">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.GetNumberofAnimalSeen_Result">
-          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-          <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number of animals seen" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="GetNumberOfNewClients" FunctionName="KPIModel.Store.GetNumberOfNewClients">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.GetNumberOfNewClients_Result">
-          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-          <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number of New Clients" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetIncomeProductCategory" FunctionName="KPIModel.Store.GetIncomeProductCategory">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.GetIncomeProductCategory_Result">
@@ -339,14 +323,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="RetailTotal" FunctionName="KPIModel.Store.RetailTotal">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.RetailTotal_Result">
-          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-          <ScalarProperty Name="Retail_Total" ColumnName="Retail_Total" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetTotalSalesMonth" FunctionName="KPIModel.Store.GetTotalSalesMonth">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.GetTotalSalesMonth_Result">
@@ -360,6 +336,62 @@
         <ComplexTypeMapping TypeName="KPIModel.UniqueCustomersSeen_Result">
           <ScalarProperty Name="Column1" ColumnName="Column1" />
           <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number of Unique Clients" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NewClientsBComparison" FunctionName="KPIModel.Store.NewClientsBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.NewClientsBComparison_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number of New Clients" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AnimalsSeenBComparison" FunctionName="KPIModel.Store.AnimalsSeenBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.AnimalsSeenBComparison_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number of animals seen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TransExclude0TotalBComparison" FunctionName="KPIModel.Store.TransExclude0TotalBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.TransExclude0TotalBComparison_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Total_no_of_transactions_excluding_zero_total_bill" ColumnName="Total no of transactions excluding zero total bill" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgDollarPerTransaction" FunctionName="KPIModel.Store.AvgDollarPerTransaction">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.AvgDollarPerTransaction_Result">
+          <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+          <ScalarProperty Name="Average___per_Transaction" ColumnName="Average $ per Transaction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgDollarPerCustomer" FunctionName="KPIModel.Store.AvgDollarPerCustomer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.AvgDollarPerCustomer_Result">
+          <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+          <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RetailTotal" FunctionName="KPIModel.Store.RetailTotal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.RetailTotal_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Retail_Total" ColumnName="Retail_Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TotalSalesBComparison" FunctionName="KPIModel.Store.TotalSalesBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.TotalSalesBComparison_Result">
+          <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+          <ScalarProperty Name="Total_Sales" ColumnName="Total Sales" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
