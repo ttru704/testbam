@@ -812,6 +812,12 @@
       <Parameter Name="branchRef" Mode="In" Type="Int32" />
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="GetNumberOfNewClients" ReturnType="Collection(KPIModel.GetNumberOfNewClients_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="branchRef" Mode="In" Type="Int32" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="GetIncomeProductCategory" ReturnType="Collection(KPIModel.GetIncomeProductCategory_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -823,6 +829,12 @@
       <Parameter Name="end" Mode="In" Type="DateTime" />
       <Parameter Name="branchRef" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="RetailTotal" ReturnType="Collection(KPIModel.RetailTotal_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="branchRef" Mode="In" Type="Int32" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="GetTotalSalesMonth" ReturnType="Collection(KPIModel.GetTotalSalesMonth_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -830,48 +842,6 @@
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="UniqueCustomersSeen" ReturnType="Collection(KPIModel.UniqueCustomersSeen_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="NewClientsBComparison" ReturnType="Collection(KPIModel.NewClientsBComparison_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AnimalsSeenBComparison" ReturnType="Collection(KPIModel.AnimalsSeenBComparison_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="TransExclude0TotalBComparison" ReturnType="Collection(KPIModel.TransExclude0TotalBComparison_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AvgDollarPerTransaction" ReturnType="Collection(KPIModel.AvgDollarPerTransaction_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="AvgDollarPerCustomer" ReturnType="Collection(KPIModel.AvgDollarPerCustomer_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="RetailTotal" ReturnType="Collection(KPIModel.RetailTotal_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="TotalSalesBComparison" ReturnType="Collection(KPIModel.TotalSalesBComparison_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
       <Parameter Name="branchRef" Mode="In" Type="Int32" />
@@ -901,6 +871,10 @@
     <Property Type="String" Name="YearMonth" Nullable="true" MaxLength="20" />
     <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
   </ComplexType>
+  <ComplexType Name="GetNumberOfNewClients_Result">
+    <Property Type="String" Name="YearMonth" Nullable="true" MaxLength="20" />
+    <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
+  </ComplexType>
   <ComplexType Name="GetIncomeProductCategory_Result">
     <Property Type="String" Name="YearMonth" Nullable="true" MaxLength="20" />
     <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
@@ -910,6 +884,10 @@
     <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
     <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="3" />
   </ComplexType>
+  <ComplexType Name="RetailTotal_Result">
+    <Property Type="String" Name="YearMonth" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="Retail_Total" Nullable="true" Precision="38" Scale="3" />
+  </ComplexType>
   <ComplexType Name="GetTotalSalesMonth_Result">
     <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
@@ -917,33 +895,5 @@
   <ComplexType Name="UniqueCustomersSeen_Result">
     <Property Type="DateTime" Name="Column1" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="NewClientsBComparison_Result">
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="AnimalsSeenBComparison_Result">
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="TransExclude0TotalBComparison_Result">
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="Total_no_of_transactions_excluding_zero_total_bill" Nullable="true" />
-  </ComplexType>
-  <ComplexType Name="AvgDollarPerTransaction_Result">
-    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-    <Property Type="Decimal" Name="Average___per_Transaction" Nullable="true" Precision="38" Scale="6" />
-  </ComplexType>
-  <ComplexType Name="AvgDollarPerCustomer_Result">
-    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-    <Property Type="Decimal" Name="Average___per_customer" Nullable="true" Precision="38" Scale="6" />
-  </ComplexType>
-  <ComplexType Name="RetailTotal_Result">
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-    <Property Type="Decimal" Name="Retail_Total" Nullable="true" Precision="38" Scale="3" />
-  </ComplexType>
-  <ComplexType Name="TotalSalesBComparison_Result">
-    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-    <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
   </ComplexType>
 </Schema>

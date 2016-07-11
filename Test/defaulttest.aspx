@@ -25,7 +25,7 @@
                     </Columns>
                 </asp:GridView>
                
-                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.Financial.RetailTotalBL">
+                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.RetailTotalBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="RadDatePicker_Start" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                         <asp:ControlParameter ControlID="RadDatePicker_End" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -35,8 +35,7 @@
 
 
                 <br />
-<%--                
-                <!--For the GridView-->
+                <%--For the GridView--%>
                 <telerik:RadDatePicker ID="NumberOfNewClientsStartDate" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="Start Date">
                 </telerik:RadDatePicker>
                 <telerik:RadDatePicker ID="NumberOfNewClientsStartEnd" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="End Date">
@@ -90,7 +89,7 @@
                 </telerik:RadHtmlChart>
 
                 <br />
-                <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetNumberOfNewClients" TypeName="Test.BLL.Customer.NumberOfNewClientsBL">
+                <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetNumberOfNewClients" TypeName="Test.BLL.NumberOfNewClientsBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="NumberOfNewClientsStartDate" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                         <asp:ControlParameter ControlID="NumberOfNewClientsStartEnd" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -98,7 +97,7 @@
                         <asp:ControlParameter ControlID="DropDownList4" Name="TimeType" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
-            </div>--%>
+            </div>
 
             <div class="row">
                 <!--This is the Monthly aka Time Selector.  
@@ -146,7 +145,7 @@
                     <Zoom Enabled="False"></Zoom>
                 </telerik:RadHtmlChart>
                 <telerik:RadMonthYearPicker ID="RadMonthYearPicker1" runat="server"></telerik:RadMonthYearPicker>
-                <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="GetTotalSalesMonth" TypeName="Test.BLL.Financial.GetTotalSalesMonthBL">
+                <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="GetTotalSalesMonth" TypeName="Test.BLL.GetTotalSalesMonthBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="RDPMonth1" Name="start" PropertyName="SelectedDate" Type="DateTime" DefaultValue="2014-01-01" />
                         <asp:ControlParameter ControlID="RDPMonth2" Name="end" PropertyName="SelectedDate" Type="DateTime" DefaultValue="2018-01-01" />

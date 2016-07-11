@@ -416,16 +416,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="BLL\Customer\AnimalsSeenBL.cs" />
-    <Compile Include="BLL\Financial\AvgDollarPerCustomerBL.cs" />
-    <Compile Include="BLL\Financial\AvgDollarPerTransactionBL.cs" />
-    <Compile Include="BLL\Financial\ProductCategoryBL.cs" />
-    <Compile Include="BLL\Financial\GetTotalSalesMonthBL.cs" />
-    <Compile Include="BLL\Financial\IncomeProductCategoryBL.cs" />
-    <Compile Include="BLL\Financial\RetailTotalBL.cs" />
-    <Compile Include="BLL\Financial\TotalSalesBComparisonBL.cs" />
-    <Compile Include="BLL\Financial\TransExclude0TotalBL.cs" />
-    <Compile Include="BLL\Customer\UniqueCustomersSeenBL.cs" />
+    <Compile Include="BLL\ProductCategoryBL.cs" />
+    <Compile Include="BLL\GetTotalSalesMonthBL.cs" />
+    <Compile Include="BLL\IncomeProductCategoryBL.cs" />
+    <Compile Include="BLL\NumberOfNewClientsBL.cs" />
+    <Compile Include="BLL\RetailTotalBL.cs" />
+    <Compile Include="BLL\UniqueCustomersSeenBL.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -478,16 +474,7 @@
     <Compile Include="financialKPI.aspx.designer.cs">
       <DependentUpon>financialKPI.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AnimalsSeenBComparison_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Audit_Log.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AvgDollarPerCustomer_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AvgDollarPerTransaction_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BAM.Context.cs">
@@ -535,6 +522,9 @@
     <Compile Include="Models\GetNumberofAnimalSeen_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\GetNumberOfNewClients_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\GetProduct_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -542,16 +532,12 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Interface\Customer\IAnimalsSeenRepository.cs" />
-    <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerRepository.cs" />
-    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionRepository.cs" />
-    <Compile Include="Models\Interface\Financial\IIncomeProductCategoryRepository.cs" />
-    <Compile Include="Models\Interface\Financial\IProductCategoryRepository.cs" />
-    <Compile Include="Models\Interface\Financial\IRetailTotalRepository.cs" />
-    <Compile Include="Models\Interface\Financial\ITotalSalesBComparisonRepository.cs" />
-    <Compile Include="Models\Interface\Financial\ITotalSalesMonthRepository.cs" />
-    <Compile Include="Models\Interface\Financial\ITransExclude0TotalRepository.cs" />
-    <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenRepository.cs" />
+    <Compile Include="Models\Interface\IIncomeProductCategoryRepository.cs" />
+    <Compile Include="Models\Interface\INumberOfNewClientsRepository.cs" />
+    <Compile Include="Models\Interface\IProductCategoryRepository.cs" />
+    <Compile Include="Models\Interface\IRetailTotalRepository.cs" />
+    <Compile Include="Models\Interface\ITotalSalesMonthRepository.cs" />
+    <Compile Include="Models\Interface\IUniqueCustomersSeenRepository.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -567,9 +553,6 @@
     <Compile Include="Models\KPI_Types.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NewClientsBComparison_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Param.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -579,16 +562,12 @@
     <Compile Include="Models\Product_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repository\Customer\AnimalsSeenRepository.cs" />
-    <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerRepository.cs" />
-    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionRepository.cs" />
-    <Compile Include="Models\Repository\Financial\IncomeProductCategoryRepository.cs" />
-    <Compile Include="Models\Repository\Financial\ProductCategoryRepository.cs" />
-    <Compile Include="Models\Repository\Financial\RetailTotalRepository.cs" />
-    <Compile Include="Models\Repository\Financial\TotalSalesBComparisonRepository.cs" />
-    <Compile Include="Models\Repository\Financial\TotalSalesMonthRepository.cs" />
-    <Compile Include="Models\Repository\Financial\TransExclude0TotalRepository.cs" />
-    <Compile Include="Models\Repository\Customer\UniqueCustomersSeenRepository.cs" />
+    <Compile Include="Models\Repository\IncomeProductCategoryRepository.cs" />
+    <Compile Include="Models\Repository\NumberOfNewClientsRespository.cs" />
+    <Compile Include="Models\Repository\ProductCategoryRepository.cs" />
+    <Compile Include="Models\Repository\RetailTotalRepository.cs" />
+    <Compile Include="Models\Repository\TotalSalesMonthRepository.cs" />
+    <Compile Include="Models\Repository\UniqueCustomersSeenRepository.cs" />
     <Compile Include="Models\RetailTotal_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -613,16 +592,10 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TotalSalesBComparison_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Transaction_Items.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transaction_Summary.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TransExclude0TotalBComparison_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UniqueCustomersSeen_Result.cs">
@@ -678,11 +651,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BLL\Productivity\" />
     <Folder Include="build\" />
     <Folder Include="documentation\" />
-    <Folder Include="Models\Interface\Productivity\" />
-    <Folder Include="Models\Repository\Productivity\" />
     <Folder Include="production\" />
     <Folder Include="src\" />
     <Folder Include="vendors\" />

@@ -75,10 +75,5 @@ namespace Test
         {
 
         }
-
-        //protected void Button3_Click(object sender, EventArgs e)
-        //{
-        //    RadHtmlChart1.DataBind();
-        //}
     }
 }

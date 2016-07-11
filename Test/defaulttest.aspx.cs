@@ -20,11 +20,11 @@ namespace Test
 
 
 
-        //protected void Button4_Click(object sender, EventArgs e)
-        //{
-        //    GridView4.DataBind();
-        //    RadHtmlChart1.DataBind();
-        //}
+        protected void Button4_Click(object sender, EventArgs e)
+        {
+            GridView4.DataBind();
+            RadHtmlChart1.DataBind();
+        }
 
         protected void Button5_Click(object sender, EventArgs e)
         { 

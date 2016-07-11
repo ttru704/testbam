@@ -33,7 +33,7 @@
             OnCheckedChanged="radioButton_CheckedChanged" />
             <br />
             <br />
-            <asp:MultiView ID="MultiView1" runat="server" >
+            <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="viewProductSearch" runat="server">
                     Enter product name: 
                 <asp:TextBox ID="textProductName" runat="server">
@@ -74,7 +74,7 @@
             </asp:GridView>
             <asp:ScriptManager ID="ScriptManager1" runat="server">
             </asp:ScriptManager>
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.Financial.RetailTotalBL">
+            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.RetailTotalBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="RDP1" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="RDP2" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -98,7 +98,7 @@
             </asp:DropDownList>
             <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click1" />
             <br />
-            <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="ProductCategory" TypeName="Test.BLL.Financial.ProductCategoryBL">
+            <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="ProductCategory" TypeName="Test.BLL.ProductCategoryBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="StartDateforIncomeProdCat" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="EndDateforIncomeProdCat" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -120,92 +120,6 @@
                 <Zoom Enabled="False"></Zoom>
             </telerik:RadHtmlChart>
             <%--This section is for Income by Product Category--%>
-
-            <%--This section is for Total Sales Bcomparison presented on colum chart--%>
-<%--            <telerik:RadDatePicker ID="TotalSalesBComparison1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="TotalSalesBComparison2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <asp:DropDownList ID="TotalSalesBComparison3" runat="server" Width="99px">
-                <asp:ListItem Value="1"> Monthly </asp:ListItem>
-                <asp:ListItem Value="2"> Yearly </asp:ListItem>
-            </asp:DropDownList>
-            <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="TotalSalesBComparison" TypeName="Test.BLL.Financial.TotalSalesBComparisonBL">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="TotalSalesBComparison1" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison2" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:Parameter DefaultValue="null" Name="branchRef" Type="Int32" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison3" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
-                </SelectParameters>
-            </asp:ObjectDataSource>
-            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Button" />
-            <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="SqlDataSource1">
-            </telerik:RadHtmlChart>--%>
-
-            <!--Commented out the SQL data source trial -->
-            <%--            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KPIConnectionString %>" SelectCommand="SELECT Branch_Ref, SUM(Retail_Total + Service_Total) AS [Total Sales]
- FROM Transaction_Summary 
-WHERE (Trn_Date BETWEEN @start AND @end ) 
-GROUP BY Branch_Ref, dbo.Get_TimeType(@TimeType, Trn_Date) 
-ORDER BY Branch_Ref, [Total Sales]">
-                <SelectParameters>
-                    <asp:ControlParameter ControlID="TotalSalesBComparison1" Name="start" PropertyName="SelectedDate" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison2" Name="end" PropertyName="SelectedDate" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison3" Name="TimeType" PropertyName="SelectedValue" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-            <asp:EntityDataSource ID="EntityDataSource1" runat="server">
-            </asp:EntityDataSource>--%>
-
-            <!-- Trying the column chart-->
-            <%--<telerik:RadHtmlChart runat="server" ID="ColumnChart" Width="800px" Height="500px" Skin="Silk" DataSourceID="ObjectDataSource4">
-            <PlotArea>
-                <Series>
-                    <telerik:ColumnSeries Name="Branch_Ref" Stacked="false" Gap="1.5" Spacing="0.4"  DataFieldY="Total Sales">
-                        <Appearance>
-                            <FillStyle BackgroundColor="#d5a2bb"></FillStyle>
-                        </Appearance>
-                        <LabelsAppearance DataFormatString="{0} sales" Position="OutsideEnd"></LabelsAppearance>
-                        <TooltipsAppearance DataFormatString="{0} sales" Color="White"></TooltipsAppearance>
-                        <SeriesItems>
-                            <telerik:CategorySeriesItem ></telerik:CategorySeriesItem>
-                        </SeriesItems>
-                    </telerik:ColumnSeries>
-                </Series>
-                <Appearance>
-                    <FillStyle BackgroundColor="Transparent"></FillStyle>
-                </Appearance>
-                <XAxis AxisCrossingValue="0" Color="black" MajorTickType="Outside" MinorTickType="Outside"
-                    Reversed="false">
-                    <Items>
-                        <telerik:AxisItem LabelText="1"></telerik:AxisItem>
-                        <telerik:AxisItem LabelText="2"></telerik:AxisItem>
-                        <telerik:AxisItem LabelText="3"></telerik:AxisItem>
-                    </Items>
-                    <LabelsAppearance DataFormatString="Q{0}" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                    <TitleAppearance Position="Center" RotationAngle="0" Text="Quarters">
-                    </TitleAppearance>
-                </XAxis>
-                <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside"
-                    MinorTickType="None" Reversed="false">
-                    <LabelsAppearance DataFormatString="{0} sales" RotationAngle="0" Skip="0" Step="1"></LabelsAppearance>
-                    <TitleAppearance Position="Center" RotationAngle="0" Text="Sales">
-                    </TitleAppearance>
-                </YAxis>
-            </PlotArea>
-            <Appearance>
-                <FillStyle BackgroundColor="Transparent"></FillStyle>
-            </Appearance>
-            <ChartTitle Text="Product sales for 2011">
-                <Appearance Align="Center" BackgroundColor="Transparent" Position="Top">
-                </Appearance>
-            </ChartTitle>
-            <Legend>
-                <Appearance BackgroundColor="Transparent" Position="Bottom">
-                </Appearance>
-            </Legend>
-
-<Zoom Enabled="False"></Zoom>
-        </telerik:RadHtmlChart>--%>
-            <%--This section is for Total Sales Bcomparison presented on colum chart--%>
         </div>
 
     </form>

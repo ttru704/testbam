@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class RetailTotal_Result
     {
-        public Nullable<System.DateTime> YearMonth { get; set; }
+        public string YearMonth { get; set; }
         public Nullable<decimal> Retail_Total { get; set; }
     }
 }
