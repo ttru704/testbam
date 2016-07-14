@@ -209,6 +209,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="customerKPI.aspx" />
+    <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="defaulttest.aspx" />
     <Content Include="employeeKPI.aspx" />
@@ -240,6 +241,7 @@
     <Content Include="changelog.md" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\BAM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -439,6 +441,13 @@
     </Compile>
     <Compile Include="customerKPI.aspx.designer.cs">
       <DependentUpon>customerKPI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

@@ -277,6 +277,7 @@
     <Property Name="Itm_Discount" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Itm_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
     <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Stf_Number" Type="Int64" />
   </EntityType>
   <EntityType Name="Transaction_Summary">
     <Key>

@@ -29,5 +29,6 @@ namespace Test.Models
         public decimal Itm_Discount { get; set; }
         public decimal Itm_Total { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public Nullable<long> Stf_Number { get; set; }
     }
 }

@@ -110,6 +110,7 @@
                 <telerik:RadDatePicker ID="RDPMonth1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2014-01-01"></telerik:RadDatePicker>
                 <telerik:RadDatePicker ID="RDPMonth2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2018-01-01"></telerik:RadDatePicker>
                 <asp:DropDownList ID="DropDownList1" runat="server" Width="58px">
+                    <asp:ListItem>  </asp:ListItem>
                     <asp:ListItem> 1 </asp:ListItem>
                     <asp:ListItem> 2 </asp:ListItem>
                     <asp:ListItem> 3 </asp:ListItem>

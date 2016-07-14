@@ -72,8 +72,6 @@
                     <asp:BoundField DataField="Retail_Total" HeaderText="Retail_Total" SortExpression="Retail_Total" />
                 </Columns>
             </asp:GridView>
-            <asp:ScriptManager ID="ScriptManager1" runat="server">
-            </asp:ScriptManager>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.Financial.RetailTotalBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="RDP1" Name="start" PropertyName="SelectedDate" Type="DateTime" />
@@ -206,14 +204,63 @@ ORDER BY Branch_Ref, [Total Sales]">
 <Zoom Enabled="False"></Zoom>
         </telerik:RadHtmlChart>--%>
             <%--This section is for Total Sales Bcomparison presented on colum chart--%>
+
+
+            <telerik:RadDatePicker ID="TotalSalesBComparison1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
+            <telerik:RadDatePicker ID="TotalSalesBComparison2" runat="server" PopupDirection="BottomLeft" ></telerik:RadDatePicker>
+            <asp:DropDownList ID="TotalSalesBComparison4" runat="server" Width="58px">
+                    <asp:ListItem></asp:ListItem>
+                    <asp:ListItem> 1 </asp:ListItem>
+                    <asp:ListItem> 2 </asp:ListItem>
+                    <asp:ListItem> 3 </asp:ListItem>
+            </asp:DropDownList>
+            <asp:DropDownList ID="TotalSalesBComparison3" runat="server" Width="99px">
+                <asp:ListItem Value="1"> Monthly </asp:ListItem>
+                <asp:ListItem Value="2"> Yearly </asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="ViewTotalSalesBComparison" runat="server" Text="View" OnClick="ViewTotalSalesBComparison_Click" />
+
+            <telerik:RadHtmlChart ID="RadHtmlChart2" runat="server" DataSourceID ="ObjectDataSource5">
+                 <PlotArea>
+                        <Series>
+                            <telerik:LineSeries DataFieldY ="Total_Sales">
+                            </telerik:LineSeries>
+                        </Series>
+
+                        <XAxis DataLabelsField="Year_Month">
+                            <TitleAppearance Text="Month">
+                                <TextStyle Margin="20" />
+                            </TitleAppearance>
+                            <LabelsAppearance DataFormatString="MMM yyyy">
+                            </LabelsAppearance>
+                            <MajorGridLines Visible="false" />
+                            <MinorGridLines Visible="false" />
+                        </XAxis>
+
+                        <YAxis>
+                            <TitleAppearance Text="Total_Sales">
+                                <TextStyle Margin="20" />
+                            </TitleAppearance>
+                            <MinorGridLines Visible="false" />
+                        </YAxis>
+                    </PlotArea>
+
+                    <ChartTitle Text="Total Sales Between Branches">
+                    </ChartTitle>
+                    <Zoom Enabled="False"></Zoom>
+            </telerik:RadHtmlChart>
+            <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="TotalSalesBComparison" TypeName="Test.BLL.Financial.TotalSalesBComparisonBL">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="TotalSalesBComparison1" DefaultValue="2000/01/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="TotalSalesBComparison2" DefaultValue="2020/01/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:Parameter DefaultValue="" Name="branchRef" Type="Int32" ConvertEmptyStringToNull="true"/>
+                    <asp:ControlParameter ControlID="TotalSalesBComparison3" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+
         </div>
 
     </form>
-
-
-
-
-
 </asp:Content>
 
 
