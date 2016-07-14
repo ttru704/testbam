@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface ITotalSalesBComparisonRepository : IDisposable
     {
-        List<TotalSalesBComparison_Result> TotalSalesBComparison(DateTime start, DateTime end, int branchRef, int timeType);
+         List<TotalSalesBComparison_Result> TotalSalesBComparison(DateTime start, DateTime end, int branchRef, int timeType);
     }
 }

@@ -243,4 +243,3 @@ C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.OAuth.xm
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll.licenses
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.pdb
-C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

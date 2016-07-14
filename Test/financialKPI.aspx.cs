@@ -8,6 +8,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using Telerik.Web.UI;
+using Test.BLL;
+using Test.Models;
 
 namespace Test
 {
@@ -87,21 +89,28 @@ namespace Test
         //    RadHtmlChart1.DataBind();
         //}
 
-        protected void ViewTotalSalesBComparison_Click(object sender, ObjectDataSourceStatusEventArgs e)
+        protected void ViewTotalSalesBComparison_Click(object sender, EventArgs e)
         {
             //RadHtmlChart2.DataSource = TotalSalesBComparison(TotalSalesBComparison1.SelectedDate.GetValueOrDefault(), TotalSalesBComparison2.SelectedDate.GetValueOrDefault(), Int32.Parse(TotalSalesBComparison4.SelectedValue), Int32.Parse(TotalSalesBComparison3.SelectedValue));
             
-            RadHtmlChart2.DataBind();
+        //RadHtmlChart2.DataSource = GetData();
+        //    RadHtmlChart2.DataBind();
+            DateTime date1 = (DateTime)TotalSalesBComparison1.SelectedDate;
+            DateTime date2 = (DateTime)TotalSalesBComparison2.SelectedDate;
+            int branchRef = Int32.Parse(TotalSalesBComparison4.SelectedValue);
+            int timeType = Int32.Parse(TotalSalesBComparison3.SelectedValue);
 
             //loop over the number of branches (Uses 5 for now)
-            DataSet underlyingDataSet = e.ReturnValue as DataSet;
-            if (underlyingDataSet!=null)
-            {
-                Console.WriteLine(underlyingDataSet);
-            }
+            //DataSet underlyingDataSet = e.ReturnValue as DataSet;
+            //if (underlyingDataSet!=null)
+            //{
+            //    Console.WriteLine(underlyingDataSet);
+            //}
 
             //var branchCount = ObjectDataSource5;
-            for (int i = 1; i <= 5; i++)
+
+            //List<TotalSalesBComparison_Result> list = Test.BLL.Financial.TotalSalesBComparisonBL.TotalSalesBComparison(date1, date2, branchRef, timeType);
+            /*for (int i = 1; i <= 5; i++)
             {
                 LineSeries branch = new LineSeries();
                 branch.Name = "Branch" + i.ToString();
@@ -113,7 +122,7 @@ namespace Test
                 for (int j = 1; j <= 12; j++)
                 {
                     CategorySeriesItem item1 = new CategorySeriesItem();
-                    item1.Y = 10;
+                    item1.Y = ;
                     branch.SeriesItems.Add(item1);
                 }
                 RadHtmlChart2.PlotArea.Series.Add(branch);
@@ -122,9 +131,29 @@ namespace Test
                 //For each branch, Add a new telerik series item + ASSIGN THE DATA BASED ON THE BRANCH REF
                 //RadHtmlChart2.PlotArea.Series.Add()
             }
-            
+            */
+            LineSeries branch = new LineSeries();
+            branch.Name = "Branch 1";
+            branch.LabelsAppearance.Visible = false;
+            branch.TooltipsAppearance.Color = System.Drawing.Color.White;
+            branch.TooltipsAppearance.DataFormatString = "{0}%";
+            branch.MarkersAppearance.Visible = false;
+            branch.DataFieldY = "Branch_Ref";
+            RadHtmlChart2.PlotArea.Series.Clear();
+            RadHtmlChart2.PlotArea.Series.Add(branch);
+            RadHtmlChart2.DataBind();
 
         }
+        //need to get data
+        //protected DataTable GetData()
+        //{
+        //    DataTable dt = convertListToDataTable(List);
+        //    for (int i = 0; i < 12; i++)
+        //    {
+        //        dt.Rows.Add(40, 30);
+        //    }
+        //    return dt;
+        //}
 
         //public DataSet TotalSalesBComparison(DateTime start, DateTime end, int? branchRef, int TimeType)
         //{

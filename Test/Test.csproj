@@ -425,7 +425,7 @@
     <Compile Include="BLL\Financial\GetTotalSalesMonthBL.cs" />
     <Compile Include="BLL\Financial\IncomeProductCategoryBL.cs" />
     <Compile Include="BLL\Financial\RetailTotalBL.cs" />
-    <Compile Include="BLL\Financial\TotalSalesBComparisonBL.cs" />
+    <Compile Include="BLL\Financial\TotalSalesBComparison_BL.cs" />
     <Compile Include="BLL\Financial\TransExclude0TotalBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenBL.cs" />
     <Compile Include="Contact.aspx.cs">

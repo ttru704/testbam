@@ -8,21 +8,21 @@ using Test.Models.Repository.Financial;
 
 namespace Test.BLL.Financial
 {
-    public class TotalSalesBComparisonBL: IDisposable
+    public class TotalSalesBComparison_BL: IDisposable
     {
         private ITotalSalesBComparisonRepository totalSalesBComparisonRepository;
 
-        public TotalSalesBComparisonBL()
+        public TotalSalesBComparison_BL()
         {
             totalSalesBComparisonRepository = new TotalSalesBComparisonRepository();
         }
 
-        public TotalSalesBComparisonBL(ITotalSalesBComparisonRepository totalSalesBComparisonRepository)
+        public TotalSalesBComparison_BL(ITotalSalesBComparisonRepository totalSalesBComparisonRepository)
         {
             this.totalSalesBComparisonRepository = totalSalesBComparisonRepository;
         }
 
-        public List<TotalSalesBComparison_Result> TotalSalesBComparison(DateTime start, DateTime end, int branchRef, int timeType)
+        List<TotalSalesBComparison_Result> TotalSalesBComparison(DateTime start, DateTime end, int branchRef, int timeType)
         {
             return totalSalesBComparisonRepository.TotalSalesBComparison(start, end, branchRef, timeType);
         }
