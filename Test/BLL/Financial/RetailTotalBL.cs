@@ -23,9 +23,9 @@ namespace Test.BLL.Financial
             this.retailTotalRepository = retailTotalRepository;
         }
 
-        public List<RetailTotal_Result> RetailTotal(DateTime start, DateTime end, int branchRef, int timeType)
+        public List<RetailTotal_Result> RetailTotal(DateTime start, DateTime end, int companyRef, int timeType)
         {
-            return retailTotalRepository.RetailTotal(start, end, branchRef, timeType);
+            return retailTotalRepository.RetailTotal(start, end, companyRef, timeType);
         }
 
         private bool disposedValue = false;

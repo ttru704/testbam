@@ -13,6 +13,7 @@ namespace Test.Models
     
     public partial class TotalSalesBComparison_Result
     {
+        public long Branch_Ref { get; set; }
         public Nullable<System.DateTime> Year_Month { get; set; }
         public Nullable<decimal> Total_Sales { get; set; }
     }

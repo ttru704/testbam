@@ -819,11 +819,6 @@
       <Parameter Name="branchRef" Mode="In" Type="Int32" />
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="ProductCategory" ReturnType="Collection(KPIModel.ProductCategory_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="GetTotalSalesMonth" ReturnType="Collection(KPIModel.GetTotalSalesMonth_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -869,8 +864,13 @@
     <FunctionImport Name="RetailTotal" ReturnType="Collection(KPIModel.RetailTotal_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ProductCategory" ReturnType="Collection(KPIModel.ProductCategory_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="branchRef" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="TotalSalesBComparison" ReturnType="Collection(KPIModel.TotalSalesBComparison_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
@@ -907,10 +907,6 @@
     <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
     <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="3" />
   </ComplexType>
-  <ComplexType Name="ProductCategory_Result">
-    <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
-    <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="3" />
-  </ComplexType>
   <ComplexType Name="GetTotalSalesMonth_Result">
     <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
@@ -943,7 +939,12 @@
     <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="Retail_Total" Nullable="true" Precision="38" Scale="3" />
   </ComplexType>
+  <ComplexType Name="ProductCategory_Result">
+    <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
   <ComplexType Name="TotalSalesBComparison_Result">
+    <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
     <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
   </ComplexType>

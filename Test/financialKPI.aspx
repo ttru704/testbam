@@ -6,8 +6,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server"><asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="right_col" role="main">
             <div id="KPIMenu" style="text-align: center">
                 <a href="/financialKPI.aspx" style="font-size: 20px"><strong>Financial</strong></a>
@@ -34,7 +35,7 @@
             OnCheckedChanged="radioButton_CheckedChanged" />
             <br />
             <br />
-            <asp:MultiView ID="MultiView1" runat="server" >
+            <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="viewProductSearch" runat="server">
                     Enter product name: 
                 <asp:TextBox ID="textProductName" runat="server">
@@ -73,11 +74,12 @@
                     <asp:BoundField DataField="Retail_Total" HeaderText="Retail_Total" SortExpression="Retail_Total" />
                 </Columns>
             </asp:GridView>
+
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.Financial.RetailTotalBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="RDP1" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="RDP2" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:ControlParameter ControlID="DropDownList1" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:Parameter DefaultValue="3" Name="companyRef" Type="Int32" />
                     <asp:ControlParameter ControlID="DropDownList2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
@@ -99,8 +101,8 @@
             <br />
             <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" SelectMethod="ProductCategory" TypeName="Test.BLL.Financial.ProductCategoryBL">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="StartDateforIncomeProdCat" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:ControlParameter ControlID="EndDateforIncomeProdCat" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="StartDateforIncomeProdCat" DefaultValue="2010-12-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="EndDateforIncomeProdCat" DefaultValue="2016-12-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="DropDownList3" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
@@ -121,7 +123,7 @@
             <%--This section is for Income by Product Category--%>
 
             <%--This section is for Total Sales Bcomparison presented on colum chart--%>
-<%--            <telerik:RadDatePicker ID="TotalSalesBComparison1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
+            <%--            <telerik:RadDatePicker ID="TotalSalesBComparison1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
             <telerik:RadDatePicker ID="TotalSalesBComparison2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
             <asp:DropDownList ID="TotalSalesBComparison3" runat="server" Width="99px">
                 <asp:ListItem Value="1"> Monthly </asp:ListItem>
@@ -208,12 +210,12 @@ ORDER BY Branch_Ref, [Total Sales]">
 
 
             <telerik:RadDatePicker ID="TotalSalesBComparison1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="TotalSalesBComparison2" runat="server" PopupDirection="BottomLeft" ></telerik:RadDatePicker>
+            <telerik:RadDatePicker ID="TotalSalesBComparison2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
             <asp:DropDownList ID="TotalSalesBComparison4" runat="server" Width="58px">
-                    <asp:ListItem></asp:ListItem>
-                    <asp:ListItem> 1 </asp:ListItem>
-                    <asp:ListItem> 2 </asp:ListItem>
-                    <asp:ListItem> 3 </asp:ListItem>
+                <asp:ListItem Value="0">All Branches</asp:ListItem>
+                <asp:ListItem> 1 </asp:ListItem>
+                <asp:ListItem> 2 </asp:ListItem>
+                <asp:ListItem> 3 </asp:ListItem>
             </asp:DropDownList>
             <asp:DropDownList ID="TotalSalesBComparison3" runat="server" Width="99px">
                 <asp:ListItem Value="1"> Monthly </asp:ListItem>
@@ -221,46 +223,185 @@ ORDER BY Branch_Ref, [Total Sales]">
             </asp:DropDownList>
             <asp:Button ID="ViewTotalSalesBComparison" runat="server" Text="View" OnClick="ViewTotalSalesBComparison_Click" />
 
-            <telerik:RadHtmlChart ID="RadHtmlChart2" runat="server" DataSourceID ="ObjectDataSource5">
-                 <PlotArea>
-                        <Series>
-                            <telerik:LineSeries DataFieldY ="Total_Sales">
-                            </telerik:LineSeries>
-                        </Series>
+            <telerik:RadHtmlChart ID="RadHtmlChart2" runat="server">
+                <Pan Enabled="true" Lock="Y"/>
+                <Zoom Enabled="true">
+                    <MouseWheel Enabled="true"  Lock="Y"/>
+                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                </Zoom>
+                <%--<PlotArea>
+                    <Series>
+                        <telerik:LineSeries Name="Total Sale" DataFieldY="Total_Sales" >
+                        </telerik:LineSeries>
+                    </Series>
 
-                        <XAxis DataLabelsField="Year_Month">
-                            <TitleAppearance Text="Month">
-                                <TextStyle Margin="20" />
-                            </TitleAppearance>
-                            <LabelsAppearance DataFormatString="MMM yyyy">
-                            </LabelsAppearance>
-                            <MajorGridLines Visible="false" />
-                            <MinorGridLines Visible="false" />
-                        </XAxis>
+                    <XAxis DataLabelsField="Year_Month">
+                        <TitleAppearance Text="Month">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <LabelsAppearance DataFormatString="MMM yyyy">
+                        </LabelsAppearance>
+                        <MajorGridLines Visible="false" />
+                        <MinorGridLines Visible="false" />
+                    </XAxis>
 
-                        <YAxis>
-                            <TitleAppearance Text="Total_Sales">
-                                <TextStyle Margin="20" />
-                            </TitleAppearance>
-                            <MinorGridLines Visible="false" />
-                        </YAxis>
-                    </PlotArea>
+                    <YAxis>
+                        <TitleAppearance Text="Branches">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <MinorGridLines Visible="false" />
+                    </YAxis>
+                </PlotArea>
 
-                    <ChartTitle Text="Total Sales Between Branches">
-                    </ChartTitle>
-                    <Zoom Enabled="False"></Zoom>
+                <ChartTitle Text="Total Sales Between Branches">
+                </ChartTitle>
+                <Zoom Enabled="False"></Zoom>--%>
             </telerik:RadHtmlChart>
-            <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="TotalSalesBComparison" TypeName="Test.BLL.Financial.TotalSalesBComparisonBL">
+            <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="TotalSalesBComparison" TypeName="Test.BLL.Financial.TotalSalesBComparisonBL" OnSelecting="ObjectDataSource5_Selecting">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="TotalSalesBComparison1" DefaultValue="2000/01/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison2" DefaultValue="2020/01/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:Parameter DefaultValue="" Name="branchRef" Type="Int32" ConvertEmptyStringToNull="true"/>
-                    <asp:ControlParameter ControlID="TotalSalesBComparison3" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="TotalSalesBComparison1" DefaultValue="2015/01/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="TotalSalesBComparison2" DefaultValue="2015/12/31" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="TotalSalesBComparison4" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="TotalSalesBComparison3" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+            
+            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource5">
+                <Columns>
+                    <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
+                    <asp:BoundField DataField="Year_Month" HeaderText="Year_Month" SortExpression="Year_Month" />
+                    <asp:BoundField DataField="Total_Sales" HeaderText="Total_Sales" SortExpression="Total_Sales" />
+                </Columns>
+            </asp:GridView>
+            <%--This is for the scatter chart for Retail Total of a company--%>
+            <telerik:RadDatePicker ID="RetailTotalScatter1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
+            <telerik:RadDatePicker ID="RetailTotalScatter2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
+            <asp:DropDownList ID="RetailTotalScatter3" runat="server" Width="58px">
+                <asp:ListItem Value="0">All Company</asp:ListItem>
+                <asp:ListItem> 1 </asp:ListItem>
+                <asp:ListItem> 2 </asp:ListItem>
+                <asp:ListItem> 3 </asp:ListItem>
+            </asp:DropDownList>
+            <asp:DropDownList ID="RetailTotalScatter4" runat="server" Width="99px">
+                <asp:ListItem Value="1"> Monthly </asp:ListItem>
+                <asp:ListItem Value="2"> Yearly </asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="Button" />
+            <telerik:RadHtmlChart ID="RetailTotal" runat="server" DataSourceID="ObjectDataSource6">
+                <Pan Enabled="true" Lock="Y" />
+                <Zoom Enabled="true">
+                    <MouseWheel Enabled="true" Lock="Y" />
+                </Zoom>
+                <ChartTitle Text="Retail Total">
+        <Appearance Align="Center" Position="Top" />
+    </ChartTitle>
+    <Legend>
+        <Appearance Position="Bottom" />
+    </Legend>
+    <PlotArea>
+        <XAxis Color="Black" DataLabelsField="YearMonth">
+            <TitleAppearance Position="Center" Text="Time Period" />
+        </XAxis>
+        <YAxis Color="Black">
+            <MajorGridLines Color="#EFEFEF" Width="1" />
+            <MinorGridLines Color="#F7F7F7" Width="1" />
+            <TitleAppearance Position="Center" Text="Retail Total" RotationAngle="90" />
+        </YAxis>
+        <Series>
+            <telerik:AreaSeries Name="Retail Total" DataFieldY="Retail_Total">
+                <Appearance>
+                    <FillStyle BackgroundColor="Orange" />
+                </Appearance>
+                <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
+                <TooltipsAppearance BackgroundColor="White" />
+            </telerik:AreaSeries>
+        </Series>
+    </PlotArea>
+                <Zoom Enabled="False"></Zoom>
+                
+            </telerik:RadHtmlChart>
+            <asp:ObjectDataSource ID="ObjectDataSource6" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.Financial.RetailTotalBL">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="RetailTotalScatter1" DefaultValue="2015-01-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="RetailTotalScatter2" DefaultValue="2016-12-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:Parameter DefaultValue="3" Name="companyRef" Type="Int32" />
+                    <asp:ControlParameter ControlID="RetailTotalScatter4" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+
+            <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+            <AjaxSettings>
+                <telerik:AjaxSetting AjaxControlID="ConfiguratorPanel1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="RetailTotal" LoadingPanelID="RadAjaxLoadingPanel1" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+            </AjaxSettings>
+        </telerik:RadAjaxManager>
+            <telerik:RadDropDownList ID="RadDropDownList1" runat="server" 
+                DataSourceID="ObjectDataSource5" DataTextField="Branch_Ref" DataValueField="Branch_Ref" DefaultMessage="Select Branch">
+                
+            </telerik:RadDropDownList>
+            <%--This is for the scatter chart for Retail Total of a company--%>
+            <%--This is donut chart of Product Category--%>
+                <telerik:RadHtmlChart ID="ProductCategory1" runat="server" DataSourceID="ObjectDataSource4">
+                    <Appearance>
+        <FillStyle BackgroundColor="White"></FillStyle>
+    </Appearance>
+    <ChartTitle Text="Product Category">
+        <Appearance Align="Center" Position="Top"></Appearance>
+    </ChartTitle>
+    <PlotArea>
+        <Series>
+            <telerik:DonutSeries  HoleSize="50" StartAngle="90" DataFieldY="Income" NameField="Category_Type" Name="Category_Type" >
+                <LabelsAppearance Visible="true">
+                </LabelsAppearance>
+                <TooltipsAppearance DataFormatString="{0}%" BackgroundColor="White"></TooltipsAppearance>
+            </telerik:DonutSeries>
+        </Series>
+    </PlotArea>
+    <Zoom Enabled="False"></Zoom>
+                </telerik:RadHtmlChart>
+                <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="ProductCategory" TypeName="Test.BLL.Financial.ProductCategoryBL">
+                    <SelectParameters>
+                        <asp:Parameter DefaultValue="2011-01-01" Name="start" Type="DateTime" />
+                        <asp:Parameter DefaultValue="2016-01-01" Name="end" Type="DateTime" />
+                        <asp:Parameter DefaultValue="1" Name="branchRef" Type="Int32" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+                <%--This is donut chart of Product Category--%>
+            <br />
         </div>
 
+
     </form>
+<Script>
+    (function (global) {
+        var chart;
+
+        function ChartLoad(sender, args) {
+            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+        }
+
+        global.chartLoad = ChartLoad;
+
+        function resizeChart() {
+            if (chart)
+                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+        }
+
+
+        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+        var TO = false;
+        window.onresize = function () {
+            if (TO !== false)
+                clearTimeout(TO);
+            TO = setTimeout(resizeChart, 200);
+        }
+
+    })(window);
+</Script>
 </asp:Content>
 
 

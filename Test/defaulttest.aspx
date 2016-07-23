@@ -126,7 +126,7 @@
                             <telerik:ColumnSeries DataFieldY="Total_Sales">
                             </telerik:ColumnSeries>
                         </Series>
-                        <XAxis DataLabelsField="YearMonth">
+                        <XAxis DataLabelsField="YearMonth" Type="Date">
                             <TitleAppearance Text="Month">
                                 <TextStyle Margin="20" />
                             </TitleAppearance>

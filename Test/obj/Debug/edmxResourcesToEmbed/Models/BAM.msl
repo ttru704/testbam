@@ -316,14 +316,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="ProductCategory" FunctionName="KPIModel.Store.ProductCategory">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.ProductCategory_Result">
-          <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
-          <ScalarProperty Name="Income" ColumnName="Income" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="GetTotalSalesMonth" FunctionName="KPIModel.Store.GetTotalSalesMonth">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.GetTotalSalesMonth_Result">
@@ -388,9 +380,18 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProductCategory" FunctionName="KPIModel.Store.ProductCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.ProductCategory_Result">
+          <ScalarProperty Name="Category_Type" ColumnName="Category_Type" />
+          <ScalarProperty Name="Income" ColumnName="Income" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="TotalSalesBComparison" FunctionName="KPIModel.Store.TotalSalesBComparison">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.TotalSalesBComparison_Result">
+          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
           <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
           <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
         </ComplexTypeMapping>

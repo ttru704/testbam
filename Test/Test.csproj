@@ -209,8 +209,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="customerKPI.aspx" />
-    <Content Include="Dashboard.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="dashboard.aspx" />
     <Content Include="defaulttest.aspx" />
     <Content Include="employeeKPI.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -407,6 +406,7 @@
     <Compile Include="Account\VerifyPhoneNumber.aspx.designer.cs">
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
+    <Content Include="bin\RadHtmlChartGroupDataSource.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -425,7 +425,7 @@
     <Compile Include="BLL\Financial\GetTotalSalesMonthBL.cs" />
     <Compile Include="BLL\Financial\IncomeProductCategoryBL.cs" />
     <Compile Include="BLL\Financial\RetailTotalBL.cs" />
-    <Compile Include="BLL\Financial\TotalSalesBComparison_BL.cs" />
+    <Compile Include="BLL\Financial\TotalSalesBComparisonBL.cs" />
     <Compile Include="BLL\Financial\TransExclude0TotalBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenBL.cs" />
     <Compile Include="Contact.aspx.cs">
@@ -442,19 +442,12 @@
     <Compile Include="customerKPI.aspx.designer.cs">
       <DependentUpon>customerKPI.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
+    <Compile Include="dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
+    <Compile Include="dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="defaulttest.aspx.cs">
       <DependentUpon>defaulttest.aspx</DependentUpon>

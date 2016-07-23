@@ -12,6 +12,10 @@ namespace Test
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            RadHtmlChart4.DataBind();
+            ProductCategory1.DataBind();
+            RadHtmlChart1.DataBind();
+            RadGrid1.DataBind();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

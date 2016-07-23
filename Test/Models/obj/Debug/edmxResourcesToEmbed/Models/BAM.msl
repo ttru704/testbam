@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KPIModelStoreContainer" CdmEntityContainer="KPIEntities">
+    <EntitySetMapping Name="Audit_Log">
+      <EntityTypeMapping TypeName="KPIModel.Audit_Log">
+        <MappingFragment StoreEntitySet="Audit_Log">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="User_Ref" ColumnName="User_Ref" />
+          <ScalarProperty Name="IP_Address" ColumnName="IP_Address" />
+          <ScalarProperty Name="Log_type" ColumnName="Log_type" />
+          <ScalarProperty Name="Table_Name" ColumnName="Table_Name" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch_Profile">
+      <EntityTypeMapping TypeName="KPIModel.Branch_Profile">
+        <MappingFragment StoreEntitySet="Branch_Profile">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Brn_Number" ColumnName="Brn_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Street_Number" ColumnName="Street_Number" />
+          <ScalarProperty Name="Street_Name" ColumnName="Street_Name" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Zip_Code" ColumnName="Zip_Code" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Branch_Types">
+      <EntityTypeMapping TypeName="KPIModel.Branch_Types">
+        <MappingFragment StoreEntitySet="Branch_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Business_Types">
+      <EntityTypeMapping TypeName="KPIModel.Business_Types">
+        <MappingFragment StoreEntitySet="Business_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category_Types">
+      <EntityTypeMapping TypeName="KPIModel.Category_Types">
+        <MappingFragment StoreEntitySet="Category_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client_Profile">
+      <EntityTypeMapping TypeName="KPIModel.Client_Profile">
+        <MappingFragment StoreEntitySet="Client_Profile">
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Cln_Number" ColumnName="Cln_Number" />
+          <ScalarProperty Name="First_Visit" ColumnName="First_Visit" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Company_Profile">
+      <EntityTypeMapping TypeName="KPIModel.Company_Profile">
+        <MappingFragment StoreEntitySet="Company_Profile">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Number" ColumnName="Company_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Configurations">
+      <EntityTypeMapping TypeName="KPIModel.Configuration">
+        <MappingFragment StoreEntitySet="Configurations">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+          <ScalarProperty Name="User_Ref" ColumnName="User_Ref" />
+          <ScalarProperty Name="Param" ColumnName="Param" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gender_Types">
+      <EntityTypeMapping TypeName="KPIModel.Gender_Types">
+        <MappingFragment StoreEntitySet="Gender_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Key_Performance_Indexes">
+      <EntityTypeMapping TypeName="KPIModel.Key_Performance_Indexes">
+        <MappingFragment StoreEntitySet="Key_Performance_Indexes">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Kpi_Type" ColumnName="Kpi_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KPI_For_Business">
+      <EntityTypeMapping TypeName="KPIModel.KPI_For_Business">
+        <MappingFragment StoreEntitySet="KPI_For_Business">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="KPI" ColumnName="KPI" />
+          <ScalarProperty Name="Procedure_Name" ColumnName="Procedure_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KPI_For_Company">
+      <EntityTypeMapping TypeName="KPIModel.KPI_For_Company">
+        <MappingFragment StoreEntitySet="KPI_For_Company">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Kpi_For_Business_Ref" ColumnName="Kpi_For_Business_Ref" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KPI_For_User">
+      <EntityTypeMapping TypeName="KPIModel.KPI_For_User">
+        <MappingFragment StoreEntitySet="KPI_For_User">
+          <ScalarProperty Name="Kpi_For_Company_Ref" ColumnName="Kpi_For_Company_Ref" />
+          <ScalarProperty Name="User_Ref" ColumnName="User_Ref" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KPI_Types">
+      <EntityTypeMapping TypeName="KPIModel.KPI_Types">
+        <MappingFragment StoreEntitySet="KPI_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Params">
+      <EntityTypeMapping TypeName="KPIModel.Param">
+        <MappingFragment StoreEntitySet="Params">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Profile">
+      <EntityTypeMapping TypeName="KPIModel.Product_Profile">
+        <MappingFragment StoreEntitySet="Product_Profile">
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Prd_Number" ColumnName="Prd_Number" />
+          <ScalarProperty Name="Prd_Name" ColumnName="Prd_Name" />
+          <ScalarProperty Name="Prd_Class" ColumnName="Prd_Class" />
+          <ScalarProperty Name="Cat_1" ColumnName="Cat_1" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff_Profile">
+      <EntityTypeMapping TypeName="KPIModel.Staff_Profile">
+        <MappingFragment StoreEntitySet="Staff_Profile">
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Stf_Number" ColumnName="Stf_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Stf_Type" ColumnName="Stf_Type" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staff_Types">
+      <EntityTypeMapping TypeName="KPIModel.Staff_Types">
+        <MappingFragment StoreEntitySet="Staff_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject_Profile">
+      <EntityTypeMapping TypeName="KPIModel.Subject_Profile">
+        <MappingFragment StoreEntitySet="Subject_Profile">
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Sub_Number" ColumnName="Sub_Number" />
+          <ScalarProperty Name="First_Visit" ColumnName="First_Visit" />
+          <ScalarProperty Name="Subject_Type" ColumnName="Subject_Type" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject_Types">
+      <EntityTypeMapping TypeName="KPIModel.Subject_Types">
+        <MappingFragment StoreEntitySet="Subject_Types">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="KPIModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transaction_Items">
+      <EntityTypeMapping TypeName="KPIModel.Transaction_Items">
+        <MappingFragment StoreEntitySet="Transaction_Items">
+          <ScalarProperty Name="Stf_Number" ColumnName="Stf_Number" />
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+          <ScalarProperty Name="Trn_Number" ColumnName="Trn_Number" />
+          <ScalarProperty Name="Trn_Item_Number" ColumnName="Trn_Item_Number" />
+          <ScalarProperty Name="Trn_Date" ColumnName="Trn_Date" />
+          <ScalarProperty Name="Cln_Number" ColumnName="Cln_Number" />
+          <ScalarProperty Name="Sub_Number" ColumnName="Sub_Number" />
+          <ScalarProperty Name="Prd_Number" ColumnName="Prd_Number" />
+          <ScalarProperty Name="Itm_Quantity" ColumnName="Itm_Quantity" />
+          <ScalarProperty Name="Itm_Cost" ColumnName="Itm_Cost" />
+          <ScalarProperty Name="Itm_STotal" ColumnName="Itm_STotal" />
+          <ScalarProperty Name="Itm_Discount" ColumnName="Itm_Discount" />
+          <ScalarProperty Name="Itm_Total" ColumnName="Itm_Total" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transaction_Summary">
+      <EntityTypeMapping TypeName="KPIModel.Transaction_Summary">
+        <MappingFragment StoreEntitySet="Transaction_Summary">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+          <ScalarProperty Name="Trn_Date" ColumnName="Trn_Date" />
+          <ScalarProperty Name="Trn_Number" ColumnName="Trn_Number" />
+          <ScalarProperty Name="Cln_Number" ColumnName="Cln_Number" />
+          <ScalarProperty Name="Sub_Number" ColumnName="Sub_Number" />
+          <ScalarProperty Name="Is_New_Client" ColumnName="Is_New_Client" />
+          <ScalarProperty Name="Is_New_Animal" ColumnName="Is_New_Animal" />
+          <ScalarProperty Name="Retail_Total" ColumnName="Retail_Total" />
+          <ScalarProperty Name="Service_Total" ColumnName="Service_Total" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Profile">
+      <EntityTypeMapping TypeName="KPIModel.User_Profile">
+        <MappingFragment StoreEntitySet="User_Profile">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Branch_Profile_Types" TypeName="KPIModel.Branch_Profile_Types" StoreEntitySet="Branch_Profile_Types">
+      <EndProperty Name="Branch_Profile">
+        <ScalarProperty Name="Ref_Number" ColumnName="Branch_Ref" />
+      </EndProperty>
+      <EndProperty Name="Branch_Types">
+        <ScalarProperty Name="Ref_Number" ColumnName="Brn_Type_Number" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="KPIModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="KPIModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="KPIModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="KPIModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="KPIModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="KPIModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="KPIModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="GetIncomeProductCategory" FunctionName="KPIModel.Store.GetIncomeProductCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.GetIncomeProductCategory_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
+          <ScalarProperty Name="Income" ColumnName="Income" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetTotalSalesMonth" FunctionName="KPIModel.Store.GetTotalSalesMonth">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.GetTotalSalesMonth_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Total_Sales" ColumnName="Total Sales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UniqueCustomersSeen" FunctionName="KPIModel.Store.UniqueCustomersSeen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.UniqueCustomersSeen_Result">
+          <ScalarProperty Name="Column1" ColumnName="Column1" />
+          <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number of Unique Clients" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NewClientsBComparison" FunctionName="KPIModel.Store.NewClientsBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.NewClientsBComparison_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number of New Clients" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AnimalsSeenBComparison" FunctionName="KPIModel.Store.AnimalsSeenBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.AnimalsSeenBComparison_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number of animals seen" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TransExclude0TotalBComparison" FunctionName="KPIModel.Store.TransExclude0TotalBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.TransExclude0TotalBComparison_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Total_no_of_transactions_excluding_zero_total_bill" ColumnName="Total no of transactions excluding zero total bill" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgDollarPerTransaction" FunctionName="KPIModel.Store.AvgDollarPerTransaction">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.AvgDollarPerTransaction_Result">
+          <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+          <ScalarProperty Name="Average___per_Transaction" ColumnName="Average $ per Transaction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="AvgDollarPerCustomer" FunctionName="KPIModel.Store.AvgDollarPerCustomer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.AvgDollarPerCustomer_Result">
+          <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+          <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="RetailTotal" FunctionName="KPIModel.Store.RetailTotal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.RetailTotal_Result">
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Retail_Total" ColumnName="Retail_Total" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProductCategory" FunctionName="KPIModel.Store.ProductCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.ProductCategory_Result">
+          <ScalarProperty Name="Category_Type" ColumnName="Category_Type" />
+          <ScalarProperty Name="Income" ColumnName="Income" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TotalSalesBComparison" FunctionName="KPIModel.Store.TotalSalesBComparison">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.TotalSalesBComparison_Result">
+          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+          <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+          <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

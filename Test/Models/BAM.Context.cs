@@ -202,23 +202,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetIncomeProductCategory_Result>("GetIncomeProductCategory", startParameter, endParameter, branchRefParameter, timeTypeParameter);
         }
     
-        public virtual ObjectResult<ProductCategory_Result> ProductCategory(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> branchRef)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductCategory_Result>("ProductCategory", startParameter, endParameter, branchRefParameter);
-        }
-    
         public virtual ObjectResult<GetTotalSalesMonth_Result> GetTotalSalesMonth(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> branchRef, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -366,7 +349,28 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<AvgDollarPerCustomer_Result>("AvgDollarPerCustomer", startParameter, endParameter, timeTypeParameter, branchRefParameter);
         }
     
-        public virtual ObjectResult<RetailTotal_Result> RetailTotal(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> branchRef, Nullable<int> timeType)
+        public virtual ObjectResult<RetailTotal_Result> RetailTotal(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetailTotal_Result>("RetailTotal", startParameter, endParameter, companyRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<ProductCategory_Result> ProductCategory(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> branchRef)
         {
             var startParameter = start.HasValue ?
                 new ObjectParameter("start", start) :
@@ -380,11 +384,7 @@ namespace Test.Models
                 new ObjectParameter("branchRef", branchRef) :
                 new ObjectParameter("branchRef", typeof(int));
     
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<RetailTotal_Result>("RetailTotal", startParameter, endParameter, branchRefParameter, timeTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductCategory_Result>("ProductCategory", startParameter, endParameter, branchRefParameter);
         }
     
         public virtual ObjectResult<TotalSalesBComparison_Result> TotalSalesBComparison(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> branchRef, Nullable<int> timeType)

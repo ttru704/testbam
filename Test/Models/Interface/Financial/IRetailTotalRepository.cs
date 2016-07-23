@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface IRetailTotalRepository: IDisposable
     {
-        List<RetailTotal_Result> RetailTotal(DateTime start, DateTime end, int branchRef, int timeType);    
+        List<RetailTotal_Result> RetailTotal(DateTime start, DateTime end, int companyRef, int timeType);    
     }
 }

@@ -15,9 +15,9 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<RetailTotal_Result> IRetailTotalRepository.RetailTotal(DateTime start, DateTime end, int branchRef, int timeType)
+        List<RetailTotal_Result> IRetailTotalRepository.RetailTotal(DateTime start, DateTime end, int companyRef, int timeType)
         {
-            return context.RetailTotal(start, end, branchRef, timeType).ToList();
+            return context.RetailTotal(start, end, companyRef, timeType).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls
