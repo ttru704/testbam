@@ -20,6 +20,8 @@ namespace Test.Models
         public string Id { get; set; }
         public Nullable<long> Stf_Type { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public string Status { get; set; }
+        public Nullable<System.DateTime> Date_Started { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
         public virtual Staff_Types Staff_Types { get; set; }

@@ -8,10 +8,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
 using Telerik.Web.UI;
-using Test.BLL;
+//using Test.BLL;
 using Test.Models;
 using Telerik.Web.UI.HtmlChart;
-using Test.BLL.Financial;
+//using Test.BLL.Financial;
 using System.ComponentModel;
 
 namespace Test
@@ -20,145 +20,38 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TotalSalesBComparison1.SelectedDate = DateTime.Parse("01/01/2015");
-            TotalSalesBComparison2.SelectedDate = DateTime.Parse("31/12/2015");
-            ProductCategory1.DataBind();
-
-            //THIS THING HERE DIXON IS TRYING ------------------------------------------------------------------------------------------
-            //this doesnt work because the BL layer doesnt return a datatable.
-            //ObjectDataSource ObjectDataSource5 = new ObjectDataSource();
-            //ObjectDataSource5.SelectMethod = "TotalSalesBComparison";
-            //ObjectDataSource5.TypeName = "Test.BLL.Financial.TotalSalesBComparisonBL";
-
-            //ObjectDataSource5.SelectParameters.Add("start", TypeCode.DateTime, TotalSalesBComparison1.SelectedDate.ToString());
-            //ObjectDataSource5.SelectParameters.Add("end", TypeCode.DateTime, TotalSalesBComparison2.SelectedDate.ToString());
-            //ObjectDataSource5.SelectParameters.Add("branchRef", TypeCode.Int32, TotalSalesBComparison4.SelectedValue);
-            //ObjectDataSource5.SelectParameters.Add("timeType", TypeCode.Int32, TotalSalesBComparison3.SelectedValue);
-            //DataTable dt = (DataTable)ObjectDataSource5.Select();
-
-           
-        }
-        
-
-        public enum SearchType
-        {
-            NotSet = -1,
-            Products = 0,
-            Category = 1
-        }
-
-        protected void Button2_Click(object sender, EventArgs e)
-        {
             GridView1.DataBind();
         }
 
-
-        protected void Button1_Click(Object sender, System.EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            if (MultiView1.ActiveViewIndex > -1)
-            {
-                String searchTerm = "";
-                SearchType mSearchType =
-                     (SearchType)MultiView1.ActiveViewIndex;
-                switch (mSearchType)
-                {
-                    case SearchType.Products:
-                        DoSearch(textProductName.Text, mSearchType);
-                        break;
-                    case SearchType.Category:
-                        DoSearch(textCategory.Text, mSearchType);
-                        break;
-                    case SearchType.NotSet:
-                        break;
-                }
-            }
-        }
-
-        protected void DoSearch(String searchTerm, SearchType type)
-        {
-            // Code here to perform a search.
-        }
-
-        protected void radioButton_CheckedChanged(Object sender,
-            System.EventArgs e)
-        {
-            if (radioProduct.Checked)
-            {
-                MultiView1.ActiveViewIndex = (int)SearchType.Products;
-            }
-            else if (radioCategory.Checked)
-            {
-                MultiView1.ActiveViewIndex = (int)SearchType.Category;
-            }
-        }
-
-        protected void Button1_Click1(object sender, EventArgs e)
-        {
-            PieChart1.DataBind();
-        }
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        //protected void Button3_Click(object sender, EventArgs e)
-        //{
-        //    RadHtmlChart1.DataBind();
-        //}
-        
-            //Trying to return a Datatable so it reads from dataTable instead of gridview---------------------------------------------------------------
-        //private DataTable GetDS(ObjectDataSource ObjectDataSource5)
-        //{
-        //    var ds = new DataSet();
-        //    var dv = (DataView)ObjectDataSource5.Select();
-        //    if (dv != null && dv.Count > 0)
-        //    {
-        //        var dt = dv.ToTable();
-        //        ds.Tables.Add(dt);
-        //    }
-        //    return ds.Tables[0];
-        //}
-        protected void ViewTotalSalesBComparison_Click(object sender, EventArgs e)
-        {
-
-            ///////////////////// From Chi /////////////////////////
-            //Sorry to log you out...
-            //You may use the following code to access the method in BL
-            DateTime start = TotalSalesBComparison1.SelectedDate.GetValueOrDefault();
-            DateTime end = TotalSalesBComparison2.SelectedDate.GetValueOrDefault();
-
-            TotalSalesBComparisonBL totalSalesBL = new TotalSalesBComparisonBL();
-            var a =  totalSalesBL.TotalSalesBComparison(start, end, 0, 1).ToString();
-
-            /////////////////////// End ////////////////////
-            ///////////////////////////////////////////
+            RadHtmlChart1.DataBind();
 
             DataTable dt = new DataTable();
-            for (int i = 0; i < GridView2.Columns.Count; i++)
+            for (int i = 0; i < GridView1.Columns.Count; i++)
             {
                 dt.Columns.Add("column" + i.ToString());
             }
-            foreach (GridViewRow row in GridView2.Rows)
+            foreach (GridViewRow row in GridView1.Rows)
             {
                 DataRow dr = dt.NewRow();
-                for (int j = 0; j < GridView2.Columns.Count; j++)
+                for (int j = 0; j < GridView1.Columns.Count; j++)
                 {
                     dr["column" + j.ToString()] = row.Cells[j].Text;
                 }
 
                 dt.Rows.Add(dr);
             }
-            //Group data source and bind it to category series:
-            RadHtmlChartGroupDataSource.GroupDataSource(RadHtmlChart2, dt, "column0", "LineSeries", "column2", "column1");
 
-            //Group data source and bind it to numeric series:
-            //RadHtmlChartGroupDataSource.GroupDataSource(RadHtmlChart2, dt, "column1", "LineSeries", "column3", "column2");
+            RadHtmlChartGroupDataSource.GroupDataSource(RadHtmlChart2, dt, "column0", "ColumnSeries", "column2", "column1");
+            
+        }
 
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
-        
-        //for Rad html chart group data source
+
         public static class RadHtmlChartGroupDataSource
         {
             /// <summary>
@@ -196,13 +89,13 @@ namespace Test
                 //Configure x-axis DataLabelsField if series are of category type
                 if (isCategorySeries)
                 {
-                    HtmlChart.PlotArea.XAxis.DataLabelsField = String.Format("{0:MMM/yyyy}", DataFieldX) + "0";
+                    HtmlChart.PlotArea.XAxis.DataLabelsField = DataFieldX + "0";
                 }
 
                 for (int i = 0; i < NumDistinctValues; i++)
                 {
                     //Construct the series name, tooltips template and labels format string
-                    string seriesName = "Branch " + DistinctValuesDT.Rows[i][0].ToString();
+                    string seriesName = DistinctValuesDT.Columns[0].ColumnName + " : " + DistinctValuesDT.Rows[i][0].ToString();
                     string tooltipsTemplate = "Category: #=dataItem." + DataFieldX + i + "#<br />Value: #=dataItem." + DataFieldY + i + "#";
                     string labelsFormatString = "{0:N0}";
 
@@ -337,16 +230,45 @@ namespace Test
                 return tempDTarray;
             }
         }
-        //for Rad html chart group data source
 
-        protected void Button3_Click(object sender, EventArgs e)
+
+        //for the TotalSalesCompany
+        protected void ViewTotalSalesCom_Click(object sender, EventArgs e)
         {
-            RetailTotal.DataBind();
+            TotalSalesComRHC1.DataBind();
+
+            if (TotalSalesComDDLTime.SelectedValue == "1")
+            {
+                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
+                RadHtmlChart2.ChartTitle.Text = "Total Monthly Sales";
+                RadHtmlChart2.PlotArea.XAxis.TitleAppearance.Text = "Month";
+            }
+            else
+            {
+                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                RadHtmlChart2.ChartTitle.Text = "Total Yearly Sales";
+                RadHtmlChart2.PlotArea.XAxis.TitleAppearance.Text = "Year";
+            };
         }
 
-        protected void ObjectDataSource5_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        protected void ViewTotalSalesBComparison_Click(object sender, EventArgs e)
         {
+            DataTable dt2 = new DataTable();
+            for (int i = 0; i < GridView2.Columns.Count; i++)
+            {
+                dt2.Columns.Add("column" + i.ToString());
+            }
+            foreach (GridViewRow row in GridView2.Rows)
+            {
+                DataRow dr = dt2.NewRow();
+                for (int j = 0; j < GridView2.Columns.Count; j++)
+                {
+                    dr["column" + j.ToString()] = row.Cells[j].Text;
+                }
 
+                dt2.Rows.Add(dr);
+            }
+            RadHtmlChartGroupDataSource.GroupDataSource(RadHtmlChart3, dt2, "column0", "ColumnSeries", "column2", "column1");
         }
     }
 

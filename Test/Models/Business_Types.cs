@@ -20,7 +20,6 @@ namespace Test.Models
             this.Branch_Types = new HashSet<Branch_Types>();
             this.Category_Types = new HashSet<Category_Types>();
             this.Company_Profile = new HashSet<Company_Profile>();
-            this.Gender_Types = new HashSet<Gender_Types>();
             this.KPI_For_Business = new HashSet<KPI_For_Business>();
             this.Subject_Types = new HashSet<Subject_Types>();
             this.Staff_Types = new HashSet<Staff_Types>();
@@ -35,8 +34,6 @@ namespace Test.Models
         public virtual ICollection<Category_Types> Category_Types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Company_Profile> Company_Profile { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gender_Types> Gender_Types { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KPI_For_Business> KPI_For_Business { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

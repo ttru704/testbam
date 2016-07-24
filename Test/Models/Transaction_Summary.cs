@@ -21,10 +21,11 @@ namespace Test.Models
         public long Trn_Number { get; set; }
         public long Cln_Number { get; set; }
         public long Sub_Number { get; set; }
-        public bool Is_New_Client { get; set; }
-        public bool Is_New_Animal { get; set; }
         public decimal Retail_Total { get; set; }
         public decimal Service_Total { get; set; }
+        public Nullable<bool> Is_New_Client { get; set; }
+        public Nullable<bool> Is_New_Subject { get; set; }
+        public Nullable<short> Mult { get; set; }
         public System.DateTime Last_Updated { get; set; }
     }
 }

@@ -16,14 +16,15 @@ namespace Test.Models
     {
         public long Company_Ref { get; set; }
         public long Sub_Number { get; set; }
-        public Nullable<long> First_Visit { get; set; }
         public Nullable<long> Subject_Type { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
-        public Nullable<long> Gender { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public string Status { get; set; }
+        public Nullable<System.DateTime> Last_Visit { get; set; }
+        public string Gender { get; set; }
+        public Nullable<System.DateTime> First_Visit { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
-        public virtual Gender_Types Gender_Types { get; set; }
         public virtual Subject_Types Subject_Types { get; set; }
     }
 }

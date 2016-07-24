@@ -26,6 +26,7 @@
           <Property Name="Company_Ref" Type="bigint" Nullable="false" />
           <Property Name="Brn_Number" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bs2_Number" Type="bigint" Nullable="false" />
           <Property Name="Street_Number" Type="int" />
           <Property Name="Street_Name" Type="nvarchar" MaxLength="255" />
           <Property Name="Suburb" Type="nvarchar" MaxLength="100" />
@@ -34,6 +35,7 @@
           <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="Region" Type="varchar" MaxLength="50" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Branch_Profile_Types">
           <Key>
@@ -75,6 +77,8 @@
           <Property Name="Cln_Number" Type="bigint" Nullable="false" />
           <Property Name="First_Visit" Type="datetime" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="Last_Visit" Type="datetime" />
         </EntityType>
         <EntityType Name="Company_Profile">
           <Key>
@@ -97,13 +101,16 @@
           <Property Name="Param" Type="bigint" Nullable="false" />
           <Property Name="Value" Type="nvarchar" MaxLength="4000" Nullable="false" />
         </EntityType>
-        <EntityType Name="Gender_Types">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Connection_Profile">
           <Key>
-            <PropertyRef Name="Ref_Number" />
+            <PropertyRef Name="User_Name" />
+            <PropertyRef Name="Password" />
           </Key>
-          <Property Name="Ref_Number" Type="bigint" Nullable="false" />
-          <Property Name="Business_Type" Type="bigint" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="User_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Disk_Id" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Key_Performance_Indexes">
           <Key>
@@ -166,6 +173,7 @@
           <Property Name="Prd_Class" Type="char" MaxLength="1" />
           <Property Name="Cat_1" Type="bigint" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Staff_Profile">
           <Key>
@@ -178,6 +186,8 @@
           <Property Name="Id" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="Stf_Type" Type="bigint" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="Date_Started" Type="datetime" />
         </EntityType>
         <EntityType Name="Staff_Types">
           <Key>
@@ -194,11 +204,13 @@
           </Key>
           <Property Name="Company_Ref" Type="bigint" Nullable="false" />
           <Property Name="Sub_Number" Type="bigint" Nullable="false" />
-          <Property Name="First_Visit" Type="bigint" />
           <Property Name="Subject_Type" Type="bigint" />
           <Property Name="DOB" Type="datetime" />
-          <Property Name="Gender" Type="bigint" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+          <Property Name="Last_Visit" Type="datetime" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+          <Property Name="First_Visit" Type="datetime" />
         </EntityType>
         <EntityType Name="Subject_Types">
           <Key>
@@ -218,6 +230,16 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Table_Map">
+          <Key>
+            <PropertyRef Name="Table_Ref" />
+            <PropertyRef Name="Version_Number" />
+          </Key>
+          <Property Name="Table_Ref" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Version_Number" Type="int" Nullable="false" />
+          <Property Name="Procedure_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Node_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Transaction_Items">
           <Key>
             <PropertyRef Name="Ref_Number" />
@@ -230,14 +252,15 @@
           <Property Name="Trn_Date" Type="datetime" Nullable="false" />
           <Property Name="Cln_Number" Type="bigint" Nullable="false" />
           <Property Name="Sub_Number" Type="bigint" Nullable="false" />
+          <Property Name="Stf_Number" Type="bigint" Nullable="false" />
           <Property Name="Prd_Number" Type="bigint" Nullable="false" />
+          <Property Name="Mult" Type="smallint" Nullable="false" />
           <Property Name="Itm_Quantity" Type="numeric" Precision="18" Scale="5" Nullable="false" />
           <Property Name="Itm_Cost" Type="numeric" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Itm_STotal" Type="numeric" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Itm_Discount" Type="numeric" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Itm_Total" Type="numeric" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
-          <Property Name="Stf_Number" Type="bigint" />
         </EntityType>
         <EntityType Name="Transaction_Summary">
           <Key>
@@ -250,10 +273,11 @@
           <Property Name="Trn_Number" Type="bigint" Nullable="false" />
           <Property Name="Cln_Number" Type="bigint" Nullable="false" />
           <Property Name="Sub_Number" Type="bigint" Nullable="false" />
-          <Property Name="Is_New_Client" Type="bit" Nullable="false" />
-          <Property Name="Is_New_Animal" Type="bit" Nullable="false" />
           <Property Name="Retail_Total" Type="numeric" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Service_Total" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Is_New_Client" Type="bit" />
+          <Property Name="Is_New_Subject" Type="bit" />
+          <Property Name="Mult" Type="smallint" />
           <Property Name="Last_Updated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="User_Profile">
@@ -396,18 +420,6 @@
               <PropertyRef Name="Ref_Number" />
             </Principal>
             <Dependent Role="Company_Profile">
-              <PropertyRef Name="Business_Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="GND_Business_Types">
-          <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
-          <End Role="Gender_Types" Type="Self.Gender_Types" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business_Types">
-              <PropertyRef Name="Ref_Number" />
-            </Principal>
-            <Dependent Role="Gender_Types">
               <PropertyRef Name="Business_Type" />
             </Dependent>
           </ReferentialConstraint>
@@ -580,18 +592,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="SUB_Gender_Types">
-          <End Role="Gender_Types" Type="Self.Gender_Types" Multiplicity="0..1" />
-          <End Role="Subject_Profile" Type="Self.Subject_Profile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender_Types">
-              <PropertyRef Name="Ref_Number" />
-            </Principal>
-            <Dependent Role="Subject_Profile">
-              <PropertyRef Name="Gender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="SUB_Subject_Types">
           <End Role="Subject_Types" Type="Self.Subject_Types" Multiplicity="0..1" />
           <End Role="Subject_Profile" Type="Self.Subject_Profile" Multiplicity="*" />
@@ -616,57 +616,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="AnimalsSeenBComparison" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="AvgDollarPerCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-        </Function>
-        <Function Name="AvgDollarPerTransaction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
-        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="Get_TimeType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
           <Parameter Name="Type" Type="int" Mode="In" />
           <Parameter Name="Date" Type="datetime" Mode="In" />
-        </Function>
-        <Function Name="GetIncomeProductCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="GetTotalSalesMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="NewClientsBComparison" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="ProductCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="branchRef" Type="int" Mode="In" />
-        </Function>
-        <Function Name="RetailTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="start" Type="date" Mode="In" />
-          <Parameter Name="end" Type="date" Mode="In" />
-          <Parameter Name="companyRef" Type="int" Mode="In" />
-          <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -698,22 +651,164 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="TotalSalesBComparison" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ufn_Format" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+          <Parameter Name="s" Type="varchar(max)" Mode="In" />
+          <Parameter Name="params" Type="varchar(max)" Mode="In" />
+          <Parameter Name="separator" Type="char" Mode="In" />
+        </Function>
+        <Function Name="usp_AnimalsSeenBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="branchRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
-        <Function Name="TransExclude0TotalBComparison" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_AnimalsSeenByEmpCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AnimalsSeenCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AvgDollarPerCustomerBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="branchRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
-        <Function Name="UniqueCustomersSeen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_AvgDollarPerCustomerCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AvgPerTransactionBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="branchRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_AvgPerTransactionCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_CustomersSeenByEmpCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ExecuteBulkUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="XmlInput" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="usp_IncomeProductCategoryCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_NewClientsBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="branchRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_NewClientsCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ProductLoad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cln_Number" Type="bigint" Mode="In" />
+          <Parameter Name="Brn_Number" Type="bigint" Mode="In" />
+          <Parameter Name="XmlInput" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="usp_RaiseException" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Error_Num" Type="int" Mode="In" />
+          <Parameter Name="Params" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="usp_RetailOnlySalesBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="branchRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_RetailOnlySalesCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ServiceOnlySalesBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="branchRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_ServiceOnlySalesCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_TotalSalesBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="branchRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_TotalSalesCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_TotalSalesIndustry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_TransactionLoad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Cmp_Number" Type="bigint" Mode="In" />
+          <Parameter Name="Brn_Number" Type="bigint" Mode="In" />
+          <Parameter Name="XmlInput" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="usp_TransExclude0TotalCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_UniqueCustomersSeenBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="branchRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_UniqueCustomersSeenCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+          <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_UniqueCustomersSeenIndustry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="KPIModelStoreContainer">
@@ -726,7 +821,6 @@
           <EntitySet Name="Client_Profile" EntityType="Self.Client_Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company_Profile" EntityType="Self.Company_Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Gender_Types" EntityType="Self.Gender_Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Key_Performance_Indexes" EntityType="Self.Key_Performance_Indexes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KPI_For_Business" EntityType="Self.KPI_For_Business" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KPI_For_Company" EntityType="Self.KPI_For_Company" Schema="dbo" store:Type="Tables" />
@@ -739,9 +833,17 @@
           <EntitySet Name="Subject_Profile" EntityType="Self.Subject_Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Subject_Types" EntityType="Self.Subject_Types" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Map" EntityType="Self.Table_Map" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction_Items" EntityType="Self.Transaction_Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction_Summary" EntityType="Self.Transaction_Summary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Profile" EntityType="Self.User_Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Connection_Profile" EntityType="Self.Connection_Profile" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Connection_Profile].[User_Name] AS [User_Name], 
+    [Connection_Profile].[Password] AS [Password], 
+    [Connection_Profile].[Disk_Id] AS [Disk_Id]
+    FROM [dbo].[Connection_Profile] AS [Connection_Profile]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="BPT_Branch_Profile" Association="Self.BPT_Branch_Profile">
             <End Role="Branch_Profile" EntitySet="Branch_Profile" />
             <End Role="Branch_Profile_Types" EntitySet="Branch_Profile_Types" />
@@ -785,10 +887,6 @@
           <AssociationSet Name="CPY_Business_Types" Association="Self.CPY_Business_Types">
             <End Role="Business_Types" EntitySet="Business_Types" />
             <End Role="Company_Profile" EntitySet="Company_Profile" />
-          </AssociationSet>
-          <AssociationSet Name="GND_Business_Types" Association="Self.GND_Business_Types">
-            <End Role="Business_Types" EntitySet="Business_Types" />
-            <End Role="Gender_Types" EntitySet="Gender_Types" />
           </AssociationSet>
           <AssociationSet Name="KFB_Business_Types" Association="Self.KFB_Business_Types">
             <End Role="Business_Types" EntitySet="Business_Types" />
@@ -846,10 +944,6 @@
             <End Role="Company_Profile" EntitySet="Company_Profile" />
             <End Role="Subject_Profile" EntitySet="Subject_Profile" />
           </AssociationSet>
-          <AssociationSet Name="SUB_Gender_Types" Association="Self.SUB_Gender_Types">
-            <End Role="Gender_Types" EntitySet="Gender_Types" />
-            <End Role="Subject_Profile" EntitySet="Subject_Profile" />
-          </AssociationSet>
           <AssociationSet Name="SUB_Subject_Types" Association="Self.SUB_Subject_Types">
             <End Role="Subject_Types" EntitySet="Subject_Types" />
             <End Role="Subject_Profile" EntitySet="Subject_Profile" />
@@ -884,6 +978,7 @@
           <Property Name="Company_Ref" Type="Int64" Nullable="false" />
           <Property Name="Brn_Number" Type="Int64" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Bs2_Number" Type="Int64" Nullable="false" />
           <Property Name="Street_Number" Type="Int32" />
           <Property Name="Street_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Suburb" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -892,6 +987,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Company_Profile" Relationship="Self.BRN_Company_Profile" FromRole="Branch_Profile" ToRole="Company_Profile" />
           <NavigationProperty Name="Configurations" Relationship="Self.CFG_Branch_Profile" FromRole="Branch_Profile" ToRole="Configurations" />
           <NavigationProperty Name="Branch_Types" Relationship="Self.Branch_Profile_Types" FromRole="Branch_Profile" ToRole="Branch_Types" />
@@ -915,7 +1011,6 @@
           <NavigationProperty Name="Branch_Types" Relationship="Self.BRT_Business_Types" FromRole="Business_Types" ToRole="Branch_Types" />
           <NavigationProperty Name="Category_Types" Relationship="Self.CAT_Business_Types" FromRole="Business_Types" ToRole="Category_Types" />
           <NavigationProperty Name="Company_Profile" Relationship="Self.CPY_Business_Types" FromRole="Business_Types" ToRole="Company_Profile" />
-          <NavigationProperty Name="Gender_Types" Relationship="Self.GND_Business_Types" FromRole="Business_Types" ToRole="Gender_Types" />
           <NavigationProperty Name="KPI_For_Business" Relationship="Self.KFB_Business_Types" FromRole="Business_Types" ToRole="KPI_For_Business" />
           <NavigationProperty Name="Subject_Types" Relationship="Self.SBT_Business_Types" FromRole="Business_Types" ToRole="Subject_Types" />
           <NavigationProperty Name="Staff_Types" Relationship="Self.STT_Business_Types" FromRole="Business_Types" ToRole="Staff_Types" />
@@ -939,6 +1034,8 @@
           <Property Name="Cln_Number" Type="Int64" Nullable="false" />
           <Property Name="First_Visit" Type="DateTime" Precision="3" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Visit" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Company_Profile" Relationship="Self.CLN_Company_Profile" FromRole="Client_Profile" ToRole="Company_Profile" />
         </EntityType>
         <EntityType Name="Company_Profile">
@@ -974,16 +1071,6 @@
           <NavigationProperty Name="Company_Profile" Relationship="Self.CFG_Company_Profile" FromRole="Configurations" ToRole="Company_Profile" />
           <NavigationProperty Name="Param1" Relationship="Self.CFG_Params" FromRole="Configurations" ToRole="Params" />
           <NavigationProperty Name="User_Profile" Relationship="Self.CFG_User_Profile" FromRole="Configurations" ToRole="User_Profile" />
-        </EntityType>
-        <EntityType Name="Gender_Types">
-          <Key>
-            <PropertyRef Name="Ref_Number" />
-          </Key>
-          <Property Name="Ref_Number" Type="Int64" Nullable="false" />
-          <Property Name="Business_Type" Type="Int64" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Business_Types" Relationship="Self.GND_Business_Types" FromRole="Gender_Types" ToRole="Business_Types" />
-          <NavigationProperty Name="Subject_Profile" Relationship="Self.SUB_Gender_Types" FromRole="Gender_Types" ToRole="Subject_Profile" />
         </EntityType>
         <EntityType Name="Key_Performance_Indexes">
           <Key>
@@ -1058,6 +1145,7 @@
           <Property Name="Prd_Class" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Cat_1" Type="Int64" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Category_Types" Relationship="Self.PRD_Category_Types" FromRole="Product_Profile" ToRole="Category_Types" />
           <NavigationProperty Name="Company_Profile" Relationship="Self.PRD_Company_Profile" FromRole="Product_Profile" ToRole="Company_Profile" />
         </EntityType>
@@ -1072,6 +1160,8 @@
           <Property Name="Id" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Stf_Type" Type="Int64" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Date_Started" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Company_Profile" Relationship="Self.STF_Company_Profile" FromRole="Staff_Profile" ToRole="Company_Profile" />
           <NavigationProperty Name="Staff_Types" Relationship="Self.STP_Staff_Types" FromRole="Staff_Profile" ToRole="Staff_Types" />
         </EntityType>
@@ -1092,13 +1182,14 @@
           </Key>
           <Property Name="Company_Ref" Type="Int64" Nullable="false" />
           <Property Name="Sub_Number" Type="Int64" Nullable="false" />
-          <Property Name="First_Visit" Type="Int64" />
           <Property Name="Subject_Type" Type="Int64" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
-          <Property Name="Gender" Type="Int64" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Last_Visit" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="First_Visit" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Company_Profile" Relationship="Self.SUB_Company_Profile" FromRole="Subject_Profile" ToRole="Company_Profile" />
-          <NavigationProperty Name="Gender_Types" Relationship="Self.SUB_Gender_Types" FromRole="Subject_Profile" ToRole="Gender_Types" />
           <NavigationProperty Name="Subject_Types" Relationship="Self.SUB_Subject_Types" FromRole="Subject_Profile" ToRole="Subject_Types" />
         </EntityType>
         <EntityType Name="Subject_Types">
@@ -1121,6 +1212,16 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Table_Map">
+          <Key>
+            <PropertyRef Name="Table_Ref" />
+            <PropertyRef Name="Version_Number" />
+          </Key>
+          <Property Name="Table_Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Version_Number" Type="Int32" Nullable="false" />
+          <Property Name="Procedure_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Node_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="Transaction_Items">
           <Key>
             <PropertyRef Name="Ref_Number" />
@@ -1133,14 +1234,15 @@
           <Property Name="Trn_Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Cln_Number" Type="Int64" Nullable="false" />
           <Property Name="Sub_Number" Type="Int64" Nullable="false" />
+          <Property Name="Stf_Number" Type="Int64" Nullable="false" />
           <Property Name="Prd_Number" Type="Int64" Nullable="false" />
+          <Property Name="Mult" Type="Int16" Nullable="false" />
           <Property Name="Itm_Quantity" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="Itm_Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Itm_STotal" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Itm_Discount" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Itm_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Stf_Number" Type="Int64" />
         </EntityType>
         <EntityType Name="Transaction_Summary">
           <Key>
@@ -1153,10 +1255,11 @@
           <Property Name="Trn_Number" Type="Int64" Nullable="false" />
           <Property Name="Cln_Number" Type="Int64" Nullable="false" />
           <Property Name="Sub_Number" Type="Int64" Nullable="false" />
-          <Property Name="Is_New_Client" Type="Boolean" Nullable="false" />
-          <Property Name="Is_New_Animal" Type="Boolean" Nullable="false" />
           <Property Name="Retail_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="Service_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Is_New_Client" Type="Boolean" />
+          <Property Name="Is_New_Subject" Type="Boolean" />
+          <Property Name="Mult" Type="Int16" />
           <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="User_Profile">
@@ -1173,6 +1276,15 @@
           <NavigationProperty Name="Company_Profile" Relationship="Self.USR_Company_Profile" FromRole="User_Profile" ToRole="Company_Profile" />
           <NavigationProperty Name="Configurations" Relationship="Self.CFG_User_Profile" FromRole="User_Profile" ToRole="Configurations" />
           <NavigationProperty Name="KPI_For_User" Relationship="Self.KFU_User_Profile" FromRole="User_Profile" ToRole="KPI_For_User" />
+        </EntityType>
+        <EntityType Name="Connection_Profile">
+          <Key>
+            <PropertyRef Name="User_Name" />
+            <PropertyRef Name="Password" />
+          </Key>
+          <Property Name="User_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Disk_Id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="BRN_Company_Profile">
           <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
@@ -1230,18 +1342,6 @@
               <PropertyRef Name="Ref_Number" />
             </Principal>
             <Dependent Role="Company_Profile">
-              <PropertyRef Name="Business_Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="GND_Business_Types">
-          <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
-          <End Role="Gender_Types" Type="Self.Gender_Types" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business_Types">
-              <PropertyRef Name="Ref_Number" />
-            </Principal>
-            <Dependent Role="Gender_Types">
               <PropertyRef Name="Business_Type" />
             </Dependent>
           </ReferentialConstraint>
@@ -1402,18 +1502,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="SUB_Gender_Types">
-          <End Role="Gender_Types" Type="Self.Gender_Types" Multiplicity="0..1" />
-          <End Role="Subject_Profile" Type="Self.Subject_Profile" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gender_Types">
-              <PropertyRef Name="Ref_Number" />
-            </Principal>
-            <Dependent Role="Subject_Profile">
-              <PropertyRef Name="Gender" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="KFB_Key_Performance_Indexs">
           <End Role="Key_Performance_Indexes" Type="Self.Key_Performance_Indexes" Multiplicity="1" />
           <End Role="KPI_For_Business" Type="Self.KPI_For_Business" Multiplicity="*" />
@@ -1511,7 +1599,6 @@
           <EntitySet Name="Client_Profile" EntityType="Self.Client_Profile" />
           <EntitySet Name="Company_Profile" EntityType="Self.Company_Profile" />
           <EntitySet Name="Configurations" EntityType="Self.Configuration" />
-          <EntitySet Name="Gender_Types" EntityType="Self.Gender_Types" />
           <EntitySet Name="Key_Performance_Indexes" EntityType="Self.Key_Performance_Indexes" />
           <EntitySet Name="KPI_For_Business" EntityType="Self.KPI_For_Business" />
           <EntitySet Name="KPI_For_Company" EntityType="Self.KPI_For_Company" />
@@ -1524,9 +1611,11 @@
           <EntitySet Name="Subject_Profile" EntityType="Self.Subject_Profile" />
           <EntitySet Name="Subject_Types" EntityType="Self.Subject_Types" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Table_Map" EntityType="Self.Table_Map" />
           <EntitySet Name="Transaction_Items" EntityType="Self.Transaction_Items" />
           <EntitySet Name="Transaction_Summary" EntityType="Self.Transaction_Summary" />
           <EntitySet Name="User_Profile" EntityType="Self.User_Profile" />
+          <EntitySet Name="Connection_Profile" EntityType="Self.Connection_Profile" />
           <AssociationSet Name="BRN_Company_Profile" Association="Self.BRN_Company_Profile">
             <End Role="Company_Profile" EntitySet="Company_Profile" />
             <End Role="Branch_Profile" EntitySet="Branch_Profile" />
@@ -1546,10 +1635,6 @@
           <AssociationSet Name="CPY_Business_Types" Association="Self.CPY_Business_Types">
             <End Role="Business_Types" EntitySet="Business_Types" />
             <End Role="Company_Profile" EntitySet="Company_Profile" />
-          </AssociationSet>
-          <AssociationSet Name="GND_Business_Types" Association="Self.GND_Business_Types">
-            <End Role="Business_Types" EntitySet="Business_Types" />
-            <End Role="Gender_Types" EntitySet="Gender_Types" />
           </AssociationSet>
           <AssociationSet Name="KFB_Business_Types" Association="Self.KFB_Business_Types">
             <End Role="Business_Types" EntitySet="Business_Types" />
@@ -1603,10 +1688,6 @@
             <End Role="User_Profile" EntitySet="User_Profile" />
             <End Role="Configurations" EntitySet="Configurations" />
           </AssociationSet>
-          <AssociationSet Name="SUB_Gender_Types" Association="Self.SUB_Gender_Types">
-            <End Role="Gender_Types" EntitySet="Gender_Types" />
-            <End Role="Subject_Profile" EntitySet="Subject_Profile" />
-          </AssociationSet>
           <AssociationSet Name="KFB_Key_Performance_Indexs" Association="Self.KFB_Key_Performance_Indexs">
             <End Role="Key_Performance_Indexes" EntitySet="Key_Performance_Indexes" />
             <End Role="KPI_For_Business" EntitySet="KPI_For_Business" />
@@ -1639,7 +1720,6 @@
             <End Role="Branch_Profile" EntitySet="Branch_Profile" />
             <End Role="Branch_Types" EntitySet="Branch_Types" />
           </AssociationSet>
-          <FunctionImport Name="GetProduct" ReturnType="Collection(KPIModel.GetProduct_Result)" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1670,86 +1750,162 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="GetNumberofAnimalSeen" ReturnType="Collection(KPIModel.GetNumberofAnimalSeen_Result)">
+          <FunctionImport Name="usp_AnimalsSeenBranch" ReturnType="Collection(KPIModel.usp_AnimalsSeenBranch_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="branchRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetIncomeProductCategory" ReturnType="Collection(KPIModel.GetIncomeProductCategory_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetTotalSalesMonth" ReturnType="Collection(KPIModel.GetTotalSalesMonth_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="UniqueCustomersSeen" ReturnType="Collection(KPIModel.UniqueCustomersSeen_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="NewClientsBComparison" ReturnType="Collection(KPIModel.NewClientsBComparison_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AnimalsSeenBComparison" ReturnType="Collection(KPIModel.AnimalsSeenBComparison_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="TransExclude0TotalBComparison" ReturnType="Collection(KPIModel.TransExclude0TotalBComparison_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AvgDollarPerTransaction" ReturnType="Collection(KPIModel.AvgDollarPerTransaction_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="AvgDollarPerCustomer" ReturnType="Collection(KPIModel.AvgDollarPerCustomer_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="RetailTotal" ReturnType="Collection(KPIModel.RetailTotal_Result)">
+          <FunctionImport Name="usp_AnimalsSeenByEmpCom" ReturnType="Collection(KPIModel.usp_AnimalsSeenByEmpCom_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="ProductCategory" ReturnType="Collection(KPIModel.ProductCategory_Result)">
+          <FunctionImport Name="usp_AvgDollarPerCustomerBranch" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerBranch_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="TotalSalesBComparison" ReturnType="Collection(KPIModel.TotalSalesBComparison_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="branchRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="usp_AvgDollarPerCustomerCom" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CustomersSeenByEmpCom" ReturnType="Collection(KPIModel.usp_CustomersSeenByEmpCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ExecuteBulkUpdate">
+          <Parameter Name="XmlInput" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_IncomeProductCategoryCom" ReturnType="Collection(KPIModel.usp_IncomeProductCategoryCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NewClientsBranch" ReturnType="Collection(KPIModel.usp_NewClientsBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NewClientsCom" ReturnType="Collection(KPIModel.usp_NewClientsCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ProductLoad">
+            <Parameter Name="Cln_Number" Mode="In" Type="Int64" />
+            <Parameter Name="Brn_Number" Mode="In" Type="Int64" />
+            <Parameter Name="XmlInput" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_RaiseException">
+            <Parameter Name="Error_Num" Mode="In" Type="Int32" />
+            <Parameter Name="Params" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_RetailOnlySalesBranch" ReturnType="Collection(KPIModel.usp_RetailOnlySalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_RetailOnlySalesCom" ReturnType="Collection(KPIModel.usp_RetailOnlySalesCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ServiceOnlySalesBranch" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ServiceOnlySalesCom" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesCom" ReturnType="Collection(KPIModel.usp_TotalSalesCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesIndustry" ReturnType="Collection(KPIModel.usp_TotalSalesIndustry_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TransactionLoad">
+            <Parameter Name="Cmp_Number" Mode="In" Type="Int64" />
+            <Parameter Name="Brn_Number" Mode="In" Type="Int64" />
+            <Parameter Name="XmlInput" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TransExclude0TotalCom" ReturnType="Collection(KPIModel.usp_TransExclude0TotalCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UniqueCustomersSeenBranch" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UniqueCustomersSeenCom" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UniqueCustomersSeenIndustry" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenIndustry_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgPerTransactionCom" ReturnType="Collection(KPIModel.usp_AvgPerTransactionCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgPerTransactionBranch" ReturnType="Collection(KPIModel.usp_AvgPerTransactionBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AnimalsSeenCom" ReturnType="Collection(KPIModel.usp_AnimalsSeenCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="GetProduct_Result">
-          <Property Type="Int64" Name="Company_Ref" Nullable="false" />
-          <Property Type="Int64" Name="Prd_Number" Nullable="false" />
-          <Property Type="String" Name="Prd_Name" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Prd_Class" Nullable="true" MaxLength="1" />
-          <Property Type="Int64" Name="Cat_1" Nullable="true" />
-          <Property Type="DateTime" Name="Last_Updated" Nullable="false" Precision="23" />
-        </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -1761,55 +1917,104 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="GetNumberofAnimalSeen_Result">
-          <Property Type="String" Name="YearMonth" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="GetIncomeProductCategory_Result">
-          <Property Type="String" Name="YearMonth" Nullable="true" MaxLength="20" />
-          <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="3" />
-        </ComplexType>
-        <ComplexType Name="GetTotalSalesMonth_Result">
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
-        </ComplexType>
-        <ComplexType Name="UniqueCustomersSeen_Result">
-          <Property Type="DateTime" Name="Column1" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="NewClientsBComparison_Result">
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="AnimalsSeenBComparison_Result">
+        <ComplexType Name="usp_AnimalsSeenBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="TransExclude0TotalBComparison_Result">
+        <ComplexType Name="usp_AnimalsSeenByEmpCom_Result">
+          <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Total_no_of_transactions_excluding_zero_total_bill" Nullable="true" />
+          <Property Type="Int32" Name="Number_Of_Animals_Seen_By_An_Employee" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="AvgDollarPerTransaction_Result">
-          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Average___per_Transaction" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
-        <ComplexType Name="AvgDollarPerCustomer_Result">
+        <ComplexType Name="usp_AvgDollarPerCustomerBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
           <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Average___per_customer" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
-        <ComplexType Name="RetailTotal_Result">
+        <ComplexType Name="usp_AvgDollarPerCustomerCom_Result">
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Average___per_customer" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_CustomersSeenByEmpCom_Result">
+          <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Retail_Total" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Int32" Name="Number_Of_Customers_Seen_By_An_Employee" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="ProductCategory_Result">
+        <ComplexType Name="usp_IncomeProductCategoryCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
+          <Property Type="Decimal" Name="Product_Category_Income" Nullable="true" Precision="38" Scale="3" />
         </ComplexType>
-        <ComplexType Name="TotalSalesBComparison_Result">
+        <ComplexType Name="usp_NewClientsBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_NewClientsCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_RetailOnlySalesBranch_Result">
           <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
           <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Retail_Total_Only" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_RetailOnlySalesCom_Result">
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Retail_Total_Only" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_ServiceOnlySalesBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_ServiceOnlySalesCom_Result">
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_TotalSalesBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_TotalSalesCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_TotalSalesIndustry_Result">
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Average_Total_Sale" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_TransExclude0TotalCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Total_no_of_transactions_excluding_zero_total_bill" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_UniqueCustomersSeenBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_UniqueCustomersSeenCom_Result">
+          <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_UniqueCustomersSeenIndustry_Result">
+          <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_AvgPerTransactionCom_Result">
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Average_Dollar_per_Transaction" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_AvgPerTransactionBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Average_Dollar_per_Transaction" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_AnimalsSeenCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1838,6 +2043,7 @@
                 <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
                 <ScalarProperty Name="Brn_Number" ColumnName="Brn_Number" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Bs2_Number" ColumnName="Bs2_Number" />
                 <ScalarProperty Name="Street_Number" ColumnName="Street_Number" />
                 <ScalarProperty Name="Street_Name" ColumnName="Street_Name" />
                 <ScalarProperty Name="Suburb" ColumnName="Suburb" />
@@ -1846,6 +2052,7 @@
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1882,6 +2089,8 @@
                 <ScalarProperty Name="Cln_Number" ColumnName="Cln_Number" />
                 <ScalarProperty Name="First_Visit" ColumnName="First_Visit" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Last_Visit" ColumnName="Last_Visit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1905,15 +2114,6 @@
                 <ScalarProperty Name="User_Ref" ColumnName="User_Ref" />
                 <ScalarProperty Name="Param" ColumnName="Param" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Gender_Types">
-            <EntityTypeMapping TypeName="KPIModel.Gender_Types">
-              <MappingFragment StoreEntitySet="Gender_Types">
-                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
-                <ScalarProperty Name="Business_Type" ColumnName="Business_Type" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1981,6 +2181,7 @@
                 <ScalarProperty Name="Prd_Class" ColumnName="Prd_Class" />
                 <ScalarProperty Name="Cat_1" ColumnName="Cat_1" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1993,6 +2194,8 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Stf_Type" ColumnName="Stf_Type" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Date_Started" ColumnName="Date_Started" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2010,11 +2213,13 @@
               <MappingFragment StoreEntitySet="Subject_Profile">
                 <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
                 <ScalarProperty Name="Sub_Number" ColumnName="Sub_Number" />
-                <ScalarProperty Name="First_Visit" ColumnName="First_Visit" />
                 <ScalarProperty Name="Subject_Type" ColumnName="Subject_Type" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Last_Visit" ColumnName="Last_Visit" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="First_Visit" ColumnName="First_Visit" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2038,10 +2243,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Table_Map">
+            <EntityTypeMapping TypeName="KPIModel.Table_Map">
+              <MappingFragment StoreEntitySet="Table_Map">
+                <ScalarProperty Name="Table_Ref" ColumnName="Table_Ref" />
+                <ScalarProperty Name="Version_Number" ColumnName="Version_Number" />
+                <ScalarProperty Name="Procedure_Name" ColumnName="Procedure_Name" />
+                <ScalarProperty Name="Node_Name" ColumnName="Node_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Transaction_Items">
             <EntityTypeMapping TypeName="KPIModel.Transaction_Items">
               <MappingFragment StoreEntitySet="Transaction_Items">
-                <ScalarProperty Name="Stf_Number" ColumnName="Stf_Number" />
                 <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
                 <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
                 <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
@@ -2050,7 +2264,9 @@
                 <ScalarProperty Name="Trn_Date" ColumnName="Trn_Date" />
                 <ScalarProperty Name="Cln_Number" ColumnName="Cln_Number" />
                 <ScalarProperty Name="Sub_Number" ColumnName="Sub_Number" />
+                <ScalarProperty Name="Stf_Number" ColumnName="Stf_Number" />
                 <ScalarProperty Name="Prd_Number" ColumnName="Prd_Number" />
+                <ScalarProperty Name="Mult" ColumnName="Mult" />
                 <ScalarProperty Name="Itm_Quantity" ColumnName="Itm_Quantity" />
                 <ScalarProperty Name="Itm_Cost" ColumnName="Itm_Cost" />
                 <ScalarProperty Name="Itm_STotal" ColumnName="Itm_STotal" />
@@ -2070,10 +2286,11 @@
                 <ScalarProperty Name="Trn_Number" ColumnName="Trn_Number" />
                 <ScalarProperty Name="Cln_Number" ColumnName="Cln_Number" />
                 <ScalarProperty Name="Sub_Number" ColumnName="Sub_Number" />
-                <ScalarProperty Name="Is_New_Client" ColumnName="Is_New_Client" />
-                <ScalarProperty Name="Is_New_Animal" ColumnName="Is_New_Animal" />
                 <ScalarProperty Name="Retail_Total" ColumnName="Retail_Total" />
                 <ScalarProperty Name="Service_Total" ColumnName="Service_Total" />
+                <ScalarProperty Name="Is_New_Client" ColumnName="Is_New_Client" />
+                <ScalarProperty Name="Is_New_Subject" ColumnName="Is_New_Subject" />
+                <ScalarProperty Name="Mult" ColumnName="Mult" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2088,6 +2305,15 @@
                 <ScalarProperty Name="User_Name" ColumnName="User_Name" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Connection_Profile">
+            <EntityTypeMapping TypeName="KPIModel.Connection_Profile">
+              <MappingFragment StoreEntitySet="Connection_Profile">
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Disk_Id" ColumnName="Disk_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2123,93 +2349,194 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="KPIModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="KPIModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="GetIncomeProductCategory" FunctionName="KPIModel.Store.GetIncomeProductCategory">
+          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenBranch" FunctionName="KPIModel.Store.usp_AnimalsSeenBranch">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.GetIncomeProductCategory_Result">
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
-                <ScalarProperty Name="Income" ColumnName="Income" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetTotalSalesMonth" FunctionName="KPIModel.Store.GetTotalSalesMonth">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.GetTotalSalesMonth_Result">
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Total_Sales" ColumnName="Total Sales" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="UniqueCustomersSeen" FunctionName="KPIModel.Store.UniqueCustomersSeen">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.UniqueCustomersSeen_Result">
-                <ScalarProperty Name="Column1" ColumnName="Column1" />
-                <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number of Unique Clients" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="NewClientsBComparison" FunctionName="KPIModel.Store.NewClientsBComparison">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.NewClientsBComparison_Result">
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number of New Clients" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AnimalsSeenBComparison" FunctionName="KPIModel.Store.AnimalsSeenBComparison">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.AnimalsSeenBComparison_Result">
+              <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
                 <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
                 <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number of animals seen" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="TransExclude0TotalBComparison" FunctionName="KPIModel.Store.TransExclude0TotalBComparison">
+          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenByEmpCom" FunctionName="KPIModel.Store.usp_AnimalsSeenByEmpCom">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.TransExclude0TotalBComparison_Result">
+              <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenByEmpCom_Result">
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Number_Of_Animals_Seen_By_An_Employee" ColumnName="Number_Of_Animals_Seen_By_An_Employee" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerBranch" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+                <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerCom" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerCom_Result">
+                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+                <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_CustomersSeenByEmpCom" FunctionName="KPIModel.Store.usp_CustomersSeenByEmpCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_CustomersSeenByEmpCom_Result">
+                <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Number_Of_Customers_Seen_By_An_Employee" ColumnName="Number_Of_Customers_Seen_By_An_Employee" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ExecuteBulkUpdate" FunctionName="KPIModel.Store.usp_ExecuteBulkUpdate" />
+          <FunctionImportMapping FunctionImportName="usp_IncomeProductCategoryCom" FunctionName="KPIModel.Store.usp_IncomeProductCategoryCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeProductCategoryCom_Result">
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
+                <ScalarProperty Name="Product_Category_Income" ColumnName="Product_Category_Income" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NewClientsBranch" FunctionName="KPIModel.Store.usp_NewClientsBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_NewClientsBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number_of_New_Clients" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NewClientsCom" FunctionName="KPIModel.Store.usp_NewClientsCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_NewClientsCom_Result">
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number_of_New_Clients" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ProductLoad" FunctionName="KPIModel.Store.usp_ProductLoad" />
+          <FunctionImportMapping FunctionImportName="usp_RaiseException" FunctionName="KPIModel.Store.usp_RaiseException" />
+          <FunctionImportMapping FunctionImportName="usp_RetailOnlySalesBranch" FunctionName="KPIModel.Store.usp_RetailOnlySalesBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_RetailOnlySalesBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+                <ScalarProperty Name="Retail_Total_Only" ColumnName="Retail_Total_Only" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_RetailOnlySalesCom" FunctionName="KPIModel.Store.usp_RetailOnlySalesCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_RetailOnlySalesCom_Result">
+                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+                <ScalarProperty Name="Retail_Total_Only" ColumnName="Retail_Total_Only" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ServiceOnlySalesBranch" FunctionName="KPIModel.Store.usp_ServiceOnlySalesBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_ServiceOnlySalesBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+                <ScalarProperty Name="Service_Total_Only" ColumnName="Service_Total_Only" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_ServiceOnlySalesCom" FunctionName="KPIModel.Store.usp_ServiceOnlySalesCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_ServiceOnlySalesCom_Result">
+                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+                <ScalarProperty Name="Service_Total_Only" ColumnName="Service_Total_Only" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesCom" FunctionName="KPIModel.Store.usp_TotalSalesCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesCom_Result">
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesIndustry" FunctionName="KPIModel.Store.usp_TotalSalesIndustry">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesIndustry_Result">
+                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+                <ScalarProperty Name="Average_Total_Sale" ColumnName="Average Total Sale" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TransactionLoad" FunctionName="KPIModel.Store.usp_TransactionLoad" />
+          <FunctionImportMapping FunctionImportName="usp_TransExclude0TotalCom" FunctionName="KPIModel.Store.usp_TransExclude0TotalCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_TransExclude0TotalCom_Result">
                 <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
                 <ScalarProperty Name="Total_no_of_transactions_excluding_zero_total_bill" ColumnName="Total no of transactions excluding zero total bill" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AvgDollarPerTransaction" FunctionName="KPIModel.Store.AvgDollarPerTransaction">
+          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenBranch" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenBranch">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.AvgDollarPerTransaction_Result">
-                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
-                <ScalarProperty Name="Average___per_Transaction" ColumnName="Average $ per Transaction" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_UniqueCustomersSeenBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Time_Period" ColumnName="Time_Period" />
+                <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number_of_Unique_Clients" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AvgDollarPerCustomer" FunctionName="KPIModel.Store.AvgDollarPerCustomer">
+          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenCom" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenCom">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.AvgDollarPerCustomer_Result">
-                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
-                <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_UniqueCustomersSeenCom_Result">
+                <ScalarProperty Name="Time_Period" ColumnName="Time_Period" />
+                <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number_of_Unique_Clients" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="RetailTotal" FunctionName="KPIModel.Store.RetailTotal">
+          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenIndustry" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenIndustry">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.RetailTotal_Result">
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Retail_Total" ColumnName="Retail_Total" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_UniqueCustomersSeenIndustry_Result">
+                <ScalarProperty Name="Time_Period" ColumnName="Time_Period" />
+                <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number_of_Unique_Clients" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="ProductCategory" FunctionName="KPIModel.Store.ProductCategory">
+          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionCom" FunctionName="KPIModel.Store.usp_AvgPerTransactionCom">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.ProductCategory_Result">
-                <ScalarProperty Name="Category_Type" ColumnName="Category_Type" />
-                <ScalarProperty Name="Income" ColumnName="Income" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgPerTransactionCom_Result">
+                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+                <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="TotalSalesBComparison" FunctionName="KPIModel.Store.TotalSalesBComparison">
+          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionBranch" FunctionName="KPIModel.Store.usp_AvgPerTransactionBranch">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.TotalSalesBComparison_Result">
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgPerTransactionBranch_Result">
                 <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
                 <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
-                <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
+                <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenCom" FunctionName="KPIModel.Store.usp_AnimalsSeenCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenCom_Result">
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number_of_animals_seen" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

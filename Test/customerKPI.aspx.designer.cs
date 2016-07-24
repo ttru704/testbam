@@ -31,40 +31,49 @@ namespace Test {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// RDPStartNumberOfNewClients control.
+        /// DatePicker1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker RDPStartNumberOfNewClients;
+        protected global::Telerik.Web.UI.RadDatePicker DatePicker1;
         
         /// <summary>
-        /// RDPEndNumberOfNewClients control.
+        /// DatePicker2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker RDPEndNumberOfNewClients;
+        protected global::Telerik.Web.UI.RadDatePicker DatePicker2;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// Company control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList Company;
         
         /// <summary>
-        /// DropDownList2 control.
+        /// Branch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+        protected global::System.Web.UI.WebControls.DropDownList Branch;
+        
+        /// <summary>
+        /// TimeType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TimeType;
         
         /// <summary>
         /// Button1 control.
@@ -76,30 +85,66 @@ namespace Test {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// GridViewNumberOfNewClients control.
+        /// UniqueCustomersSeenComRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewNumberOfNewClients;
+        protected global::Telerik.Web.UI.RadHtmlChart UniqueCustomersSeenComRHC1;
         
         /// <summary>
-        /// RadHtmlNumberOfNewClients control.
+        /// UniqueCustomersSeenComODC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlNumberOfNewClients;
+        protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenComODC1;
         
         /// <summary>
-        /// ObjectDataSourceNumberOfNewClients control.
+        /// UniqueCustomersSeenBranchRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSourceNumberOfNewClients;
+        protected global::Telerik.Web.UI.RadHtmlChart UniqueCustomersSeenBranchRHC1;
+        
+        /// <summary>
+        /// UniqueCustomersSeenBranchODC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenBranchODC1;
+        
+        /// <summary>
+        /// UniqueCustomersSeenBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView UniqueCustomersSeenBranchG1;
+        
+        /// <summary>
+        /// AnimalsSeenComRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenComRHC1;
+        
+        /// <summary>
+        /// AnimalsSeenComODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AnimalsSeenComODS1;
     }
 }

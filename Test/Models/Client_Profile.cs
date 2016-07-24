@@ -18,6 +18,8 @@ namespace Test.Models
         public long Cln_Number { get; set; }
         public Nullable<System.DateTime> First_Visit { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public string Status { get; set; }
+        public Nullable<System.DateTime> Last_Visit { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
     }

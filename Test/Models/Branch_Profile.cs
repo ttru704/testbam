@@ -25,6 +25,7 @@ namespace Test.Models
         public long Company_Ref { get; set; }
         public long Brn_Number { get; set; }
         public string Name { get; set; }
+        public long Bs2_Number { get; set; }
         public Nullable<int> Street_Number { get; set; }
         public string Street_Name { get; set; }
         public string Suburb { get; set; }
@@ -33,6 +34,7 @@ namespace Test.Models
         public string Country { get; set; }
         public string Region { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public string Status { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

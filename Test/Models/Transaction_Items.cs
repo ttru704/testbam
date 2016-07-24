@@ -22,13 +22,14 @@ namespace Test.Models
         public System.DateTime Trn_Date { get; set; }
         public long Cln_Number { get; set; }
         public long Sub_Number { get; set; }
+        public long Stf_Number { get; set; }
         public long Prd_Number { get; set; }
+        public short Mult { get; set; }
         public decimal Itm_Quantity { get; set; }
         public decimal Itm_Cost { get; set; }
         public decimal Itm_STotal { get; set; }
         public decimal Itm_Discount { get; set; }
         public decimal Itm_Total { get; set; }
         public System.DateTime Last_Updated { get; set; }
-        public Nullable<long> Stf_Number { get; set; }
     }
 }

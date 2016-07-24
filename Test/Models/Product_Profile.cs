@@ -20,6 +20,7 @@ namespace Test.Models
         public string Prd_Class { get; set; }
         public Nullable<long> Cat_1 { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public string Status { get; set; }
     
         public virtual Category_Types Category_Types { get; set; }
         public virtual Company_Profile Company_Profile { get; set; }
