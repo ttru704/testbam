@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_TotalSalesBranch_Result> ITotalSalesBranchRepo.usp_TotalSalesBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        List<usp_TotalSalesBranch_Result> ITotalSalesBranchRepo.usp_TotalSalesBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType)
         {
             return context.usp_TotalSalesBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

@@ -58,6 +58,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.DropDownList Company;
         
         /// <summary>
+        /// Branch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Branch;
+        
+        /// <summary>
         /// Dropdown1 control.
         /// </summary>
         /// <remarks>
@@ -76,94 +85,49 @@ namespace Test {
         protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// RadHtmlChart1 control.
+        /// AvgPerTransactionComRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart1;
+        protected global::Telerik.Web.UI.RadHtmlChart AvgPerTransactionComRHC1;
         
         /// <summary>
-        /// RadHtmlChart2 control.
+        /// AvgPerTransactionComODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart2;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgPerTransactionComODS1;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// AvgPerTransactionBranchRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::Telerik.Web.UI.RadHtmlChart AvgPerTransactionBranchRHC1;
         
         /// <summary>
-        /// ObjectDataSource2 control.
+        /// AvgPerTransactionBranchODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource2;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgPerTransactionBranchODS1;
         
         /// <summary>
-        /// GridView1 control.
+        /// AvgPerTransactionBranchG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
-        
-        /// <summary>
-        /// TotalSalesComRDP1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker TotalSalesComRDP1;
-        
-        /// <summary>
-        /// TotalSalesComRDP2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker TotalSalesComRDP2;
-        
-        /// <summary>
-        /// TotalSalesComDDLBranch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TotalSalesComDDLBranch;
-        
-        /// <summary>
-        /// TotalSalesComDDLTime control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TotalSalesComDDLTime;
-        
-        /// <summary>
-        /// TotalSalesComButton1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button TotalSalesComButton1;
+        protected global::System.Web.UI.WebControls.GridView AvgPerTransactionBranchG1;
         
         /// <summary>
         /// TotalSalesComRHC1 control.
@@ -184,75 +148,30 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesComODS;
         
         /// <summary>
-        /// TotalSalesBComparison1 control.
+        /// TotalSalesBranchRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker TotalSalesBComparison1;
+        protected global::Telerik.Web.UI.RadHtmlChart TotalSalesBranchRHC1;
         
         /// <summary>
-        /// TotalSalesBComparison2 control.
+        /// TotalSalesBranchODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker TotalSalesBComparison2;
+        protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesBranchODS1;
         
         /// <summary>
-        /// TotalSalesBComparison4 control.
+        /// TotalSalesBranchG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TotalSalesBComparison4;
-        
-        /// <summary>
-        /// TotalSalesBComparison3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TotalSalesBComparison3;
-        
-        /// <summary>
-        /// ViewTotalSalesBComparison control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ViewTotalSalesBComparison;
-        
-        /// <summary>
-        /// RadHtmlChart3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart3;
-        
-        /// <summary>
-        /// ObjectDataSource5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource5;
-        
-        /// <summary>
-        /// GridView2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.GridView TotalSalesBranchG1;
     }
 }

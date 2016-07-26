@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="employeeKPI.aspx.cs" Inherits="Test.employeekpi" %>
-<%@ Register assembly="Telerik.Web.UI" namespace="Telerik.Web.UI" tagprefix="telerik" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -7,7 +8,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <div class="right_col" role="main">    
+        <div class="right_col" role="main">
             <div id="KPIMenu" style="text-align: center">
                 <a href="/financialKPI.aspx" style="font-size: 20px"><strong>Financial</strong></a>
                 <strong>|</strong>
@@ -17,34 +18,41 @@
                 <br />
                 <br />
             </div>
-                
-                <%--Here are all the controls at the top of the page--%>
-                <asp:ScriptManager ID="ScriptManager1" runat="server">
-                </asp:ScriptManager>
+            <br />
+            <br />
 
-                <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-                <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-                <asp:DropDownList ID="Company" runat="server">
-                    <asp:ListItem>1</asp:ListItem>
-                    <asp:ListItem>2</asp:ListItem>
-                    <asp:ListItem>3</asp:ListItem>
-                    <asp:ListItem>4</asp:ListItem>
-                    <asp:ListItem>5</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref">
-                    <asp:ListItem>0</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="TimeType" runat="server">
-                    <asp:ListItem>1</asp:ListItem>
-                    <asp:ListItem>2</asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
-                <%--Here are all the controls at the top of the page--%>
-                
-                <p><strong>Number of Customers Seen By Employee</strong></p>
-                <telerik:RadHtmlChart ID="CustomersSeenByEmpComRHC1" runat="server">
+            <br />
+            <%--Here are all the controls at the top of the page--%>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
 
-                </telerik:RadHtmlChart>
+            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-01-01"></telerik:RadDatePicker>
+            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-12-31"></telerik:RadDatePicker>
+            <asp:DropDownList ID="Company" runat="server" Width="100px">
+                <asp:ListItem>1</asp:ListItem>
+                <asp:ListItem>2</asp:ListItem>
+                <asp:ListItem>3</asp:ListItem>
+                <asp:ListItem>4</asp:ListItem>
+                <asp:ListItem>5</asp:ListItem>
+            </asp:DropDownList>
+            <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
+                <asp:ListItem Value="0">All Branches</asp:ListItem>
+            </asp:DropDownList>
+            <asp:DropDownList ID="TimeType" runat="server" Width="100px">
+                <asp:ListItem Value="1"> Monthly </asp:ListItem>
+                <asp:ListItem Value="2" Selected="True"> Yearly </asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+            <br />
+            <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export RadHtmlChart to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+            <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
+            </telerik:RadClientExportManager>
+
+            <%--Here are all the controls at the top of the page--%>
+
+            <div class="kpiheader">Number of Customers Seen By Employee</div>
+            <telerik:RadHtmlChart ID="CustomersSeenByEmpComRHC1" runat="server" CssClass="MonthlyExport">
+            </telerik:RadHtmlChart>
 
             <asp:ObjectDataSource ID="CustomersSeenByEmpComODS1" runat="server" SelectMethod="usp_CustomersSeenByEmpCom" TypeName="Test.BLL.Productivity.CustomersSeenByEmpComBL">
                 <SelectParameters>
@@ -54,7 +62,7 @@
                     <asp:ControlParameter ControlID="TimeType" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="CustomersSeenByEmpComG1" runat="server" AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmpComODS1">
+            <asp:GridView ID="CustomersSeenByEmpComG1" Visible="false" runat="server" AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmpComODS1">
                 <Columns>
                     <asp:BoundField DataField="Employee_Name" HeaderText="Employee_Name" SortExpression="Employee_Name" />
                     <asp:BoundField DataField="YearMonth" HeaderText="YearMonth" SortExpression="YearMonth" />
@@ -64,4 +72,14 @@
 
         </div>
     </form>
+    <script>
+        var $ = $telerik.$;
+
+        function exportRadHtmlChart() {
+            $find('<%=RadClientExportManager1.ClientID%>').exportPDF($(".MonthlyExport"));
+        };
+
+
+
+    </script>
 </asp:Content>

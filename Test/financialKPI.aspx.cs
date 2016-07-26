@@ -13,6 +13,8 @@ using Test.Models;
 using Telerik.Web.UI.HtmlChart;
 //using Test.BLL.Financial;
 using System.ComponentModel;
+using Test.BLL.Financial;
+using System.Reflection;
 
 namespace Test
 {
@@ -20,31 +22,113 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            GridView1.DataBind();
+            
         }
+        //public DataTable ConvertToDataTable<T>(IList<T> data)
+        //{
+        //    PropertyDescriptorCollection properties =
+        //        TypeDescriptor.GetProperties(typeof(T));
+
+        //    DataTable table = new DataTable();
+
+        //    foreach (PropertyDescriptor prop in properties)
+        //        table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+
+        //    foreach (T item in data)
+        //    {
+        //        DataRow row = table.NewRow();
+        //        foreach (PropertyDescriptor prop in properties)
+        //            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+        //        table.Rows.Add(row);
+        //    }
+        //    return table;
+        //}
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            RadHtmlChart1.DataBind();
+            ////////// This is the inefficient solution of binding the graph it through the gridview)
+            //DataTable dt = new DataTable();
+            //for (int i = 0; i < AvgPerTransactionBranchG1.Columns.Count; i++)
+            //{
+            //    dt.Columns.Add("column" + i.ToString());
+            //}
+            //foreach (GridViewRow row in AvgPerTransactionBranchG1.Rows)
+            //{
+            //    DataRow dr = dt.NewRow();
+            //    for (int j = 0; j < AvgPerTransactionBranchG1.Columns.Count; j++)
+            //    {
+            //        dr["column" + j.ToString()] = row.Cells[j].Text;
+            //    }
 
-            DataTable dt = new DataTable();
-            for (int i = 0; i < GridView1.Columns.Count; i++)
+            //    dt.Rows.Add(dr);
+            //}
+
+            AvgPerTransactionComRHC1.DataBind();
+
+            AvgPerTransactionBranchG1.DataBind();
+
+            DateTime? start = DatePicker1.SelectedDate.GetValueOrDefault();
+            DateTime? end = DatePicker2.SelectedDate.GetValueOrDefault();
+
+            AvgPerTransactionBranchBL avgPerTransactionBranchBL = new AvgPerTransactionBranchBL();
+            List<usp_AvgPerTransactionBranch_Result> t = avgPerTransactionBranchBL.usp_AvgPerTransactionBranch(start, end, 1, 0, 1);
+
+            ListtoDataTableConverter converter = new ListtoDataTableConverter();
+            DataTable dt = converter.ToDataTable(t);
+            //String.Format("0.##", dt.Columns["Average_Dollar_per_Transaction"]);
+            RadHtmlChartGroupDataSource.GroupDataSource(AvgPerTransactionBranchRHC1, dt, "Branch_Ref", "ColumnSeries", "Average_Dollar_per_Transaction", "Year_Month");
+
+
+            TotalSalesComRHC1.DataBind();
+
+            if (Dropdown1.SelectedValue == "1")
             {
-                dt.Columns.Add("column" + i.ToString());
+                //DateTime dateformat = Convert.ToDateTime(dt);
+                TotalSalesComRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
+                TotalSalesComRHC1.ChartTitle.Text = "Total Monthly Sales";
+                TotalSalesComRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+
+                AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
+                AvgPerTransactionBranchRHC1.ChartTitle.Text = "Total Monthly Sales";
+                AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                //AvgPerTransactionBranchRHC1.PlotArea.XAxis.BaseUnit = "months";
+                
             }
-            foreach (GridViewRow row in GridView1.Rows)
+            else
             {
-                DataRow dr = dt.NewRow();
-                for (int j = 0; j < GridView1.Columns.Count; j++)
-                {
-                    dr["column" + j.ToString()] = row.Cells[j].Text;
-                }
+                TotalSalesComRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                TotalSalesComRHC1.ChartTitle.Text = "Total Yearly Sales";
+                TotalSalesComRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
 
-                dt.Rows.Add(dr);
-            }
+                AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                AvgPerTransactionBranchRHC1.ChartTitle.Text = "Total Yearly Sales";
+                AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+            };
 
-            RadHtmlChartGroupDataSource.GroupDataSource(RadHtmlChart2, dt, "column0", "ColumnSeries", "column2", "column1");
-            
+
+            TotalSalesBranchG1.DataBind();
+            //DataTable dt2 = new DataTable();
+            //for (int i = 0; i < TotalSalesBranchG1.Columns.Count; i++)
+            //{
+            //    dt2.Columns.Add("column" + i.ToString());
+            //}
+            //foreach (GridViewRow row in TotalSalesBranchG1.Rows)
+            //{
+            //    DataRow dr = dt2.NewRow();
+            //    for (int j = 0; j < TotalSalesBranchG1.Columns.Count; j++)
+            //    {
+            //        dr["column" + j.ToString()] = row.Cells[j].Text;
+            //    }
+
+            //    dt2.Rows.Add(dr);
+            //}
+
+            TotalSalesBranchBL totalSalesBranchBL = new TotalSalesBranchBL();
+            List<usp_TotalSalesBranch_Result> totalSalesBranch = totalSalesBranchBL.usp_TotalSalesBranch(start, end, 1, 0, 1);
+
+            DataTable dt2 = converter.ToDataTable(totalSalesBranch);
+            RadHtmlChartGroupDataSource.GroupDataSource(TotalSalesBranchRHC1, dt2, "Branch_Ref", "ColumnSeries", string.Format("{0:0.00}","Total_Sales"), "YearMonth");
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,224 +136,7 @@ namespace Test
 
         }
 
-        public static class RadHtmlChartGroupDataSource
-        {
-            /// <summary>
-            /// Groups the RadHtmlChart's data source.
-            /// </summary>
-            /// <param name="HtmlChart">The RadHtmlChart instance.</param>
-            /// <param name="DataSource">The raw DataTable data source.</param>
-            /// <param name="DataGroupColumn">The name of the column in the raw data source which will be the criteria for grouping the chart series items into series. There will be as many series as the number of distinct values in this column.</param>
-            /// <param name="SeriesType">The type of the series. Currently the example supports Area, Bar, Column, Line, Scatter and ScatterLine series. You can, however, expand that list in the AddChartSeriesType() method.</param>
-            /// <param name="DataFieldY">The name of the column in the raw data source that stores the y-values.</param>
-            /// <param name="DataFieldX">The name of the column in the raw data source that stores the x-values. </param>
-            public static void GroupDataSource(RadHtmlChart HtmlChart, DataTable DataSource, string DataGroupColumn, string SeriesType, string DataFieldY, string DataFieldX)
-            {
-                //Get number of distinct rows by DataGroupColumn (e.g., Year column)
-                DataTable distinctValuesDT = DataSource.DefaultView.ToTable(true, DataGroupColumn);
-                int numDistinctValues = distinctValuesDT.Rows.Count;
-
-                //Add RadHtmlChart series
-                ConfigureChartSeries(HtmlChart, numDistinctValues, distinctValuesDT, SeriesType, DataFieldY, DataFieldX);
-
-                //Group data source and bind it to the chart
-                HtmlChart.DataSource = GetGroupedData(DataSource, DataGroupColumn, DataFieldY, numDistinctValues, distinctValuesDT);
-                HtmlChart.DataBind();
-            }
-            /// <summary>
-            /// Configures chart series. For example sets series names, define tooltips/labels template, etc.
-            /// </summary>
-            private static void ConfigureChartSeries(RadHtmlChart HtmlChart, int NumDistinctValues, DataTable DistinctValuesDT, string SeriesType, string DataFieldY, string DataFieldX)
-            {
-                HtmlChart.PlotArea.Series.Clear();
-                //Detect whether series are of category type
-                string[] categorySeriesArray = { "AreaSeries", "BarSeries", "ColumnSeries", "LineSeries" };
-                bool isCategorySeries = Array.IndexOf(categorySeriesArray, SeriesType) > -1 ? true : false;
-
-                //Configure x-axis DataLabelsField if series are of category type
-                if (isCategorySeries)
-                {
-                    HtmlChart.PlotArea.XAxis.DataLabelsField = DataFieldX + "0";
-                }
-
-                for (int i = 0; i < NumDistinctValues; i++)
-                {
-                    //Construct the series name, tooltips template and labels format string
-                    string seriesName = DistinctValuesDT.Columns[0].ColumnName + " : " + DistinctValuesDT.Rows[i][0].ToString();
-                    string tooltipsTemplate = "Category: #=dataItem." + DataFieldX + i + "#<br />Value: #=dataItem." + DataFieldY + i + "#";
-                    string labelsFormatString = "{0:N0}";
-
-                    //Add the corresponding series type to the chart
-                    AddChartSeriesType(HtmlChart, SeriesType, DataFieldY, DataFieldX, i, seriesName, tooltipsTemplate, labelsFormatString);
-                }
-            }
-            /// <summary>
-            /// Adds chart series. Currently the method supports Area, Bar, Column, Line, Scatter and ScatterLine series. You can, however, expand that list here.
-            /// </summary>
-            private static void AddChartSeriesType(RadHtmlChart HtmlChart, string SeriesType, string DataFieldY, string DataFieldX, int Index, string SeriesName, string TooltipsTemplate, string LabelsFormatString)
-            {
-                switch (SeriesType)
-                {
-                    case "AreaSeries":
-                        AreaSeries areaSeries1 = new AreaSeries();
-                        areaSeries1.Name = SeriesName;
-                        areaSeries1.DataFieldY = DataFieldY + Index;
-                        areaSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
-                        areaSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
-                        HtmlChart.PlotArea.Series.Add(areaSeries1);
-                        break;
-
-                    case "BarSeries":
-                        BarSeries barSeries1 = new BarSeries();
-                        barSeries1.Name = SeriesName;
-                        barSeries1.DataFieldY = DataFieldY + Index;
-                        barSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
-                        barSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
-                        HtmlChart.PlotArea.Series.Add(barSeries1);
-                        break;
-
-                    case "ColumnSeries":
-                        ColumnSeries columnSeries1 = new ColumnSeries();
-                        columnSeries1.Name = SeriesName;
-                        columnSeries1.DataFieldY = DataFieldY + Index;
-                        columnSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
-                        columnSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
-                        HtmlChart.PlotArea.Series.Add(columnSeries1);
-                        break;
-
-                    case "LineSeries":
-                        LineSeries lineSeries1 = new LineSeries();
-                        lineSeries1.Name = SeriesName;
-                        lineSeries1.DataFieldY = DataFieldY + Index;
-                        lineSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
-                        lineSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
-                        HtmlChart.PlotArea.Series.Add(lineSeries1);
-                        break;
-
-                    case "ScatterSeries":
-                        ScatterSeries scatterSeries1 = new ScatterSeries();
-                        scatterSeries1.Name = SeriesName;
-                        scatterSeries1.DataFieldY = DataFieldY + Index;
-                        scatterSeries1.DataFieldX = DataFieldX + Index;
-                        scatterSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
-                        scatterSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
-                        HtmlChart.PlotArea.Series.Add(scatterSeries1);
-                        break;
-
-                    case "ScatterLineSeries":
-                        ScatterLineSeries scatterLineSeries1 = new ScatterLineSeries();
-                        scatterLineSeries1.Name = SeriesName;
-                        scatterLineSeries1.DataFieldY = DataFieldY + Index;
-                        scatterLineSeries1.DataFieldX = DataFieldX + Index;
-                        scatterLineSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
-                        scatterLineSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
-                        HtmlChart.PlotArea.Series.Add(scatterLineSeries1);
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-            /// <summary>
-            /// The actual data source grouping manipulations.
-            /// </summary>
-            private static DataTable GetGroupedData(DataTable RawDataTable, string DataGroupColumn, string DataFieldY, int NumDistinctValues, DataTable DistinctValuesDT)
-            {
-                DataTable commonDT = new DataTable();
-
-                //Split the raw DataTable by numDistinctValues to an array of temporary DataTables
-                DataTable[] tempDTarray = new DataTable[NumDistinctValues];
-                tempDTarray = SplitDataTable(RawDataTable, DataGroupColumn, NumDistinctValues, DistinctValuesDT);
-
-                //Add rows to the common DataTable
-                for (int i = 0; i < tempDTarray[0].Rows.Count; i++)
-                {
-                    commonDT.Rows.Add();
-                }
-
-                //Add columns to the common DataTable and fill values from each temp DataTable
-                for (int i = 0; i < NumDistinctValues; i++)
-                {
-                    //Loop through the columns of each temp DataTable
-                    for (int g = 0; g < tempDTarray[i].Columns.Count; g++)
-                    {
-                        string columnName = tempDTarray[i].Columns[g].ColumnName;
-                        //Add columns from the temp DataTables to the common DataTable
-                        commonDT.Columns.Add(columnName, tempDTarray[i].Columns[g].DataType);
-
-                        //Loop through the rows of the each temp DataTable
-                        for (int f = 0; f < tempDTarray[i].Rows.Count; f++)
-                        {
-                            //Fill values from each temp DataTable to the common DataTable
-                            commonDT.Rows[f][columnName] = tempDTarray[i].Rows[f][columnName];
-                        }
-                    }
-                }
-                return commonDT;
-            }
-            /// <summary>
-            /// A helper method for the data source grouping manipulations.
-            /// </summary>
-            private static DataTable[] SplitDataTable(DataTable RawDataTable, string DataGroupColumn, int NumDistinctValues, DataTable DistinctValuesDT)
-            {
-                DataTable[] tempDTarray = new DataTable[NumDistinctValues];
-
-                for (int i = 0; i < NumDistinctValues; i++)
-                {
-                    //Split the raw DataTable to multiple temporary DataTables by distinct DataGroupColumn values
-                    tempDTarray[i] = RawDataTable.Select(DataGroupColumn + "='" + DistinctValuesDT.Rows[i][0].ToString() + "'").CopyToDataTable();
-
-                    for (int g = 0; g < tempDTarray[i].Columns.Count; g++)
-                    {
-                        //Add g-th index to column names for each i-th DataTable from the temporary DataTable array
-                        string columnName = tempDTarray[i].Columns[g].ColumnName + i;
-                        tempDTarray[i].Columns[g].ColumnName = columnName;
-                    }
-                }
-
-                return tempDTarray;
-            }
-        }
-
-
-        //for the TotalSalesCompany
-        protected void ViewTotalSalesCom_Click(object sender, EventArgs e)
-        {
-            TotalSalesComRHC1.DataBind();
-
-            if (TotalSalesComDDLTime.SelectedValue == "1")
-            {
-                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
-                RadHtmlChart2.ChartTitle.Text = "Total Monthly Sales";
-                RadHtmlChart2.PlotArea.XAxis.TitleAppearance.Text = "Month";
-            }
-            else
-            {
-                RadHtmlChart2.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
-                RadHtmlChart2.ChartTitle.Text = "Total Yearly Sales";
-                RadHtmlChart2.PlotArea.XAxis.TitleAppearance.Text = "Year";
-            };
-        }
-
-        protected void ViewTotalSalesBComparison_Click(object sender, EventArgs e)
-        {
-            DataTable dt2 = new DataTable();
-            for (int i = 0; i < GridView2.Columns.Count; i++)
-            {
-                dt2.Columns.Add("column" + i.ToString());
-            }
-            foreach (GridViewRow row in GridView2.Rows)
-            {
-                DataRow dr = dt2.NewRow();
-                for (int j = 0; j < GridView2.Columns.Count; j++)
-                {
-                    dr["column" + j.ToString()] = row.Cells[j].Text;
-                }
-
-                dt2.Rows.Add(dr);
-            }
-            RadHtmlChartGroupDataSource.GroupDataSource(RadHtmlChart3, dt2, "column0", "ColumnSeries", "column2", "column1");
-        }
+        
     }
 
 }

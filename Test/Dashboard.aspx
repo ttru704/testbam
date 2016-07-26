@@ -14,32 +14,32 @@
             <div class="row tile_count" style="position: center">
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
-                    <div class="count">$15,000</div>
+                    <div class="count blue">$946.82</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-money"></i>Avg $ per Transaction</span>
-                    <div class="count">$8</div>
+                    <div class="count blue">$86.07</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-money"></i>Avg $ per Customer</span>
-                    <div class="count">$15</div>
+                    <div class="count blue">$157.8</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-plus"></i>Number of New Clients</span>
-                    <div class="count">123</div>
+                    <div class="count blue">123</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-paw"></i>Total Large Animals</span>
-                    <div class="count green">250</div>
+                    <div class="count blue">20</div>
                     <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-paw"></i>Total Small Animals</span>
-                    <div class="count">456</div>
+                    <div class="count blue">35</div>
                     <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Month</span>
                 </div>
 
@@ -51,53 +51,47 @@
             <div class="col-sm-12">
                 <%-- Line chart --%>
                 <div class="col-sm-12">
-                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="ObjectDataSource1">
+                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1">
+                        <PlotArea>
+                            <Series>
+                                <telerik:LineSeries DataFieldY="Total_Sales">
+                                </telerik:LineSeries>
+                            </Series>
+                            <XAxis DataLabelsField="YearMonth" Type="Date">
+                                <TitleAppearance Text="Time Period">
+                                    <TextStyle Margin="20" />
+                                </TitleAppearance>
+                                <LabelsAppearance DataFormatString="MMM yyyy" RotationAngle="60">
+                                </LabelsAppearance>
+                                <MajorGridLines Visible="false" />
+                                <MinorGridLines Visible="false" />
+                            </XAxis>
+                            <YAxis>
+                                <TitleAppearance Text="Total Sales">
+                                    <TextStyle Margin="20" />
+                                </TitleAppearance>
+                                <MinorGridLines Visible="false" />
+                            </YAxis>
+                        </PlotArea>
 
-                       <ChartTitle Text="Retail Total">
-        <Appearance Align="Center" Position="Top" />
-    </ChartTitle>
-    <Legend>
-        <Appearance Position="Bottom" />
-    </Legend>
-    <PlotArea>
-        <XAxis Color="Black" DataLabelsField="YearMonth">
-            <TitleAppearance Position="Center" Text="Time Period" />
-        </XAxis>
-        <YAxis Color="Black">
-            <MajorGridLines Color="#EFEFEF" Width="1" />
-            <MinorGridLines Color="#F7F7F7" Width="1" />
-            <TitleAppearance Position="Center" Text="Retail Total" RotationAngle="90" />
-        </YAxis>
-        <Series>
-            <telerik:AreaSeries Name="Retail Total" DataFieldY="Retail_Total">
-                <Appearance>
-                    <FillStyle BackgroundColor="Orange" />
-                </Appearance>
-                <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
-                <TooltipsAppearance BackgroundColor="White" />
-            </telerik:AreaSeries>
-        </Series>
-    </PlotArea>
-
-                        <ChartTitle Text="Total Sales Between Branches">
+                        <ChartTitle Text="Total Sales">
                         </ChartTitle>
                     </telerik:RadHtmlChart>
-
-                    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="RetailTotal" TypeName="Test.BLL.Financial.RetailTotalBL">
+                    <asp:ObjectDataSource ID="TotalSalesComODS1" runat="server" SelectMethod="usp_TotalSalesCom" TypeName="Test.BLL.Financial.TotalSalesComBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2015-01-16" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2016-06-06" Name="end" Type="DateTime" />
-                            <asp:Parameter DefaultValue="3" Name="companyRef" Type="Int32" />
+                            <asp:Parameter DefaultValue="2016/2/1" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/06/30" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
                             <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                 </div>
 
 
-                <%--   Pie Chart --%>
+                
                 <div class="col-sm-6">
-                    <telerik:RadHtmlChart ID="RadHtmlChart4" runat="server" DataSourceID="ObjectDataSource4">
-                        <ChartTitle Text="Product Category"> </ChartTitle>
+                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryComODS1">
+                        <ChartTitle Text="Income by Product Category Companywide"> </ChartTitle>
                         <PlotArea>
                             <Series>
                                 <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
@@ -108,27 +102,24 @@
                         </PlotArea>
                         <Zoom Enabled="False"></Zoom>
                     </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="ProductCategory" TypeName="Test.BLL.Financial.ProductCategoryBL">
+                    <asp:ObjectDataSource ID="IncomeByProductCategoryComODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCom" TypeName="Test.BLL.Financial.IncomeByProductCategoryComBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2010-01-01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2020-01-11" Name="end" Type="DateTime" />
-                            <asp:Parameter DefaultValue="1" Name="branchRef" Type="Int32" />
+                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                 </div>
-                <%--This is donut chart of Product Category--%>
+                <%--This is donut chart for Income by Product Category of a company--%>
                 <div class="col-sm-6">
-
-
-                    <telerik:RadHtmlChart ID="ProductCategory1" runat="server" DataSourceID="ObjectDataSource5">
+                    <%--<telerik:RadHtmlChart ID="ProductCategory1" runat="server" DataSourceID="ObjectDataSource5">
                         <Appearance>
                         </Appearance>
-                        <ChartTitle Text="Product Category">
+                        <ChartTitle Text="Income by Product Category Companywide">
                             <Appearance Align="Center" Position="Top"></Appearance>
                         </ChartTitle>
                         <PlotArea>
                             <Series>
-                            
                                 <telerik:donutSeries HoleSize="50" StartAngle="90" DataFieldY="Income" NameField="Category_Type" Name="Income">
                                     <LabelsAppearance Visible="false">
                                     </LabelsAppearance>
@@ -152,7 +143,7 @@
 
             </div>
             <%--Grids/data tables end--%>
-            <telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="ObjectDataSource5">
+            <%--<telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="ObjectDataSource5">
 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                 <MasterTableView AutoGenerateColumns="False" DataSourceID="ObjectDataSource5">
                     <Columns>
@@ -162,7 +153,7 @@
                         </telerik:GridBoundColumn>
                     </Columns>
                 </MasterTableView>
-            </telerik:RadGrid>
+            </telerik:RadGrid>--%>
         </div>
 
 

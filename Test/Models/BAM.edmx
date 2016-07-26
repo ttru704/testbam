@@ -656,6 +656,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="params" Type="varchar(max)" Mode="In" />
           <Parameter Name="separator" Type="char" Mode="In" />
         </Function>
+        <Function Name="ufn_TotalSalesCurrent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_AnimalsSeenBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
@@ -688,6 +691,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_AvgDollarPerCustomerSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_AvgPerTransactionBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
@@ -701,6 +707,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_AvgPerTransactionSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_CustomersSeenByEmpCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
@@ -709,6 +718,11 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         </Function>
         <Function Name="usp_ExecuteBulkUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="XmlInput" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="usp_IncomeByProductCategoryCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="start" Type="date" Mode="In" />
+          <Parameter Name="end" Type="date" Mode="In" />
+          <Parameter Name="companyRef" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_IncomeProductCategoryCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
@@ -771,16 +785,25 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="branchRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_TotalSalesChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_TotalSalesCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_TotalSalesCurrent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+        </Function>
         <Function Name="usp_TotalSalesIndustry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_TotalSalesSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_TransactionLoad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Cmp_Number" Type="bigint" Mode="In" />
@@ -1839,13 +1862,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_TotalSalesCom" ReturnType="Collection(KPIModel.usp_TotalSalesCom_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -1903,6 +1919,36 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_IncomeByProductCategoryCom" ReturnType="Collection(KPIModel.usp_IncomeByProductCategoryCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgDollarPerCustomerSingle" ReturnType="Collection(Decimal)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgPerTransactionSingle" ReturnType="Collection(Decimal)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesSingle" ReturnType="Collection(Decimal)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgDollarPerCustomerSingle1" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerSingle_Result)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesChanges" ReturnType="Collection(Double)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesCurrent" ReturnType="Collection(Double)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -1973,11 +2019,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
         </ComplexType>
-        <ComplexType Name="usp_TotalSalesBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
-        </ComplexType>
         <ComplexType Name="usp_TotalSalesCom_Result">
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
@@ -2015,6 +2056,18 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         <ComplexType Name="usp_AnimalsSeenCom_Result">
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_IncomeByProductCategoryCom_Result">
+          <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_AvgDollarPerCustomerSingle_Result">
+          <Property Type="Decimal" Name="Average_Dollar_per_Customer" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_TotalSalesBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="10" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2456,15 +2509,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_TotalSalesCom" FunctionName="KPIModel.Store.usp_TotalSalesCom">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesCom_Result">
@@ -2537,6 +2581,35 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
               <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenCom_Result">
                 <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
                 <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number_of_animals_seen" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_IncomeByProductCategoryCom" FunctionName="KPIModel.Store.usp_IncomeByProductCategoryCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByProductCategoryCom_Result">
+                <ScalarProperty Name="Category_Type" ColumnName="Category_Type" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle" />
+          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionSingle" FunctionName="KPIModel.Store.usp_AvgPerTransactionSingle" />
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesSingle" FunctionName="KPIModel.Store.usp_TotalSalesSingle" />
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle1" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerSingle_Result">
+                <ScalarProperty Name="Average_Dollar_per_Customer" ColumnName="Average_Dollar_per_Customer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesChanges" FunctionName="KPIModel.Store.usp_TotalSalesChanges" />
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesCurrent" FunctionName="KPIModel.Store.usp_TotalSalesCurrent" />
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

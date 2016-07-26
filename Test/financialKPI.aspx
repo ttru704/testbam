@@ -19,26 +19,39 @@
             </div>
             <%--Trying the Panel change--%>
 
-            
-            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <asp:DropDownList ID="Company" runat="server">
+            <div>
+            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-04-01" SelectedDate="2015-04-01"></telerik:RadDatePicker>
+            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-09-01" SelectedDate="2015-09-01"></telerik:RadDatePicker>
+            <asp:DropDownList ID="Company" runat="server" Width="100px">
                 <asp:ListItem>1</asp:ListItem>
                 <asp:ListItem>2</asp:ListItem>
                 <asp:ListItem>3</asp:ListItem>
-                <asp:ListItem>4</asp:ListItem>
-                <asp:ListItem>5</asp:ListItem>
             </asp:DropDownList>
-               
-            <asp:DropDownList ID="Dropdown1" runat="server">
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
+            <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
+                <asp:ListItem Value="0">All Branches</asp:ListItem>
+                <asp:ListItem> 1 </asp:ListItem>
+                <asp:ListItem> 2 </asp:ListItem>
+                <asp:ListItem> 3 </asp:ListItem>
             </asp:DropDownList>
-            <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+            <asp:DropDownList ID="Dropdown1" runat="server" Width="100px">
+                <asp:ListItem Value="1"> Monthly </asp:ListItem>
+                <asp:ListItem Value="2"> Yearly </asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+            </div>
 
             <%--Display Average Per Transaction Company--%>
-            <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="ObjectDataSource1">
+            <br />
+            <br />
 
+            <br />
+            <div class="kpiheader">Average Dollar Earned Per Transaction Companywide</div>
+            <telerik:RadHtmlChart ID="AvgPerTransactionComRHC1" runat="server" DataSourceID="AvgPerTransactionComODS1">
+                <Pan Enabled="true" Lock="Y" />
+                <Zoom Enabled="true">
+                    <MouseWheel Enabled="true" Lock="Y" />
+                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                </Zoom>
                 <Legend>
                       <Appearance Position="Bottom" />
                 </Legend>
@@ -49,7 +62,7 @@
                     <YAxis Color="Black">
                         <MajorGridLines Color="#EFEFEF" Width="1" />
                         <MinorGridLines Color="#F7F7F7" Width="1" />
-                        <TitleAppearance Position="Center" Text="Retail Total" RotationAngle="90" />
+                        <TitleAppearance Position="Center" Text="$" RotationAngle="90" />
                     </YAxis>
                     <Series>
                         <telerik:AreaSeries Name="Average Per Transaction" DataFieldY="Average_Dollar_per_Transaction">
@@ -62,17 +75,10 @@
                     </Series>
                 </PlotArea>
 
-                <ChartTitle Text="Total Sales Between Branches">
+                <ChartTitle Text="Average Dollar Value per Transaction Companywide ">
                 </ChartTitle>
            </telerik:RadHtmlChart>
-           
-            <%--Display Average Per Transaction Company--%>
-
-            <%--Display Average Per Transaction Branch--%>
-            <telerik:RadHtmlChart ID="RadHtmlChart2" runat="server">
-            </telerik:RadHtmlChart>
-            <br />
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="usp_AvgPerTransactionCom" TypeName="Test.BLL.Financial.AvgPerTransactionComBL">
+           <asp:ObjectDataSource ID="AvgPerTransactionComODS1" runat="server" SelectMethod="usp_AvgPerTransactionCom" TypeName="Test.BLL.Financial.AvgPerTransactionComBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -80,16 +86,35 @@
                     <asp:ControlParameter ControlID="Dropdown1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" SelectMethod="usp_AvgPerTransactionBranch" TypeName="Test.BLL.Financial.AvgPerTransactionBranchBL">
+            <br />
+
+            <%--Display Average Per Transaction Branch--%>
+            <div class="kpiheader">Average Dollar Earned Per Transaction Branch Comparison</div>
+            <telerik:RadHtmlChart ID="AvgPerTransactionBranchRHC1" runat="server">
+                <Pan Enabled="true" Lock="Y" />
+                <ChartTitle Text="Average Dollar Earned Per Transaction">
+                </ChartTitle>
+                <PlotArea>
+                    <XAxis BaseUnit="Months">
+                    </XAxis>
+                </PlotArea>
+                <Zoom Enabled="true">
+                    <MouseWheel Enabled="true" Lock="Y" />
+                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                </Zoom>
+            </telerik:RadHtmlChart>
+            <br />
+            
+            <asp:ObjectDataSource ID="AvgPerTransactionBranchODS1" runat="server" SelectMethod="usp_AvgPerTransactionBranch" TypeName="Test.BLL.Financial.AvgPerTransactionBranchBL">
                 <SelectParameters>
-                    <asp:Parameter DefaultValue="2013-01-01" Name="start" Type="DateTime" />
-                    <asp:Parameter DefaultValue="2014-12-31" Name="end" Type="DateTime" />
-                    <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
-                    <asp:Parameter DefaultValue="0" Name="branchRef" Type="Int32" />
-                    <asp:Parameter DefaultValue="2" Name="timeType" Type="Int32" />
+                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="Company" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Branch" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Dropdown1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource2" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+            <asp:GridView ID="AvgPerTransactionBranchG1" Visible="false" runat="server" AutoGenerateColumns="False" DataSourceID="AvgPerTransactionBranchODS1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                 <Columns>
                     <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
                     <asp:BoundField DataField="Year_Month" HeaderText="Year_Month" SortExpression="Year_Month" />
@@ -99,20 +124,7 @@
 
              <%--This section is for Total Sales Company--%> 
 
-            <telerik:RadDatePicker ID="TotalSalesComRDP1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="TotalSalesComRDP2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <asp:DropDownList ID="TotalSalesComDDLBranch" runat="server" Width="58px">
-                <asp:ListItem Value="0">All Branches</asp:ListItem>
-                <asp:ListItem> 1 </asp:ListItem>
-                <asp:ListItem> 2 </asp:ListItem>
-                <asp:ListItem> 3 </asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="TotalSalesComDDLTime" runat="server" Width="99px">
-                <asp:ListItem Value="1"> Monthly </asp:ListItem>
-                <asp:ListItem Value="2"> Yearly </asp:ListItem>
-            </asp:DropDownList>
-            <asp:Button ID="TotalSalesComButton1" runat="server" Text="View" OnClick="ViewTotalSalesCom_Click" />
-
+            <div class="kpiheader">Total Sales Companywide</div>
             <telerik:RadHtmlChart ID="TotalSalesComRHC1" runat="server" DataSourceID="TotalSalesComODS">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
@@ -126,7 +138,7 @@
                         </telerik:ColumnSeries>
                     </Series>
                     <XAxis DataLabelsField="YearMonth" Type="Date">
-                        <TitleAppearance Text="Month">
+                        <TitleAppearance Text="Time Period">
                             <TextStyle Margin="20" />
                         </TitleAppearance>
                         <LabelsAppearance DataFormatString="MMM yyyy">
@@ -147,10 +159,10 @@
             </telerik:RadHtmlChart>
             <asp:ObjectDataSource ID="TotalSalesComODS" runat="server" SelectMethod="usp_TotalSalesCom" TypeName="Test.BLL.Financial.TotalSalesComBL" >
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="TotalSalesComRDP1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:ControlParameter ControlID="TotalSalesComRDP2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
-                    <asp:ControlParameter ControlID="TotalSalesComDDLTime" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
+                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="Company" Name="companyRef" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
+                    <asp:ControlParameter ControlID="Dropdown1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
              
@@ -164,22 +176,8 @@
 
              <%--This section is for Total Sales Bcomparison presented on column chart--%>
 
-
-            <telerik:RadDatePicker ID="TotalSalesBComparison1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="TotalSalesBComparison2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-            <asp:DropDownList ID="TotalSalesBComparison4" runat="server" Width="58px">
-                <asp:ListItem Value="0">All Branches</asp:ListItem>
-                <asp:ListItem> 1 </asp:ListItem>
-                <asp:ListItem> 2 </asp:ListItem>
-                <asp:ListItem> 3 </asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="TotalSalesBComparison3" runat="server" Width="99px">
-                <asp:ListItem Value="1"> Monthly </asp:ListItem>
-                <asp:ListItem Value="2"> Yearly </asp:ListItem>
-            </asp:DropDownList>
-            <asp:Button ID="ViewTotalSalesBComparison" runat="server" Text="View" OnClick="ViewTotalSalesBComparison_Click" />
-
-            <telerik:RadHtmlChart ID="RadHtmlChart3" runat="server">
+            <div class="kpiheader">Total Sales Branch Comparison</div>
+            <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
                     <MouseWheel Enabled="true" Lock="Y" />
@@ -214,17 +212,17 @@
                 </ChartTitle>
                 <Zoom Enabled="False"></Zoom>--%>
             </telerik:RadHtmlChart>
-            <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="usp_TotalSalesBranch" TypeName="Test.BLL.Financial.TotalSalesBranchBL">
+            <asp:ObjectDataSource ID="TotalSalesBranchODS1" runat="server" SelectMethod="usp_TotalSalesBranch" TypeName="Test.BLL.Financial.TotalSalesBranchBL">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="TotalSalesBComparison1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                    <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison4" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
-                    <asp:ControlParameter ControlID="TotalSalesBComparison3" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
+                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="Company" PropertyName="SelectedValue" DefaultValue="1" Name="companyRef" Type="Int32"></asp:ControlParameter>
+                    <asp:ControlParameter ControlID="Branch" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Dropdown1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                 </SelectParameters>
             </asp:ObjectDataSource>
 
-            <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource5">
+            <asp:GridView ID="TotalSalesBranchG1" Visible="false" runat="server" AutoGenerateColumns="False" DataSourceID="TotalSalesBranchODS1">
                 <Columns>
                     <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
                     <asp:BoundField DataField="YearMonth" HeaderText="YearMonth" SortExpression="YearMonth" />

@@ -1,3 +1,4 @@
+C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll.licenses
 C:\Users\students\Source\Repos\testbam\Test\bin\ApplicationInsights.config
 C:\Users\students\Source\Repos\testbam\Test\bin\roslyn\csc.exe
 C:\Users\students\Source\Repos\testbam\Test\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -76,7 +77,5 @@ C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.Google.x
 C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.OAuth.xml
-C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll.licenses
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.pdb
-C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

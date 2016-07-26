@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using Test.Models;
 using Test.Models.Interface.Financial;
 using Test.Models.Repository.Financial;
+using System.Reflection;
 
 namespace Test.BLL.Financial
 {
@@ -22,7 +24,7 @@ namespace Test.BLL.Financial
             this.AvgPerTransactionBranchRepo = AvgPerTransactionBranchRepo;
         }
 
-        public List<usp_AvgPerTransactionBranch_Result> usp_AvgPerTransactionBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        public List<usp_AvgPerTransactionBranch_Result> usp_AvgPerTransactionBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType)
         {
             return AvgPerTransactionBranchRepo.usp_AvgPerTransactionBranch(start, end, companyRef, branchRef, timeType);
         }
@@ -46,5 +48,6 @@ namespace Test.BLL.Financial
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+        
     }
 }

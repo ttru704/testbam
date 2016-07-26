@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 .left_col {
   background: #2A3F54; }
 
@@ -4127,3 +4127,13 @@ ul.notifications {
   border: 1px solid #e5e5e5; }
 
 /** /Dropzone.js **/
+
+
+
+/*The css we created*/x`
+
+.kpiheader {
+  color: #1976D2;
+  font-size:20px;
+  font-weight:bolder;
+}

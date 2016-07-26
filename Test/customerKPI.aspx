@@ -10,7 +10,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
         <div class="right_col" role="main">
-            <div id="KPIMenu"  style="text-align: center">
+            <div id="KPIMenu" style="text-align: center">
                 <a href="/financialKPI.aspx" style="font-size: 20px"><strong>Financial</strong></a>
                 <strong>|</strong>
                 <a href="/employeekpi.aspx" style="font-size: 20px"><strong>Employee</strong></a>
@@ -19,29 +19,30 @@
                 <br />
             </div>
 
-                <asp:ScriptManager ID="ScriptManager1" runat="server">
-                </asp:ScriptManager>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+            </asp:ScriptManager>
 
-                <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-                <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft"></telerik:RadDatePicker>
-                <asp:DropDownList ID="Company" runat="server">
-                    <asp:ListItem>1</asp:ListItem>
-                    <asp:ListItem>2</asp:ListItem>
-                    <asp:ListItem>3</asp:ListItem>
-                    <asp:ListItem>4</asp:ListItem>
-                    <asp:ListItem>5</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref">
-                    <asp:ListItem>0</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="TimeType" runat="server">
-                    <asp:ListItem>1</asp:ListItem>
-                    <asp:ListItem>2</asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
-                
+            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-04-01"></telerik:RadDatePicker>
+            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-09-01"></telerik:RadDatePicker>
+            <asp:DropDownList ID="Company" runat="server" Width="100px">
+                <asp:ListItem>1</asp:ListItem>
+                <asp:ListItem>2</asp:ListItem>
+                <asp:ListItem>3</asp:ListItem>
+            </asp:DropDownList>
+            <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
+                <asp:ListItem Value="0">All Branches</asp:ListItem>
+                <asp:ListItem> 1 </asp:ListItem>
+                <asp:ListItem> 2 </asp:ListItem>
+                <asp:ListItem> 3 </asp:ListItem>
+            </asp:DropDownList>
+            <asp:DropDownList ID="TimeType" runat="server" Width="100px">
+                <asp:ListItem Value="1"> Monthly </asp:ListItem>
+                <asp:ListItem Value="2"> Yearly </asp:ListItem>
+            </asp:DropDownList>
+            <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+
             <br />
-            <p><strong>Number of Unique Customers Seen</strong></p>
+            <div class="kpiheader">Number of Unique Customers Seen Companywide</div>
             <%--Display Number of Unique Customers Seen by a company--%>
             <telerik:RadHtmlChart ID="UniqueCustomersSeenComRHC1" runat="server" DataSourceID="UniqueCustomersSeenComODC1">
                 <PlotArea>
@@ -81,17 +82,15 @@
             <%--Display Number of Unique Customers Seen by a company--%>
 
             <%--Display Number of Unique Customers Seen branch comparison--%>
+            <div class="kpiheader">Number of Unique Customers Seen Branch Comparison</div>
             <telerik:RadHtmlChart ID="UniqueCustomersSeenBranchRHC1" runat="server">
-                    <ChartTitle Text="Number of Unique Clients Seen">
-                    </ChartTitle>
+                <ChartTitle Text="Number of Unique Clients Seen">
+                </ChartTitle>
 
-                    <PlotArea>
+                <PlotArea>
+                </PlotArea>
 
-                    <YAxis Name="No of Clients">
-                    </YAxis>
-                    </PlotArea>
-
-                    <Zoom Enabled="False"></Zoom>
+                <Zoom Enabled="False"></Zoom>
             </telerik:RadHtmlChart>
             <asp:ObjectDataSource ID="UniqueCustomersSeenBranchODC1" runat="server" SelectMethod="usp_UniqueCustomersSeenBranch" TypeName="Test.BLL.Customer.UniqueCustomersSeenBranchBL">
                 <SelectParameters>
@@ -102,7 +101,7 @@
                     <asp:ControlParameter ControlID="TimeType" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="UniqueCustomersSeenBranchG1" runat="server" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenBranchODC1" Visible="true">
+            <asp:GridView ID="UniqueCustomersSeenBranchG1" runat="server" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenBranchODC1" Visible="false">
                 <Columns>
                     <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
                     <asp:BoundField DataField="Time_Period" HeaderText="Time_Period" SortExpression="Time_Period" />
@@ -112,7 +111,7 @@
             <%--Display Number of Unique Customers Seen branch comparison--%>
 
             <p>&nbsp;</p>
-            <p><strong>Number of Animals Seen</strong></p>
+            <div class="kpiheader">Number of Unique Animals Seen Companywide</div>
 
             <%--Display Number of Aniamls Seen Companywide--%>
 
@@ -121,7 +120,7 @@
             <telerik:RadHtmlChart ID="AnimalsSeenComRHC1" runat="server" DataSourceID="AnimalsSeenComODS1">
                 <PlotArea>
                     <Series>
-                        <telerik:LineSeries Name="No of Animals Seen" DataFieldY="Number_of_animals_seen" >
+                        <telerik:LineSeries Name="No of Animals Seen" DataFieldY="Number_of_animals_seen">
                         </telerik:LineSeries>
                     </Series>
 
@@ -147,7 +146,7 @@
                 </ChartTitle>
                 <Zoom Enabled="False"></Zoom>
             </telerik:RadHtmlChart>
-            
+
             <asp:ObjectDataSource ID="AnimalsSeenComODS1" runat="server" SelectMethod="usp_AnimalsSeenCom" TypeName="Test.BLL.Customer.AnimalsSeenComBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />

@@ -40,57 +40,30 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart1;
         
         /// <summary>
-        /// ObjectDataSource1 control.
+        /// TotalSalesComODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesComODS1;
         
         /// <summary>
-        /// RadHtmlChart4 control.
+        /// IncomeByProductCategoryComRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart4;
+        protected global::Telerik.Web.UI.RadHtmlChart IncomeByProductCategoryComRHC1;
         
         /// <summary>
-        /// ObjectDataSource4 control.
+        /// IncomeByProductCategoryComODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource4;
-        
-        /// <summary>
-        /// ProductCategory1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart ProductCategory1;
-        
-        /// <summary>
-        /// ObjectDataSource5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource5;
-        
-        /// <summary>
-        /// RadGrid1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource IncomeByProductCategoryComODS1;
     }
 }

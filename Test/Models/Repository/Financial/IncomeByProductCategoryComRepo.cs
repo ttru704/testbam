@@ -6,18 +6,18 @@ using Test.Models.Interface.Financial;
 
 namespace Test.Models.Repository.Financial
 {
-    public class AvgPerTransactionBranchRepo : IDisposable, IAvgPerTransactionBranchRepo
+    public class IncomeByProductCategoryComRepo: IDisposable, IIncomeByProductCategoryComRepo
     {
         private KPIEntities context = new KPIEntities();
 
-        public AvgPerTransactionBranchRepo()
+        public IncomeByProductCategoryComRepo()
         {
 
         }
 
-        List<usp_AvgPerTransactionBranch_Result> IAvgPerTransactionBranchRepo.usp_AvgPerTransactionBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType)
+        List<usp_IncomeByProductCategoryCom_Result> IIncomeByProductCategoryComRepo.usp_IncomeByProductCategoryCom(DateTime start, DateTime end, int companyRef)
         {
-            return context.usp_AvgPerTransactionBranch(start, end, companyRef, branchRef, timeType).ToList();
+            return context.usp_IncomeByProductCategoryCom(start, end, companyRef).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

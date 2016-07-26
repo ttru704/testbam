@@ -882,13 +882,6 @@
       <Parameter Name="companyRef" Mode="In" Type="Int32" />
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="companyRef" Mode="In" Type="Int32" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="usp_TotalSalesCom" ReturnType="Collection(KPIModel.usp_TotalSalesCom_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -946,6 +939,36 @@
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
       <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByProductCategoryCom" ReturnType="Collection(KPIModel.usp_IncomeByProductCategoryCom_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerSingle" ReturnType="Collection(Decimal)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgPerTransactionSingle" ReturnType="Collection(Decimal)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesSingle" ReturnType="Collection(Decimal)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerSingle1" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerSingle_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesCurrent" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="branchRef" Mode="In" Type="Int32" />
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
@@ -1016,11 +1039,6 @@
     <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
   </ComplexType>
-  <ComplexType Name="usp_TotalSalesBranch_Result">
-    <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-    <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
-  </ComplexType>
   <ComplexType Name="usp_TotalSalesCom_Result">
     <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
     <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
@@ -1058,5 +1076,17 @@
   <ComplexType Name="usp_AnimalsSeenCom_Result">
     <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByProductCategoryCom_Result">
+    <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerCustomerSingle_Result">
+    <Property Type="Decimal" Name="Average_Dollar_per_Customer" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="usp_TotalSalesBranch_Result">
+    <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="10" Scale="2" />
   </ComplexType>
 </Schema>
