@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface ITotalSalesSingleRepo: IDisposable
     {
-        decimal? usp_TotalSalesSingle(int companyRef);
+        double? usp_TotalSalesSingle(int companyRef);
     }
 }

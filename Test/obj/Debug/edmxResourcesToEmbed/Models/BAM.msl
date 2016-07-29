@@ -493,15 +493,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionBranch" FunctionName="KPIModel.Store.usp_AvgPerTransactionBranch">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_AvgPerTransactionBranch_Result">
-          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-          <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
-          <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_AnimalsSeenCom" FunctionName="KPIModel.Store.usp_AnimalsSeenCom">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenCom_Result">
@@ -518,18 +509,7 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle" />
-    <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionSingle" FunctionName="KPIModel.Store.usp_AvgPerTransactionSingle" />
-    <FunctionImportMapping FunctionImportName="usp_TotalSalesSingle" FunctionName="KPIModel.Store.usp_TotalSalesSingle" />
-    <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle1" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerSingle_Result">
-          <ScalarProperty Name="Average_Dollar_per_Customer" ColumnName="Average_Dollar_per_Customer" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_TotalSalesChanges" FunctionName="KPIModel.Store.usp_TotalSalesChanges" />
-    <FunctionImportMapping FunctionImportName="usp_TotalSalesCurrent" FunctionName="KPIModel.Store.usp_TotalSalesCurrent" />
     <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
@@ -539,5 +519,27 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionBranch" FunctionName="KPIModel.Store.usp_AvgPerTransactionBranch">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_AvgPerTransactionBranch_Result">
+          <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+          <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+          <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_BranchDropDownList" FunctionName="KPIModel.Store.usp_BranchDropDownList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_BranchDropDownList_Result">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerChanges" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerChanges" />
+    <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionChanges" FunctionName="KPIModel.Store.usp_AvgPerTransactionChanges" />
+    <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionSingle" FunctionName="KPIModel.Store.usp_AvgPerTransactionSingle" />
+    <FunctionImportMapping FunctionImportName="usp_TotalSalesSingle" FunctionName="KPIModel.Store.usp_TotalSalesSingle" />
+    <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle" />
   </EntityContainerMapping>
 </Mapping>

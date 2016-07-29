@@ -23,6 +23,8 @@ namespace Test
         protected void Page_Load(object sender, EventArgs e)
         {
             
+
+
         }
         //public DataTable ConvertToDataTable<T>(IList<T> data)
         //{
@@ -65,8 +67,7 @@ namespace Test
             //}
 
             AvgPerTransactionComRHC1.DataBind();
-
-            AvgPerTransactionBranchG1.DataBind();
+            
 
             DateTime? start = DatePicker1.SelectedDate.GetValueOrDefault();
             DateTime? end = DatePicker2.SelectedDate.GetValueOrDefault();
@@ -76,22 +77,31 @@ namespace Test
 
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
             DataTable dt = converter.ToDataTable(t);
-            //String.Format("0.##", dt.Columns["Average_Dollar_per_Transaction"]);
+            //String.Format("{0: mmm yy}", dt.Columns["Year_Month"]);
+            //DateTime.ParseExact(dt.Columns["Year_Month"])
             RadHtmlChartGroupDataSource.GroupDataSource(AvgPerTransactionBranchRHC1, dt, "Branch_Ref", "ColumnSeries", "Average_Dollar_per_Transaction", "Year_Month");
 
 
             TotalSalesComRHC1.DataBind();
-
+            string labelsFormatString = "{0:N2}";
             if (Dropdown1.SelectedValue == "1")
             {
                 //DateTime dateformat = Convert.ToDateTime(dt);
-                TotalSalesComRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
-                TotalSalesComRHC1.ChartTitle.Text = "Total Monthly Sales";
-                TotalSalesComRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
+                TotalSalesBranchRHC1.ChartTitle.Text = "Total Monthly Sales";
+                TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.format(\\'{0:MMM}\\',value)#";
+                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(\\'{MMM}\\', value)#";
+                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales($)";
+                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = labelsFormatString;
+                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
 
-                AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
+
+
+                AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM";
                 AvgPerTransactionBranchRHC1.ChartTitle.Text = "Total Monthly Sales";
                 AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+
                 //AvgPerTransactionBranchRHC1.PlotArea.XAxis.BaseUnit = "months";
                 
             }
@@ -106,8 +116,7 @@ namespace Test
                 AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
             };
 
-
-            TotalSalesBranchG1.DataBind();
+            
             //DataTable dt2 = new DataTable();
             //for (int i = 0; i < TotalSalesBranchG1.Columns.Count; i++)
             //{
@@ -136,7 +145,15 @@ namespace Test
 
         }
 
-        
+        protected void AvgPerTransactionComODS1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+
+        }
+
+        protected void Branch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

@@ -14,34 +14,60 @@
             <div class="row tile_count" style="position: center">
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
-                    <div class="count blue">$946.82</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i>From last Month</span>
+                    <div class="count blue"> 
+                        <asp:Label ID="Label1" runat="server" Text="Label" class="count blue"></asp:Label>
+                    </div>
+                    <span class="count_bottom">
+                        <i id="color" class="red">
+                            <i class="fa fa-sort-desc"></i>
+                            <asp:Label ID="LabelPercent1" runat="server"></asp:Label>
+                        </i>From last Month
+                    </span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-money"></i>Avg $ per Transaction</span>
-                    <div class="count blue">$86.07</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i>From last Month</span>
+                    <div class="count blue">
+                        <asp:Label ID="Label2" runat="server" class="count blue"></asp:Label>
+                    </div>
+                    <span class="count_bottom">
+                        <i class="red">
+                            <i class="fa fa-sort-desc"></i>
+                            <asp:Label ID="LabelPercent2" runat="server"></asp:Label>
+                        </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-money"></i>Avg $ per Customer</span>
-                    <div class="count blue">$157.8</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i>From last Month</span>
+                    <div class="count blue">
+                        <asp:Label ID="Label3" runat="server" class="count blue"></asp:Label>
+                    </div>
+                    <span class="count_bottom">
+                        <i class="red">
+                            <i class="fa fa-sort-desc"></i>
+                            <asp:Label ID="LabelPercent3" runat="server"></asp:Label>
+                        </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-plus"></i>Number of New Clients</span>
                     <div class="count blue">123</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i>From last Month</span>
+                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3%</i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-paw"></i>Total Large Animals</span>
                     <div class="count blue">20</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i>From last Month</span>
+                    <span class="count_bottom">
+                        <i class="green">
+                            <i class="fa fa-sort-asc">
+
+                            </i>34% 
+
+                        </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-paw"></i>Total Small Animals</span>
                     <div class="count blue">35</div>
                     <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Month</span>
                 </div>
+                
 
 
             </div>

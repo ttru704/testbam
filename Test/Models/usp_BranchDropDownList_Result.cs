@@ -11,8 +11,9 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_AvgDollarPerCustomerSingle_Result
+    public partial class usp_BranchDropDownList_Result
     {
-        public Nullable<decimal> Average_Dollar_per_Customer { get; set; }
+        public long Ref_Number { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Telerik.Web.UI;
@@ -44,7 +45,10 @@ namespace Test.Models
             //Configure x-axis DataLabelsField if series are of category type
             if (isCategorySeries)
             {
-                HtmlChart.PlotArea.XAxis.DataLabelsField = DataFieldX + "0";
+                HtmlChart.PlotArea.XAxis.DataLabelsField = (DataFieldX + "0").ToString();
+                
+
+
             }
 
             for (int i = 0; i < NumDistinctValues; i++)

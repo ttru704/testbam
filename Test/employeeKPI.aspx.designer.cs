@@ -119,5 +119,14 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView CustomersSeenByEmpComG1;
+        
+        /// <summary>
+        /// CustomersSeenByEmpComGV1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmpComGV1;
     }
 }

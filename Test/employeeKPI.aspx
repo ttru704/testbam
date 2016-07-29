@@ -62,13 +62,28 @@
                     <asp:ControlParameter ControlID="TimeType" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="CustomersSeenByEmpComG1" Visible="false" runat="server" AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmpComODS1">
+            <asp:GridView ID="CustomersSeenByEmpComG1" Visible="False" runat="server" AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmpComODS1">
                 <Columns>
                     <asp:BoundField DataField="Employee_Name" HeaderText="Employee_Name" SortExpression="Employee_Name" />
                     <asp:BoundField DataField="YearMonth" HeaderText="YearMonth" SortExpression="YearMonth" />
                     <asp:BoundField DataField="Number_Of_Customers_Seen_By_An_Employee" HeaderText="Number_Of_Customers_Seen_By_An_Employee" SortExpression="Number_Of_Customers_Seen_By_An_Employee" />
                 </Columns>
             </asp:GridView>
+
+            <telerik:RadGrid RenderMode="Lightweight" ID="CustomersSeenByEmpComGV1" runat="server" DataSourceID="CustomersSeenByEmpComODS1" AllowFilteringByColumn="True" AllowSorting="True" AllowPaging="True" >
+                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+
+                <MasterTableView DataSourceID="CustomersSeenByEmpComODS1" AllowFilteringByColumn="True"  AutoGenerateColumns="False">
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee_Name" SortExpression="Employee_Name" UniqueName="Employee_Name" >
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="YearMonth" DataType="System.DateTime" FilterControlAltText="Filter YearMonth column" HeaderText="YearMonth" SortExpression="YearMonth" UniqueName="YearMonth">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column" HeaderText="Number_Of_Customers_Seen_By_An_Employee" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee">
+                        </telerik:GridBoundColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
 
         </div>
     </form>

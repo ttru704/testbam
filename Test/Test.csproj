@@ -428,15 +428,21 @@
     <Compile Include="BLL\Customer\NewClientsComBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenComBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerCustomerChangesBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerCustomerSingleBL.cs" />
     <Compile Include="BLL\Financial\AvgPerTransactionBranchBL.cs" />
+    <Compile Include="BLL\Financial\AvgPerTransactionChangesBL.cs" />
     <Compile Include="BLL\Financial\AvgPerTransactionComBL.cs" />
+    <Compile Include="BLL\Financial\AvgPerTransactionSingleBL.cs" />
     <Compile Include="BLL\Financial\IncomeByProductCategoryComBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesBranchBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesComBL.cs" />
     <Compile Include="BLL\Financial\ServiceOnlySalesBranchBL.cs" />
     <Compile Include="BLL\Financial\ServiceOnlySalesComBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesBranchBL.cs" />
+    <Compile Include="BLL\Financial\TotalSalesChangesBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesComBL.cs" />
+    <Compile Include="BLL\Financial\TotalSalesSingleBL.cs" />
     <Compile Include="BLL\Productivity\CustomersSeenByEmpComBL.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -541,15 +547,22 @@
     <Compile Include="Models\Interface\Customer\INewClientsComRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerSingleRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerChangesRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgPerTransactionBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgPerTransactionComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgPerTransactionChangesRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByProductCategoryComRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesComRepo.cs" />
     <Compile Include="Models\Interface\Financial\IServiceOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IServiceOnlySalesComRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesBranchRepo.cs" />
+    <Compile Include="Models\Interface\Financial\ITotalSalesChangesRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\ITotalSalesSingleRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmpComRepo.cs" />
     <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmpComRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -582,15 +595,21 @@
     <Compile Include="Models\Repository\Customer\NewClientsComRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerChangesRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgPerTransactionBranchRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgPerTransactionChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgPerTransactionComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByProductCategoryComRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesComRepo.cs" />
     <Compile Include="Models\Repository\Financial\ServiceOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\ServiceOnlySalesComRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesBranchRepo.cs" />
+    <Compile Include="Models\Repository\Financial\TotalSalesChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\TotalSalesSingleRepo.cs" />
     <Compile Include="Models\Repository\Productivity\CustomersSeenByEmpComRepo.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -640,13 +659,13 @@
     <Compile Include="Models\usp_AvgDollarPerCustomerCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AvgDollarPerCustomerSingle_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\usp_AvgPerTransactionBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_AvgPerTransactionCom_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_BranchDropDownList_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_CustomersSeenByEmpCom_Result.cs">

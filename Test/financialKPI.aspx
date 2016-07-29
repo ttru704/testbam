@@ -20,24 +20,26 @@
             <%--Trying the Panel change--%>
 
             <div>
-            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-04-01" SelectedDate="2015-04-01"></telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-09-01" SelectedDate="2015-09-01"></telerik:RadDatePicker>
-            <asp:DropDownList ID="Company" runat="server" Width="100px">
-                <asp:ListItem>1</asp:ListItem>
-                <asp:ListItem>2</asp:ListItem>
-                <asp:ListItem>3</asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
-                <asp:ListItem Value="0">All Branches</asp:ListItem>
-                <asp:ListItem> 1 </asp:ListItem>
-                <asp:ListItem> 2 </asp:ListItem>
-                <asp:ListItem> 3 </asp:ListItem>
-            </asp:DropDownList>
-            <asp:DropDownList ID="Dropdown1" runat="server" Width="100px">
-                <asp:ListItem Value="1"> Monthly </asp:ListItem>
-                <asp:ListItem Value="2"> Yearly </asp:ListItem>
-            </asp:DropDownList>
-            <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+                <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-04-01" SelectedDate="2015-04-01"></telerik:RadDatePicker>
+                <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-09-01" SelectedDate="2015-09-01"></telerik:RadDatePicker>
+                <asp:DropDownList ID="Company" runat="server" Width="100px">
+                    <asp:ListItem>1</asp:ListItem>
+                    <asp:ListItem>2</asp:ListItem>
+                    <asp:ListItem>3</asp:ListItem>
+                </asp:DropDownList>
+                <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Name" AppendDataBoundItems="true" EnableViewState="false" DataValueField="Ref_Number" Width="100px" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="Branch_SelectedIndexChanged">
+                    <asp:ListItem Value="0" Selected="True">All Branches</asp:ListItem>
+                </asp:DropDownList>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KPIConnectionString %>" SelectCommand="usp_BranchDropDownList" SelectCommandType="StoredProcedure">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="Company" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+                <asp:DropDownList ID="Dropdown1" runat="server" Width="100px">
+                    <asp:ListItem Value="1"> Monthly </asp:ListItem>
+                    <asp:ListItem Value="2"> Yearly </asp:ListItem>
+                </asp:DropDownList>
+                <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
             </div>
 
             <%--Display Average Per Transaction Company--%>
@@ -46,6 +48,7 @@
 
             <br />
             <div class="kpiheader">Average Dollar Earned Per Transaction Companywide</div>
+            <div style="">
             <telerik:RadHtmlChart ID="AvgPerTransactionComRHC1" runat="server" DataSourceID="AvgPerTransactionComODS1">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
@@ -53,11 +56,13 @@
                     <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                 </Zoom>
                 <Legend>
-                      <Appearance Position="Bottom" />
+                    <Appearance Position="Bottom" />
                 </Legend>
                 <PlotArea>
                     <XAxis Color="Black" DataLabelsField="Year_Month">
                         <TitleAppearance Position="Center" Text="Time Period" />
+                        <LabelsAppearance DataFormatString="MMM yy">
+                        </LabelsAppearance>
                     </XAxis>
                     <YAxis Color="Black">
                         <MajorGridLines Color="#EFEFEF" Width="1" />
@@ -71,14 +76,17 @@
                             </Appearance>
                             <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
                             <TooltipsAppearance BackgroundColor="White" />
+                            <LabelsAppearance DataFormatString="C2">
+                            </LabelsAppearance>
                         </telerik:AreaSeries>
                     </Series>
                 </PlotArea>
 
                 <ChartTitle Text="Average Dollar Value per Transaction Companywide ">
                 </ChartTitle>
-           </telerik:RadHtmlChart>
-           <asp:ObjectDataSource ID="AvgPerTransactionComODS1" runat="server" SelectMethod="usp_AvgPerTransactionCom" TypeName="Test.BLL.Financial.AvgPerTransactionComBL">
+            </telerik:RadHtmlChart>
+            </div>
+            <asp:ObjectDataSource ID="AvgPerTransactionComODS1" runat="server" SelectMethod="usp_AvgPerTransactionCom" TypeName="Test.BLL.Financial.AvgPerTransactionComBL" OnSelecting="AvgPerTransactionComODS1_Selecting">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -86,6 +94,19 @@
                     <asp:ControlParameter ControlID="Dropdown1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+            <telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="AvgPerTransactionBranchODS1">
+                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                <MasterTableView AutoGenerateColumns="False" DataSourceID="AvgPerTransactionBranchODS1">
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="Branch_Ref" DataType="System.Int64" FilterControlAltText="Filter Branch_Ref column" HeaderText="Branch_Ref" SortExpression="Branch_Ref" UniqueName="Branch_Ref">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Year_Month" DataType="System.DateTime" FilterControlAltText="Filter Year_Month column" HeaderText="Year_Month" SortExpression="Year_Month" UniqueName="Year_Month">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column" HeaderText="Average_Dollar_per_Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction">
+                        </telerik:GridBoundColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
             <br />
 
             <%--Display Average Per Transaction Branch--%>
@@ -104,7 +125,7 @@
                 </Zoom>
             </telerik:RadHtmlChart>
             <br />
-            
+
             <asp:ObjectDataSource ID="AvgPerTransactionBranchODS1" runat="server" SelectMethod="usp_AvgPerTransactionBranch" TypeName="Test.BLL.Financial.AvgPerTransactionBranchBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
@@ -114,15 +135,8 @@
                     <asp:ControlParameter ControlID="Dropdown1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="AvgPerTransactionBranchG1" Visible="false" runat="server" AutoGenerateColumns="False" DataSourceID="AvgPerTransactionBranchODS1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
-                <Columns>
-                    <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
-                    <asp:BoundField DataField="Year_Month" HeaderText="Year_Month" SortExpression="Year_Month" />
-                    <asp:BoundField DataField="Average_Dollar_per_Transaction" HeaderText="Average_Dollar_per_Transaction" SortExpression="Average_Dollar_per_Transaction" />
-                </Columns>
-            </asp:GridView>
 
-             <%--This section is for Total Sales Company--%> 
+            <%--This section is for Total Sales Company--%>
 
             <div class="kpiheader">Total Sales Companywide</div>
             <telerik:RadHtmlChart ID="TotalSalesComRHC1" runat="server" DataSourceID="TotalSalesComODS">
@@ -131,10 +145,12 @@
                     <MouseWheel Enabled="true" Lock="Y" />
                     <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                 </Zoom>
-                
+
                 <PlotArea>
                     <Series>
                         <telerik:ColumnSeries DataFieldY="Total_Sales">
+                            <LabelsAppearance DataFormatString="C2">
+                            </LabelsAppearance>
                         </telerik:ColumnSeries>
                     </Series>
                     <XAxis DataLabelsField="YearMonth" Type="Date">
@@ -157,7 +173,7 @@
                 <ChartTitle Text="Total Sales Companywide">
                 </ChartTitle>
             </telerik:RadHtmlChart>
-            <asp:ObjectDataSource ID="TotalSalesComODS" runat="server" SelectMethod="usp_TotalSalesCom" TypeName="Test.BLL.Financial.TotalSalesComBL" >
+            <asp:ObjectDataSource ID="TotalSalesComODS" runat="server" SelectMethod="usp_TotalSalesCom" TypeName="Test.BLL.Financial.TotalSalesComBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -165,16 +181,16 @@
                     <asp:ControlParameter ControlID="Dropdown1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-             
+
             <%--to check the data--%>
-<%--            <asp:GridView ID="TotalSalesComGV1" runat="server" AutoGenerateColumns="False" DataSourceID="TotalSalesComODS">
+            <%--            <asp:GridView ID="TotalSalesComGV1" runat="server" AutoGenerateColumns="False" DataSourceID="TotalSalesComODS">
                 <Columns>
                     <asp:BoundField DataField="YearMonth" HeaderText="YearMonth" SortExpression="YearMonth" />
                     <asp:BoundField DataField="Total_Sales" HeaderText="Total_Sales" SortExpression="Total_Sales" />
                 </Columns>
             </asp:GridView>--%>
 
-             <%--This section is for Total Sales Bcomparison presented on column chart--%>
+            <%--This section is for Total Sales Bcomparison presented on column chart--%>
 
             <div class="kpiheader">Total Sales Branch Comparison</div>
             <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server">
@@ -222,44 +238,38 @@
                 </SelectParameters>
             </asp:ObjectDataSource>
 
-            <asp:GridView ID="TotalSalesBranchG1" Visible="false" runat="server" AutoGenerateColumns="False" DataSourceID="TotalSalesBranchODS1">
-                <Columns>
-                    <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
-                    <asp:BoundField DataField="YearMonth" HeaderText="YearMonth" SortExpression="YearMonth" />
-                    <asp:BoundField DataField="Total_Sales" HeaderText="Total_Sales" SortExpression="Total_Sales" />
-                </Columns>
-            </asp:GridView>
         </div>
 
 
     </form>
-<Script>
-    (function (global) {
-        var chart;
+    <script>
+        (function (global) {
+            var chart;
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
-</Script>
+        })(window);
+
+    </script>
 </asp:Content>
 
 

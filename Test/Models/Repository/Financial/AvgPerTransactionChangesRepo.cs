@@ -6,18 +6,18 @@ using Test.Models.Interface.Financial;
 
 namespace Test.Models.Repository.Financial
 {
-    public class TotalSalesSingleRepo: IDisposable, ITotalSalesSingleRepo
+    public class AvgPerTransactionChangesRepo : IDisposable, IAvgPerTransactionChangesRepo
     {
         private KPIEntities context = new KPIEntities();
 
-        public TotalSalesSingleRepo()
+        public AvgPerTransactionChangesRepo()
         {
 
         }
 
-        double? ITotalSalesSingleRepo.usp_TotalSalesSingle(int companyRef)
+        double? IAvgPerTransactionChangesRepo.usp_AvgPerTransactionChanges(int companyRef)
         {
-            return context.usp_TotalSalesSingle(companyRef).SingleOrDefault();
+            return context.usp_AvgPerTransactionChanges(companyRef).SingleOrDefault();
         }
 
         private bool disposedValue = false; // To detect redundant calls

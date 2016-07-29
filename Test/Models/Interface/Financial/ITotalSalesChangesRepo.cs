@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Test.Models.Interface.Financial
 {
-    public interface IAvgDollarPerCustomerSingleRepo : IDisposable
+    public interface ITotalSalesChangesRepo : IDisposable
     {
-        double? usp_AvgDollarPerCustomerSingle(int companyRef);
+        double? usp_TotalSalesChanges(int companyRef);
     }
 }

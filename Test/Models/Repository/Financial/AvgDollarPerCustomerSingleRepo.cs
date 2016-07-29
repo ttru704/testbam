@@ -15,9 +15,9 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_AvgDollarPerCustomerSingle_Result> IAvgDollarPerCustomerSingleRepo.usp_AvgDollarPerCustomerSingle(DateTime start, DateTime end, int companyRef)
+        double? IAvgDollarPerCustomerSingleRepo.usp_AvgDollarPerCustomerSingle(int companyRef)
         {
-            return context.usp_AvgDollarPerCustomerSingle(start, end, companyRef).ToList();
+            return context.usp_AvgDollarPerCustomerSingle(companyRef).SingleOrDefault();
         }
 
         private bool disposedValue = false; // To detect redundant calls

@@ -67,6 +67,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.DropDownList Branch;
         
         /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        
+        /// <summary>
         /// Dropdown1 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource AvgPerTransactionComODS1;
         
         /// <summary>
+        /// RadGrid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        
+        /// <summary>
         /// AvgPerTransactionBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -119,15 +137,6 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource AvgPerTransactionBranchODS1;
-        
-        /// <summary>
-        /// AvgPerTransactionBranchG1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView AvgPerTransactionBranchG1;
         
         /// <summary>
         /// TotalSalesComRHC1 control.
@@ -164,14 +173,5 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesBranchODS1;
-        
-        /// <summary>
-        /// TotalSalesBranchG1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView TotalSalesBranchG1;
     }
 }
