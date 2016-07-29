@@ -71,6 +71,7 @@ namespace Test
 
             DateTime? start = DatePicker1.SelectedDate.GetValueOrDefault();
             DateTime? end = DatePicker2.SelectedDate.GetValueOrDefault();
+            
 
             AvgPerTransactionBranchBL avgPerTransactionBranchBL = new AvgPerTransactionBranchBL();
             List<usp_AvgPerTransactionBranch_Result> t = avgPerTransactionBranchBL.usp_AvgPerTransactionBranch(start, end, 1, 0, 1);
@@ -138,6 +139,7 @@ namespace Test
 
             DataTable dt2 = converter.ToDataTable(totalSalesBranch);
             RadHtmlChartGroupDataSource.GroupDataSource(TotalSalesBranchRHC1, dt2, "Branch_Ref", "ColumnSeries", string.Format("{0:0.00}","Total_Sales"), "YearMonth");
+            TransExcludeZeroTotalComRHC1.DataBind();
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

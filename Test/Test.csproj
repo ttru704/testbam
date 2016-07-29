@@ -435,6 +435,7 @@
     <Compile Include="BLL\Financial\AvgPerTransactionComBL.cs" />
     <Compile Include="BLL\Financial\AvgPerTransactionSingleBL.cs" />
     <Compile Include="BLL\Financial\IncomeByProductCategoryComBL.cs" />
+    <Compile Include="BLL\Financial\IncomeByServiceActivityComBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesBranchBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesComBL.cs" />
     <Compile Include="BLL\Financial\ServiceOnlySalesBranchBL.cs" />
@@ -443,6 +444,8 @@
     <Compile Include="BLL\Financial\TotalSalesChangesBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesComBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesSingleBL.cs" />
+    <Compile Include="BLL\Financial\TransExcludeZeroTotalComBL.cs" />
+    <Compile Include="BLL\Productivity\AnimalsSeenByEmpComBL.cs" />
     <Compile Include="BLL\Productivity\CustomersSeenByEmpComBL.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -554,6 +557,7 @@
     <Compile Include="Models\Interface\Financial\IAvgPerTransactionChangesRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByProductCategoryComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IIncomeByServiceActivityComRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesComRepo.cs" />
     <Compile Include="Models\Interface\Financial\IServiceOnlySalesBranchRepo.cs" />
@@ -562,6 +566,7 @@
     <Compile Include="Models\Interface\Financial\ITotalSalesChangesRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesComRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesSingleRepo.cs" />
+    <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalComRepo.cs" />
     <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmpComRepo.cs" />
     <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmpComRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
@@ -602,6 +607,7 @@
     <Compile Include="Models\Repository\Financial\AvgPerTransactionComRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByProductCategoryComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\IncomeByServiceActivityComRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesComRepo.cs" />
     <Compile Include="Models\Repository\Financial\ServiceOnlySalesBranchRepo.cs" />
@@ -610,6 +616,8 @@
     <Compile Include="Models\Repository\Financial\TotalSalesChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesComRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesSingleRepo.cs" />
+    <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalComRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmpComRepo.cs" />
     <Compile Include="Models\Repository\Productivity\CustomersSeenByEmpComRepo.cs" />
     <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -674,6 +682,9 @@
     <Compile Include="Models\usp_IncomeByProductCategoryCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_IncomeByServiceActivityCom_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_IncomeProductCategoryCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -705,6 +716,9 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_TransExclude0TotalCom_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_TransExcludeZeroTotalCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_UniqueCustomersSeenBranch_Result.cs">

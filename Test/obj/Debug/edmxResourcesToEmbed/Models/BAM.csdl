@@ -793,13 +793,6 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
-    <FunctionImport Name="usp_AnimalsSeenBranch" ReturnType="Collection(KPIModel.usp_AnimalsSeenBranch_Result)">
-      <Parameter Name="start" Mode="In" Type="DateTime" />
-      <Parameter Name="end" Mode="In" Type="DateTime" />
-      <Parameter Name="companyRef" Mode="In" Type="Int32" />
-      <Parameter Name="branchRef" Mode="In" Type="Int32" />
-      <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="usp_AnimalsSeenByEmpCom" ReturnType="Collection(KPIModel.usp_AnimalsSeenByEmpCom_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -977,6 +970,42 @@
     <FunctionImport Name="usp_AvgDollarPerCustomerSingle" ReturnType="Collection(Double)">
       <Parameter Name="companyRef" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="usp_IncomeByServiceActivityCom" ReturnType="Collection(KPIModel.usp_IncomeByServiceActivityCom_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_NewCustomersChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_NewCustomersSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenBranch" ReturnType="Collection(KPIModel.usp_AnimalsSeenBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="branchRef" Mode="In" Type="Int32" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TransExcludeZeroTotalCom" ReturnType="Collection(KPIModel.usp_TransExcludeZeroTotalCom_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -988,11 +1017,6 @@
     <Property Type="Int32" Name="ID" Nullable="false" />
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
-  </ComplexType>
-  <ComplexType Name="usp_AnimalsSeenBranch_Result">
-    <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-    <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
   </ComplexType>
   <ComplexType Name="usp_AnimalsSeenByEmpCom_Result">
     <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
@@ -1095,5 +1119,18 @@
   <ComplexType Name="usp_BranchDropDownList_Result">
     <Property Type="Int64" Name="Ref_Number" Nullable="false" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByServiceActivityCom_Result">
+    <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
+  </ComplexType>
+  <ComplexType Name="usp_AnimalsSeenBranch_Result">
+    <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_TransExcludeZeroTotalCom_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="No_of_transactions_excluding_zero_total_bill" Nullable="true" />
   </ComplexType>
 </Schema>

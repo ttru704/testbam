@@ -112,21 +112,21 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmpComODS1;
         
         /// <summary>
-        /// CustomersSeenByEmpComG1 control.
+        /// CustomersSeenByEmpComRG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView CustomersSeenByEmpComG1;
+        protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmpComRG1;
         
         /// <summary>
-        /// CustomersSeenByEmpComGV1 control.
+        /// AnimalsSeenByEmpComRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmpComGV1;
+        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenByEmpComRHC1;
     }
 }

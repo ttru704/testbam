@@ -237,6 +237,53 @@
                     <asp:ControlParameter ControlID="Dropdown1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+            <%--This section is for Total Sales Bcomparison presented on column chart--%>
+
+            <%--This section is for Number of Transactions excluding Zero Total Bills companywide presented on column chart--%>
+            <div class="kpiheader">Number of Transactions excluding Zero Total Bills Companywide</div>
+            <telerik:RadHtmlChart ID="TransExcludeZeroTotalComRHC1" runat="server" DataSourceID="TransExcludeZeroTotalComODS1">
+                <Pan Enabled="true" Lock="Y" />
+                <Zoom Enabled="true">
+                    <MouseWheel Enabled="true" Lock="Y" />
+                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                </Zoom>
+
+                <PlotArea>
+                    <Series>
+                        <telerik:ColumnSeries DataFieldY="No_of_transactions_excluding_zero_total_bill">
+                            <LabelsAppearance DataFormatString="N">
+                            </LabelsAppearance>
+                        </telerik:ColumnSeries>
+                    </Series>
+                    <XAxis DataLabelsField="YearMonth" Type="Date">
+                        <TitleAppearance Text="Time Period">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <LabelsAppearance DataFormatString="MMM yyyy">
+                        </LabelsAppearance>
+                        <MajorGridLines Visible="false" />
+                        <MinorGridLines Visible="false" />
+                    </XAxis>
+                    <YAxis>
+                        <TitleAppearance Text="No.">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <MinorGridLines Visible="false" />
+                    </YAxis>
+                </PlotArea>
+
+                <ChartTitle Text="No of Transactions excluding Zero Total Bills">
+                </ChartTitle>
+            </telerik:RadHtmlChart>
+            <asp:ObjectDataSource ID="TransExcludeZeroTotalComODS1" runat="server" SelectMethod="usp_TransExcludeZeroTotalCom" TypeName="Test.BLL.Financial.TransExcludeZeroTotalComBL">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="Company" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="Dropdown1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+            <%--This section is for Number of Transactions excluding Zero Total Bills companywide presented on column chart--%>
 
         </div>
 

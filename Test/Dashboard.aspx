@@ -135,6 +135,26 @@
                             <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
+
+                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityComODS1">
+                        <ChartTitle Text="Income by Service Activity Companywide"> </ChartTitle>
+                        <PlotArea>
+                            <Series>
+                                <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
+                                    <LabelsAppearance Position="OutsideEnd" DataFormatString="{0} %" />
+                                    <TooltipsAppearance DataFormatString="{0} %" />
+                                </telerik:PieSeries>
+                            </Series>
+                        </PlotArea>
+                        <Zoom Enabled="False"></Zoom>
+                    </telerik:RadHtmlChart>
+                    <asp:ObjectDataSource ID="IncomeByServiceActivityComODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCom" TypeName="Test.BLL.Financial.IncomeByServiceActivityComBL">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
                 </div>
                 <%--This is donut chart for Income by Product Category of a company--%>
                 <div class="col-sm-6">

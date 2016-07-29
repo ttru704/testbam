@@ -27,16 +27,20 @@ namespace Test
             DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
 
             CustomersSeenByEmpComBL customersSeenByEmpComBL = new CustomersSeenByEmpComBL();
-            List<usp_CustomersSeenByEmpCom_Result> customersSeenByEmpComDS = customersSeenByEmpComBL.usp_CustomersSeenByEmpCom(start, end, 1, 2);
+            List<usp_CustomersSeenByEmpCom_Result> customersSeenByEmpComList = customersSeenByEmpComBL.usp_CustomersSeenByEmpCom(start, end, 1, 2);
 
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
-            DataTable customersSeenByEmpComDT = converter.ToDataTable(customersSeenByEmpComDS);
+            DataTable customersSeenByEmpComDT = converter.ToDataTable(customersSeenByEmpComList);
 
 
             RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmpComRHC1, customersSeenByEmpComDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "YearMonth");
 
+            AnimalsSeenByEmpComBL animalsSeenByEmpComBL = new AnimalsSeenByEmpComBL();
+            List <usp_AnimalsSeenByEmpCom_Result> animalsSeenByEmpComList = animalsSeenByEmpComBL.usp_AnimalsSeenByEmpCom(start, end, 1, 2);
+
+            DataTable animalsSeenByEmpComDT = converter.ToDataTable(animalsSeenByEmpComList);
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmpComRHC1, animalsSeenByEmpComDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "YearMonth");
 
         }
-        //This is a class that help displaying chart with multiple branches
     }
 }

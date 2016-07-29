@@ -13,6 +13,7 @@ namespace Test
         protected void Page_Load(object sender, EventArgs e)
         {
             IncomeByProductCategoryComRHC1.DataBind();
+            IncomeByServiceActivityComRHC1.DataBind();
 
             //Bind Total Sales Single Value
             TotalSalesSingleBL totalSalesSingle = new TotalSalesSingleBL();

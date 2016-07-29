@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Test.Models.Interface.Productivity
 {
-    interface IAnimalsSeenByEmpComRepo : IDisposable
+    public interface IAnimalsSeenByEmpComRepo : IDisposable
     {
+        List<usp_AnimalsSeenByEmpCom_Result> usp_AnimalsSeenByEmpCom(DateTime start, DateTime end, int companyRef, int timeType);
+
     }
 }

@@ -111,12 +111,12 @@
             <%--Display Number of Unique Customers Seen branch comparison--%>
 
             <p>&nbsp;</p>
-            <div class="kpiheader">Number of Unique Animals Seen Companywide</div>
+            <div class="kpiheader">Number of Animals Seen Companywide</div>
 
-            <%--Display Number of Aniamls Seen Companywide--%>
+            <%--Display Number of Animals Seen Companywide--%>
 
 
-            <%--Display Number of Aniamls Seen Companywide--%>
+            
             <telerik:RadHtmlChart ID="AnimalsSeenComRHC1" runat="server" DataSourceID="AnimalsSeenComODS1">
                 <PlotArea>
                     <Series>
@@ -153,6 +153,20 @@
                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
                     <asp:ControlParameter ControlID="Company" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
                     <asp:ControlParameter ControlID="TimeType" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+            <%--Display Number of Animals Seen Companywide--%>
+
+            <%--Display Number of Animals Seen Branch Comparison--%>
+            <div class="kpiheader">Number of Unique Animals Seen Branch Comparison</div>
+            <telerik:RadHtmlChart ID="AnimalsSeenBranchRHC1" runat="server"></telerik:RadHtmlChart>
+            <asp:ObjectDataSource ID="AnimalsSeenBranchODS1" runat="server" SelectMethod="usp_AnimalsSeenBranch" TypeName="Test.BLL.Customer.AnimalsSeenBranchBL">
+                <SelectParameters>
+                    <asp:Parameter DefaultValue="2015-04-01" Name="start" Type="DateTime" />
+                    <asp:Parameter DefaultValue="2015-09-01" Name="end" Type="DateTime" />
+                    <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                    <asp:Parameter DefaultValue="0" Name="branchRef" Type="Int32" />
+                    <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
             <br />

@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="principal.master.cs" Inherits="BAM_UI_Design.principal" %>
 
 
+
 <%--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -28,7 +29,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Business Activity Monitoring</title>
 
     <!-- Bootstrap -->

@@ -50,6 +50,7 @@
 
             <%--Here are all the controls at the top of the page--%>
 
+            <%--Display Number of Customers Seen by Employee--%>
             <div class="kpiheader">Number of Customers Seen By Employee</div>
             <telerik:RadHtmlChart ID="CustomersSeenByEmpComRHC1" runat="server" CssClass="MonthlyExport">
             </telerik:RadHtmlChart>
@@ -62,29 +63,69 @@
                     <asp:ControlParameter ControlID="TimeType" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="CustomersSeenByEmpComG1" Visible="False" runat="server" AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmpComODS1">
-                <Columns>
-                    <asp:BoundField DataField="Employee_Name" HeaderText="Employee_Name" SortExpression="Employee_Name" />
-                    <asp:BoundField DataField="YearMonth" HeaderText="YearMonth" SortExpression="YearMonth" />
-                    <asp:BoundField DataField="Number_Of_Customers_Seen_By_An_Employee" HeaderText="Number_Of_Customers_Seen_By_An_Employee" SortExpression="Number_Of_Customers_Seen_By_An_Employee" />
-                </Columns>
-            </asp:GridView>
-
-            <telerik:RadGrid RenderMode="Lightweight" ID="CustomersSeenByEmpComGV1" runat="server" DataSourceID="CustomersSeenByEmpComODS1" AllowFilteringByColumn="True" AllowSorting="True" AllowPaging="True" >
+            
+           
+            
+            <telerik:RadGrid RenderMode="Lightweight" ID="CustomersSeenByEmpComRG1" runat="server" DataSourceID="CustomersSeenByEmpComODS1" AllowFilteringByColumn="True" AllowSorting="True" AllowPaging="True" AutoGenerateColumns="False">
                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
 
                 <MasterTableView DataSourceID="CustomersSeenByEmpComODS1" AllowFilteringByColumn="True"  AutoGenerateColumns="False">
                     <Columns>
-                        <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee_Name" SortExpression="Employee_Name" UniqueName="Employee_Name" >
+                        <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee Name" SortExpression="Employee_Name" UniqueName="Employee_Name" >
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="YearMonth" DataType="System.DateTime" FilterControlAltText="Filter YearMonth column" HeaderText="YearMonth" SortExpression="YearMonth" UniqueName="YearMonth">
+                        <telerik:GridBoundColumn DataField="YearMonth" DataType="System.DateTime" FilterControlAltText="Filter YearMonth column" HeaderText="Period" SortExpression="YearMonth" UniqueName="YearMonth">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column" HeaderText="Number_Of_Customers_Seen_By_An_Employee" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee">
+
+<%--                        <FilterTemplate>
+                        <telerik:RadLabel runat="server" AssociatedControlID="FromOrderDatePicker" Text="Form"></telerik:RadLabel>
+                        <telerik:RadDatePicker RenderMode="Lightweight" ID="FromOrderDatePicker" runat="server" Width="140px" ClientEvents-OnDateSelected="FromDateSelected"
+                            MinDate="07-04-1996" MaxDate="05-06-1998" FocusedDate="07-04-1996" DbSelectedDate='<%# startDate %>' />
+                        <telerik:RadLabel runat="server" AssociatedControlID="ToOrderDatePicker" Text="to" Style="padding-left: 5px;"></telerik:RadLabel>
+                        <telerik:RadDatePicker RenderMode="Lightweight" ID="ToOrderDatePicker" runat="server" Width="140px" ClientEvents-OnDateSelected="ToDateSelected"
+                            MinDate="07-04-1996" MaxDate="05-06-1998" FocusedDate="05-06-1998" DbSelectedDate='<%# endDate %>' />
+                            <telerik:RadScriptBlock ID="RadScriptBlock1" runat="server">
+                                <script type="text/javascript">
+                                    function FromDateSelected(sender, args) {
+                                    var tableView = $find("<%# ((GridItem)Container).OwnerTableView.ClientID %>");
+                                    var ToPicker = $find('<%# ((GridItem)Container).FindControl("ToOrderDatePicker").ClientID %>');
+ 
+                                    var fromDate = FormatSelectedDate(sender);
+                                    var toDate = FormatSelectedDate(ToPicker);
+ 
+                                    tableView.filter("OrderDate", fromDate + " " + toDate, "Between");
+ 
+                                }
+                                function ToDateSelected(sender, args) {
+                                    var tableView = $find("<%# ((GridItem)Container).OwnerTableView.ClientID %>");
+                                    var FromPicker = $find('<%# ((GridItem)Container).FindControl("FromOrderDatePicker").ClientID %>');
+ 
+                                    var fromDate = FormatSelectedDate(FromPicker);
+                                    var toDate = FormatSelectedDate(sender);
+ 
+                                    tableView.filter("OrderDate", fromDate + " " + toDate, "Between");
+                                }
+                                function FormatSelectedDate(picker) {
+                                    var date = picker.get_selectedDate();
+                                    var dateInput = picker.get_dateInput();
+                                    var formattedDate = dateInput.get_dateFormatInfo().FormatDate(date, dateInput.get_displayDateFormat());
+ 
+                                    return formattedDate;
+                                }
+                                </script>
+                            </telerik:RadScriptBlock>
+                        </FilterTemplate>--%>
+                        <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column" HeaderText="Number of Customers Seen by Employee" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee">
                         </telerik:GridBoundColumn>
                     </Columns>
                 </MasterTableView>
             </telerik:RadGrid>
+            <%--Display Number of Customers Seen by Employee--%>
+            <div class="kpiheader">Number of Animal Seen By Employee</div>
+            <telerik:RadHtmlChart ID="AnimalsSeenByEmpComRHC1" runat="server"></telerik:RadHtmlChart>
+            <%--Display Number of Animals Seen by Employee--%>
+            <div class="kpiheader">Number of Animal Seen By Employee</div>
 
+            <%--Display Number of Animals Seen by Employee--%>
         </div>
     </form>
     <script>

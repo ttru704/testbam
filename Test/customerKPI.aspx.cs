@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using Test.BLL.Customer;
 using Test.Models;
 
 namespace Test
@@ -27,28 +28,30 @@ namespace Test
         protected void Button1_Click(object sender, EventArgs e)
         {
             UniqueCustomersSeenComRHC1.DataBind();
-            UniqueCustomersSeenBranchG1.DataBind();
-            DataTable dt = new DataTable();
-            for (int i = 0; i < UniqueCustomersSeenBranchG1.Columns.Count; i++)
-            {
-                dt.Columns.Add("column" + i.ToString());
-            }
-            foreach (GridViewRow row in UniqueCustomersSeenBranchG1.Rows)
-            {
-                DataRow dr = dt.NewRow();
-                for (int j = 0; j < UniqueCustomersSeenBranchG1.Columns.Count; j++)
-                {
-                    dr["column" + j.ToString()] = row.Cells[j].Text;
-                }
 
-                dt.Rows.Add(dr);
-            }
+            DateTime start = DatePicker1.SelectedDate.GetValueOrDefault();
+            DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
 
-            RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, dt, "column0", "BarSeries", "column2", "column1");
+
+            UniqueCustomersSeenBranchBL uniqueCustomersSeenBranchBL = new UniqueCustomersSeenBranchBL();
+            List<usp_UniqueCustomersSeenBranch_Result> uniqueCustomersSeenBranchList = uniqueCustomersSeenBranchBL.usp_UniqueCustomersSeenBranch(start, end, 1, 0, 1);
+
+            ListtoDataTableConverter converter = new ListtoDataTableConverter();
+            DataTable uniqueCustomersSeenBranchDT = converter.ToDataTable(uniqueCustomersSeenBranchList);
+
+            RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, uniqueCustomersSeenBranchDT, "Branch_Ref", "AreaSeries", "Number_of_Unique_Clients", "YearMonth");
 
             AnimalsSeenComRHC1.DataBind();
+
+            AnimalsSeenBranchBL animalsSeenBranchBL = new AnimalsSeenBranchBL();
+            List<usp_AnimalsSeenBranch_Result> animalsSeenBranchList = animalsSeenBranchBL.usp_AnimalsSeenBranch(start, end, 1, 0, 1);
+
+            DataTable animalsSeenBranchDT = converter.ToDataTable(animalsSeenBranchList);
+
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Ref", "BarSeries", "Number_of_animals_seen", "YearMonth");
+
         }
 
-        
+
     }
 }
