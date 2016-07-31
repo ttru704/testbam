@@ -14,6 +14,6 @@ namespace Test.Models
     public partial class usp_BranchDropDownList_Result
     {
         public long Ref_Number { get; set; }
-        public string Name { get; set; }
+        public string Branch_Name { get; set; }
     }
 }

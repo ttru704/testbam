@@ -25,7 +25,7 @@ namespace Test.BLL.Financial
             this.serviceOnlySalesBranchRepo = serviceOnlySalesBranchRepo;
         }
 
-        public List<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        public List<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType)
         {
             return serviceOnlySalesBranchRepo.usp_ServiceOnlySalesBranch(start, end, companyRef, branchRef, timeType);
         }

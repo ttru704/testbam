@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_ServiceOnlySalesBranch_Result> IServiceOnlySalesBranchRepo.usp_ServiceOnlySalesBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        List<usp_ServiceOnlySalesBranch_Result> IServiceOnlySalesBranchRepo.usp_ServiceOnlySalesBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType)
         {
             return context.usp_ServiceOnlySalesBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

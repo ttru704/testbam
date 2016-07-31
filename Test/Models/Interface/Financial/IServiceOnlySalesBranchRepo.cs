@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface IServiceOnlySalesBranchRepo : IDisposable
     {
-        List<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType);
+        List<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType);
     }
 }

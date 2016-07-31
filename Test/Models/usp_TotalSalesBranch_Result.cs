@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class usp_TotalSalesBranch_Result
     {
-        public long Branch_Ref { get; set; }
+        public string Branch_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
         public Nullable<decimal> Total_Sales { get; set; }
     }

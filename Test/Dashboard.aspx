@@ -12,12 +12,12 @@
         <div class="right_col" role="main">
             <!-- top tiles -->
             <div class="row tile_count" style="position: center">
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" runat="server">
                     <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
                     <div class="count blue"> 
                         <asp:Label ID="Label1" runat="server" Text="Label" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom">
+                    <span class="count_bottom" runat="server">
                         <i id="color" class="red">
                             <i class="fa fa-sort-desc"></i>
                             <asp:Label ID="LabelPercent1" runat="server"></asp:Label>
@@ -30,8 +30,8 @@
                         <asp:Label ID="Label2" runat="server" class="count blue"></asp:Label>
                     </div>
                     <span class="count_bottom">
-                        <i class="red">
-                            <i class="fa fa-sort-desc"></i>
+                        <i class="green">
+                            <i class="fa fa-sort-asc"></i>
                             <asp:Label ID="LabelPercent2" runat="server"></asp:Label>
                         </i>From last Month</span>
                 </div>
@@ -41,31 +41,43 @@
                         <asp:Label ID="Label3" runat="server" class="count blue"></asp:Label>
                     </div>
                     <span class="count_bottom">
-                        <i class="red">
-                            <i class="fa fa-sort-desc"></i>
+                        <i class="green">
+                            <i class="fa fa-sort-asc"></i>
                             <asp:Label ID="LabelPercent3" runat="server"></asp:Label>
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i>Number of New Clients</span>
-                    <div class="count blue">123</div>
-                    <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3%</i>From last Month</span>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-paw"></i>Total Large Animals</span>
-                    <div class="count blue">20</div>
+                    <span class="count_top"><i class="fa fa-plus"></i>Number of New Customers</span>
+                    <div class="count blue">
+                        <asp:Label ID="Label4" runat="server" class="count blue"></asp:Label>
+                    </div>
                     <span class="count_bottom">
                         <i class="green">
-                            <i class="fa fa-sort-asc">
-
-                            </i>34% 
-
+                            <i class="fa fa-sort-asc"></i>
+                            <asp:Label ID="LabelPercent4" runat="server"></asp:Label>
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-paw"></i>Total Small Animals</span>
-                    <div class="count blue">35</div>
-                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i>From last Month</span>
+                    <span class="count_top"><i class="fa fa-plus"></i>Unique Number of New Customers</span>
+                    <div class="count blue">
+                        <asp:Label ID="Label5" runat="server" class="count blue"></asp:Label>
+                    </div>
+                    <span class="count_bottom">
+                        <i class="red">
+                            <i class="fa fa-sort-desc"></i>
+                            <asp:Label ID="LabelPercent5" runat="server"></asp:Label>
+                        </i>From last Month</span>
+                </div>
+                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                    <span class="count_top"><i class="fa fa-paw"></i>Total Number of Animals Seen</span>
+                    <div class="count blue">
+                        <asp:Label ID="Label6" runat="server" class="count blue"></asp:Label>
+                    </div>
+                    <span class="count_bottom">
+                        <i class="red">
+                            <i class="fa fa-sort-desc"></i>
+                            <asp:Label ID="LabelPercent6" runat="server"></asp:Label>
+                        </i>From last Month</span>
                 </div>
                 
 
@@ -77,7 +89,7 @@
             <div class="col-sm-12">
                 <%-- Line chart --%>
                 <div class="col-sm-12">
-                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1">
+                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1" Skin="MetroTouch">
                         <PlotArea>
                             <Series>
                                 <telerik:LineSeries DataFieldY="Total_Sales">
@@ -116,12 +128,12 @@
 
                 
                 <div class="col-sm-6">
-                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryComODS1">
+                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryComODS1" Skin="Bootstrap">
                         <ChartTitle Text="Income by Product Category Companywide"> </ChartTitle>
                         <PlotArea>
                             <Series>
                                 <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
-                                    <LabelsAppearance Position="OutsideEnd" DataFormatString="{0} %" />
+                                    <LabelsAppearance Visible="false"></LabelsAppearance>
                                     <TooltipsAppearance DataFormatString="{0} %" />
                                 </telerik:PieSeries>
                             </Series>
@@ -135,13 +147,14 @@
                             <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
-
-                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityComODS1">
+                    </div>
+                <div class="col-sm-6">
+                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityComODS1" Skin="Material">
                         <ChartTitle Text="Income by Service Activity Companywide"> </ChartTitle>
                         <PlotArea>
                             <Series>
                                 <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
-                                    <LabelsAppearance Position="OutsideEnd" DataFormatString="{0} %" />
+                                    <LabelsAppearance Visible="false"></LabelsAppearance>
                                     <TooltipsAppearance DataFormatString="{0} %" />
                                 </telerik:PieSeries>
                             </Series>

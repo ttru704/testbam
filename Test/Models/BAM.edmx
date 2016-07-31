@@ -783,21 +783,21 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_NewClientsBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_NewCustomersBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="branchRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_NewClientsCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_NewCustomersChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_NewCustomersCom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
           <Parameter Name="end" Type="date" Mode="In" />
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
-        </Function>
-        <Function Name="usp_NewCustomersChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="companyRef" Type="int" Mode="In" />
         </Function>
         <Function Name="usp_NewCustomersSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="companyRef" Type="int" Mode="In" />
@@ -1841,19 +1841,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_AvgDollarPerCustomerBranch" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_AvgDollarPerCustomerCom" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerCom_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_CustomersSeenByEmpCom" ReturnType="Collection(KPIModel.usp_CustomersSeenByEmpCom_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -1862,25 +1849,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           </FunctionImport>
           <FunctionImport Name="usp_ExecuteBulkUpdate">
           <Parameter Name="XmlInput" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="usp_IncomeProductCategoryCom" ReturnType="Collection(KPIModel.usp_IncomeProductCategoryCom_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_NewClientsBranch" ReturnType="Collection(KPIModel.usp_NewClientsBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_NewClientsCom" ReturnType="Collection(KPIModel.usp_NewClientsCom_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_ProductLoad">
             <Parameter Name="Cln_Number" Mode="In" Type="Int64" />
@@ -1891,24 +1859,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="Error_Num" Mode="In" Type="Int32" />
             <Parameter Name="Params" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="usp_RetailOnlySalesBranch" ReturnType="Collection(KPIModel.usp_RetailOnlySalesBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_RetailOnlySalesCom" ReturnType="Collection(KPIModel.usp_RetailOnlySalesCom_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_ServiceOnlySalesBranch" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_ServiceOnlySalesCom" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesCom_Result)">
@@ -1939,13 +1893,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_UniqueCustomersSeenBranch" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_UniqueCustomersSeenCom" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenCom_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -1969,32 +1916,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_IncomeByProductCategoryCom" ReturnType="Collection(KPIModel.usp_IncomeByProductCategoryCom_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_TotalSalesChanges" ReturnType="Collection(Double)">
           <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_TotalSalesCurrent" ReturnType="Collection(Double)">
-          <Parameter Name="companyRef" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_AvgPerTransactionBranch" ReturnType="Collection(KPIModel.usp_AvgPerTransactionBranch_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="branchRef" Mode="In" Type="Int32" />
-            <Parameter Name="TimeType" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_BranchDropDownList" ReturnType="Collection(KPIModel.usp_BranchDropDownList_Result)">
           <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="usp_AvgDollarPerCustomerChanges" ReturnType="Collection(Double)">
@@ -2012,17 +1937,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <FunctionImport Name="usp_AvgDollarPerCustomerSingle" ReturnType="Collection(Double)">
           <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_IncomeByServiceActivityCom" ReturnType="Collection(KPIModel.usp_IncomeByServiceActivityCom_Result)">
-            <Parameter Name="start" Mode="In" Type="DateTime" />
-            <Parameter Name="end" Mode="In" Type="DateTime" />
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_AnimalsSeenChanges" ReturnType="Collection(Double)">
-          <Parameter Name="companyRef" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="usp_AnimalsSeenSingle" ReturnType="Collection(Double)">
-          <Parameter Name="companyRef" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_NewCustomersChanges" ReturnType="Collection(Double)">
           <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -2035,6 +1949,46 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <FunctionImport Name="usp_UniqueCustomersSeenSingle" ReturnType="Collection(Double)">
           <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="usp_TransExcludeZeroTotalCom" ReturnType="Collection(KPIModel.usp_TransExcludeZeroTotalCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgDollarPerCustomerCom" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgPerTransactionBranch" ReturnType="Collection(KPIModel.usp_AvgPerTransactionBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_RetailOnlySalesBranch" ReturnType="Collection(KPIModel.usp_RetailOnlySalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_ServiceOnlySalesBranch" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="usp_AnimalsSeenBranch" ReturnType="Collection(KPIModel.usp_AnimalsSeenBranch_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -2042,11 +1996,51 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="branchRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_TransExcludeZeroTotalCom" ReturnType="Collection(KPIModel.usp_TransExcludeZeroTotalCom_Result)">
+          <FunctionImport Name="usp_UniqueCustomersSeenBranch" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AvgDollarPerCustomerBranch" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NewCustomersBranch" ReturnType="Collection(KPIModel.usp_NewCustomersBranch_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="branchRef" Mode="In" Type="Int32" />
+            <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_NewCustomersCom" ReturnType="Collection(KPIModel.usp_NewCustomersCom_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
             <Parameter Name="companyRef" Mode="In" Type="Int32" />
             <Parameter Name="TimeType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AnimalsSeenChanges" ReturnType="Collection(Double)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_AnimalsSeenSingle" ReturnType="Collection(Double)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_BranchDropDownList" ReturnType="Collection(KPIModel.usp_BranchDropDownList_Result)">
+          <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_IncomeByProductCategoryCom" ReturnType="Collection(KPIModel.usp_IncomeByProductCategoryCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_IncomeByServiceActivityCom" ReturnType="Collection(KPIModel.usp_IncomeByServiceActivityCom_Result)">
+            <Parameter Name="start" Mode="In" Type="DateTime" />
+            <Parameter Name="end" Mode="In" Type="DateTime" />
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -2065,47 +2059,14 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Number_Of_Animals_Seen_By_An_Employee" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="usp_AvgDollarPerCustomerBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Average___per_customer" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
-        <ComplexType Name="usp_AvgDollarPerCustomerCom_Result">
-          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Average___per_customer" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
         <ComplexType Name="usp_CustomersSeenByEmpCom_Result">
           <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Number_Of_Customers_Seen_By_An_Employee" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="usp_IncomeProductCategoryCom_Result">
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="Product_Category_Income" Nullable="true" Precision="38" Scale="3" />
-        </ComplexType>
-        <ComplexType Name="usp_NewClientsBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="usp_NewClientsCom_Result">
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Number_of_New_Clients" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="usp_RetailOnlySalesBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Retail_Total_Only" Nullable="true" Precision="38" Scale="3" />
-        </ComplexType>
         <ComplexType Name="usp_RetailOnlySalesCom_Result">
           <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Retail_Total_Only" Nullable="true" Precision="38" Scale="3" />
-        </ComplexType>
-        <ComplexType Name="usp_ServiceOnlySalesBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
         </ComplexType>
         <ComplexType Name="usp_ServiceOnlySalesCom_Result">
           <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
@@ -2123,11 +2084,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Total_no_of_transactions_excluding_zero_total_bill" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="usp_UniqueCustomersSeenBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="usp_UniqueCustomersSeenCom_Result">
           <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
@@ -2144,36 +2100,69 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="usp_IncomeByProductCategoryCom_Result">
-          <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
-          <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
+        <ComplexType Name="usp_TransExcludeZeroTotalCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="No_of_transactions_excluding_zero_total_bill" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_AvgDollarPerCustomerCom_Result">
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Average_Dollar_per_customer" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
         <ComplexType Name="usp_TotalSalesBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="10" Scale="2" />
         </ComplexType>
         <ComplexType Name="usp_AvgPerTransactionBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
           <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
           <Property Type="Decimal" Name="Average_Dollar_per_Transaction" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
+        <ComplexType Name="usp_RetailOnlySalesBranch_Result">
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Retail_Total_Only" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_ServiceOnlySalesBranch_Result">
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="usp_AnimalsSeenBranch_Result">
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_UniqueCustomersSeenBranch_Result">
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_AvgDollarPerCustomerBranch_Result">
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="Average_Dollar_per_customer" Nullable="true" Precision="38" Scale="6" />
+        </ComplexType>
+        <ComplexType Name="usp_NewCustomersBranch_Result">
+          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_New_Customers" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_NewCustomersCom_Result">
+          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="Number_of_New_Customers" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="usp_BranchDropDownList_Result">
           <Property Type="Int64" Name="Ref_Number" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="usp_IncomeByProductCategoryCom_Result">
+          <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
         </ComplexType>
         <ComplexType Name="usp_IncomeByServiceActivityCom_Result">
           <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
           <Property Type="Decimal" Name="Income" Nullable="true" Precision="38" Scale="6" />
-        </ComplexType>
-        <ComplexType Name="usp_AnimalsSeenBranch_Result">
-          <Property Type="Int64" Name="Branch_Ref" Nullable="false" />
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="usp_TransExcludeZeroTotalCom_Result">
-          <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="No_of_transactions_excluding_zero_total_bill" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2517,23 +2506,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerBranch" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerBranch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
-                <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerCom" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerCom">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerCom_Result">
-                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
-                <ScalarProperty Name="Average___per_customer" ColumnName="Average $ per customer" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_CustomersSeenByEmpCom" FunctionName="KPIModel.Store.usp_CustomersSeenByEmpCom">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_CustomersSeenByEmpCom_Result">
@@ -2544,57 +2516,13 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_ExecuteBulkUpdate" FunctionName="KPIModel.Store.usp_ExecuteBulkUpdate" />
-          <FunctionImportMapping FunctionImportName="usp_IncomeProductCategoryCom" FunctionName="KPIModel.Store.usp_IncomeProductCategoryCom">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeProductCategoryCom_Result">
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
-                <ScalarProperty Name="Product_Category_Income" ColumnName="Product_Category_Income" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_NewClientsBranch" FunctionName="KPIModel.Store.usp_NewClientsBranch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_NewClientsBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number_of_New_Clients" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_NewClientsCom" FunctionName="KPIModel.Store.usp_NewClientsCom">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_NewClientsCom_Result">
-                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="Number_of_New_Clients" ColumnName="Number_of_New_Clients" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_ProductLoad" FunctionName="KPIModel.Store.usp_ProductLoad" />
           <FunctionImportMapping FunctionImportName="usp_RaiseException" FunctionName="KPIModel.Store.usp_RaiseException" />
-          <FunctionImportMapping FunctionImportName="usp_RetailOnlySalesBranch" FunctionName="KPIModel.Store.usp_RetailOnlySalesBranch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_RetailOnlySalesBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
-                <ScalarProperty Name="Retail_Total_Only" ColumnName="Retail_Total_Only" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_RetailOnlySalesCom" FunctionName="KPIModel.Store.usp_RetailOnlySalesCom">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_RetailOnlySalesCom_Result">
                 <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
                 <ScalarProperty Name="Retail_Total_Only" ColumnName="Retail_Total_Only" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_ServiceOnlySalesBranch" FunctionName="KPIModel.Store.usp_ServiceOnlySalesBranch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_ServiceOnlySalesBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
-                <ScalarProperty Name="Service_Total_Only" ColumnName="Service_Total_Only" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2623,15 +2551,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_TransactionLoad" FunctionName="KPIModel.Store.usp_TransactionLoad" />
-          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenBranch" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenBranch">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_UniqueCustomersSeenBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
-                <ScalarProperty Name="Time_Period" ColumnName="Time_Period" />
-                <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number_of_Unique_Clients" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenCom" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenCom">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_UniqueCustomersSeenCom_Result">
@@ -2664,19 +2583,36 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_IncomeByProductCategoryCom" FunctionName="KPIModel.Store.usp_IncomeByProductCategoryCom">
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesChanges" FunctionName="KPIModel.Store.usp_TotalSalesChanges" />
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerChanges" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerChanges" />
+          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionChanges" FunctionName="KPIModel.Store.usp_AvgPerTransactionChanges" />
+          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionSingle" FunctionName="KPIModel.Store.usp_AvgPerTransactionSingle" />
+          <FunctionImportMapping FunctionImportName="usp_TotalSalesSingle" FunctionName="KPIModel.Store.usp_TotalSalesSingle" />
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle" />
+          <FunctionImportMapping FunctionImportName="usp_NewCustomersChanges" FunctionName="KPIModel.Store.usp_NewCustomersChanges" />
+          <FunctionImportMapping FunctionImportName="usp_NewCustomersSingle" FunctionName="KPIModel.Store.usp_NewCustomersSingle" />
+          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenChanges" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenChanges" />
+          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenSingle" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenSingle" />
+          <FunctionImportMapping FunctionImportName="usp_TransExcludeZeroTotalCom" FunctionName="KPIModel.Store.usp_TransExcludeZeroTotalCom">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByProductCategoryCom_Result">
-                <ScalarProperty Name="Category_Type" ColumnName="Category_Type" />
-                <ScalarProperty Name="Income" ColumnName="Income" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_TransExcludeZeroTotalCom_Result">
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="No_of_transactions_excluding_zero_total_bill" ColumnName="No_of_transactions_excluding_zero_total_bill" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_TotalSalesChanges" FunctionName="KPIModel.Store.usp_TotalSalesChanges" />
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerCom" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerCom_Result">
+                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+                <ScalarProperty Name="Average_Dollar_per_customer" ColumnName="Average_Dollar_per_customer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
                 <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
                 <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
               </ComplexTypeMapping>
@@ -2685,53 +2621,97 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionBranch" FunctionName="KPIModel.Store.usp_AvgPerTransactionBranch">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_AvgPerTransactionBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
                 <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
                 <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_BranchDropDownList" FunctionName="KPIModel.Store.usp_BranchDropDownList">
+          <FunctionImportMapping FunctionImportName="usp_RetailOnlySalesBranch" FunctionName="KPIModel.Store.usp_RetailOnlySalesBranch">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_BranchDropDownList_Result">
-                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_RetailOnlySalesBranch_Result">
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+                <ScalarProperty Name="Retail_Total_Only" ColumnName="Retail_Total_Only" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerChanges" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerChanges" />
-          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionChanges" FunctionName="KPIModel.Store.usp_AvgPerTransactionChanges" />
-          <FunctionImportMapping FunctionImportName="usp_AvgPerTransactionSingle" FunctionName="KPIModel.Store.usp_AvgPerTransactionSingle" />
-          <FunctionImportMapping FunctionImportName="usp_TotalSalesSingle" FunctionName="KPIModel.Store.usp_TotalSalesSingle" />
-          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerSingle" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerSingle" />
-          <FunctionImportMapping FunctionImportName="usp_IncomeByServiceActivityCom" FunctionName="KPIModel.Store.usp_IncomeByServiceActivityCom">
+          <FunctionImportMapping FunctionImportName="usp_ServiceOnlySalesBranch" FunctionName="KPIModel.Store.usp_ServiceOnlySalesBranch">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByServiceActivityCom_Result">
-                <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
-                <ScalarProperty Name="Income" ColumnName="Income" />
+              <ComplexTypeMapping TypeName="KPIModel.usp_ServiceOnlySalesBranch_Result">
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+                <ScalarProperty Name="Year_Month" ColumnName="Year Month" />
+                <ScalarProperty Name="Service_Total_Only" ColumnName="Service_Total_Only" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenChanges" FunctionName="KPIModel.Store.usp_AnimalsSeenChanges" />
-          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenSingle" FunctionName="KPIModel.Store.usp_AnimalsSeenSingle" />
-          <FunctionImportMapping FunctionImportName="usp_NewCustomersChanges" FunctionName="KPIModel.Store.usp_NewCustomersChanges" />
-          <FunctionImportMapping FunctionImportName="usp_NewCustomersSingle" FunctionName="KPIModel.Store.usp_NewCustomersSingle" />
-          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenChanges" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenChanges" />
-          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenSingle" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenSingle" />
           <FunctionImportMapping FunctionImportName="usp_AnimalsSeenBranch" FunctionName="KPIModel.Store.usp_AnimalsSeenBranch">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenBranch_Result">
-                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
                 <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
                 <ScalarProperty Name="Number_of_animals_seen" ColumnName="Number_of_animals_seen" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_TransExcludeZeroTotalCom" FunctionName="KPIModel.Store.usp_TransExcludeZeroTotalCom">
+          <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenBranch" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenBranch">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_TransExcludeZeroTotalCom_Result">
+              <ComplexTypeMapping TypeName="KPIModel.usp_UniqueCustomersSeenBranch_Result">
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+                <ScalarProperty Name="Time_Period" ColumnName="Time_Period" />
+                <ScalarProperty Name="Number_of_Unique_Clients" ColumnName="Number_of_Unique_Clients" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AvgDollarPerCustomerBranch" FunctionName="KPIModel.Store.usp_AvgDollarPerCustomerBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerCustomerBranch_Result">
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+                <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+                <ScalarProperty Name="Average_Dollar_per_customer" ColumnName="Average_Dollar_per_customer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NewCustomersBranch" FunctionName="KPIModel.Store.usp_NewCustomersBranch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_NewCustomersBranch_Result">
+                <ScalarProperty Name="Branch_Ref" ColumnName="Branch_Ref" />
                 <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-                <ScalarProperty Name="No_of_transactions_excluding_zero_total_bill" ColumnName="No_of_transactions_excluding_zero_total_bill" />
+                <ScalarProperty Name="Number_of_New_Customers" ColumnName="Number_of_New_Customers" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_NewCustomersCom" FunctionName="KPIModel.Store.usp_NewCustomersCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_NewCustomersCom_Result">
+                <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+                <ScalarProperty Name="Number_of_New_Customers" ColumnName="Number_of_New_Customers" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenChanges" FunctionName="KPIModel.Store.usp_AnimalsSeenChanges" />
+          <FunctionImportMapping FunctionImportName="usp_AnimalsSeenSingle" FunctionName="KPIModel.Store.usp_AnimalsSeenSingle" />
+          <FunctionImportMapping FunctionImportName="usp_BranchDropDownList" FunctionName="KPIModel.Store.usp_BranchDropDownList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_BranchDropDownList_Result">
+                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+                <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_IncomeByProductCategoryCom" FunctionName="KPIModel.Store.usp_IncomeByProductCategoryCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByProductCategoryCom_Result">
+                <ScalarProperty Name="Category_Type" ColumnName="Category_Type" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_IncomeByServiceActivityCom" FunctionName="KPIModel.Store.usp_IncomeByServiceActivityCom">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByServiceActivityCom_Result">
+                <ScalarProperty Name="Category_Type" ColumnName="Category Type" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

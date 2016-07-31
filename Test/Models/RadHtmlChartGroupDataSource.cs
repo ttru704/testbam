@@ -54,7 +54,7 @@ namespace Test.Models
             for (int i = 0; i < NumDistinctValues; i++)
             {
                 //Construct the series name, tooltips template and labels format string
-                string seriesName = DistinctValuesDT.Columns[0].ColumnName + " : " + DistinctValuesDT.Rows[i][0].ToString();
+                string seriesName = DistinctValuesDT.Rows[i][0].ToString();
                 string tooltipsTemplate = "Category: #=dataItem." + DataFieldX + i + "#<br />Value: #=dataItem." + DataFieldY + i + "#";
                 string labelsFormatString = "{0:N0}";
 

@@ -6,7 +6,6 @@ using Test.Models;
 using Test.Models.Interface.Customer;
 using Test.Models.Repository.Customer;
 
-
 namespace Test.BLL.Customer
 {
     public class UniqueCustomersSeenBranchBL

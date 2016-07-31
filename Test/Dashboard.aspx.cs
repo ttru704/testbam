@@ -5,6 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Test.BLL.Financial;
+using Test.BLL.Customer;
+using Telerik.Charting;
+using System.Drawing;
+using Test.Models;
 
 namespace Test
 {
@@ -12,8 +16,11 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //IncomeByProductCategoryComRHC1.Appearance.FillStyle.BackgroundColor = ChartColors.GetColor();
+
             IncomeByProductCategoryComRHC1.DataBind();
             IncomeByServiceActivityComRHC1.DataBind();
+
 
             //Bind Total Sales Single Value
             TotalSalesSingleBL totalSalesSingle = new TotalSalesSingleBL();
@@ -27,7 +34,7 @@ namespace Test
             //var x = Convert.ToInt16(LabelPercent1.Text);
             //if (x < 0)
             //{
-               
+                
             //}
 
             //Bind Average Per Transaction Single Value
@@ -46,6 +53,30 @@ namespace Test
             AvgDollarPerCustomerChangesBL avgDollarPerCustomerChanges = new AvgDollarPerCustomerChangesBL();
             LabelPercent3.Text = String.Format("{0:0.00}", avgDollarPerCustomerChanges.usp_AvgDollarPerCustomerChanges(1)) + '%';
 
+            //Bind Number of New Customers Single Value
+            NewCustomersSingleBL newCustomersSingle = new NewCustomersSingleBL();
+            Label4.Text = String.Format("{0:0.00}", newCustomersSingle.usp_NewCustomersSingle(1));
+
+            //Bind Number of New Customer Change
+            NewCustomersChangesBL newCustomersChanges = new NewCustomersChangesBL();
+            LabelPercent4.Text = String.Format("{0:0.00}", newCustomersChanges.usp_NewCustomersChanges(1)) + '%';
+
+            //Bind Unique Number of New Customers Single Value
+            UniqueCustomersSeenSingleBL uniqueCustomersSeenSingle = new UniqueCustomersSeenSingleBL();
+            Label5.Text = String.Format("{0:0.00}", uniqueCustomersSeenSingle.usp_UniqueCustomersSeenSingle(1));
+
+            //Bind Unique Number of New Customers Change
+            UniqueCustomersSeenChangesBL uniqueCustomersSeenChanges = new UniqueCustomersSeenChangesBL();
+            LabelPercent5.Text = String.Format("{0:0.00}", uniqueCustomersSeenChanges.usp_UniqueCustomersSeenChanges(1)) + '%';
+
+            //Bind Animals Seen Single Value
+            AnimalsSeenSingleBL animalsSeenSingle = new AnimalsSeenSingleBL();
+            Label6.Text = String.Format("{0:0.00}", animalsSeenSingle.usp_AnimalsSeenSingle(1));
+
+            //Bind Animals Seen Change
+            AnimalsSeenChangesBL animalsSeenChanges = new AnimalsSeenChangesBL();
+            LabelPercent6.Text = String.Format("{0:0.00}", animalsSeenChanges.usp_AnimalsSeenChanges(1)) + '%';
+
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,5 +88,6 @@ namespace Test
         {
 
         }
+
     }
 }

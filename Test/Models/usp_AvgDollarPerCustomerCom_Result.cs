@@ -14,6 +14,6 @@ namespace Test.Models
     public partial class usp_AvgDollarPerCustomerCom_Result
     {
         public Nullable<System.DateTime> Year_Month { get; set; }
-        public Nullable<decimal> Average___per_customer { get; set; }
+        public Nullable<decimal> Average_Dollar_per_customer { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_ServiceOnlySalesCom_Result> IServiceOnlySalesComRepo.usp_ServiceOnlySalesCom(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_ServiceOnlySalesCom_Result> IServiceOnlySalesComRepo.usp_ServiceOnlySalesCom(DateTime? start, DateTime? end, int companyRef, int timeType)
         {
             return context.usp_ServiceOnlySalesCom(start, end, companyRef, timeType).ToList();
         }

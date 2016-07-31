@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.serviceOnlySalesComRepo = serviceOnlySalesComRepo;
         }
 
-        public List<usp_ServiceOnlySalesCom_Result> usp_ServiceOnlySalesCom(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_ServiceOnlySalesCom_Result> usp_ServiceOnlySalesCom(DateTime? start, DateTime? end, int companyRef, int timeType)
         {
             return serviceOnlySalesComRepo.usp_ServiceOnlySalesCom(start, end, companyRef, timeType);
         }
