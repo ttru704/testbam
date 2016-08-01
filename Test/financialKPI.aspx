@@ -53,10 +53,11 @@
 
             <%--This section is for Total Sales Company--%>
             <div id="accordion">
-                <div class="kpiheader">Total Sales Companywide
-                </div>
+                <div class="kpiheader">Total Sales Companywide</div>
+                
                 <div class="accordionable">
-                    <telerik:RadHtmlChart ID="TotalSalesComRHC1" runat="server" DataSourceID="TotalSalesComODS">
+                    <telerik:RadHtmlChart ID="TotalSalesComRHC1" runat="server" DataSourceID="TotalSalesComODS" Skin="Metro">
+                        <ClientEvents OnLoad="chartLoad" />
                         <Pan Enabled="true" Lock="Y" />
                         <Zoom Enabled="true">
                             <MouseWheel Enabled="true" Lock="Y" />
@@ -66,8 +67,10 @@
                         <PlotArea>
                             <Series>
                                 <telerik:ColumnSeries DataFieldY="Total_Sales">
-                                    <LabelsAppearance DataFormatString="C2">
+                                    <LabelsAppearance DataFormatString="N0">
                                     </LabelsAppearance>
+                                    <TooltipsAppearance DataFormatString="C0">
+                                    </TooltipsAppearance>
                                 </telerik:ColumnSeries>
                             </Series>
                             <XAxis DataLabelsField="YearMonth" Type="Date">
@@ -112,7 +115,7 @@
             <%--This section is for Total Sales Bcomparison presented on column chart--%>
 
             <div class="kpiheader">Total Sales Branch Comparison</div>
-            <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server">
+            <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server" Skin="Metro">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
                     <MouseWheel Enabled="true" Lock="Y" />
@@ -164,7 +167,7 @@
             <br />
             <div class="kpiheader">Average Dollar Earned Per Transaction Companywide</div>
             <div style="">
-                <telerik:RadHtmlChart ID="AvgPerTransactionComRHC1" runat="server" DataSourceID="AvgPerTransactionComODS1">
+                <telerik:RadHtmlChart ID="AvgPerTransactionComRHC1" runat="server" DataSourceID="AvgPerTransactionComODS1" Skin="Bootstrap">
                     <Pan Enabled="true" Lock="Y" />
                     <Zoom Enabled="true">
                         <MouseWheel Enabled="true" Lock="Y" />
@@ -190,7 +193,7 @@
                                     <FillStyle BackgroundColor="Orange" />
                                 </Appearance>
                                 <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
-                                <TooltipsAppearance BackgroundColor="White" />
+                                <TooltipsAppearance BackgroundColor="White" Visible="true" DataFormatString="C2" />
                                 <LabelsAppearance DataFormatString="C2">
                                 </LabelsAppearance>
                             </telerik:AreaSeries>
@@ -233,9 +236,11 @@
                             </telerik:RadScriptBlock>
                             </FilterTemplate>
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="Year_Month" AllowFiltering="false" DataType="System.DateTime" FilterControlAltText="Filter Year_Month column" HeaderText="Time Period" SortExpression="Year_Month" UniqueName="Year_Month">
+                        <telerik:GridBoundColumn DataField="Year_Month" DataFormatString="{0:MMM yyyy}" AllowFiltering="false" DataType="System.DateTime" FilterControlAltText="Filter Year_Month column" HeaderText="Time Period" SortExpression="Year_Month" UniqueName="Year_Month">
                         </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" AllowFiltering="false" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column" HeaderText="Average Dollar per Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction">
+                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" DataFormatString="{0:N0}" AllowFiltering="false" DataType="System.Decimal" 
+                        FilterControlAltText="Filter Average_Dollar_per_Transaction column" HeaderText="Average Dollar per Transaction" 
+                        SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction">
                         </telerik:GridBoundColumn>
                     </Columns>
                 </MasterTableView>
@@ -244,7 +249,7 @@
 
             <%--Display Average Per Transaction Branch--%>
             <div class="kpiheader">Average Dollar Earned Per Transaction Branch Comparison</div>
-            <telerik:RadHtmlChart ID="AvgPerTransactionBranchRHC1" runat="server">
+            <telerik:RadHtmlChart ID="AvgPerTransactionBranchRHC1" runat="server" Skin="Metro">
                 <Pan Enabled="true" Lock="Y" />
                 <ChartTitle Text="Average Dollar Earned Per Transaction">
                 </ChartTitle>
@@ -273,7 +278,7 @@
 
             <%--This section is for Number of Transactions excluding Zero Total Bills companywide presented on column chart--%>
             <div class="kpiheader">Number of Transactions excluding Zero Total Bills Companywide</div>
-            <telerik:RadHtmlChart ID="TransExcludeZeroTotalComRHC1" runat="server" DataSourceID="TransExcludeZeroTotalComODS1">
+            <telerik:RadHtmlChart ID="TransExcludeZeroTotalComRHC1" runat="server" DataSourceID="TransExcludeZeroTotalComODS1" Skin="Material">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
                     <MouseWheel Enabled="true" Lock="Y" />
@@ -320,7 +325,7 @@
             <%--This section is for Retail Only Sales companywide chart--%>
 
             <div class="kpiheader">Retail Only Sales Companywide</div>
-            <telerik:RadHtmlChart ID="RetailOnlySalesComRHC1" runat="server" DataSourceID="RetailOnlySalesComODS1">
+            <telerik:RadHtmlChart ID="RetailOnlySalesComRHC1" runat="server" DataSourceID="RetailOnlySalesComODS1" Skin="MetroTouch">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
                     <MouseWheel Enabled="true" Lock="Y" />
@@ -369,7 +374,7 @@
 
             <%--This section is for Service Only Sales companywide chart--%>
             <div class="kpiheader">Service Only Sales Companywide</div>
-            <telerik:RadHtmlChart ID="ServiceOnlySalesComRHC1" runat="server" DataSourceID="ServiceOnlySalesComODS1">
+            <telerik:RadHtmlChart ID="ServiceOnlySalesComRHC1" runat="server" DataSourceID="ServiceOnlySalesComODS1" Skin="Metro">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
                     <MouseWheel Enabled="true" Lock="Y" />
@@ -417,12 +422,12 @@
 
             <%--This section is for Retail Only Sales branch comparison chart--%>
             <div class="kpiheader">Retail Only Sales Branch Comparison</div>
-            <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server"></telerik:RadHtmlChart>
+            <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
             <%--This section is for Retail Only Sales branch comparison chart--%>
 
             <%--This section is for Service Only Sales branch comparison chart--%>
             <div class="kpiheader">Service Only Sales Branch Comparison</div>
-            <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server"></telerik:RadHtmlChart>
+            <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
             <%--This section is for Service Only Sales branch comparison chart--%>
         </div>
 
@@ -430,6 +435,7 @@
 
     </form>
     <script>
+        <%--For panning and zooming--%>
         (function (global) {
             var chart;
 
@@ -455,7 +461,35 @@
             }
 
         })(window);
+        <%--For panning and zooming--%>
 
+        <%--For responsive chart--%>
+        (function (global) {
+            var chart;
+
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
+
+            global.chartLoad = ChartLoad;
+
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
+
+
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
+
+        })(window);
+        <%--For responsive chart--%>
     </script>
 </asp:Content>
 

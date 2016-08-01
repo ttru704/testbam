@@ -156,48 +156,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<usp_AnimalsSeenByEmpCom_Result> usp_AnimalsSeenByEmpCom(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AnimalsSeenByEmpCom_Result>("usp_AnimalsSeenByEmpCom", startParameter, endParameter, companyRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_CustomersSeenByEmpCom_Result> usp_CustomersSeenByEmpCom(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CustomersSeenByEmpCom_Result>("usp_CustomersSeenByEmpCom", startParameter, endParameter, companyRefParameter, timeTypeParameter);
-        }
-    
         public virtual int usp_ExecuteBulkUpdate(string xmlInput)
         {
             var xmlInputParameter = xmlInput != null ?
@@ -576,181 +534,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerCustomerCom_Result>("usp_AvgDollarPerCustomerCom", startParameter, endParameter, companyRefParameter, timeTypeParameter);
         }
     
-        public virtual ObjectResult<usp_TotalSalesBranch_Result> usp_TotalSalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_TotalSalesBranch_Result>("usp_TotalSalesBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_AvgPerTransactionBranch_Result> usp_AvgPerTransactionBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgPerTransactionBranch_Result>("usp_AvgPerTransactionBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_RetailOnlySalesBranch_Result> usp_RetailOnlySalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_RetailOnlySalesBranch_Result>("usp_RetailOnlySalesBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ServiceOnlySalesBranch_Result>("usp_ServiceOnlySalesBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_AnimalsSeenBranch_Result> usp_AnimalsSeenBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AnimalsSeenBranch_Result>("usp_AnimalsSeenBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_UniqueCustomersSeenBranch_Result> usp_UniqueCustomersSeenBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UniqueCustomersSeenBranch_Result>("usp_UniqueCustomersSeenBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_AvgDollarPerCustomerBranch_Result> usp_AvgDollarPerCustomerBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerCustomerBranch_Result>("usp_AvgDollarPerCustomerBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
-        }
-    
         public virtual ObjectResult<usp_NewCustomersBranch_Result> usp_NewCustomersBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -856,6 +639,223 @@ namespace Test.Models
                 new ObjectParameter("companyRef", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByServiceActivityCom_Result>("usp_IncomeByServiceActivityCom", startParameter, endParameter, companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_TotalSalesBranch_Result> usp_TotalSalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_TotalSalesBranch_Result>("usp_TotalSalesBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_RetailOnlySalesBranch_Result> usp_RetailOnlySalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_RetailOnlySalesBranch_Result>("usp_RetailOnlySalesBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_AvgPerTransactionBranch_Result> usp_AvgPerTransactionBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgPerTransactionBranch_Result>("usp_AvgPerTransactionBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ServiceOnlySalesBranch_Result>("usp_ServiceOnlySalesBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_UniqueCustomersSeenBranch_Result> usp_UniqueCustomersSeenBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UniqueCustomersSeenBranch_Result>("usp_UniqueCustomersSeenBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_AnimalsSeenBranch_Result> usp_AnimalsSeenBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AnimalsSeenBranch_Result>("usp_AnimalsSeenBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_AvgDollarPerCustomerBranch_Result> usp_AvgDollarPerCustomerBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerCustomerBranch_Result>("usp_AvgDollarPerCustomerBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_AnimalsSeenByEmpCom_Result> usp_AnimalsSeenByEmpCom(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AnimalsSeenByEmpCom_Result>("usp_AnimalsSeenByEmpCom", startParameter, endParameter, companyRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_CustomersSeenByEmpCom_Result> usp_CustomersSeenByEmpCom(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CustomersSeenByEmpCom_Result>("usp_CustomersSeenByEmpCom", startParameter, endParameter, companyRefParameter, timeTypeParameter);
         }
     }
 }

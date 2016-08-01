@@ -30,19 +30,19 @@
                     <asp:ListItem>2</asp:ListItem>
                     <asp:ListItem>3</asp:ListItem>
                 </asp:DropDownList>
-                <asp:DropDownList ID="BranchDDL1" runat="server" AutoPostBack="True" DataTextField="Name" AppendDataBoundItems="true" EnableViewState="false" DataValueField="Ref_Number" Width="100px" DataSourceID="SqlDataSource1">
+                <asp:DropDownList ID="BranchDDL1" runat="server" AutoPostBack="True" AppendDataBoundItems="True" EnableViewState="False" Width="100px" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number">
                     <asp:ListItem Value="0" Selected="True">All Branches</asp:ListItem>
                 </asp:DropDownList>
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KPIConnectionString %>" SelectCommand="usp_BranchDropDownList" SelectCommandType="StoredProcedure">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                    </SelectParameters>
-                </asp:SqlDataSource>
                 <asp:DropDownList ID="TimeDDL1" runat="server" Width="100px">
                     <asp:ListItem Value="1"> Monthly </asp:ListItem>
                     <asp:ListItem Value="2"> Yearly </asp:ListItem>
                 </asp:DropDownList>
                 <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+                <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.BranchDropDownListBL">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
             </div>
 
             <br />
@@ -105,13 +105,7 @@
                     <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <asp:GridView ID="UniqueCustomersSeenBranchG1" runat="server" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenBranchODC1" Visible="False">
-                <Columns>
-                    <asp:BoundField DataField="Branch_Ref" HeaderText="Branch_Ref" SortExpression="Branch_Ref" />
-                    <asp:BoundField DataField="Time_Period" HeaderText="Time_Period" SortExpression="Time_Period" />
-                    <asp:BoundField DataField="Number_of_Unique_Clients" HeaderText="Number_of_Unique_Clients" SortExpression="Number_of_Unique_Clients" />
-                </Columns>
-            </asp:GridView>
+            
             <%--Display Number of Unique Customers Seen branch comparison--%>
 
             <p>&nbsp;</p>

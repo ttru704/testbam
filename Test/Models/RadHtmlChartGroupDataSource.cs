@@ -56,7 +56,7 @@ namespace Test.Models
                 //Construct the series name, tooltips template and labels format string
                 string seriesName = DistinctValuesDT.Rows[i][0].ToString();
                 string tooltipsTemplate = "Category: #=dataItem." + DataFieldX + i + "#<br />Value: #=dataItem." + DataFieldY + i + "#";
-                string labelsFormatString = "{0:N0}";
+                string labelsFormatString = "{0:N2}";
 
                 //Add the corresponding series type to the chart
                 AddChartSeriesType(HtmlChart, SeriesType, DataFieldY, DataFieldX, i, seriesName, tooltipsTemplate, labelsFormatString);
@@ -155,7 +155,7 @@ namespace Test.Models
                     //string columnName1 = "Branch " + i.ToString();//tempDTarray[i].Columns[g].ColumnName;
                     string columnName = tempDTarray[i].Columns[g].ColumnName;
                     //Add columns from the temp DataTables to the common DataTable
-                    commonDT.Columns.Add(columnName, tempDTarray[i].Columns[g].DataType);
+                    commonDT.Columns.Add(columnName, tempDTarray[i].Columns[g].DataType); 
 
                     //Loop through the rows of the each temp DataTable
                     for (int f = 0; f < tempDTarray[i].Rows.Count; f++)

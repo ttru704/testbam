@@ -106,8 +106,6 @@
                                         <li><a href="financialKPI.aspx">Financial</a></li>
                                         <li><a href="customerKPI.aspx">Customer</a></li>
                                         <li><a href="employeeKPI.aspx">Employee</a></li>
-                                        <li><a href="tables.aspx">Tables</a></li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -115,9 +113,6 @@
                                     <ul class="nav child_menu">
                                         <li><a href="What-if page.aspx">What-if Analysis</a></li>
                                         <li><a href="chartjs2.html">Chart JS2</a></li>
-                                        <li><a href="morisjs.html">Moris JS</a></li>
-                                        <li><a href="echarts.html">ECharts</a></li>
-                                        <li><a href="other_charts.html">Other Charts</a></li>
                                     </ul>
                                 </li>
                                 <li>

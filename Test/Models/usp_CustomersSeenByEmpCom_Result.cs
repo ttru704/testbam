@@ -16,5 +16,6 @@ namespace Test.Models
         public string Employee_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
         public Nullable<int> Number_Of_Customers_Seen_By_An_Employee { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

@@ -123,7 +123,6 @@
             <div class="kpiheader">Number of Animal Seen By Employee</div>
             <telerik:RadHtmlChart ID="AnimalsSeenByEmpComRHC1" runat="server"></telerik:RadHtmlChart>
             <%--Display Number of Animals Seen by Employee--%>
-            <div class="kpiheader">Number of Animal Seen By Employee</div>
 
             <%--Display Number of Animals Seen by Employee--%>
         </div>

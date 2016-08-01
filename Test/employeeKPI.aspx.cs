@@ -33,13 +33,13 @@ namespace Test
             DataTable customersSeenByEmpComDT = converter.ToDataTable(customersSeenByEmpComList);
 
 
-            RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmpComRHC1, customersSeenByEmpComDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "YearMonth");
+            RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmpComRHC1, customersSeenByEmpComDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
 
             AnimalsSeenByEmpComBL animalsSeenByEmpComBL = new AnimalsSeenByEmpComBL();
             List <usp_AnimalsSeenByEmpCom_Result> animalsSeenByEmpComList = animalsSeenByEmpComBL.usp_AnimalsSeenByEmpCom(start, end, 1, 2);
 
             DataTable animalsSeenByEmpComDT = converter.ToDataTable(animalsSeenByEmpComList);
-            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmpComRHC1, animalsSeenByEmpComDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "YearMonth");
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmpComRHC1, animalsSeenByEmpComDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
 
         }
     }

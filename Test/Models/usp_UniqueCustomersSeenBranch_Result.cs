@@ -16,5 +16,6 @@ namespace Test.Models
         public string Branch_Name { get; set; }
         public Nullable<System.DateTime> Time_Period { get; set; }
         public Nullable<int> Number_of_Unique_Clients { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

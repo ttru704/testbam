@@ -23,6 +23,7 @@ namespace Test.Models
         public Nullable<System.DateTime> Last_Visit { get; set; }
         public string Gender { get; set; }
         public Nullable<System.DateTime> First_Visit { get; set; }
+        public string Size { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
         public virtual Subject_Types Subject_Types { get; set; }

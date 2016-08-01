@@ -206,6 +206,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="Last_Visit" Type="datetime" />
     <Property Name="Gender" Type="char" MaxLength="1" />
     <Property Name="First_Visit" Type="datetime" />
+    <Property Name="Size" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="Subject_Types">
     <Key>

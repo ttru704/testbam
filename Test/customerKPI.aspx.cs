@@ -42,7 +42,7 @@ namespace Test
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
             DataTable uniqueCustomersSeenBranchDT = converter.ToDataTable(uniqueCustomersSeenBranchList);
 
-            RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, uniqueCustomersSeenBranchDT, "Branch_Name", "AreaSeries", "Number_of_Unique_Clients", "Time_Period");
+            RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, uniqueCustomersSeenBranchDT, "Branch_Name", "AreaSeries", "Number_of_Unique_Clients", "TimePeriod");
 
             AnimalsSeenComRHC1.DataBind();
 
@@ -51,7 +51,7 @@ namespace Test
 
             DataTable animalsSeenBranchDT = converter.ToDataTable(animalsSeenBranchList);
 
-            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Name", "BarSeries", "Number_of_animals_seen", "YearMonth");
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Name", "BarSeries", "Number_of_animals_seen", "TimePeriod");
 
             AvgDollarPerCustomerComRHC1.DataBind();
 
@@ -59,7 +59,7 @@ namespace Test
             List<usp_AvgDollarPerCustomerBranch_Result> avgDollarPerCustomerBranchList = avgDollarPerCustomerBranchBL.usp_AvgDollarPerCustomerBranch(start, end, company, branch, time);
 
             DataTable avgDollarPerCustomerBranchDT = converter.ToDataTable(avgDollarPerCustomerBranchList);
-            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "BarSeries", "Average_Dollar_per_customer", "Year_Month");
+            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "BarSeries", "Average_Dollar_per_customer", "TimePeriod");
 
             NewCustomersComRHC1.DataBind();
         }

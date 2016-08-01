@@ -90,9 +90,13 @@
                 <%-- Line chart --%>
                 <div class="col-sm-12">
                     <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1" Skin="MetroTouch">
+                        <ClientEvents OnLoad="chartLoad" />
                         <PlotArea>
                             <Series>
                                 <telerik:LineSeries DataFieldY="Total_Sales">
+                                    <LabelsAppearance Visible="false">
+                                    </LabelsAppearance>
+                                    <TooltipsAppearance DataFormatString="C2"></TooltipsAppearance>
                                 </telerik:LineSeries>
                             </Series>
                             <XAxis DataLabelsField="YearMonth" Type="Date">
@@ -129,6 +133,7 @@
                 
                 <div class="col-sm-6">
                     <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryComODS1" Skin="Bootstrap">
+                        <ClientEvents OnLoad="chartLoad" />
                         <ChartTitle Text="Income by Product Category Companywide"> </ChartTitle>
                         <PlotArea>
                             <Series>
@@ -150,6 +155,7 @@
                     </div>
                 <div class="col-sm-6">
                     <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityComODS1" Skin="Material">
+                        <ClientEvents OnLoad="chartLoad" />
                         <ChartTitle Text="Income by Service Activity Companywide"> </ChartTitle>
                         <PlotArea>
                             <Series>
@@ -217,5 +223,34 @@
 
 
     </form>
+    <script>
+        <%--For responsive chart--%>
+        (function (global) {
+            var chart;
+
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
+
+            global.chartLoad = ChartLoad;
+
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
+
+
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
+
+        })(window);
+        <%--For responsive chart--%>
+    </script>
 
 </asp:Content>
