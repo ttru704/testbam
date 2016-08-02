@@ -73,11 +73,11 @@
                                     </TooltipsAppearance>
                                 </telerik:ColumnSeries>
                             </Series>
-                            <XAxis DataLabelsField="YearMonth" Type="Date">
+                            <XAxis DataLabelsField="TimePeriod" type="Auto">
                                 <TitleAppearance Text="Time Period">
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
-                                <LabelsAppearance DataFormatString="MMM yyyy">
+                                <LabelsAppearance>
                                 </LabelsAppearance>
                                 <MajorGridLines Visible="false" />
                                 <MinorGridLines Visible="false" />
@@ -121,34 +121,6 @@
                     <MouseWheel Enabled="true" Lock="Y" />
                     <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                 </Zoom>
-                <%--Commented out because we are binding it using code behind--%>
-                <%--<PlotArea>
-                    <Series>
-                        <telerik:LineSeries Name="Total Sale" DataFieldY="Total_Sales" >
-                        </telerik:LineSeries>
-                    </Series>
-
-                    <XAxis DataLabelsField="Year_Month">
-                        <TitleAppearance Text="Month">
-                            <TextStyle Margin="20" />
-                        </TitleAppearance>
-                        <LabelsAppearance DataFormatString="MMM yyyy">
-                        </LabelsAppearance>
-                        <MajorGridLines Visible="false" />
-                        <MinorGridLines Visible="false" />
-                    </XAxis>
-
-                    <YAxis>
-                        <TitleAppearance Text="Branches">
-                            <TextStyle Margin="20" />
-                        </TitleAppearance>
-                        <MinorGridLines Visible="false" />
-                    </YAxis>
-                </PlotArea>
-
-                <ChartTitle Text="Total Sales Between Branches">
-                </ChartTitle>
-                <Zoom Enabled="False"></Zoom>--%>
             </telerik:RadHtmlChart>
             <asp:ObjectDataSource ID="TotalSalesBranchODS1" runat="server" SelectMethod="usp_TotalSalesBranch" TypeName="Test.BLL.Financial.TotalSalesBranchBL">
                 <SelectParameters>
@@ -177,7 +149,7 @@
                         <Appearance Position="Bottom" />
                     </Legend>
                     <PlotArea>
-                        <XAxis Color="Black" DataLabelsField="Year_Month">
+                        <XAxis Color="Black" DataLabelsField="TimePeriod" type="Auto">
                             <TitleAppearance Position="Center" Text="Time Period" />
                             <LabelsAppearance DataFormatString="MMM yy">
                             </LabelsAppearance>
@@ -193,8 +165,8 @@
                                     <FillStyle BackgroundColor="Orange" />
                                 </Appearance>
                                 <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
-                                <TooltipsAppearance BackgroundColor="White" Visible="true" DataFormatString="C2" />
-                                <LabelsAppearance DataFormatString="C2">
+                                <TooltipsAppearance Visible="true" DataFormatString="C2" />
+                                <LabelsAppearance Visible="false">
                                 </LabelsAppearance>
                             </telerik:AreaSeries>
                         </Series>
@@ -212,6 +184,23 @@
                     <asp:ControlParameter ControlID="TimeDDL1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+            <br />
+
+            <%--Display Average Per Transaction Branch--%>
+            <div class="kpiheader">Average Dollar Earned Per Transaction Branch Comparison</div>
+            <telerik:RadHtmlChart ID="AvgPerTransactionBranchRHC1" runat="server" Skin="Metro">
+                <Pan Enabled="true" Lock="Y" />
+                <ChartTitle Text="Average Dollar Earned Per Transaction">
+                </ChartTitle>
+                <PlotArea>
+                    <XAxis BaseUnit="Months">
+                    </XAxis>
+                </PlotArea>
+                <Zoom Enabled="true">
+                    <MouseWheel Enabled="true" Lock="Y" />
+                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                </Zoom>
+            </telerik:RadHtmlChart>
             <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgPerTransactionBranchODS1" CellSpacing="-1" GridLines="Both" AllowFilteringByColumn="True"
             AllowSorting="True" AllowPaging="True" OnNeedDataSource="RadGrid1_NeedDataSource" Skin="Bootstrap">
                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
@@ -247,23 +236,6 @@
             </telerik:RadGrid>
             <br />
 
-            <%--Display Average Per Transaction Branch--%>
-            <div class="kpiheader">Average Dollar Earned Per Transaction Branch Comparison</div>
-            <telerik:RadHtmlChart ID="AvgPerTransactionBranchRHC1" runat="server" Skin="Metro">
-                <Pan Enabled="true" Lock="Y" />
-                <ChartTitle Text="Average Dollar Earned Per Transaction">
-                </ChartTitle>
-                <PlotArea>
-                    <XAxis BaseUnit="Months">
-                    </XAxis>
-                </PlotArea>
-                <Zoom Enabled="true">
-                    <MouseWheel Enabled="true" Lock="Y" />
-                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
-                </Zoom>
-            </telerik:RadHtmlChart>
-            <br />
-
             <asp:ObjectDataSource ID="AvgPerTransactionBranchODS1" runat="server" SelectMethod="usp_AvgPerTransactionBranch" TypeName="Test.BLL.Financial.AvgPerTransactionBranchBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
@@ -288,11 +260,12 @@
                 <PlotArea>
                     <Series>
                         <telerik:ColumnSeries DataFieldY="No_of_transactions_excluding_zero_total_bill">
-                            <LabelsAppearance DataFormatString="N">
+                            <LabelsAppearance DataFormatString="N0">
                             </LabelsAppearance>
+                            <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
                         </telerik:ColumnSeries>
                     </Series>
-                    <XAxis DataLabelsField="YearMonth" Type="Date">
+                    <XAxis DataLabelsField="TimePeriod" type="Auto">
                         <TitleAppearance Text="Time Period">
                             <TextStyle Margin="20" />
                         </TitleAppearance>
@@ -302,7 +275,7 @@
                         <MinorGridLines Visible="false" />
                     </XAxis>
                     <YAxis>
-                        <TitleAppearance Text="No.">
+                        <TitleAppearance Text="No of Transacts Excluding Zero Total">
                             <TextStyle Margin="20" />
                         </TitleAppearance>
                         <MinorGridLines Visible="false" />
@@ -335,7 +308,7 @@
                     <Appearance Position="Bottom" />
                 </Legend>
                 <PlotArea>
-                    <XAxis Color="Black" DataLabelsField="Year_Month">
+                    <XAxis Color="Black" DataLabelsField="TimePeriod" type="Auto">
                         <TitleAppearance Position="Center" Text="Time Period" />
                         <LabelsAppearance DataFormatString="MMM yy">
                         </LabelsAppearance>
@@ -352,8 +325,9 @@
                             </Appearance>
                             <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
                             <TooltipsAppearance BackgroundColor="White" />
-                            <LabelsAppearance DataFormatString="C2">
+                            <LabelsAppearance  Visible="false">
                             </LabelsAppearance>
+                            <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
                         </telerik:AreaSeries>
                     </Series>
                 </PlotArea>
@@ -384,7 +358,7 @@
                     <Appearance Position="Bottom" />
                 </Legend>
                 <PlotArea>
-                    <XAxis Color="Black" DataLabelsField="Year_Month">
+                    <XAxis Color="Black" DataLabelsField="TimePeriod" type="Auto">
                         <TitleAppearance Position="Center" Text="Time Period" />
                         <LabelsAppearance DataFormatString="MMM yy">
                         </LabelsAppearance>
@@ -401,8 +375,9 @@
                             </Appearance>
                             <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
                             <TooltipsAppearance BackgroundColor="White" />
-                            <LabelsAppearance DataFormatString="C2">
+                            <LabelsAppearance  Visible="false">
                             </LabelsAppearance>
+                            <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
                         </telerik:AreaSeries>
                     </Series>
                 </PlotArea>

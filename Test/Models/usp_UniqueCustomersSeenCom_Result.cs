@@ -15,5 +15,6 @@ namespace Test.Models
     {
         public Nullable<System.DateTime> Time_Period { get; set; }
         public Nullable<int> Number_of_Unique_Clients { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

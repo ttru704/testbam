@@ -112,6 +112,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenComODC1;
         
         /// <summary>
+        /// RadGrid1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGrid1;
+        
+        /// <summary>
         /// UniqueCustomersSeenBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -128,6 +137,24 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenBranchODC1;
+        
+        /// <summary>
+        /// RadButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton1;
+        
+        /// <summary>
+        /// RadGrid2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RadGrid2;
         
         /// <summary>
         /// AnimalsSeenComRHC1 control.
@@ -209,5 +236,41 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource NewCustomersComODS1;
+        
+        /// <summary>
+        /// SmallAnimalsComRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart SmallAnimalsComRHC1;
+        
+        /// <summary>
+        /// SmallAnimalsComODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource SmallAnimalsComODS1;
+        
+        /// <summary>
+        /// LargeAnimalsComRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart LargeAnimalsComRHC1;
+        
+        /// <summary>
+        /// LargeAnimalsComODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource LargeAnimalsComODS1;
     }
 }

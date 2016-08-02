@@ -80,3 +80,11 @@ C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll.licenses
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.pdb
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Spreadsheet.dll
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Core.dll
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Zip.dll
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Spreadsheet.xml
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Core.xml
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Zip.xml
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll
+C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.xml

@@ -6,8 +6,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using Telerik.Web.UI.GridExcelBuilder;
 using Test.BLL.Customer;
 using Test.Models;
+using xi = Telerik.Web.UI.ExportInfrastructure;
+using System.Drawing;
+
 
 namespace Test
 {
@@ -42,7 +46,7 @@ namespace Test
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
             DataTable uniqueCustomersSeenBranchDT = converter.ToDataTable(uniqueCustomersSeenBranchList);
 
-            RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, uniqueCustomersSeenBranchDT, "Branch_Name", "AreaSeries", "Number_of_Unique_Clients", "TimePeriod");
+            RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, uniqueCustomersSeenBranchDT, "Branch_Name", "LineSeries", "Number_of_Unique_Clients", "TimePeriod");
 
             AnimalsSeenComRHC1.DataBind();
 
@@ -62,7 +66,28 @@ namespace Test
             RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "BarSeries", "Average_Dollar_per_customer", "TimePeriod");
 
             NewCustomersComRHC1.DataBind();
+
+            SmallAnimalsComRHC1.DataBind();
+
+            LargeAnimalsComRHC1.DataBind();
         }
-        
+
+        protected void RadGrid2_ExcelMLWorkBookCreated(object sender, GridExcelMLWorkBookCreatedEventArgs e)
+        {
+                foreach (RowElement row in e.WorkBook.Worksheets[0].Table.Rows)
+                {
+                    row.Cells[0].StyleValue = "Style1";
+                }
+
+                StyleElement style = new StyleElement("Style1");
+                style.InteriorStyle.Pattern = InteriorPatternType.Solid;
+                style.InteriorStyle.Color = System.Drawing.Color.LightGray;
+                e.WorkBook.Styles.Add(style);
+        }
+
+        protected void RadButton1_Click(object sender, EventArgs e)
+        {
+            RadGrid2.MasterTableView.ExportToExcel();
+        }
     }
 }

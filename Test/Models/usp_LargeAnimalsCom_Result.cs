@@ -11,9 +11,10 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_TransExclude0TotalCom_Result
+    public partial class usp_LargeAnimalsCom_Result
     {
         public Nullable<System.DateTime> YearMonth { get; set; }
-        public Nullable<int> Total_no_of_transactions_excluding_zero_total_bill { get; set; }
+        public Nullable<int> Number_of_Large_Animals { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

@@ -15,5 +15,6 @@ namespace Test.Models
     {
         public Nullable<System.DateTime> YearMonth { get; set; }
         public Nullable<int> No_of_transactions_excluding_zero_total_bill { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

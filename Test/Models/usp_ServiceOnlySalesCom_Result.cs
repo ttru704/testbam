@@ -15,5 +15,6 @@ namespace Test.Models
     {
         public Nullable<System.DateTime> Year_Month { get; set; }
         public Nullable<decimal> Service_Total_Only { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

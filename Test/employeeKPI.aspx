@@ -52,7 +52,7 @@
 
             <%--Display Number of Customers Seen by Employee--%>
             <div class="kpiheader">Number of Customers Seen By Employee</div>
-            <telerik:RadHtmlChart ID="CustomersSeenByEmpComRHC1" runat="server" CssClass="MonthlyExport">
+            <telerik:RadHtmlChart ID="CustomersSeenByEmpComRHC1" runat="server" CssClass="MonthlyExport" Skin="Material">
             </telerik:RadHtmlChart>
 
             <asp:ObjectDataSource ID="CustomersSeenByEmpComODS1" runat="server" SelectMethod="usp_CustomersSeenByEmpCom" TypeName="Test.BLL.Productivity.CustomersSeenByEmpComBL">
@@ -121,7 +121,7 @@
             </telerik:RadGrid>
             <%--Display Number of Customers Seen by Employee--%>
             <div class="kpiheader">Number of Animal Seen By Employee</div>
-            <telerik:RadHtmlChart ID="AnimalsSeenByEmpComRHC1" runat="server"></telerik:RadHtmlChart>
+            <telerik:RadHtmlChart ID="AnimalsSeenByEmpComRHC1" runat="server" Skin="MetroTouch"></telerik:RadHtmlChart>
             <%--Display Number of Animals Seen by Employee--%>
 
             <%--Display Number of Animals Seen by Employee--%>

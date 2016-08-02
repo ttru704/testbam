@@ -121,6 +121,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2016\Bin45\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2016\AdditionalLibraries\Bin45\Telerik.Windows.Documents.Spreadsheet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2016\AdditionalLibraries\Bin45\Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -433,10 +439,12 @@
     <Compile Include="BLL\Customer\AnimalsSeenSingleBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerBranchBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerComBL.cs" />
+    <Compile Include="BLL\Customer\LargeAnimalsComBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersBranchBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersChangesBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersComBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersSingleBL.cs" />
+    <Compile Include="BLL\Customer\SmallAnimalsComBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenChangesBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenComBL.cs" />
@@ -562,10 +570,12 @@
     <Compile Include="Models\Interface\Customer\IAnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerComRepo.cs" />
+    <Compile Include="Models\Interface\Customer\ILargeAnimalsComRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersChangesRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersComRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersSingleRepo.cs" />
+    <Compile Include="Models\Interface\Customer\ISmallAnimalsComRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenChangesRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenComRepo.cs" />
@@ -620,10 +630,12 @@
     <Compile Include="Models\Repository\Customer\AnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerComRepo.cs" />
+    <Compile Include="Models\Repository\Customer\LargeAnimalsComRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersChangesRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersComRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersSingleRepo.cs" />
+    <Compile Include="Models\Repository\Customer\SmallAnimalsComRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenChangesRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenComRepo.cs" />
@@ -713,6 +725,9 @@
     <Compile Include="Models\usp_IncomeByServiceActivityCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_LargeAnimalsCom_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_NewCustomersBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -731,6 +746,9 @@
     <Compile Include="Models\usp_ServiceOnlySalesCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_SmallAnimalsCom_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_TotalSalesBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -738,9 +756,6 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_TotalSalesIndustry_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_TransExclude0TotalCom_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_TransExcludeZeroTotalCom_Result.cs">

@@ -48,13 +48,15 @@
             <br />
             <div class="kpiheader">Number of Unique Customers Seen Companywide</div>
             <%--Display Number of Unique Customers Seen by a company--%>
-            <telerik:RadHtmlChart ID="UniqueCustomersSeenComRHC1" runat="server" DataSourceID="UniqueCustomersSeenComODC1">
+            <telerik:RadHtmlChart ID="UniqueCustomersSeenComRHC1" runat="server" DataSourceID="UniqueCustomersSeenComODC1" Skin="MetroTouch">
                 <PlotArea>
                     <Series>
                         <telerik:ColumnSeries DataFieldY="Number_of_Unique_Clients">
+                            <TooltipsAppearance DataFormatString="N0"></TooltipsAppearance>
+                            <LabelsAppearance DataFormatString="N0"></LabelsAppearance>
                         </telerik:ColumnSeries>
                     </Series>
-                    <XAxis DataLabelsField="Time_Period" Type="Date">
+                    <XAxis DataLabelsField="TimePeriod" Type="auto">
                         <TitleAppearance Text="Time Period">
                             <TextStyle Margin="20" />
                         </TitleAppearance>
@@ -83,11 +85,25 @@
                     <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                 </SelectParameters>
             </asp:ObjectDataSource>
-            <%--Display Number of Unique Customers Seen by a company--%>
+            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="UniqueCustomersSeenComODC1">
+<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                    <Selecting AllowRowSelect="True" />
+                </ClientSettings>
+                <MasterTableView AllowPaging="False" AllowSorting="False" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenComODC1">
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Number_of_Unique_Clients" DataType="System.Int32" FilterControlAltText="Filter Number_of_Unique_Clients column" HeaderText="Number of Unique Clients" SortExpression="Number_of_Unique_Clients" UniqueName="Number_of_Unique_Clients">
+                        </telerik:GridBoundColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
+            <br />
 
             <%--Display Number of Unique Customers Seen branch comparison--%>
             <div class="kpiheader">Number of Unique Customers Seen Branch Comparison</div>
-            <telerik:RadHtmlChart ID="UniqueCustomersSeenBranchRHC1" runat="server">
+            <telerik:RadHtmlChart ID="UniqueCustomersSeenBranchRHC1" runat="server" Skin="Material">
                 <ChartTitle Text="Number of Unique Clients Seen">
                 </ChartTitle>
 
@@ -106,21 +122,64 @@
                 </SelectParameters>
             </asp:ObjectDataSource>
             
-            <%--Display Number of Unique Customers Seen branch comparison--%>
-
-            <p>&nbsp;</p>
+            <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Skin="Metro" Text="Export Table to Excel">
+            </telerik:RadButton>
+            
+            <br />
+            <telerik:RadGrid ID="RadGrid2" runat="server" AllowPaging="True" AllowSorting="True" OnExcelMLWorkBookCreated="RadGrid2_ExcelMLWorkBookCreated" DataSourceID="UniqueCustomersSeenBranchODC1" AllowFilteringByColumn="True">
+<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                <ExportSettings IgnorePaging="True">
+                    <Pdf PaperSize="A4" DefaultFontFamily="Arial Unicode MS" PageTopMargin="45mm"
+                    BorderStyle="Medium" BorderColor="#666666" PageHeight="210mm" PageWidth="297mm">
+                    </Pdf>
+                    <Excel Format="Xlsx" />
+                </ExportSettings>
+                <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                    <Selecting AllowRowSelect="True" />
+                </ClientSettings>
+                <MasterTableView AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenBranchODC1">
+                    <CommandItemSettings ShowExportToExcelButton="true" ShowAddNewRecordButton="false" ShowRefreshButton="false" />
+                    <Columns>
+                        <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
+                            <FilterTemplate>
+                                <telerik:RadComboBox RenderMode="Lightweight" ID="RadComboBoxTitle" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name"
+                                DataValueField="Branch_Name" Width="200px" AppendDataBoundItems="true" SelectedValue='<%# ((GridItem)Container).OwnerTableView.GetColumn("Branch_Name").CurrentFilterValue %>'
+                                runat="server" OnClientSelectedIndexChanged="TitleIndexChanged">
+                                    <Items>
+                                        <telerik:RadComboBoxItem Text="All" />
+                                    </Items>
+                                </telerik:RadComboBox>
+                                <telerik:RadScriptBlock ID="RadScriptBlock1" runat="server">
+                                <script type="text/javascript">
+                                    function TitleIndexChanged(sender, args) {
+                                        var tableView = $find("<%# ((GridItem)Container).OwnerTableView.ClientID %>");
+                                        tableView.filter("Branch_Name", args.get_item().get_value(), "EqualTo");
+                                }
+                                </script>
+                            </telerik:RadScriptBlock>
+                            </FilterTemplate>
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="TimePeriod" AllowFiltering="false" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                        </telerik:GridBoundColumn>
+                        <telerik:GridBoundColumn DataField="Number_of_Unique_Clients" AllowFiltering="false" DataType="System.Int32" FilterControlAltText="Filter Number_of_Unique_Clients column" HeaderText="Number of Unique Clients" SortExpression="Number_of_Unique_Clients" UniqueName="Number_of_Unique_Clients">
+                        </telerik:GridBoundColumn>
+                    </Columns>
+                </MasterTableView>
+            </telerik:RadGrid>
             <div class="kpiheader">Number of Animals Seen Companywide</div>
 
             <%--Display Number of Animals Seen Companywide--%>
 
-            <telerik:RadHtmlChart ID="AnimalsSeenComRHC1" runat="server" DataSourceID="AnimalsSeenComODS1">
+            <telerik:RadHtmlChart ID="AnimalsSeenComRHC1" runat="server" DataSourceID="AnimalsSeenComODS1" Skin="Vista">
                 <PlotArea>
                     <Series>
                         <telerik:LineSeries Name="No of Animals Seen" DataFieldY="Number_of_animals_seen">
+                            <TooltipsAppearance DataFormatString="N0"></TooltipsAppearance>
+                            <LabelsAppearance DataFormatString="N0"></LabelsAppearance>
                         </telerik:LineSeries>
                     </Series>
 
-                    <XAxis DataLabelsField="YearMonth">
+                    <XAxis DataLabelsField="TimePeriod"  Type="Auto">
                         <TitleAppearance Text="Period">
                             <TextStyle Margin="20" />
                         </TitleAppearance>
@@ -155,7 +214,7 @@
 
             <%--Display Number of Animals Seen Branch Comparison--%>
             <div class="kpiheader">Number of Animals Seen Branch Comparison</div>
-            <telerik:RadHtmlChart ID="AnimalsSeenBranchRHC1" runat="server"></telerik:RadHtmlChart>
+            <telerik:RadHtmlChart ID="AnimalsSeenBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
             <asp:ObjectDataSource ID="AnimalsSeenBranchODS1" runat="server" SelectMethod="usp_AnimalsSeenBranch" TypeName="Test.BLL.Customer.AnimalsSeenBranchBL">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-05-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
@@ -169,7 +228,7 @@
 
             <%--This section is for Average dollar per customer companywide  chart--%>
             <div class="kpiheader">Average Dollar Earned per Customer Companywide</div>
-            <telerik:RadHtmlChart ID="AvgDollarPerCustomerComRHC1" runat="server" DataSourceID="AvgDollarPerCustomerComODS1">
+            <telerik:RadHtmlChart ID="AvgDollarPerCustomerComRHC1" runat="server" DataSourceID="AvgDollarPerCustomerComODS1" Skin="Metro">
                 <Pan Enabled="true" Lock="Y" />
                 <Zoom Enabled="true">
                     <MouseWheel Enabled="true" Lock="Y" />
@@ -179,7 +238,7 @@
                     <Appearance Position="Bottom" />
                 </Legend>
                 <PlotArea>
-                    <XAxis Color="Black" DataLabelsField="Year_Month">
+                    <XAxis Color="Black" DataLabelsField="TimePeriod"  Type="Auto">
                         <TitleAppearance Position="Center" Text="Time Period" />
                         <LabelsAppearance DataFormatString="MMM yy">
                         </LabelsAppearance>
@@ -195,8 +254,8 @@
                                 <FillStyle BackgroundColor="Orange" />
                             </Appearance>
                             <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
-                            <TooltipsAppearance BackgroundColor="White" />
-                            <LabelsAppearance DataFormatString="C2">
+                            <TooltipsAppearance DataFormatString="C0" BackgroundColor="White" />
+                            <LabelsAppearance  Visible="false">
                             </LabelsAppearance>
                         </telerik:AreaSeries>
                     </Series>
@@ -217,19 +276,21 @@
 
             <%--This section is for Average dollar per customer branch comparison  chart--%>
             <div class="kpiheader">Average Dollar Earned per Customer Branch Comparison</div>
-            <telerik:RadHtmlChart ID="AvgDollarPerCustomerBranchRHC1" runat="server"></telerik:RadHtmlChart>
+            <telerik:RadHtmlChart ID="AvgDollarPerCustomerBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
             <%--This section is for Average dollar per customer branch comparison  chart--%>
             <br />
 
             <%--This section is for Number of New Customers companywide  chart--%>
             <div class="kpiheader">Number of New Customers Companywide</div>
-            <telerik:RadHtmlChart ID="NewCustomersComRHC1" runat="server" DataSourceID="NewCustomersComODS1">
+            <telerik:RadHtmlChart ID="NewCustomersComRHC1" runat="server" DataSourceID="NewCustomersComODS1" Skin="Silk">
                 <PlotArea>
                     <Series>
                         <telerik:ColumnSeries DataFieldY="Number_of_New_Customers">
+                            <TooltipsAppearance DataFormatString="N0"></TooltipsAppearance>
+                            <LabelsAppearance DataFormatString="N0"></LabelsAppearance>
                         </telerik:ColumnSeries>
                     </Series>
-                    <XAxis DataLabelsField="YearMonth" Type="Date">
+                    <XAxis DataLabelsField="TimePeriod" Type="auto">
                         <TitleAppearance Text="Time Period">
                             <TextStyle Margin="20" />
                         </TitleAppearance>
@@ -258,6 +319,105 @@
                 </SelectParameters>
             </asp:ObjectDataSource>
             <%--This section is for Number of New Customers companywide  chart--%>
+
+            <%--This section is for Number of Small Animals companywide  chart--%>
+            <div class="kpiheader">Number of Small Animals Companywide</div>
+            <telerik:RadHtmlChart ID="SmallAnimalsComRHC1" runat="server" DataSourceID="SmallAnimalsComODS1" Skin="Material">
+                <PlotArea>
+                    <Series>
+                        <telerik:LineSeries Name="Small Animals" DataFieldY="Number_of_Small_Animals">
+                            <TooltipsAppearance DataFormatString="N0"></TooltipsAppearance>
+                            <LabelsAppearance DataFormatString="N0"></LabelsAppearance>
+                        </telerik:LineSeries>
+                    </Series>
+
+                    <XAxis DataLabelsField="TimePeriod" Type="Auto">
+                        <TitleAppearance Text="Period">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <LabelsAppearance DataFormatString="MMM yyyy">
+                        </LabelsAppearance>
+                        <MajorGridLines Visible="false" />
+                        <MinorGridLines Visible="false" />
+                    </XAxis>
+
+                    <YAxis>
+                        <TitleAppearance Text="No of Small Animals">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <MinorGridLines Visible="false" />
+                    </YAxis>
+                </PlotArea>
+
+                <ChartTitle Text="Number of Small Animals Companywide">
+                </ChartTitle>
+            </telerik:RadHtmlChart>
+
+            <asp:ObjectDataSource ID="SmallAnimalsComODS1" runat="server" SelectMethod="usp_SmallAnimalsCom" TypeName="Test.BLL.Customer.SmallAnimalsComBL">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+            <%--This section is for Number of Small Animals companywide  chart--%>
+
+
+            <%--This section is for Number of Large Animals companywide  chart--%>
+            <div class="kpiheader">Number of Large Animals Companywide</div>
+            <telerik:RadHtmlChart ID="LargeAnimalsComRHC1" runat="server" DataSourceID="LargeAnimalsComODS1">
+                <PlotArea>
+                    <Series>
+                        <telerik:LineSeries Name="Large Animals" DataFieldY="Number_of_Large_Animals">
+                            <TooltipsAppearance DataFormatString="N0"></TooltipsAppearance>
+                            <LabelsAppearance DataFormatString="N0"></LabelsAppearance>
+                        </telerik:LineSeries>
+                    </Series>
+
+                    <XAxis DataLabelsField="TimePeriod" Type="Auto">
+                        <TitleAppearance Text="Period">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <LabelsAppearance>
+                        </LabelsAppearance>
+                        <MajorGridLines Visible="false" />
+                        <MinorGridLines Visible="false" />
+                    </XAxis>
+
+                    <YAxis>
+                        <TitleAppearance Text="No of Large Animals">
+                            <TextStyle Margin="20" />
+                        </TitleAppearance>
+                        <MinorGridLines Visible="false" />
+                    </YAxis>
+                </PlotArea>
+
+                <ChartTitle Text="Number of Large Animals Companywide">
+                </ChartTitle>
+            </telerik:RadHtmlChart>
+
+
+            <asp:ObjectDataSource ID="LargeAnimalsComODS1" runat="server" SelectMethod="usp_LargeAnimalsCom" TypeName="Test.BLL.Customer.LargeAnimalsComBL">
+                <SelectParameters>
+                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                    <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                    <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                </SelectParameters>
+            </asp:ObjectDataSource>
+            <%--This section is for Number of Large Animals companywide  chart--%>
         </div>
     </form>
+    <script>
+        (function () {
+            var demo = window.demo = {};
+
+            demo.onRequestStart = function (sender, args) {
+                if (args.get_eventTarget().indexOf("Button") >= 0) {
+                    args.set_enableAjax(false);
+                }
+            }
+        })();
+    </script>
 </asp:Content>
