@@ -103,15 +103,6 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart CustomersSeenByEmpComRHC1;
         
         /// <summary>
-        /// CustomersSeenByEmpComODS1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmpComODS1;
-        
-        /// <summary>
         /// CustomersSeenByEmpComRG1 control.
         /// </summary>
         /// <remarks>
@@ -119,6 +110,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmpComRG1;
+        
+        /// <summary>
+        /// CustomersSeenByEmpComODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmpComODS1;
         
         /// <summary>
         /// AnimalsSeenByEmpComRHC1 control.
