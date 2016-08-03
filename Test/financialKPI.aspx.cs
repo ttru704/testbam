@@ -13,15 +13,18 @@ using Telerik.Web.UI.HtmlChart;
 using System.ComponentModel;
 using Test.BLL.Financial;
 using System.Reflection;
+using Test.BLL;
+
 namespace Test
 {
     public partial class KPI : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
-
+            //DropDownListItem item = new DropDownListItem();
+            //item.Text = "All Branches";
+            //item.Value = "0";
+            //BranchDDL1.Items.Add(item);
         }
         //public DataTable ConvertToDataTable<T>(IList<T> data)
         //{
@@ -63,6 +66,9 @@ namespace Test
             //    dt.Rows.Add(dr);
             //}
 
+            BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
+            List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
+
             AvgPerTransactionComRHC1.DataBind();
             
 
@@ -72,6 +78,7 @@ namespace Test
             int branch = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
             int time = Convert.ToInt16(TimeDDL1.SelectedItem.Value);
 
+            
 
 
             AvgPerTransactionBranchBL avgPerTransactionBranchBL = new AvgPerTransactionBranchBL();
@@ -90,8 +97,8 @@ namespace Test
             {
                 //DateTime dateformat = Convert.ToDateTime(dt);
                 TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
-                TotalSalesBranchRHC1.ChartTitle.Text = "Total Monthly Sales";
-                TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                TotalSalesBranchRHC1.ChartTitle.Text = "Total Sales Branch Comparison";
+                TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
                 //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.format(\\'{0:MMM}\\',value)#";
                 //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.format(kendo.parseDate('value'), 'y')#"; -disappears
 
@@ -104,15 +111,21 @@ namespace Test
                 //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.toString(value, \"y\")#"; -disappears
                 //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#= kendo.format(\'{0:d/MM/yyyy}\', new Date(value.x))#"; -disappears
 
-                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales($000s)";
+                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales";
                 //TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = labelsFormatString;
-                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
+                //TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
 
 
                 
                 //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM";
-                AvgPerTransactionBranchRHC1.ChartTitle.Text = "Total Monthly Sales";
-                AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                AvgPerTransactionBranchRHC1.ChartTitle.Text = "Average per Transaction Branch Comparison";
+                AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
+                AvgPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction";
+                RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
+                ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
+                RetailOnlySalesBranchRHC1.ChartTitle.Text = "Retail Only Sales Branch Comparison";
+                ServiceOnlySalesBranchRHC1.ChartTitle.Text = "Service Only Sales Branch Comparison";
+                
                 //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value, \'yyyy/MM/dd\')#"; -disappears and all the graphs below it too
 
                 //AvgPerTransactionBranchRHC1.PlotArea.XAxis.BaseUnit = "months";
@@ -186,10 +199,7 @@ namespace Test
 
         }
 
-        protected void Branch_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         protected void Company_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -200,6 +210,7 @@ namespace Test
         {
 
         }
+        
     }
 
 }

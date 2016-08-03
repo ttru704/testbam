@@ -13,6 +13,18 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
+        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+            <AjaxSettings>
+                <telerik:AjaxSetting AjaxControlID="Button1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmpComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmpComRG1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenByEmpComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+            </AjaxSettings>
+        </telerik:RadAjaxManager>
         <div class="right_col" role="main">
             <%--KPI menu--%>
             <div id="KPIMenu" style="text-align: center">
@@ -30,21 +42,34 @@
             <div>
                 <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-01-01" SelectedDate="2015-01-01"></telerik:RadDatePicker>
                 <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-12-31" SelectedDate="2015-12-31"></telerik:RadDatePicker>
-                <asp:DropDownList ID="Company" runat="server" Width="100px">
+                <asp:DropDownList ID="Company" runat="server" Width="100px" Visible="false">
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
                     <asp:ListItem>3</asp:ListItem>
                     <asp:ListItem>4</asp:ListItem>
                     <asp:ListItem>5</asp:ListItem>
                 </asp:DropDownList>
-                <asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
+                <%--<asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
                     <asp:ListItem Value="0">All Branches</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="TimeType" runat="server" Width="100px">
+                </asp:DropDownList>--%>
+                <telerik:RadDropDownList ID="Branch" runat="server" >
+                <Items>
+                    <telerik:DropDownListItem Text="All Branches" Value="0" />
+                </Items>
+                </telerik:RadDropDownList>
+                <%--<asp:DropDownList ID="TimeType" runat="server" Width="100px">
                     <asp:ListItem Value="1"> Monthly </asp:ListItem>
                     <asp:ListItem Value="2" Selected="True"> Yearly </asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+                </asp:DropDownList>--%>
+                <telerik:RadDropDownList ID="TimeType" runat="server" >
+                <Items>
+                    <telerik:DropDownListItem Text="Monthly" Value="1" />
+                    <telerik:DropDownListItem  Text="Yearly" Value="2" Selected="true"/>
+                    <telerik:DropDownListItem Text="Weekly" Value="3" />
+                </Items>
+                </telerik:RadDropDownList>
+                <%--<asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />--%>
+                <telerik:RadButton ID="Button1" runat="server" Text="View" OnClick="Button1_Click"></telerik:RadButton>
             </div>
 
             <br />
@@ -55,7 +80,7 @@
                     <div class="kpiheader">Number of Customers Seen By Employee</div>
                     <div class="chartcontainer">
                         <%--Export button--%>
-                        <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export RadHtmlChart to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                         <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
                         </telerik:RadClientExportManager>
                         <%--Chart--%>

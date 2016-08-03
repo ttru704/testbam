@@ -16,7 +16,39 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-
+        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+            <AjaxSettings>
+                <telerik:AjaxSetting AjaxControlID="BranchDDL1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchRHC1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionBranchRHC1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchRHC1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchRHC1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="Button1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesComRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesComODS" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchODS1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionComRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionComODS1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionBranchODS1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalComRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalComODS1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesComRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesComODS1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesComRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesComODS1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+            </AjaxSettings>
+        </telerik:RadAjaxManager>
         <div class="right_col" role="main">
             <%--KPI Menu--%>
             <div id="KPIMenu" style="text-align: center">
@@ -29,25 +61,42 @@
             <%--Datepickers and input--%>
             <div>
                 <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-04-01" SelectedDate="2015-04-01"></telerik:RadDatePicker>
+
                 <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-09-01" SelectedDate="2015-09-01"></telerik:RadDatePicker>
-                <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px" OnSelectedIndexChanged="Company_SelectedIndexChanged">
+
+                <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px" OnSelectedIndexChanged="Company_SelectedIndexChanged" Visible="false">
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
                     <asp:ListItem>3</asp:ListItem>
                 </asp:DropDownList>
-                <asp:DropDownList ID="BranchDDL1" runat="server" AutoPostBack="True" DataTextField="Branch_Name" AppendDataBoundItems="True" EnableViewState="False" DataValueField="Ref_Number" Width="100px" DataSourceID="BranchDropDownODS1" OnSelectedIndexChanged="Branch_SelectedIndexChanged">
+                <%--                <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" EnableViewState="False" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" EnableVirtualScrolling="True"></telerik:RadDropDownList>--%>
+                <%--<asp:DropDownList ID="BranchDDL1" runat="server" AutoPostBack="false" AppendDataBoundItems="True" EnableViewState="False" Width="100px" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number">
                     <asp:ListItem Value="0" Selected="True">All Branches</asp:ListItem>
-                </asp:DropDownList>
+                </asp:DropDownList>--%>
+
+                <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" >
+                <Items>
+                    <telerik:DropDownListItem Text="All Branches" Value="0" />
+                </Items>
+                </telerik:RadDropDownList>
                 <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.BranchDropDownListBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
-                <asp:DropDownList ID="TimeDDL1" runat="server" Width="100px">
+                <%--<asp:DropDownList ID="TimeDDL1" runat="server" Width="100px">
                     <asp:ListItem Value="1"> Monthly </asp:ListItem>
                     <asp:ListItem Value="2"> Yearly </asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+                </asp:DropDownList>--%>
+                <telerik:RadDropDownList ID="TimeDDL1" runat="server" >
+                <Items>
+                    <telerik:DropDownListItem Text="Monthly" Value="1" />
+                    <telerik:DropDownListItem  Text="Yearly" Value="2"/>
+                    <telerik:DropDownListItem Text="Weekly" Value="3" />
+                </Items>
+                </telerik:RadDropDownList>
+                <%--<asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />--%>
+                <telerik:RadButton ID="Button1" runat="server" Text="View" OnClick="Button1_Click"></telerik:RadButton>
             </div>
 
             <br />
@@ -79,13 +128,13 @@
                                     <TitleAppearance Text="Time Period">
                                         <TextStyle Margin="20" />
                                     </TitleAppearance>
-                                    <LabelsAppearance>
+                                    <LabelsAppearance RotationAngle="65">
                                     </LabelsAppearance>
                                     <MajorGridLines Visible="false" />
                                     <MinorGridLines Visible="false" />
                                 </XAxis>
                                 <YAxis>
-                                    <TitleAppearance Text="Total Sales">
+                                    <TitleAppearance Text="Total Sales" Position="Center">
                                         <TextStyle Margin="20" />
                                     </TitleAppearance>
                                     <MinorGridLines Visible="false" />
@@ -411,6 +460,7 @@
                         <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
                     </div>
                 </div>
+                <br />
                 <%--This section is for Retail Only Sales branch comparison chart--%>
                 <div class="accordionable">
                     <div class="kpiheader">Service Only Sales Branch Comparison</div>

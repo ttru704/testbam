@@ -15,6 +15,27 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
+        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+            <AjaxSettings>
+                <telerik:AjaxSetting AjaxControlID="Button1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="RadGrid1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="RadGrid2" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenBranchODC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="NewCustomersComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+            </AjaxSettings>
+        </telerik:RadAjaxManager>
         <div class="right_col" role="main">
             <%--KPI menu--%>
             <div id="KPIMenu" style="text-align: center">
@@ -30,19 +51,25 @@
             <div>
                 <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-05-01" SelectedDate="2015-05-01"></telerik:RadDatePicker>
                 <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-09-30" SelectedDate="2015-09-30"></telerik:RadDatePicker>
-                <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px">
+                <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px" Visible="false">
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
                     <asp:ListItem>3</asp:ListItem>
                 </asp:DropDownList>
-                <asp:DropDownList ID="BranchDDL1" runat="server" AutoPostBack="True" AppendDataBoundItems="True" EnableViewState="False" Width="100px" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number">
-                    <asp:ListItem Value="0" Selected="True">All Branches</asp:ListItem>
-                </asp:DropDownList>
-                <asp:DropDownList ID="TimeDDL1" runat="server" Width="100px">
-                    <asp:ListItem Value="1"> Monthly </asp:ListItem>
-                    <asp:ListItem Value="2"> Yearly </asp:ListItem>
-                </asp:DropDownList>
-                <asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />
+                 <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" >
+                <Items>
+                    <telerik:DropDownListItem Text="All Branches" Value="0" />
+                </Items>
+                </telerik:RadDropDownList>
+                <telerik:RadDropDownList ID="TimeDDL1" runat="server" >
+                <Items>
+                    <telerik:DropDownListItem Text="Monthly" Value="1" />
+                    <telerik:DropDownListItem  Text="Yearly" Value="2"/>
+                    <telerik:DropDownListItem Text="Weekly" Value="3" />
+                </Items>
+                </telerik:RadDropDownList>
+                
+                <telerik:RadButton ID="Button1" runat="server" Text="View" OnClick="Button1_Click"></telerik:RadButton>
                 <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.BranchDropDownListBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
@@ -82,14 +109,14 @@
                                 </YAxis>
                             </PlotArea>
 
-                            <ChartTitle Text="No of Unique Clients Companywide">
+                            <ChartTitle Text="No of Unique Customers Companywide">
                             </ChartTitle>
                             <Zoom Enabled="False"></Zoom>
                         </telerik:RadHtmlChart>
                         <%--Table--%>
-                        <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="UniqueCustomersSeenComODC1">
+                        <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="UniqueCustomersSeenComODC1" CellSpacing="-1" GridLines="Both" ShowGroupPanel="True">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
-                            <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                            <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True" AllowDragToGroup="True">
                                 <Selecting AllowRowSelect="True" />
                             </ClientSettings>
                             <MasterTableView AllowPaging="False" AllowSorting="False" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenComODC1">
@@ -128,12 +155,12 @@
                         </telerik:RadHtmlChart>
 
                         <%--Export button--%>
-                        <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Skin="Metro" Text="Export Table to Excel">
+                        <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Skin="Metro" Text="Export to Excel">
                         </telerik:RadButton>
 
                         <br />
                         <%--Table--%>
-                        <telerik:RadGrid ID="RadGrid2" runat="server" AllowPaging="True" AllowSorting="True" OnExcelMLWorkBookCreated="RadGrid2_ExcelMLWorkBookCreated" DataSourceID="UniqueCustomersSeenBranchODC1" AllowFilteringByColumn="True">
+                        <telerik:RadGrid ID="RadGrid2" runat="server" AllowPaging="True" AllowSorting="True" OnExcelMLWorkBookCreated="RadGrid2_ExcelMLWorkBookCreated" DataSourceID="UniqueCustomersSeenBranchODC1" AllowFilteringByColumn="True" CellSpacing="-1" GridLines="Both" ShowGroupPanel="True">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ExportSettings IgnorePaging="True">
                                 <Pdf PaperSize="A4" DefaultFontFamily="Arial Unicode MS" PageTopMargin="45mm"
@@ -141,7 +168,7 @@
                                 </Pdf>
                                 <Excel Format="Xlsx" />
                             </ExportSettings>
-                            <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                            <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True" AllowDragToGroup="True">
                                 <Selecting AllowRowSelect="True" />
                             </ClientSettings>
                             <MasterTableView AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenBranchODC1">

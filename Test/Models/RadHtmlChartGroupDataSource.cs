@@ -75,6 +75,7 @@ namespace Test.Models
                     areaSeries1.DataFieldY = DataFieldY + Index;
                     areaSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
                     areaSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
+                    areaSeries1.LabelsAppearance.Visible = false;
                     HtmlChart.PlotArea.Series.Add(areaSeries1);
                     break;
 
@@ -102,6 +103,7 @@ namespace Test.Models
                     lineSeries1.DataFieldY = DataFieldY + Index;
                     lineSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
                     lineSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
+                    lineSeries1.LabelsAppearance.Visible = false;
                     HtmlChart.PlotArea.Series.Add(lineSeries1);
                     break;
 

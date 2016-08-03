@@ -31,6 +31,24 @@ namespace Test {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
+        /// RadAjaxLoadingPanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
+        
+        /// <summary>
+        /// RadAjaxManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
+        
+        /// <summary>
         /// DatePicker1 control.
         /// </summary>
         /// <remarks>
@@ -64,7 +82,7 @@ namespace Test {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList BranchDDL1;
+        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
         
         /// <summary>
         /// TimeDDL1 control.
@@ -73,7 +91,7 @@ namespace Test {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TimeDDL1;
+        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// Button1 control.
@@ -82,7 +100,7 @@ namespace Test {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::Telerik.Web.UI.RadButton Button1;
         
         /// <summary>
         /// BranchDropDownODS1 control.

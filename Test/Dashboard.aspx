@@ -94,9 +94,9 @@
                         <PlotArea>
                             <Series>
                                 <telerik:LineSeries DataFieldY="Total_Sales">
-                                    <LabelsAppearance Visible="false">
+                                    <LabelsAppearance DataFormatString="N0">
                                     </LabelsAppearance>
-                                    <TooltipsAppearance DataFormatString="C2"></TooltipsAppearance>
+                                    <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
                                 </telerik:LineSeries>
                             </Series>
                             <XAxis DataLabelsField="YearMonth" Type="Date">
@@ -121,8 +121,8 @@
                     </telerik:RadHtmlChart>
                     <asp:ObjectDataSource ID="TotalSalesComODS1" runat="server" SelectMethod="usp_TotalSalesCom" TypeName="Test.BLL.Financial.TotalSalesComBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2016/2/1" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2016/06/30" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015/09/01" Name="end" Type="DateTime" />
                             <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
                             <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
                         </SelectParameters>
@@ -137,9 +137,9 @@
                         <ChartTitle Text="Income by Product Category Companywide"> </ChartTitle>
                         <PlotArea>
                             <Series>
-                                <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
+                                <telerik:PieSeries StartAngle="90" DataFieldY="Income"  ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
                                     <LabelsAppearance Visible="false"></LabelsAppearance>
-                                    <TooltipsAppearance DataFormatString="{0} %" />
+                                    <TooltipsAppearance DataFormatString="{0:N0} %" />
                                 </telerik:PieSeries>
                             </Series>
                         </PlotArea>
@@ -161,7 +161,7 @@
                             <Series>
                                 <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
                                     <LabelsAppearance Visible="false"></LabelsAppearance>
-                                    <TooltipsAppearance DataFormatString="{0} %" />
+                                    <TooltipsAppearance DataFormatString="{0:N0} %" />
                                 </telerik:PieSeries>
                             </Series>
                         </PlotArea>
