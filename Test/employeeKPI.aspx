@@ -4,9 +4,6 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="Scripts/jquery-1.10.2.min.js"></script>
-    <script src="Scripts/jquery-ui.min.js"></script>
-    <script src="Scripts/accordion.js" type="text/javascript"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -39,8 +36,16 @@
             <br />
             <%--Datepickers and input--%>
             <div class="text-center">
-                <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-01-01" SelectedDate="2015-01-01" Height="24px" Width="197px"></telerik:RadDatePicker>
-                <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-12-31" SelectedDate="2015-12-31" Height="24px" Width="197px"></telerik:RadDatePicker>
+                <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-01-01" SelectedDate="2015-01-01" Height="24px" Width="197px">
+                    <DatePopupButton
+                        CssClass="rcCalPopup"
+                        Width="2em" />
+                </telerik:RadDatePicker>
+                <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-12-31" SelectedDate="2015-12-31" Height="24px" Width="197px">
+                    <DatePopupButton
+                        CssClass="rcCalPopup"
+                        Width="2em" />
+                </telerik:RadDatePicker>
                 <asp:DropDownList ID="Company" runat="server" Width="100px" Visible="false">
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
@@ -86,7 +91,7 @@
                     <div class="x_content">
                         <div class="">
                             <%--Export button--%>
-                            <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export RadHtmlChart to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                            <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                             <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
                             </telerik:RadClientExportManager>
                             <%--Chart--%>

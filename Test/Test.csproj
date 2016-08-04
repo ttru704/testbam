@@ -245,7 +245,6 @@
       <LastGenOutput>BAM.cs</LastGenOutput>
     </Content>
     <Content Include="principal.Master" />
-    <Content Include="Scripts\accordion.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Site.Master" />
     <Content Include="What-if page.aspx" />
