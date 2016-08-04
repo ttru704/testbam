@@ -89,7 +89,7 @@
             <div class="col-sm-12">
                 <%-- Line chart --%>
                 <div class="col-sm-12">
-                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1" Skin="MetroTouch">
+                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1" Skin="MetroTouch" Width="100%">
                         <ClientEvents OnLoad="chartLoad" />
                         <PlotArea>
                             <Series>
@@ -109,8 +109,8 @@
                                 <MinorGridLines Visible="false" />
                             </XAxis>
                             <YAxis>
-                                <TitleAppearance Text="Total Sales">
-                                    <TextStyle Margin="20" />
+                                <TitleAppearance Text="Total Sales" >
+                                    <TextStyle Margin="10" />
                                 </TitleAppearance>
                                 <MinorGridLines Visible="false" />
                             </YAxis>

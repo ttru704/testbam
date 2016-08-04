@@ -130,6 +130,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesComODS;
         
         /// <summary>
+        /// TotalSalesComG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid TotalSalesComG1;
+        
+        /// <summary>
         /// TotalSalesBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesBranchODS1;
         
         /// <summary>
+        /// TotalSalesBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid TotalSalesBranchG1;
+        
+        /// <summary>
         /// AvgPerTransactionComRHC1 control.
         /// </summary>
         /// <remarks>
@@ -164,6 +182,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource AvgPerTransactionComODS1;
+        
+        /// <summary>
+        /// AvgPerTransactionComG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid AvgPerTransactionComG1;
         
         /// <summary>
         /// AvgPerTransactionBranchRHC1 control.
@@ -211,6 +238,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource TransExcludeZeroTotalComODS1;
         
         /// <summary>
+        /// TransExcludeZeroTotalComG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid TransExcludeZeroTotalComG1;
+        
+        /// <summary>
         /// RetailOnlySalesComRHC1 control.
         /// </summary>
         /// <remarks>
@@ -227,6 +263,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource RetailOnlySalesComODS1;
+        
+        /// <summary>
+        /// RetailOnlySalesComG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RetailOnlySalesComG1;
         
         /// <summary>
         /// ServiceOnlySalesComRHC1 control.
@@ -247,6 +292,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource ServiceOnlySalesComODS1;
         
         /// <summary>
+        /// ServiceOnlySalesComG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid ServiceOnlySalesComG1;
+        
+        /// <summary>
         /// RetailOnlySalesBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -256,6 +310,24 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart RetailOnlySalesBranchRHC1;
         
         /// <summary>
+        /// RetailOnlySalesBranchODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource RetailOnlySalesBranchODS1;
+        
+        /// <summary>
+        /// RetailOnlySalesBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid RetailOnlySalesBranchG1;
+        
+        /// <summary>
         /// ServiceOnlySalesBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -263,5 +335,23 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadHtmlChart ServiceOnlySalesBranchRHC1;
+        
+        /// <summary>
+        /// ServiceOnlySalesBranchODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ServiceOnlySalesBranchODS1;
+        
+        /// <summary>
+        /// ServiceOnlySalesBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid ServiceOnlySalesBranchG1;
     }
 }

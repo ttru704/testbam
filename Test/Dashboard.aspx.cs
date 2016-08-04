@@ -16,6 +16,9 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+            RadHtmlChart1.DataBind();
+
             //IncomeByProductCategoryComRHC1.Appearance.FillStyle.BackgroundColor = ChartColors.GetColor();
 
             IncomeByProductCategoryComRHC1.DataBind();
