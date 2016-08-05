@@ -11,9 +11,9 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <!-- top tiles -->
-            <div class="row tile_count" style="position: center">
+            <div class="row tile_count">
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" runat="server">
-                    <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
+                    <span class="count_top"><i class="fa fa-money"></i> Total Sales</span>
                     <div class="count blue"> 
                         <asp:Label ID="Label1" runat="server" Text="Label" class="count blue"></asp:Label>
                     </div>
@@ -25,7 +25,7 @@
                     </span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-money"></i>Avg $ per Transaction</span>
+                    <span class="count_top"><i class="fa fa-money"></i> Avg $ per Transaction</span>
                     <div class="count blue">
                         <asp:Label ID="Label2" runat="server" class="count blue"></asp:Label>
                     </div>
@@ -36,7 +36,7 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-money"></i>Avg $ per Customer</span>
+                    <span class="count_top"><i class="fa fa-money"></i> Avg $ per Customer</span>
                     <div class="count blue">
                         <asp:Label ID="Label3" runat="server" class="count blue"></asp:Label>
                     </div>
@@ -47,8 +47,8 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i>Number of New Customers</span>
-                    <div class="count blue">
+                    <span class="count_top"><i class="fa fa-plus"></i> Number of New Customers</span>
+                    <div class="count blue" >
                         <asp:Label ID="Label4" runat="server" class="count blue"></asp:Label>
                     </div>
                     <span class="count_bottom">
@@ -58,7 +58,7 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i>Unique Number of New Customers</span>
+                    <span class="count_top"><i class="fa fa-plus"></i> Unique Customers Seen</span>
                     <div class="count blue">
                         <asp:Label ID="Label5" runat="server" class="count blue"></asp:Label>
                     </div>
@@ -69,7 +69,7 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-paw"></i>Total Number of Animals Seen</span>
+                    <span class="count_top"><i class="fa fa-paw"></i> Number of Animals Seen</span>
                     <div class="count blue">
                         <asp:Label ID="Label6" runat="server" class="count blue"></asp:Label>
                     </div>

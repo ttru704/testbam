@@ -58,7 +58,7 @@ namespace Test
 
             //Bind Number of New Customers Single Value
             NewCustomersSingleBL newCustomersSingle = new NewCustomersSingleBL();
-            Label4.Text = String.Format("{0:0.00}", newCustomersSingle.usp_NewCustomersSingle(1));
+            Label4.Text = String.Format("{0}", newCustomersSingle.usp_NewCustomersSingle(1));
 
             //Bind Number of New Customer Change
             NewCustomersChangesBL newCustomersChanges = new NewCustomersChangesBL();
@@ -66,7 +66,7 @@ namespace Test
 
             //Bind Unique Number of New Customers Single Value
             UniqueCustomersSeenSingleBL uniqueCustomersSeenSingle = new UniqueCustomersSeenSingleBL();
-            Label5.Text = String.Format("{0:0.00}", uniqueCustomersSeenSingle.usp_UniqueCustomersSeenSingle(1));
+            Label5.Text = String.Format("{0}", uniqueCustomersSeenSingle.usp_UniqueCustomersSeenSingle(1));
 
             //Bind Unique Number of New Customers Change
             UniqueCustomersSeenChangesBL uniqueCustomersSeenChanges = new UniqueCustomersSeenChangesBL();
@@ -74,7 +74,7 @@ namespace Test
 
             //Bind Animals Seen Single Value
             AnimalsSeenSingleBL animalsSeenSingle = new AnimalsSeenSingleBL();
-            Label6.Text = String.Format("{0:0.00}", animalsSeenSingle.usp_AnimalsSeenSingle(1));
+            Label6.Text = String.Format("{0}", animalsSeenSingle.usp_AnimalsSeenSingle(1));
 
             //Bind Animals Seen Change
             AnimalsSeenChangesBL animalsSeenChanges = new AnimalsSeenChangesBL();
