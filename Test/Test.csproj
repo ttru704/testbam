@@ -435,39 +435,40 @@
     <Compile Include="BLL\BranchDropDownListBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenChangesBL.cs" />
-    <Compile Include="BLL\Customer\AnimalsSeenComBL.cs" />
+    <Compile Include="BLL\Customer\AnimalsSeenCompanyBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenSingleBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerBranchBL.cs" />
-    <Compile Include="BLL\Customer\AvgDollarPerCustomerComBL.cs" />
-    <Compile Include="BLL\Customer\LargeAnimalsComBL.cs" />
+    <Compile Include="BLL\Customer\AvgDollarPerCustomerCompanyBL.cs" />
+    <Compile Include="BLL\Customer\LargeAnimalsCompanyBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersBranchBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersChangesBL.cs" />
-    <Compile Include="BLL\Customer\NewCustomersComBL.cs" />
+    <Compile Include="BLL\Customer\NewCustomersCompanyBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersSingleBL.cs" />
-    <Compile Include="BLL\Customer\SmallAnimalsComBL.cs" />
+    <Compile Include="BLL\Customer\SmallAnimalsCompanyBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenChangesBL.cs" />
-    <Compile Include="BLL\Customer\UniqueCustomersSeenComBL.cs" />
+    <Compile Include="BLL\Customer\UniqueCustomersSeenCompanyBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenSingleBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerCustomerChangesBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerCustomerSingleBL.cs" />
-    <Compile Include="BLL\Financial\AvgPerTransactionBranchBL.cs" />
-    <Compile Include="BLL\Financial\AvgPerTransactionChangesBL.cs" />
-    <Compile Include="BLL\Financial\AvgPerTransactionComBL.cs" />
-    <Compile Include="BLL\Financial\AvgPerTransactionSingleBL.cs" />
-    <Compile Include="BLL\Financial\IncomeByProductCategoryComBL.cs" />
-    <Compile Include="BLL\Financial\IncomeByServiceActivityComBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerTransactionBranchBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerTransactionChangesBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerTransactionCompanyBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerTransactionSingleBL.cs" />
+    <Compile Include="BLL\Financial\IncomeByProductCategoryCompanyBL.cs" />
+    <Compile Include="BLL\Financial\IncomeByServiceActivityCompanyBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesBranchBL.cs" />
-    <Compile Include="BLL\Financial\RetailOnlySalesComBL.cs" />
+    <Compile Include="BLL\Financial\RetailOnlySalesCompanyBL.cs" />
     <Compile Include="BLL\Financial\ServiceOnlySalesBranchBL.cs" />
-    <Compile Include="BLL\Financial\ServiceOnlySalesComBL.cs" />
+    <Compile Include="BLL\Financial\ServiceOnlySalesCompanyBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesBranchBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesChangesBL.cs" />
-    <Compile Include="BLL\Financial\TotalSalesComBL.cs" />
+    <Compile Include="BLL\Financial\TotalSalesCompanyBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesSingleBL.cs" />
-    <Compile Include="BLL\Financial\TransExcludeZeroTotalComBL.cs" />
-    <Compile Include="BLL\Productivity\AnimalsSeenByEmpComBL.cs" />
-    <Compile Include="BLL\Productivity\CustomersSeenByEmpComBL.cs" />
+    <Compile Include="BLL\Financial\TransExcludeZeroTotalCompanyBL.cs" />
+    <Compile Include="BLL\Productivity\AnimalsSeenByEmployeeCompanyBL.cs" />
+    <Compile Include="BLL\Productivity\AnimalsSeenIndustryBL.cs" />
+    <Compile Include="BLL\Productivity\CustomersSeenByEmployeeCompanyBL.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -566,40 +567,41 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interface\Customer\IAnimalsSeenBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAnimalsSeenChangesRepo.cs" />
-    <Compile Include="Models\Interface\Customer\IAnimalsSeenComRepo.cs" />
+    <Compile Include="Models\Interface\Customer\IAnimalsSeenCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerBranchRepo.cs" />
-    <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerComRepo.cs" />
-    <Compile Include="Models\Interface\Customer\ILargeAnimalsComRepo.cs" />
+    <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Customer\ILargeAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersChangesRepo.cs" />
-    <Compile Include="Models\Interface\Customer\INewCustomersComRepo.cs" />
+    <Compile Include="Models\Interface\Customer\INewCustomersCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersSingleRepo.cs" />
-    <Compile Include="Models\Interface\Customer\ISmallAnimalsComRepo.cs" />
+    <Compile Include="Models\Interface\Customer\ISmallAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenChangesRepo.cs" />
-    <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenComRepo.cs" />
+    <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerChangesRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IAvgPerTransactionBranchRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IAvgPerTransactionComRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IAvgPerTransactionChangesRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IAvgPerTransactionSingleRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IIncomeByProductCategoryComRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IIncomeByServiceActivityComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionBranchRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionChangesRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionSingleRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IIncomeByProductCategoryCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IIncomeByServiceActivityCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesBranchRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IRetailOnlySalesComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IRetailOnlySalesCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\IServiceOnlySalesBranchRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IServiceOnlySalesComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IServiceOnlySalesCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesChangesRepo.cs" />
-    <Compile Include="Models\Interface\Financial\ITotalSalesComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\ITotalSalesCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesSingleRepo.cs" />
-    <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalComRepo.cs" />
+    <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Interface\IBranchDropDownListRepo.cs" />
-    <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmpComRepo.cs" />
-    <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmpComRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IAnimalsSeenIndustryRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -626,45 +628,40 @@
     <Compile Include="Models\Repository\BranchDropDownListRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenChangesRepo.cs" />
-    <Compile Include="Models\Repository\Customer\AnimalsSeenComRepo.cs" />
+    <Compile Include="Models\Repository\Customer\AnimalsSeenCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerBranchRepo.cs" />
-    <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerComRepo.cs" />
-    <Compile Include="Models\Repository\Customer\LargeAnimalsComRepo.cs" />
+    <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Customer\LargeAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersChangesRepo.cs" />
-    <Compile Include="Models\Repository\Customer\NewCustomersComRepo.cs" />
+    <Compile Include="Models\Repository\Customer\NewCustomersCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersSingleRepo.cs" />
-    <Compile Include="Models\Repository\Customer\SmallAnimalsComRepo.cs" />
+    <Compile Include="Models\Repository\Customer\SmallAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenChangesRepo.cs" />
-    <Compile Include="Models\Repository\Customer\UniqueCustomersSeenComRepo.cs" />
+    <Compile Include="Models\Repository\Customer\UniqueCustomersSeenCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerSingleRepo.cs" />
-    <Compile Include="Models\Repository\Financial\AvgPerTransactionBranchRepo.cs" />
-    <Compile Include="Models\Repository\Financial\AvgPerTransactionChangesRepo.cs" />
-    <Compile Include="Models\Repository\Financial\AvgPerTransactionComRepo.cs" />
-    <Compile Include="Models\Repository\Financial\AvgPerTransactionSingleRepo.cs" />
-    <Compile Include="Models\Repository\Financial\IncomeByProductCategoryComRepo.cs" />
-    <Compile Include="Models\Repository\Financial\IncomeByServiceActivityComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionBranchRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionChangesRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionSingleRepo.cs" />
+    <Compile Include="Models\Repository\Financial\IncomeByProductCategoryCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Financial\IncomeByServiceActivityCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesBranchRepo.cs" />
-    <Compile Include="Models\Repository\Financial\RetailOnlySalesComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\RetailOnlySalesCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\ServiceOnlySalesBranchRepo.cs" />
-    <Compile Include="Models\Repository\Financial\ServiceOnlySalesComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\ServiceOnlySalesCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesChangesRepo.cs" />
-    <Compile Include="Models\Repository\Financial\TotalSalesComRepo.cs" />
+    <Compile Include="Models\Repository\Financial\TotalSalesCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesSingleRepo.cs" />
-    <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalComRepo.cs" />
-    <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmpComRepo.cs" />
-    <Compile Include="Models\Repository\Productivity\CustomersSeenByEmpComRepo.cs" />
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\AnimalsSeenIndustryRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\CustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Staff_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -695,76 +692,91 @@
     <Compile Include="Models\usp_AnimalsSeenBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AnimalsSeenByEmpCom_Result.cs">
+    <Compile Include="Models\usp_AnimalsSeenByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AnimalsSeenCom_Result.cs">
+    <Compile Include="Models\usp_AnimalsSeenCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AnimalsSeenIndustry_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgCustomersSeenByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_AvgDollarPerCustomerBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AvgDollarPerCustomerCom_Result.cs">
+    <Compile Include="Models\usp_AvgDollarPerCustomerCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AvgPerTransactionBranch_Result.cs">
+    <Compile Include="Models\usp_AvgDollarPerTransactionBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AvgPerTransactionCom_Result.cs">
+    <Compile Include="Models\usp_AvgDollarPerTransactionCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_BranchDropDownList_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_CustomersSeenByEmpCom_Result.cs">
+    <Compile Include="Models\usp_CustomersSeenByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_IncomeByProductCategoryCom_Result.cs">
+    <Compile Include="Models\usp_IncomeByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_IncomeByServiceActivityCom_Result.cs">
+    <Compile Include="Models\usp_IncomeByProductCategoryCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_LargeAnimalsCom_Result.cs">
+    <Compile Include="Models\usp_IncomeByServiceActivityCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_LargeAnimalsBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_LargeAnimalsCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_NewCustomersBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_NewCustomersCom_Result.cs">
+    <Compile Include="Models\usp_NewCustomersCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_RetailOnlySalesBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_RetailOnlySalesCom_Result.cs">
+    <Compile Include="Models\usp_RetailOnlySalesCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_ServiceOnlySalesBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_ServiceOnlySalesCom_Result.cs">
+    <Compile Include="Models\usp_ServiceOnlySalesCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_SmallAnimalsCom_Result.cs">
+    <Compile Include="Models\usp_SmallAnimalsBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_SmallAnimalsCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_TotalSalesBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_TotalSalesCom_Result.cs">
+    <Compile Include="Models\usp_TotalSalesCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_TotalSalesIndustry_Result.cs">
+    <Compile Include="Models\usp_TransExcludeZeroTotalBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_TransExcludeZeroTotalCom_Result.cs">
+    <Compile Include="Models\usp_TransExcludeZeroTotalCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_UniqueCustomersSeenBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_UniqueCustomersSeenCom_Result.cs">
+    <Compile Include="Models\usp_UniqueCustomersSeenCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_UniqueCustomersSeenIndustry_Result.cs">

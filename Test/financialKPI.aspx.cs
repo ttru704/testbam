@@ -26,50 +26,17 @@ namespace Test
             //item.Value = "0";
             //BranchDDL1.Items.Add(item);
         }
-        //public DataTable ConvertToDataTable<T>(IList<T> data)
-        //{
-        //    PropertyDescriptorCollection properties =
-        //        TypeDescriptor.GetProperties(typeof(T));
-
-        //    DataTable table = new DataTable();
-
-        //    foreach (PropertyDescriptor prop in properties)
-        //        table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-
-        //    foreach (T item in data)
-        //    {
-        //        DataRow row = table.NewRow();
-        //        foreach (PropertyDescriptor prop in properties)
-        //            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-        //        table.Rows.Add(row);
-        //    }
-        //    return table;
-        //}
+        
 
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            ////////// This is the inefficient solution of binding the graph it through the gridview)
-            //DataTable dt = new DataTable();
-            //for (int i = 0; i < AvgPerTransactionBranchG1.Columns.Count; i++)
-            //{
-            //    dt.Columns.Add("column" + i.ToString());
-            //}
-            //foreach (GridViewRow row in AvgPerTransactionBranchG1.Rows)
-            //{
-            //    DataRow dr = dt.NewRow();
-            //    for (int j = 0; j < AvgPerTransactionBranchG1.Columns.Count; j++)
-            //    {
-            //        dr["column" + j.ToString()] = row.Cells[j].Text;
-            //    }
-
-            //    dt.Rows.Add(dr);
-            //}
+            
 
             BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
             List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
 
-            AvgPerTransactionComRHC1.DataBind();
+            
             
 
             DateTime? start = DatePicker1.SelectedDate.GetValueOrDefault();
@@ -81,17 +48,16 @@ namespace Test
             
 
 
-            AvgPerTransactionBranchBL avgPerTransactionBranchBL = new AvgPerTransactionBranchBL();
-            List<usp_AvgPerTransactionBranch_Result> t = avgPerTransactionBranchBL.usp_AvgPerTransactionBranch(start, end, company, branch, time);
+            
 
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
-            DataTable dt = converter.ToDataTable(t);
+
             //String.Format("{0: mmm yy}", dt.Columns["Year_Month"]);
             //DateTime.ParseExact(dt.Columns["Year_Month"])
-            RadHtmlChartGroupDataSource.GroupDataSource(AvgPerTransactionBranchRHC1, dt, "Branch_Name", "ColumnSeries", "Average_Dollar_per_Transaction", "TimePeriod");
 
 
-            TotalSalesComRHC1.DataBind();
+
+            TotalSalesCompanyRHC1.DataBind();
             //string labelsFormatString = "{0:n0}";
             if (TimeDDL1.SelectedValue == "1")
             {
@@ -99,17 +65,7 @@ namespace Test
                 TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
                 TotalSalesBranchRHC1.ChartTitle.Text = "Total Sales Branch Comparison";
                 TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.format(\\'{0:MMM}\\',value)#";
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.format(kendo.parseDate('value'), 'y')#"; -disappears
 
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(\'{MM}\',value.myColumn)#"; - disappears
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate('value')#"; -disappears
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value)#"; - works but with no format
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value, \"yyyy/MM/dd\")#";
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value, \'yyyy/MM/dd\')#"; -disappears
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value, \'{yyyy/MM/dd}\')#"; - disappears
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.toString(value, \"y\")#"; -disappears
-                //TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#= kendo.format(\'{0:d/MM/yyyy}\', new Date(value.x))#"; -disappears
 
                 TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales";
                 //TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = labelsFormatString;
@@ -118,9 +74,9 @@ namespace Test
 
                 
                 //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM";
-                AvgPerTransactionBranchRHC1.ChartTitle.Text = "Average per Transaction Branch Comparison";
-                AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
-                AvgPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction";
+                AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Average per Transaction Branch Comparison";
+                AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
+                AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction";
                 RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
                 ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
                 RetailOnlySalesBranchRHC1.ChartTitle.Text = "Retail Only Sales Branch Comparison";
@@ -133,42 +89,35 @@ namespace Test
             }
             else
             {
-                TotalSalesComRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
-                TotalSalesComRHC1.ChartTitle.Text = "Total Yearly Sales";
-                TotalSalesComRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                TotalSalesCompanyRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                TotalSalesCompanyRHC1.ChartTitle.Text = "Total Yearly Sales";
+                TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
 
-                AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
-                AvgPerTransactionBranchRHC1.ChartTitle.Text = "Total Yearly Sales";
-                AvgPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
+                AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Total Yearly Sales";
+                AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
             };
 
             
-            //DataTable dt2 = new DataTable();
-            //for (int i = 0; i < TotalSalesBranchG1.Columns.Count; i++)
-            //{
-            //    dt2.Columns.Add("column" + i.ToString());
-            //}
-            //foreach (GridViewRow row in TotalSalesBranchG1.Rows)
-            //{
-            //    DataRow dr = dt2.NewRow();
-            //    for (int j = 0; j < TotalSalesBranchG1.Columns.Count; j++)
-            //    {
-            //        dr["column" + j.ToString()] = row.Cells[j].Text;
-            //    }
-
-            //    dt2.Rows.Add(dr);
-            //}
+            
 
             TotalSalesBranchBL totalSalesBranchBL = new TotalSalesBranchBL();
             List<usp_TotalSalesBranch_Result> totalSalesBranchList = totalSalesBranchBL.usp_TotalSalesBranch(start, end, company, branch, time);
-
             DataTable totalSalesBranchDT = converter.ToDataTable(totalSalesBranchList);
             RadHtmlChartGroupDataSource.GroupDataSource(TotalSalesBranchRHC1, totalSalesBranchDT, "Branch_Name", "ColumnSeries", "Total_Sales", "TimePeriod");
 
-            TransExcludeZeroTotalComRHC1.DataBind();
+            AvgDollarPerTransactionCompanyRHC1.DataBind();
 
-            RetailOnlySalesComRHC1.DataBind();
-            ServiceOnlySalesComRHC1.DataBind();
+            AvgDollarPerTransactionBranchBL avgDollarPerTransactionBranchBL = new AvgDollarPerTransactionBranchBL();
+            List<usp_AvgDollarPerTransactionBranch_Result> t = avgDollarPerTransactionBranchBL.usp_AvgDollarPerTransactionBranch(start, end, company, branch, time);
+            DataTable dt = converter.ToDataTable(t);
+            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerTransactionBranchRHC1, dt, "Branch_Name", "ColumnSeries", "Average_Dollar_per_Transaction", "TimePeriod");
+
+            TransExcludeZeroTotalCompanyRHC1.DataBind();
+
+            RetailOnlySalesCompanyRHC1.DataBind();
+
+            ServiceOnlySalesCompanyRHC1.DataBind();
 
             RetailOnlySalesBranchBL retailOnlySalesBranchBL = new RetailOnlySalesBranchBL();
             List<usp_RetailOnlySalesBranch_Result> retailOnlySalesBranchList = retailOnlySalesBranchBL.usp_RetailOnlySalesBranch(start, end, company, branch, time);
@@ -183,7 +132,7 @@ namespace Test
             DataTable serviceOnlySalesBranchDT = converter.ToDataTable(serviceOnlySalesBranchList);
             RadHtmlChartGroupDataSource.GroupDataSource(ServiceOnlySalesBranchRHC1, serviceOnlySalesBranchDT, "Branch_Name", "LineSeries", "Service_Total_Only", "TimePeriod");
 
-
+           
             
 
 

@@ -41,12 +41,12 @@ namespace Test
             //}
 
             //Bind Average Per Transaction Single Value
-            AvgPerTransactionSingleBL avgPerTransactionSingle = new AvgPerTransactionSingleBL();
-            Label2.Text = '$' + String.Format("{0:0.00}", avgPerTransactionSingle.usp_AvgPerTransactionSingle(1));
+            AvgDollarPerTransactionSingleBL avgPerTransactionSingle = new AvgDollarPerTransactionSingleBL();
+            Label2.Text = '$' + String.Format("{0:0.00}", avgPerTransactionSingle.usp_AvgDollarPerTransactionSingle(1));
 
             //Bind Average Per Transaction Change
-            AvgPerTransactionChangesBL avgPerTransactionChanges = new AvgPerTransactionChangesBL();
-            LabelPercent2.Text = String.Format("{0:0.00}", avgPerTransactionChanges.usp_AvgPerTransactionChanges(1)) + '%';
+            AvgDollarPerTransactionChangesBL avgPerTransactionChanges = new AvgDollarPerTransactionChangesBL();
+            LabelPercent2.Text = String.Format("{0:0.00}", avgPerTransactionChanges.usp_AvgDollarPerTransactionChanges(1)) + '%';
 
             //Bind Average Dollar Per Customer Single Value
             AvgDollarPerCustomerSingleBL avgDollarPerCustomerSingle = new AvgDollarPerCustomerSingleBL();

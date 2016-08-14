@@ -25,21 +25,29 @@ namespace Test
         {
             DateTime start = DatePicker1.SelectedDate.GetValueOrDefault();
             DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
-
-            CustomersSeenByEmpComBL customersSeenByEmpComBL = new CustomersSeenByEmpComBL();
-            List<usp_CustomersSeenByEmpCom_Result> customersSeenByEmpComList = customersSeenByEmpComBL.usp_CustomersSeenByEmpCom(start, end, 1, 2);
-
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
-            DataTable customersSeenByEmpComDT = converter.ToDataTable(customersSeenByEmpComList);
+
+            //CustomersSeenByEmployeeCompanyBL customersSeenByEmployeeCompanyBL = new CustomersSeenByEmployeeCompanyBL();
+            //List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, 1, 2);
 
 
-            RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmpComRHC1, customersSeenByEmpComDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
+            //DataTable customersSeenByEmployeeCompanyDT = converter.ToDataTable(customersSeenByEmployeeCompanyList);
 
-            AnimalsSeenByEmpComBL animalsSeenByEmpComBL = new AnimalsSeenByEmpComBL();
-            List <usp_AnimalsSeenByEmpCom_Result> animalsSeenByEmpComList = animalsSeenByEmpComBL.usp_AnimalsSeenByEmpCom(start, end, 1, 2);
 
-            DataTable animalsSeenByEmpComDT = converter.ToDataTable(animalsSeenByEmpComList);
-            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmpComRHC1, animalsSeenByEmpComDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
+            //RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeCompanyRHC1, customersSeenByEmployeeCompanyDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
+
+            //AnimalsSeenByEmployeeCompanyBL animalsSeenByEmployeeCompanyBL = new AnimalsSeenByEmployeeCompanyBL();
+            //List <usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, 1, 2);
+
+            //DataTable animalsSeenByEmployeeCompanyDT = converter.ToDataTable(animalsSeenByEmployeeCompanyList);
+            //RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeCompanyRHC1, animalsSeenByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
+
+            AnimalsSeenIndustryBL animalsSeenIndustryBL = new AnimalsSeenIndustryBL();
+            List<usp_AnimalsSeenIndustry_Result> animalsSeenIndustryList = animalsSeenIndustryBL.usp_AnimalsSeenIndustry(start, end, 1, 1, 1);
+            DataTable animalsSeenIndustryDT = converter.ToDataTable(animalsSeenIndustryList);
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenIndustryRHC1, animalsSeenIndustryDT, "Name", "LineSeries", "Number_of_Animals_Seen", "TimePeriod");
+
+            //var redraw = $(".chart").data("kendoChart").redraw();
 
         }
     }

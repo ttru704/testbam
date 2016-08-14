@@ -10,25 +10,24 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
+        <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
             <AjaxSettings>
                 <telerik:AjaxSetting AjaxControlID="Button1">
                     <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="RadGrid1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenCompanyODC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="RadGrid2" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenBranchODC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                         <telerik:AjaxUpdatedControl ControlID="AnimalsSeenBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="NewCustomersComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="NewCustomersCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="NewCustomersBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                     </UpdatedControls>
                 </telerik:AjaxSetting>
             </AjaxSettings>
@@ -68,9 +67,10 @@
                 </telerik:RadDropDownList>
                 <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="24px" Width="197px">
                     <Items>
-                        <telerik:DropDownListItem Text="Monthly" Value="1" />
-                        <telerik:DropDownListItem Text="Yearly" Value="2" />
                         <telerik:DropDownListItem Text="Weekly" Value="3" />
+                        <telerik:DropDownListItem Text="Monthly" Value="1" Selected="true" />
+                        <telerik:DropDownListItem Text="Yearly" Value="2" />
+                        
                     </Items>
                 </telerik:RadDropDownList>
 
@@ -97,7 +97,7 @@
                     <div class="x_content">
                         <div class="">
                             <%--Chart--%>
-                            <telerik:RadHtmlChart ID="UniqueCustomersSeenComRHC1" runat="server" DataSourceID="UniqueCustomersSeenComODC1" Skin="MetroTouch">
+                            <telerik:RadHtmlChart ID="UniqueCustomersSeenCompanyRHC1" runat="server" DataSourceID="UniqueCustomersSeenCompanyODC1" Skin="MetroTouch">
                                 <PlotArea>
                                     <Series>
                                         <telerik:ColumnSeries DataFieldY="Number_of_Unique_Clients">
@@ -127,22 +127,24 @@
                                 <Zoom Enabled="False"></Zoom>
                             </telerik:RadHtmlChart>
                             <%--Table--%>
-                            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="UniqueCustomersSeenComODC1" CellSpacing="-1" GridLines="Both" ShowGroupPanel="True" Skin="MetroTouch">
+                            <telerik:RadGrid ID="RadGrid1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="UniqueCustomersSeenCompanyODC1" CellSpacing="-1" GridLines="Both" ShowGroupPanel="True" Skin="MetroTouch">
                                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" ReorderColumnsOnClient="True" AllowDragToGroup="True">
                                     <Selecting AllowRowSelect="True" />
                                 </ClientSettings>
-                                <MasterTableView AllowPaging="False" AllowSorting="False" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenComODC1">
+                                <MasterTableView AllowPaging="False" AllowSorting="False" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenCompanyODC1">
                                     <Columns>
-                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        <telerik:GridBoundColumn DataField="Time_Period" FilterControlAltText="Filter Time_Period column" HeaderText="Time_Period" SortExpression="Time_Period" UniqueName="Time_Period" DataType="System.DateTime">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_Unique_Clients" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_Unique_Clients column" HeaderText="Number of Unique Clients" SortExpression="Number_of_Unique_Clients" UniqueName="Number_of_Unique_Clients">
+                                        <telerik:GridBoundColumn DataField="Number_of_Unique_Clients" DataType="System.Int32" FilterControlAltText="Filter Number_of_Unique_Clients column" HeaderText="Number_of_Unique_Clients" SortExpression="Number_of_Unique_Clients" UniqueName="Number_of_Unique_Clients">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="TimePeriod" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
                             </telerik:RadGrid>
                             <%--Datasource--%>
-                            <asp:ObjectDataSource ID="UniqueCustomersSeenComODC1" runat="server" SelectMethod="usp_UniqueCustomersSeenCom" TypeName="Test.BLL.Customer.UniqueCustomersSeenComBL">
+                            <asp:ObjectDataSource ID="UniqueCustomersSeenCompanyODC1" runat="server" SelectMethod="usp_UniqueCustomersSeenCompany" TypeName="Test.BLL.Customer.UniqueCustomersSeenCompanyBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-05-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-30" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -253,7 +255,7 @@
                         <div class="">
                             <ul class="to_do">
                                 <%--Chart--%>
-                                <telerik:RadHtmlChart ID="AnimalsSeenComRHC1" runat="server" DataSourceID="AnimalsSeenComODS1" Skin="Vista">
+                                <telerik:RadHtmlChart ID="AnimalsSeenCompanyRHC1" runat="server" DataSourceID="AnimalsSeenCompanyODS1" Skin="Vista">
                                     <PlotArea>
                                         <Series>
                                             <telerik:LineSeries Name="No of Animals Seen" DataFieldY="Number_of_animals_seen">
@@ -285,7 +287,7 @@
                                     <Zoom Enabled="False"></Zoom>
                                 </telerik:RadHtmlChart>
                                 <%--Datasource--%>
-                                <asp:ObjectDataSource ID="AnimalsSeenComODS1" runat="server" SelectMethod="usp_AnimalsSeenCom" TypeName="Test.BLL.Customer.AnimalsSeenComBL">
+                                <asp:ObjectDataSource ID="AnimalsSeenCompanyODS1" runat="server" SelectMethod="usp_AnimalsSeenCompany" TypeName="Test.BLL.Customer.AnimalsSeenCompanyBL">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-05-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                         <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-30" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -294,16 +296,16 @@
                                     </SelectParameters>
                                 </asp:ObjectDataSource>
                                 <%--Table--%>
-                                <telerik:RadGrid ID="AnimalsSeenComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AnimalsSeenComODS1" ShowGroupPanel="True" Skin="MetroTouch">
+                                <telerik:RadGrid ID="AnimalsSeenComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AnimalsSeenCompanyODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
                                     <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                     <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                         <Selecting AllowRowSelect="True" />
                                     </ClientSettings>
-                                    <MasterTableView AutoGenerateColumns="False" DataSourceID="AnimalsSeenComODS1">
+                                    <MasterTableView AutoGenerateColumns="False" DataSourceID="AnimalsSeenCompanyODS1">
                                         <Columns>
                                             <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                             </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="Number_of_animals_seen" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_animals_seen column" HeaderText="Number of Animals Seen" SortExpression="Number_of_animals_seen" UniqueName="Number_of_animals_seen">
+                                            <telerik:GridBoundColumn DataField="Number_of_animals_seen" DataType="System.Int32" FilterControlAltText="Filter Number_of_animals_seen column" HeaderText="Number of Animals Seen" SortExpression="Number_of_animals_seen" UniqueName="Number_of_animals_seen">
                                             </telerik:GridBoundColumn>
                                         </Columns>
                                     </MasterTableView>
@@ -373,7 +375,7 @@
                     <div class="x_content">
                         <div class="">
                             <%--Chart--%>
-                            <telerik:RadHtmlChart ID="AvgDollarPerCustomerComRHC1" runat="server" DataSourceID="AvgDollarPerCustomerComODS1" Skin="Metro">
+                            <telerik:RadHtmlChart ID="AvgDollarPerCustomerCompanyRHC1" runat="server" DataSourceID="AvgDollarPerCustomerCompanyODS1" Skin="Metro">
                                 <Pan Enabled="true" Lock="Y" />
                                 <Zoom Enabled="true">
                                     <MouseWheel Enabled="true" Lock="Y" />
@@ -410,7 +412,7 @@
                                 </ChartTitle>
                             </telerik:RadHtmlChart>
                             <%--Datasource--%>
-                            <asp:ObjectDataSource ID="AvgDollarPerCustomerComODS1" runat="server" SelectMethod="usp_AvgDollarPerCustomerCom" TypeName="Test.BLL.Customer.AvgDollarPerCustomerComBL">
+                            <asp:ObjectDataSource ID="AvgDollarPerCustomerCompanyODS1" runat="server" SelectMethod="usp_AvgDollarPerCustomerCompany" TypeName="Test.BLL.Customer.AvgDollarPerCustomerCompanyBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-05-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-30" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -419,16 +421,16 @@
                                 </SelectParameters>
                             </asp:ObjectDataSource>
                             <%--Table--%>
-                            <telerik:RadGrid ID="AvgDollarPerCustomerComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AvgDollarPerCustomerComODS1" ShowGroupPanel="True" Skin="MetroTouch">
+                            <telerik:RadGrid ID="AvgDollarPerCustomerCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AvgDollarPerCustomerCompanyODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
                                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                     <Selecting AllowRowSelect="True" />
                                 </ClientSettings>
-                                <MasterTableView AutoGenerateColumns="False" DataSourceID="AvgDollarPerCustomerComODS1">
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="AvgDollarPerCustomerCompanyODS1">
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_customer" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_customer column" HeaderText="Average Dollar per Customer" SortExpression="Average_Dollar_per_customer" UniqueName="Average_Dollar_per_customer">
+                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_customer" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_customer column" HeaderText="Average Dollar per Customer" SortExpression="Average_Dollar_per_customer" UniqueName="Average_Dollar_per_customer">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -497,7 +499,7 @@
                     <div class="x_content">
                         <div class="">
                             <%--Chart--%>
-                            <telerik:RadHtmlChart ID="NewCustomersComRHC1" runat="server" DataSourceID="NewCustomersComODS1" Skin="Silk">
+                            <telerik:RadHtmlChart ID="NewCustomersCompanyRHC1" runat="server" DataSourceID="NewCustomersCompanyODS1" Skin="Silk">
                                 <PlotArea>
                                     <Series>
                                         <telerik:ColumnSeries DataFieldY="Number_of_New_Customers">
@@ -526,7 +528,7 @@
                                 </ChartTitle>
                             </telerik:RadHtmlChart>
                             <%--Datasource--%>
-                            <asp:ObjectDataSource ID="NewCustomersComODS1" runat="server" SelectMethod="usp_NewCustomersCom" TypeName="Test.BLL.Customer.NewCustomersComBL">
+                            <asp:ObjectDataSource ID="NewCustomersCompanyODS1" runat="server" SelectMethod="usp_NewCustomersCompany" TypeName="Test.BLL.Customer.NewCustomersCompanyBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-05-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-30" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -535,20 +537,46 @@
                                 </SelectParameters>
                             </asp:ObjectDataSource>
                             <%--Table--%>
-                            <telerik:RadGrid ID="NewCustomersComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="NewCustomersComODS1" ShowGroupPanel="True" Skin="MetroTouch">
+                            <telerik:RadGrid ID="NewCustomersCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="NewCustomersCompanyODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
                                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                     <Selecting AllowRowSelect="True" />
                                 </ClientSettings>
-                                <MasterTableView AutoGenerateColumns="False" DataSourceID="NewCustomersComODS1">
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="NewCustomersCompanyODS1">
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_New_Customers" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_New_Customers column" HeaderText="Number of New Customers" SortExpression="Number_of_New_Customers" UniqueName="Number_of_New_Customers">
+                                        <telerik:GridBoundColumn DataField="Number_of_New_Customers" DataType="System.Int32" FilterControlAltText="Filter Number_of_New_Customers column" HeaderText="Number of New Customers" SortExpression="Number_of_New_Customers" UniqueName="Number_of_New_Customers">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
                             </telerik:RadGrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--This section is for Number of New Customers Branch Comparison--%>
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Number of New Customers Branch Comparison</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="">
+                            <%--Chart--%>
+                            <telerik:RadHtmlChart ID="NewCustomersBranchRHC1" runat="server">
+                                <ChartTitle Text="No of New Customers Branch Comparison">
+                                </ChartTitle>
+                            </telerik:RadHtmlChart>
+                            <%--Datasource--%>
+                            
+                            <%--Table--%>
+                            
                         </div>
                     </div>
                 </div>
@@ -567,7 +595,7 @@
                     <div class="x_content">
                         <div class="">
                             <%--Chart--%>
-                            <telerik:RadHtmlChart ID="SmallAnimalsComRHC1" runat="server" DataSourceID="SmallAnimalsComODS1" Skin="Material">
+                            <telerik:RadHtmlChart ID="SmallAnimalsCompanyRHC1" runat="server" DataSourceID="SmallAnimalsCompanyODS1" Skin="Material">
                                 <PlotArea>
                                     <Series>
                                         <telerik:LineSeries Name="Small Animals" DataFieldY="Number_of_Small_Animals">
@@ -598,7 +626,7 @@
                                 </ChartTitle>
                             </telerik:RadHtmlChart>
                             <%--Datasource--%>
-                            <asp:ObjectDataSource ID="SmallAnimalsComODS1" runat="server" SelectMethod="usp_SmallAnimalsCom" TypeName="Test.BLL.Customer.SmallAnimalsComBL">
+                            <asp:ObjectDataSource ID="SmallAnimalsCompanyODS1" runat="server" SelectMethod="usp_SmallAnimalsCompany" TypeName="Test.BLL.Customer.SmallAnimalsCompanyBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -607,16 +635,16 @@
                                 </SelectParameters>
                             </asp:ObjectDataSource>
                             <%--Table--%>
-                            <telerik:RadGrid ID="SmallAnimalsComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SmallAnimalsComODS1" ShowGroupPanel="True" Skin="MetroTouch">
+                            <telerik:RadGrid ID="SmallAnimalsCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SmallAnimalsCompanyODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
                                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                     <Selecting AllowRowSelect="True" />
                                 </ClientSettings>
-                                <MasterTableView AutoGenerateColumns="False" DataSourceID="SmallAnimalsComODS1">
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="SmallAnimalsCompanyODS1">
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_Small_Animals" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_Small_Animals column" HeaderText="Number of Small Animals" SortExpression="Number_of_Small_Animals" UniqueName="Number_of_Small_Animals">
+                                        <telerik:GridBoundColumn DataField="Number_of_Small_Animals" DataType="System.Int32" FilterControlAltText="Filter Number_of_Small_Animals column" HeaderText="Number of Small Animals" SortExpression="Number_of_Small_Animals" UniqueName="Number_of_Small_Animals">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -639,7 +667,7 @@
                     <div class="x_content">
                         <div class="">
                             <%--Chart--%>
-                            <telerik:RadHtmlChart ID="LargeAnimalsComRHC1" runat="server" DataSourceID="LargeAnimalsComODS1">
+                            <telerik:RadHtmlChart ID="LargeAnimalsCompanyRHC1" runat="server" DataSourceID="LargeAnimalsCompanyODS1">
                                 <PlotArea>
                                     <Series>
                                         <telerik:LineSeries Name="Large Animals" DataFieldY="Number_of_Large_Animals">
@@ -671,7 +699,7 @@
                             </telerik:RadHtmlChart>
 
                             <%--Datasource--%>
-                            <asp:ObjectDataSource ID="LargeAnimalsComODS1" runat="server" SelectMethod="usp_LargeAnimalsCom" TypeName="Test.BLL.Customer.LargeAnimalsComBL">
+                            <asp:ObjectDataSource ID="LargeAnimalsCompanyODS1" runat="server" SelectMethod="usp_LargeAnimalsCompany" TypeName="Test.BLL.Customer.LargeAnimalsCompanyBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -680,16 +708,16 @@
                                 </SelectParameters>
                             </asp:ObjectDataSource>
                             <%--Table--%>
-                            <telerik:RadGrid ID="LargeAnimalsComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="LargeAnimalsComODS1" ShowGroupPanel="True" Skin="MetroTouch">
+                            <telerik:RadGrid ID="LargeAnimalsCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="LargeAnimalsCompanyODS1" ShowGroupPanel="True" Skin="MetroTouch">
                                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                     <Selecting AllowRowSelect="True" />
                                 </ClientSettings>
-                                <MasterTableView AutoGenerateColumns="False" DataSourceID="LargeAnimalsComODS1">
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="LargeAnimalsCompanyODS1">
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_Large_Animals" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_Large_Animals column" HeaderText="Number of Large Animals" SortExpression="Number_of_Large_Animals" UniqueName="Number_of_Large_Animals">
+                                        <telerik:GridBoundColumn DataField="Number_of_Large_Animals" DataType="System.Int32" FilterControlAltText="Filter Number_of_Large_Animals column" HeaderText="Number of Large Animals" SortExpression="Number_of_Large_Animals" UniqueName="Number_of_Large_Animals">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>

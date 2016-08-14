@@ -22,13 +22,22 @@ namespace Test {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// RadStyleSheetManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::Telerik.Web.UI.RadStyleSheetManager RadStyleSheetManager1;
+        
+        /// <summary>
+        /// RadScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadScriptManager RadScriptManager1;
         
         /// <summary>
         /// RadAjaxLoadingPanel1 control.
@@ -112,13 +121,13 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource BranchDropDownODS1;
         
         /// <summary>
-        /// UniqueCustomersSeenComRHC1 control.
+        /// UniqueCustomersSeenCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart UniqueCustomersSeenComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart UniqueCustomersSeenCompanyRHC1;
         
         /// <summary>
         /// RadGrid1 control.
@@ -130,13 +139,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid RadGrid1;
         
         /// <summary>
-        /// UniqueCustomersSeenComODC1 control.
+        /// UniqueCustomersSeenCompanyODC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenComODC1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenCompanyODC1;
         
         /// <summary>
         /// UniqueCustomersSeenBranchRHC1 control.
@@ -175,22 +184,22 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenBranchODC1;
         
         /// <summary>
-        /// AnimalsSeenComRHC1 control.
+        /// AnimalsSeenCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenCompanyRHC1;
         
         /// <summary>
-        /// AnimalsSeenComODS1 control.
+        /// AnimalsSeenCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AnimalsSeenComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AnimalsSeenCompanyODS1;
         
         /// <summary>
         /// AnimalsSeenComG1 control.
@@ -229,31 +238,31 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AnimalsSeenBranchG1;
         
         /// <summary>
-        /// AvgDollarPerCustomerComRHC1 control.
+        /// AvgDollarPerCustomerCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart AvgDollarPerCustomerComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart AvgDollarPerCustomerCompanyRHC1;
         
         /// <summary>
-        /// AvgDollarPerCustomerComODS1 control.
+        /// AvgDollarPerCustomerCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AvgDollarPerCustomerComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgDollarPerCustomerCompanyODS1;
         
         /// <summary>
-        /// AvgDollarPerCustomerComG1 control.
+        /// AvgDollarPerCustomerCompanyG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid AvgDollarPerCustomerComG1;
+        protected global::Telerik.Web.UI.RadGrid AvgDollarPerCustomerCompanyG1;
         
         /// <summary>
         /// AvgDollarPerCustomerBranchRHC1 control.
@@ -283,84 +292,93 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AvgDollarPerCustomerBranchG1;
         
         /// <summary>
-        /// NewCustomersComRHC1 control.
+        /// NewCustomersCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart NewCustomersComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart NewCustomersCompanyRHC1;
         
         /// <summary>
-        /// NewCustomersComODS1 control.
+        /// NewCustomersCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource NewCustomersComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource NewCustomersCompanyODS1;
         
         /// <summary>
-        /// NewCustomersComG1 control.
+        /// NewCustomersCompanyG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid NewCustomersComG1;
+        protected global::Telerik.Web.UI.RadGrid NewCustomersCompanyG1;
         
         /// <summary>
-        /// SmallAnimalsComRHC1 control.
+        /// NewCustomersBranchRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart SmallAnimalsComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart NewCustomersBranchRHC1;
         
         /// <summary>
-        /// SmallAnimalsComODS1 control.
+        /// SmallAnimalsCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource SmallAnimalsComODS1;
+        protected global::Telerik.Web.UI.RadHtmlChart SmallAnimalsCompanyRHC1;
         
         /// <summary>
-        /// SmallAnimalsComG1 control.
+        /// SmallAnimalsCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid SmallAnimalsComG1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource SmallAnimalsCompanyODS1;
         
         /// <summary>
-        /// LargeAnimalsComRHC1 control.
+        /// SmallAnimalsCompanyG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart LargeAnimalsComRHC1;
+        protected global::Telerik.Web.UI.RadGrid SmallAnimalsCompanyG1;
         
         /// <summary>
-        /// LargeAnimalsComODS1 control.
+        /// LargeAnimalsCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource LargeAnimalsComODS1;
+        protected global::Telerik.Web.UI.RadHtmlChart LargeAnimalsCompanyRHC1;
         
         /// <summary>
-        /// LargeAnimalsComG1 control.
+        /// LargeAnimalsCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid LargeAnimalsComG1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource LargeAnimalsCompanyODS1;
+        
+        /// <summary>
+        /// LargeAnimalsCompanyG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid LargeAnimalsCompanyG1;
     }
 }

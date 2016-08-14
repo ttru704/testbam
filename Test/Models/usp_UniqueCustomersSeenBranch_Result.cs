@@ -14,8 +14,8 @@ namespace Test.Models
     public partial class usp_UniqueCustomersSeenBranch_Result
     {
         public string Branch_Name { get; set; }
-        public Nullable<System.DateTime> Time_Period { get; set; }
-        public Nullable<int> Number_of_Unique_Clients { get; set; }
+        public Nullable<System.DateTime> YearMonth { get; set; }
+        public decimal Number_of_Unique_Clients { get; set; }
         public string TimePeriod { get; set; }
     }
 }

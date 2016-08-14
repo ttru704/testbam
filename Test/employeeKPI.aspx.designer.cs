@@ -112,57 +112,66 @@ namespace Test {
         protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
         
         /// <summary>
-        /// CustomersSeenByEmpComRHC1 control.
+        /// CustomersSeenByEmployeeCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart CustomersSeenByEmpComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart CustomersSeenByEmployeeCompanyRHC1;
         
         /// <summary>
-        /// CustomersSeenByEmpComG1 control.
+        /// CustomersSeenByEmployeeCompanyG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmpComG1;
+        protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmployeeCompanyG1;
         
         /// <summary>
-        /// CustomersSeenByEmpComODS1 control.
+        /// CustomersSeenByEmployeeCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmpComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmployeeCompanyODS1;
         
         /// <summary>
-        /// AnimalsSeenByEmpComRHC1 control.
+        /// AnimalsSeenByEmployeeCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenByEmpComRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenByEmployeeCompanyRHC1;
         
         /// <summary>
-        /// AnimalsSeenByEmpComODS1 control.
+        /// AnimalsSeenByEmployeeCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AnimalsSeenByEmpComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AnimalsSeenByEmployeeCompanyODS1;
         
         /// <summary>
-        /// AnimalsSeenByEmpComG1 control.
+        /// AnimalsSeenByEmployeeCompanyG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid AnimalsSeenByEmpComG1;
+        protected global::Telerik.Web.UI.RadGrid AnimalsSeenByEmployeeCompanyG1;
+        
+        /// <summary>
+        /// AnimalsSeenIndustryRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenIndustryRHC1;
     }
 }

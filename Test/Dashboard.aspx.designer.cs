@@ -148,13 +148,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart RadHtmlChart1;
         
         /// <summary>
-        /// TotalSalesComODS1 control.
+        /// TotalSalesCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource TotalSalesCompanyODS1;
         
         /// <summary>
         /// IncomeByProductCategoryComRHC1 control.
@@ -166,13 +166,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart IncomeByProductCategoryComRHC1;
         
         /// <summary>
-        /// IncomeByProductCategoryComODS1 control.
+        /// IncomeByProductCategoryCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource IncomeByProductCategoryComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource IncomeByProductCategoryCompanyODS1;
         
         /// <summary>
         /// IncomeByServiceActivityComRHC1 control.
@@ -184,12 +184,12 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart IncomeByServiceActivityComRHC1;
         
         /// <summary>
-        /// IncomeByServiceActivityComODS1 control.
+        /// IncomeByServiceActivityCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource IncomeByServiceActivityComODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource IncomeByServiceActivityCompanyODS1;
     }
 }

@@ -13,8 +13,9 @@ namespace Test.Models
     
     public partial class usp_NewCustomersBranch_Result
     {
-        public long Branch_Ref { get; set; }
+        public string Branch_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
-        public Nullable<int> Number_of_New_Customers { get; set; }
+        public decimal Number_of_New_Customers { get; set; }
+        public string TimePeriod { get; set; }
     }
 }

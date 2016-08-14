@@ -22,16 +22,11 @@ namespace Test
 
         }
 
-        //public IQueryable<KPI_Types> GetKPICategories()
-        //{
-        //    var _db = new KPIEntities();
-        //    IQueryable<KPI_Types> query = _db.KPI_Types;
-        //    return query;
-        //}
+        
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            UniqueCustomersSeenComRHC1.DataBind();
+            UniqueCustomersSeenCompanyRHC1.DataBind();
 
             DateTime start = DatePicker1.SelectedDate.GetValueOrDefault();
             DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
@@ -48,28 +43,35 @@ namespace Test
 
             RadHtmlChartGroupDataSource.GroupDataSource(UniqueCustomersSeenBranchRHC1, uniqueCustomersSeenBranchDT, "Branch_Name", "LineSeries", "Number_of_Unique_Clients", "TimePeriod");
 
-            AnimalsSeenComRHC1.DataBind();
+            AnimalsSeenCompanyRHC1.DataBind();
 
             AnimalsSeenBranchBL animalsSeenBranchBL = new AnimalsSeenBranchBL();
             List<usp_AnimalsSeenBranch_Result> animalsSeenBranchList = animalsSeenBranchBL.usp_AnimalsSeenBranch(start, end, company, branch, time);
 
             DataTable animalsSeenBranchDT = converter.ToDataTable(animalsSeenBranchList);
 
-            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Name", "BarSeries", "Number_of_animals_seen", "TimePeriod");
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Name", "BarSeries", "Number_of_Animals_Seen", "TimePeriod");
 
-            AvgDollarPerCustomerComRHC1.DataBind();
+            AvgDollarPerCustomerCompanyRHC1.DataBind();
 
             AvgDollarPerCustomerBranchBL avgDollarPerCustomerBranchBL = new AvgDollarPerCustomerBranchBL();
             List<usp_AvgDollarPerCustomerBranch_Result> avgDollarPerCustomerBranchList = avgDollarPerCustomerBranchBL.usp_AvgDollarPerCustomerBranch(start, end, company, branch, time);
 
             DataTable avgDollarPerCustomerBranchDT = converter.ToDataTable(avgDollarPerCustomerBranchList);
-            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "BarSeries", "Average_Dollar_per_customer", "TimePeriod");
+            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "BarSeries", "Average_Dollar_per_Customer", "TimePeriod");
 
-            NewCustomersComRHC1.DataBind();
+            NewCustomersBranchBL newCustomersBranchBL = new NewCustomersBranchBL();
+            List<usp_NewCustomersBranch_Result> newCustomersBranchList = newCustomersBranchBL.usp_NewCustomersBranch(start, end, company, branch, time);
 
-            SmallAnimalsComRHC1.DataBind();
+            DataTable newCustomersBranchDT = converter.ToDataTable(newCustomersBranchList);
+            RadHtmlChartGroupDataSource.GroupDataSource(NewCustomersBranchRHC1, newCustomersBranchDT, "Branch_Name", "BarSeries", "Number_of_New_Customers", "TimePeriod");
 
-            LargeAnimalsComRHC1.DataBind();
+            NewCustomersCompanyRHC1.DataBind();
+
+            SmallAnimalsCompanyRHC1.DataBind();
+
+            LargeAnimalsCompanyRHC1.DataBind();
+            
         }
 
         protected void RadGrid2_ExcelMLWorkBookCreated(object sender, GridExcelMLWorkBookCreatedEventArgs e)

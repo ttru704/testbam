@@ -14,8 +14,8 @@ namespace Test.Models
     public partial class usp_AvgDollarPerCustomerBranch_Result
     {
         public string Branch_Name { get; set; }
-        public Nullable<System.DateTime> Year_Month { get; set; }
-        public Nullable<decimal> Average_Dollar_per_customer { get; set; }
+        public Nullable<System.DateTime> YearMonth { get; set; }
+        public decimal Average_Dollar_per_Customer { get; set; }
         public string TimePeriod { get; set; }
     }
 }

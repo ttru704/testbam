@@ -47,7 +47,7 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i> Number of New Customers</span>
+                    <span class="count_top"><i class="fa fa-plus"></i>New Customers</span>
                     <div class="count blue" >
                         <asp:Label ID="Label4" runat="server" class="count blue"></asp:Label>
                     </div>
@@ -58,7 +58,7 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i> Unique Customers Seen</span>
+                    <span class="count_top"><i class="fa fa-plus"></i>Unique Customers Seen</span>
                     <div class="count blue">
                         <asp:Label ID="Label5" runat="server" class="count blue"></asp:Label>
                     </div>
@@ -69,7 +69,7 @@
                         </i>From last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-paw"></i> Number of Animals Seen</span>
+                    <span class="count_top"><i class="fa fa-paw"></i>Animals Seen</span>
                     <div class="count blue">
                         <asp:Label ID="Label6" runat="server" class="count blue"></asp:Label>
                     </div>
@@ -89,7 +89,7 @@
             <div class="col-sm-12">
                 <%-- Line chart --%>
                 <div class="col-sm-12">
-                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesComODS1" Skin="MetroTouch" Width="100%">
+                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesCompanyODS1" Skin="MetroTouch" Width="100%">
                         <ClientEvents OnLoad="chartLoad" />
                         <PlotArea>
                             <Series>
@@ -119,7 +119,7 @@
                         <ChartTitle Text="Total Sales">
                         </ChartTitle>
                     </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="TotalSalesComODS1" runat="server" SelectMethod="usp_TotalSalesCom" TypeName="Test.BLL.Financial.TotalSalesComBL">
+                    <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
                         <SelectParameters>
                             <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
                             <asp:Parameter DefaultValue="2015/09/01" Name="end" Type="DateTime" />
@@ -132,7 +132,7 @@
 
                 
                 <div class="col-sm-6">
-                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryComODS1" Skin="Bootstrap">
+                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
                         <ClientEvents OnLoad="chartLoad" />
                         <ChartTitle Text="Income by Product Category Companywide"> </ChartTitle>
                         <PlotArea>
@@ -145,7 +145,7 @@
                         </PlotArea>
                         <Zoom Enabled="False"></Zoom>
                     </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="IncomeByProductCategoryComODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCom" TypeName="Test.BLL.Financial.IncomeByProductCategoryComBL">
+                    <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
                         <SelectParameters>
                             <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
                             <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
@@ -154,7 +154,7 @@
                     </asp:ObjectDataSource>
                     </div>
                 <div class="col-sm-6">
-                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityComODS1" Skin="Material">
+                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
                         <ClientEvents OnLoad="chartLoad" />
                         <ChartTitle Text="Income by Service Activity Companywide"> </ChartTitle>
                         <PlotArea>
@@ -167,7 +167,7 @@
                         </PlotArea>
                         <Zoom Enabled="False"></Zoom>
                     </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="IncomeByServiceActivityComODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCom" TypeName="Test.BLL.Financial.IncomeByServiceActivityComBL">
+                    <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
                         <SelectParameters>
                             <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
                             <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
