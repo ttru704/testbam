@@ -24,15 +24,22 @@
         </telerik:RadAjaxManager>
         <div class="right_col" role="main">
             <%--KPI menu--%>
-            <div id="KPIMenu" style="text-align: center">
-                <a href="/financialKPI.aspx" style="font-size: 20px"><strong>Financial</strong></a>
-                <strong>|</strong>
-                <a href="/employeekpi.aspx" style="font-size: 20px"><strong>Employee</strong></a>
-                <strong>|</strong>
-                <a href="/customerkpi.aspx" style="font-size: 20px"><strong>Customer</strong></a>
-                <br />
-                <br />
-            </div>
+            <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="1" Skin="MetroTouch" Style="overflow: visible" MultiPageID="RadMultiPage1" Align="Center">
+                <Tabs>
+                    <telerik:RadTab runat="server" NavigateUrl="~/financialKPI.aspx" Text="Financial " Width="150px">
+                    </telerik:RadTab>
+                    <telerik:RadTab runat="server" NavigateUrl="~/employeeKPI.aspx" Text="Employee" Width="150px" Selected="True" SelectedIndex="0">
+                        <Tabs>
+                            <telerik:RadTab runat="server" Text="Company" Selected="True">
+                            </telerik:RadTab>
+                            <telerik:RadTab runat="server" Text="Branch">
+                            </telerik:RadTab>
+                        </Tabs>
+                    </telerik:RadTab>
+                    <telerik:RadTab runat="server" NavigateUrl="~/customerKPI.aspx" Text="Customer" Width="150px">
+                    </telerik:RadTab>
+                </Tabs>
+            </telerik:RadTabStrip>
             <br />
             <%--Datepickers and input--%>
             <div class="text-center">
@@ -79,18 +86,19 @@
 
             <br />
             <%--KPIs--%>
+            <%--Number of Customers Seen By Employee--%>
             <div class="col-12">
                 <div class="x_panel" style="width: 100%">
                     <div class="x_title">
                         <h2>Number of Customers Seen By Employee</h2>
                         <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up" OnClick="redraw"></i></a>
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" style="width: 100%">
-                        <div class="" style="width:100%">
+                        <div class="" style="width: 100%">
                             <%--Export button--%>
                             <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                             <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
@@ -129,12 +137,13 @@
                 </div>
             </div>
 
+            <%--Number of Animal Seen By Employee--%>
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Number of Animal Seen By Employee</h2>
-                        <ul class="nav navbar-right panel_toolbox" OnClick="redraw">
-                            <li OnClick="redraw"><a class="collapse-link" OnClick="redraw"><i class="fa fa-chevron-up" OnClick="redraw"></i></a>
+                        <ul class="nav navbar-right panel_toolbox" onclick="redraw">
+                            <li onclick="redraw"><a class="collapse-link" onclick="redraw"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
@@ -174,7 +183,28 @@
                 </div>
             </div>
 
-            <telerik:RadHtmlChart ID="AnimalsSeenIndustryRHC1" runat="server"></telerik:RadHtmlChart>
+
+            <%--Number of Animal Seen Peer Comparison--%>
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Number of Animals Seen Peer Comparison</h2>
+                        <ul class="nav navbar-right panel_toolbox" onclick="redraw">
+                            <li onclick="redraw"><a class="collapse-link" onclick="redraw"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="">
+                            <%--Chart--%>
+                            <telerik:RadHtmlChart ID="AnimalsSeenIndustryRHC1" runat="server">
+                            </telerik:RadHtmlChart>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </form>
@@ -189,7 +219,7 @@
         //var redraw = $(".chart").data("RadHtmlChart").redraw();
         //$("#CustomersSeenByEmpComRHC1").data("RadHtmlChart").options.transitions = true;
 
-<%--        function redraw() {
+        <%--        function redraw() {
             console.log("its working");
             $telerik.$("<%=AnimalsSeenByEmpComRHC1.ClientID%>").data("kendoChart").redraw();
             

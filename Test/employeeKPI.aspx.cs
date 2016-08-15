@@ -19,7 +19,7 @@ namespace Test
         }
 
         //This is a class that help displaying chart with multiple branches
-        
+
 
         protected void Button1_Click(object sender, EventArgs e)
         {
@@ -49,6 +49,10 @@ namespace Test
 
             //var redraw = $(".chart").data("kendoChart").redraw();
 
+
+            AnimalsSeenIndustryRHC1.ChartTitle.Text = "Number of Animals Seen Peer Comparison";
+            AnimalsSeenIndustryRHC1.PlotArea.YAxis.TitleAppearance.Text = "Number of Animals";
+            AnimalsSeenIndustryRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
         }
     }
 }

@@ -49,13 +49,22 @@
         </telerik:RadAjaxManager>
         <div class="right_col" role="main">
             <%--KPI Menu--%>
-            <div id="KPIMenu" style="text-align: center">
-                <a href="/financialKPI.aspx" style="font-size: 20px"><strong>Financial</strong></a>
-                <strong>|</strong>
-                <a href="/employeekpi.aspx" style="font-size: 20px"><strong>Employee</strong></a>
-                <strong>|</strong>
-                <a href="/customerkpi.aspx" style="font-size: 20px"><strong>Customer</strong></a>
-            </div>
+            <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="0" Skin="MetroTouch" Style="overflow: visible" MultiPageID="RadMultiPage1">
+                <Tabs>
+                    <telerik:RadTab runat="server" NavigateUrl="~/financialKPI.aspx" Text="Financial " Width="150px" Selected="True" SelectedIndex="0">
+                        <Tabs>
+                            <telerik:RadTab runat="server" Text="Company" Selected="True">
+                            </telerik:RadTab>
+                            <telerik:RadTab runat="server" Text="Branch">
+                            </telerik:RadTab>
+                        </Tabs>
+                    </telerik:RadTab>
+                    <telerik:RadTab runat="server" NavigateUrl="~/employeeKPI.aspx" Text="Employee" Width="150px">
+                    </telerik:RadTab>
+                    <telerik:RadTab runat="server" NavigateUrl="~/customerKPI.aspx" Text="Customer" Width="150px">
+                    </telerik:RadTab>
+                </Tabs>
+            </telerik:RadTabStrip>
             <br />
             <%--Datepickers and input--%>
             <div class="text-center">

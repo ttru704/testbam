@@ -234,6 +234,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="financialKPI.aspx" />
+    <Content Include="missedcharge.aspx" />
     <Content Include="Models\BAM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BAM.edmx</DependentUpon>
@@ -520,6 +521,13 @@
     </Compile>
     <Compile Include="financialKPI.aspx.designer.cs">
       <DependentUpon>financialKPI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="missedcharge.aspx.cs">
+      <DependentUpon>missedcharge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="missedcharge.aspx.designer.cs">
+      <DependentUpon>missedcharge.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Audit_Log.cs">
       <DependentUpon>BAM.tt</DependentUpon>
