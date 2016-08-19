@@ -10,7 +10,7 @@
 namespace Test {
     
     
-    public partial class KPI {
+    public partial class financialkpi {
         
         /// <summary>
         /// form1 control.
@@ -263,6 +263,33 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid TransExcludeZeroTotalComG1;
+        
+        /// <summary>
+        /// TransExcludeZeroTotalBranchRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart TransExcludeZeroTotalBranchRHC1;
+        
+        /// <summary>
+        /// TransExcludeZeroTotalBranchODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource TransExcludeZeroTotalBranchODS1;
+        
+        /// <summary>
+        /// TransExcludeZeroTotalBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid TransExcludeZeroTotalBranchG1;
         
         /// <summary>
         /// RetailOnlySalesCompanyRHC1 control.

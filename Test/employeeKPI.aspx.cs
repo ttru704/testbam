@@ -27,32 +27,26 @@ namespace Test
             DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
 
-            //CustomersSeenByEmployeeCompanyBL customersSeenByEmployeeCompanyBL = new CustomersSeenByEmployeeCompanyBL();
-            //List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, 1, 2);
+            CustomersSeenByEmployeeCompanyBL customersSeenByEmployeeCompanyBL = new CustomersSeenByEmployeeCompanyBL();
+            List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, 1, 2);
 
 
-            //DataTable customersSeenByEmployeeCompanyDT = converter.ToDataTable(customersSeenByEmployeeCompanyList);
+            DataTable customersSeenByEmployeeCompanyDT = converter.ToDataTable(customersSeenByEmployeeCompanyList);
 
 
-            //RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeCompanyRHC1, customersSeenByEmployeeCompanyDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
+            RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeCompanyRHC1, customersSeenByEmployeeCompanyDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
 
-            //AnimalsSeenByEmployeeCompanyBL animalsSeenByEmployeeCompanyBL = new AnimalsSeenByEmployeeCompanyBL();
-            //List <usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, 1, 2);
+            AnimalsSeenByEmployeeCompanyBL animalsSeenByEmployeeCompanyBL = new AnimalsSeenByEmployeeCompanyBL();
+            List<usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, 1, 2);
 
-            //DataTable animalsSeenByEmployeeCompanyDT = converter.ToDataTable(animalsSeenByEmployeeCompanyList);
-            //RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeCompanyRHC1, animalsSeenByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
+            DataTable animalsSeenByEmployeeCompanyDT = converter.ToDataTable(animalsSeenByEmployeeCompanyList);
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeCompanyRHC1, animalsSeenByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
 
-            AnimalsSeenIndustryBL animalsSeenIndustryBL = new AnimalsSeenIndustryBL();
-            List<usp_AnimalsSeenIndustry_Result> animalsSeenIndustryList = animalsSeenIndustryBL.usp_AnimalsSeenIndustry(start, end, 1, 1, 1);
-            DataTable animalsSeenIndustryDT = converter.ToDataTable(animalsSeenIndustryList);
-            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenIndustryRHC1, animalsSeenIndustryDT, "Name", "LineSeries", "Number_of_Animals_Seen", "TimePeriod");
+
 
             //var redraw = $(".chart").data("kendoChart").redraw();
 
-
-            AnimalsSeenIndustryRHC1.ChartTitle.Text = "Number of Animals Seen Peer Comparison";
-            AnimalsSeenIndustryRHC1.PlotArea.YAxis.TitleAppearance.Text = "Number of Animals";
-            AnimalsSeenIndustryRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
+            
         }
     }
 }

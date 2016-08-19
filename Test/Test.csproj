@@ -440,11 +440,13 @@
     <Compile Include="BLL\Customer\AnimalsSeenSingleBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerBranchBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerCompanyBL.cs" />
+    <Compile Include="BLL\Customer\LargeAnimalsBranchBL.cs" />
     <Compile Include="BLL\Customer\LargeAnimalsCompanyBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersBranchBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersChangesBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersCompanyBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersSingleBL.cs" />
+    <Compile Include="BLL\Customer\SmallAnimalsBranchBL.cs" />
     <Compile Include="BLL\Customer\SmallAnimalsCompanyBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenChangesBL.cs" />
@@ -466,9 +468,10 @@
     <Compile Include="BLL\Financial\TotalSalesChangesBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesCompanyBL.cs" />
     <Compile Include="BLL\Financial\TotalSalesSingleBL.cs" />
+    <Compile Include="BLL\Financial\TransExcludeZeroTotalBranchBL.cs" />
     <Compile Include="BLL\Financial\TransExcludeZeroTotalCompanyBL.cs" />
     <Compile Include="BLL\Productivity\AnimalsSeenByEmployeeCompanyBL.cs" />
-    <Compile Include="BLL\Productivity\AnimalsSeenIndustryBL.cs" />
+    <Compile Include="BLL\Customer\AnimalsSeenIndustryBL.cs" />
     <Compile Include="BLL\Productivity\CustomersSeenByEmployeeCompanyBL.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -579,6 +582,7 @@
     <Compile Include="Models\Interface\Customer\IAnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Customer\ILargeAnimalsBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\ILargeAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersChangesRepo.cs" />
@@ -589,6 +593,7 @@
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenChangesRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\IUniqueCustomersSeenSingleRepo.cs" />
+    <Compile Include="Models\Interface\Customer\ISmallAnimalsBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerCustomerChangesRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionBranchRepo.cs" />
@@ -605,10 +610,11 @@
     <Compile Include="Models\Interface\Financial\ITotalSalesChangesRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITotalSalesSingleRepo.cs" />
+    <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Interface\IBranchDropDownListRepo.cs" />
     <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeCompanyRepo.cs" />
-    <Compile Include="Models\Interface\Productivity\IAnimalsSeenIndustryRepo.cs" />
+    <Compile Include="Models\Interface\Customer\IAnimalsSeenIndustryRepo.cs" />
     <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -640,11 +646,13 @@
     <Compile Include="Models\Repository\Customer\AnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Customer\LargeAnimalsBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\LargeAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersChangesRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersSingleRepo.cs" />
+    <Compile Include="Models\Repository\Customer\SmallAnimalsBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\SmallAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenChangesRepo.cs" />
@@ -666,9 +674,10 @@
     <Compile Include="Models\Repository\Financial\TotalSalesChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\TotalSalesSingleRepo.cs" />
+    <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmployeeCompanyRepo.cs" />
-    <Compile Include="Models\Repository\Productivity\AnimalsSeenIndustryRepo.cs" />
+    <Compile Include="Models\Repository\Customer\AnimalsSeenIndustryRepo.cs" />
     <Compile Include="Models\Repository\Productivity\CustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Staff_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>

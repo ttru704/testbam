@@ -15,9 +15,19 @@
             <AjaxSettings>
                 <telerik:AjaxSetting AjaxControlID="Button1">
                     <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmpComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenByEmpComRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmployeeCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenByEmployeeCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                         <telerik:AjaxUpdatedControl ControlID="AnimalsSeenIndustryRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="CustomersSeenByEmployeeCompanyG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmployeeCompanyG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="AnimalsSeenByEmployeeCompanyG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenByEmployeeCompanyG1" UpdatePanelCssClass="" />
                     </UpdatedControls>
                 </telerik:AjaxSetting>
             </AjaxSettings>
@@ -118,7 +128,7 @@
                                         </telerik:GridBoundColumn>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column" HeaderText="Number Of Customers Seen" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee">
+                                        <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column" HeaderText="Number Of Customers Seen" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -141,7 +151,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of Animal Seen By Employee</h2>
+                        <h2>Number of Animals Seen By Employee</h2>
                         <ul class="nav navbar-right panel_toolbox" onclick="redraw">
                             <li onclick="redraw"><a class="collapse-link" onclick="redraw"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
                             </li>
@@ -173,7 +183,7 @@
                                         </telerik:GridBoundColumn>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_Of_Animals_Seen_By_An_Employee" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Animals_Seen_By_An_Employee column" HeaderText="Number of Animals Seen" SortExpression="Number_Of_Animals_Seen_By_An_Employee" UniqueName="Number_Of_Animals_Seen_By_An_Employee">
+                                        <telerik:GridBoundColumn DataField="Number_Of_Animals_Seen_By_An_Employee" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Animals_Seen_By_An_Employee column" HeaderText="Number of Animals Seen" SortExpression="Number_Of_Animals_Seen_By_An_Employee" UniqueName="Number_Of_Animals_Seen_By_An_Employee">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -184,27 +194,7 @@
             </div>
 
 
-            <%--Number of Animal Seen Peer Comparison--%>
-            <div class="col-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Number of Animals Seen Peer Comparison</h2>
-                        <ul class="nav navbar-right panel_toolbox" onclick="redraw">
-                            <li onclick="redraw"><a class="collapse-link" onclick="redraw"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <div class="">
-                            <%--Chart--%>
-                            <telerik:RadHtmlChart ID="AnimalsSeenIndustryRHC1" runat="server">
-                            </telerik:RadHtmlChart>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
     </form>

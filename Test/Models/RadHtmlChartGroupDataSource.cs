@@ -55,8 +55,8 @@ namespace Test.Models
             {
                 //Construct the series name, tooltips template and labels format string
                 string seriesName = DistinctValuesDT.Rows[i][0].ToString();
-                string tooltipsTemplate = "Category: #=dataItem." + DataFieldX + i + "#<br />Value: #=dataItem." + DataFieldY + i + "#";
-                string labelsFormatString = "{0:N2}";
+                string tooltipsTemplate = "Time Period: #=dataItem." + DataFieldX + i + "#<br />Value: #=dataItem." + DataFieldY + i + "#";
+                string labelsFormatString = "{0:N0}";
 
                 //Add the corresponding series type to the chart
                 AddChartSeriesType(HtmlChart, SeriesType, DataFieldY, DataFieldX, i, seriesName, tooltipsTemplate, labelsFormatString);
@@ -85,6 +85,7 @@ namespace Test.Models
                     barSeries1.DataFieldY = DataFieldY + Index;
                     barSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
                     barSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
+                    barSeries1.LabelsAppearance.Visible = false;
                     HtmlChart.PlotArea.Series.Add(barSeries1);
                     break;
 
@@ -94,6 +95,7 @@ namespace Test.Models
                     columnSeries1.DataFieldY = DataFieldY + Index;
                     columnSeries1.TooltipsAppearance.ClientTemplate = TooltipsTemplate;
                     columnSeries1.LabelsAppearance.DataFormatString = LabelsFormatString;
+                    columnSeries1.LabelsAppearance.Visible = false;
                     HtmlChart.PlotArea.Series.Add(columnSeries1);
                     break;
 

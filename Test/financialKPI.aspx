@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="financialKPI.aspx.cs" Inherits="Test.KPI" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="financialKPI.aspx.cs" Inherits="Test.financialkpi" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
@@ -14,12 +14,7 @@
         <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>
         <telerik:RadScriptManager ID="ScriptManager1" runat="server" EnableTheming="True">
             <Scripts>
-                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js">
-                </asp:ScriptReference>
-                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js">
-                </asp:ScriptReference>
-                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js">
-                </asp:ScriptReference>
+                
             </Scripts>
         </telerik:RadScriptManager>
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
@@ -39,10 +34,61 @@
                         <telerik:AjaxUpdatedControl ControlID="AvgDollarPerTransactionCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                         <telerik:AjaxUpdatedControl ControlID="AvgDollarPerTransactionBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                         <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                         <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="TotalSalesComG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesComG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="TotalSalesBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="AvgPerTransactionComG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionComG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="RadGrid1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="RadGrid1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="TransExcludeZeroTotalComG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalComG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="TransExcludeZeroTotalBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="RetailOnlySalesComG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesComG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="ServiceOnlySalesComG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesComG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="RetailOnlySalesBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="ServiceOnlySalesBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchG1" UpdatePanelCssClass="" />
                     </UpdatedControls>
                 </telerik:AjaxSetting>
             </AjaxSettings>
@@ -112,7 +158,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Total Sales Companywide</h2>
+                        <h2>Total Sales Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -178,7 +224,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Total_Sales" DataType="System.Decimal" FilterControlAltText="Filter Total_Sales column" HeaderText="Total Sales" SortExpression="Total_Sales" UniqueName="Total_Sales">
+                                        <telerik:GridBoundColumn DataField="Total_Sales" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Total_Sales column" HeaderText="Total Sales" SortExpression="Total_Sales" UniqueName="Total_Sales">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -229,9 +275,9 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch Name" SortExpression="Branch_Name" UniqueName="Branch_Name">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="TimePeriod" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Total_Sales" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Total_Sales column" HeaderText="Total_Sales" SortExpression="Total_Sales" UniqueName="Total_Sales">
+                                        <telerik:GridBoundColumn DataField="Total_Sales" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Total_Sales column" HeaderText="Total Sales" SortExpression="Total_Sales" UniqueName="Total_Sales">
                                         </telerik:GridBoundColumn>
 
                                     </Columns>
@@ -246,7 +292,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Average Dollar Earned Per Transaction Companywide</h2>
+                        <h2>Average Dollar Earned Per Transaction Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -311,7 +357,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column" HeaderText="Average Dollar per Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction">
+                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column" HeaderText="Average Dollar per Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction" DataFormatString="{0:N0}">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -359,7 +405,7 @@
                                         </telerik:GridBoundColumn>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" DataType="System.Decimal"
+                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" DataFormatString="{0:N0}" DataType="System.Decimal"
                                             FilterControlAltText="Filter Average_Dollar_per_Transaction column" HeaderText="Average Dollar per Transaction"
                                             SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction">
                                         </telerik:GridBoundColumn>
@@ -388,7 +434,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of Transactions excluding Zero Total Bills Companywide</h2>
+                        <h2>Number of Transactions excluding Zero Total Bills Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -452,7 +498,53 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="No_of_transactions_excluding_zero_total_bill" DataType="System.Int32" FilterControlAltText="Filter No_of_transactions_excluding_zero_total_bill column" HeaderText="No of Transactions excluding Zero Total Bill" SortExpression="No_of_transactions_excluding_zero_total_bill" UniqueName="No_of_transactions_excluding_zero_total_bill">
+                                        <telerik:GridBoundColumn DataField="No_of_transactions_excluding_zero_total_bill" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter No_of_transactions_excluding_zero_total_bill column" HeaderText="No of Transactions excluding Zero Total Bill" SortExpression="No_of_transactions_excluding_zero_total_bill" UniqueName="No_of_transactions_excluding_zero_total_bill">
+                                        </telerik:GridBoundColumn>
+                                    </Columns>
+                                </MasterTableView>
+                            </telerik:RadGrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--This section is for Number of Transactions excluding Zero Total Bills branch comparison presented on column chart--%>
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Number of Transactions excluding Zero Total Bills Branch Comparison</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="">
+                            <%--Chart--%>
+                            <telerik:RadHtmlChart ID="TransExcludeZeroTotalBranchRHC1" runat="server" Skin="Material"></telerik:RadHtmlChart>
+                            <%--Datasource--%>
+                            <asp:ObjectDataSource ID="TransExcludeZeroTotalBranchODS1" runat="server" SelectMethod="usp_TransExcludeZeroTotalBranch" TypeName="Test.BLL.Financial.TransExcludeZeroTotalBranchBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+                            <%--Table--%>
+                            <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" Skin="Bootstrap">
+                                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
+                                    <Selecting AllowRowSelect="True" />
+                                </ClientSettings>
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="TransExcludeZeroTotalBranchODS1">
+                                    <Columns>
+                                        <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="No_of_transactions_excluding_zero_total_bill" DataType="System.Decimal" FilterControlAltText="Filter No_of_transactions_excluding_zero_total_bill column" HeaderText="No of Transactions excluding Zero Total Bills" SortExpression="No_of_transactions_excluding_zero_total_bill" UniqueName="No_of_transactions_excluding_zero_total_bill">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -465,7 +557,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Retail Only Sales Companywide</h2>
+                        <h2>Retail Only Sales Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -531,7 +623,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Retail_Total_Only" DataType="System.Decimal" FilterControlAltText="Filter Retail_Total_Only column" HeaderText="Retail Total Only" SortExpression="Retail_Total_Only" UniqueName="Retail_Total_Only">
+                                        <telerik:GridBoundColumn DataField="Retail_Total_Only" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Retail_Total_Only column" HeaderText="Retail Total Only" SortExpression="Retail_Total_Only" UniqueName="Retail_Total_Only">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -544,7 +636,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Service Only Sales Companywide</h2>
+                        <h2>Service Only Sales Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -610,7 +702,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Service_Total_Only" DataType="System.Decimal" FilterControlAltText="Filter Service_Total_Only column" HeaderText="Service Total Only" SortExpression="Service_Total_Only" UniqueName="Service_Total_Only">
+                                        <telerik:GridBoundColumn DataField="Service_Total_Only" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Service_Total_Only column" HeaderText="Service Total Only" SortExpression="Service_Total_Only" UniqueName="Service_Total_Only">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>

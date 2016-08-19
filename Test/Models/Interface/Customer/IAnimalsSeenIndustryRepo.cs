@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Models.Interface.Productivity
+namespace Test.Models.Interface.Customer
 {
     public interface IAnimalsSeenIndustryRepo : IDisposable
     {

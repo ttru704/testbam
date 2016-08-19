@@ -247,6 +247,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AnimalsSeenBranchG1;
         
         /// <summary>
+        /// AnimalsSeenIndustryRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenIndustryRHC1;
+        
+        /// <summary>
         /// AvgDollarPerCustomerCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -337,6 +346,24 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart NewCustomersBranchRHC1;
         
         /// <summary>
+        /// NewCustomersBranchODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource NewCustomersBranchODS1;
+        
+        /// <summary>
+        /// NewCustomersBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid NewCustomersBranchG1;
+        
+        /// <summary>
         /// SmallAnimalsCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -364,6 +391,33 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid SmallAnimalsCompanyG1;
         
         /// <summary>
+        /// SmallAnimalsBranchRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart SmallAnimalsBranchRHC1;
+        
+        /// <summary>
+        /// SmallAnimalsBranchODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource SmallAnimalsBranchODS1;
+        
+        /// <summary>
+        /// SmallAnimalsBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid SmallAnimalsBranchG1;
+        
+        /// <summary>
         /// LargeAnimalsCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -389,5 +443,32 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid LargeAnimalsCompanyG1;
+        
+        /// <summary>
+        /// LargeAnimalsBranchRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart LargeAnimalsBranchRHC1;
+        
+        /// <summary>
+        /// LargeAnimalsBranchODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource LargeAnimalsBranchODS1;
+        
+        /// <summary>
+        /// LargeAnimalsBranchG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid LargeAnimalsBranchG1;
     }
 }

@@ -17,7 +17,7 @@ using Test.BLL;
 
 namespace Test
 {
-    public partial class KPI : System.Web.UI.Page
+    public partial class financialkpi : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,21 +35,12 @@ namespace Test
 
             BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
             List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
-
             
-            
-
             DateTime? start = DatePicker1.SelectedDate.GetValueOrDefault();
             DateTime? end = DatePicker2.SelectedDate.GetValueOrDefault();
             int company = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
             int branch = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
             int time = Convert.ToInt16(TimeDDL1.SelectedItem.Value);
-
-            
-
-
-            
-
             ListtoDataTableConverter converter = new ListtoDataTableConverter();
 
             //String.Format("{0: mmm yy}", dt.Columns["Year_Month"]);
@@ -67,9 +58,10 @@ namespace Test
                 TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
 
 
-                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales";
+                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales (000s)";
                 //TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = labelsFormatString;
-                //TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
+                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
+                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = "{0:N0}";
 
 
                 
@@ -109,11 +101,16 @@ namespace Test
             AvgDollarPerTransactionCompanyRHC1.DataBind();
 
             AvgDollarPerTransactionBranchBL avgDollarPerTransactionBranchBL = new AvgDollarPerTransactionBranchBL();
-            List<usp_AvgDollarPerTransactionBranch_Result> t = avgDollarPerTransactionBranchBL.usp_AvgDollarPerTransactionBranch(start, end, company, branch, time);
-            DataTable dt = converter.ToDataTable(t);
-            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerTransactionBranchRHC1, dt, "Branch_Name", "ColumnSeries", "Average_Dollar_per_Transaction", "TimePeriod");
+            List<usp_AvgDollarPerTransactionBranch_Result> avgDollarPerTransactionBranchList = avgDollarPerTransactionBranchBL.usp_AvgDollarPerTransactionBranch(start, end, company, branch, time);
+            DataTable avgDollarPerTransactionBranchDT = converter.ToDataTable(avgDollarPerTransactionBranchList);
+            RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerTransactionBranchRHC1, avgDollarPerTransactionBranchDT, "Branch_Name", "ColumnSeries", "Average_Dollar_per_Transaction", "TimePeriod");
 
             TransExcludeZeroTotalCompanyRHC1.DataBind();
+
+            TransExcludeZeroTotalBranchBL transExcludeZeroTotalBranchBL = new TransExcludeZeroTotalBranchBL();
+            List<usp_TransExcludeZeroTotalBranch_Result> transExcludeZeroTotalBranchList = transExcludeZeroTotalBranchBL.usp_TransExcludeZeroTotalBranch(start, end, company, branch, time);
+            DataTable transExcludeZeroTotalBranchDT = converter.ToDataTable(transExcludeZeroTotalBranchList);
+            RadHtmlChartGroupDataSource.GroupDataSource(TransExcludeZeroTotalBranchRHC1, transExcludeZeroTotalBranchDT, "Branch_Name", "ColumnSeries", "No_of_transactions_excluding_zero_total_bill", "TimePeriod");
 
             RetailOnlySalesCompanyRHC1.DataBind();
 
@@ -121,7 +118,6 @@ namespace Test
 
             RetailOnlySalesBranchBL retailOnlySalesBranchBL = new RetailOnlySalesBranchBL();
             List<usp_RetailOnlySalesBranch_Result> retailOnlySalesBranchList = retailOnlySalesBranchBL.usp_RetailOnlySalesBranch(start, end, company, branch, time);
-
             DataTable retailOnlySalesBranchDT = converter.ToDataTable(retailOnlySalesBranchList);
             RadHtmlChartGroupDataSource.GroupDataSource(RetailOnlySalesBranchRHC1, retailOnlySalesBranchDT, "Branch_Name", "LineSeries", "Retail_Total_Only", "TimePeriod");
 
@@ -159,7 +155,8 @@ namespace Test
         {
 
         }
-        
+
+
     }
 
 }

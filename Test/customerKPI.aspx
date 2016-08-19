@@ -13,7 +13,7 @@
         <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>
         <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
-        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server" DefaultLoadingPanelID="RadAjaxLoadingPanel1">
             <AjaxSettings>
                 <telerik:AjaxSetting AjaxControlID="Button1">
                     <UpdatedControls>
@@ -22,12 +22,75 @@
                         <telerik:AjaxUpdatedControl ControlID="UniqueCustomersSeenBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="AnimalsSeenCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
                         <telerik:AjaxUpdatedControl ControlID="AnimalsSeenBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenIndustryRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="NewCustomersCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
                         <telerik:AjaxUpdatedControl ControlID="NewCustomersBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" />
+                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
+                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="RadGrid1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="RadGrid1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="RadGrid2">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="RadGrid2" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="AnimalsSeenComG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenComG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="AnimalsSeenBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="AnimalsSeenBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="AvgDollarPerCustomerCompanyG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerCompanyG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="AvgDollarPerCustomerBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerCustomerBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="NewCustomersCompanyG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="NewCustomersCompanyG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="NewCustomersBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="NewCustomersBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="SmallAnimalsCompanyG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsCompanyG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="SmallAnimalsBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="SmallAnimalsBranchG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="LargeAnimalsCompanyG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsCompanyG1" UpdatePanelCssClass="" />
+                    </UpdatedControls>
+                </telerik:AjaxSetting>
+                <telerik:AjaxSetting AjaxControlID="LargeAnimalsBranchG1">
+                    <UpdatedControls>
+                        <telerik:AjaxUpdatedControl ControlID="LargeAnimalsBranchG1" UpdatePanelCssClass="" />
                     </UpdatedControls>
                 </telerik:AjaxSetting>
             </AjaxSettings>
@@ -95,7 +158,7 @@
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of Unique Customers Seen Companywide</h2>
+                        <h2>Number of Unique Customers Seen Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -142,11 +205,9 @@
                                 </ClientSettings>
                                 <MasterTableView AllowPaging="False" AllowSorting="False" AutoGenerateColumns="False" DataSourceID="UniqueCustomersSeenCompanyODC1">
                                     <Columns>
-                                        <telerik:GridBoundColumn DataField="Time_Period" FilterControlAltText="Filter Time_Period column" HeaderText="Time_Period" SortExpression="Time_Period" UniqueName="Time_Period" DataType="System.DateTime">
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_Unique_Clients" DataType="System.Int32" FilterControlAltText="Filter Number_of_Unique_Clients column" HeaderText="Number_of_Unique_Clients" SortExpression="Number_of_Unique_Clients" UniqueName="Number_of_Unique_Clients">
-                                        </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="TimePeriod" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        <telerik:GridBoundColumn DataField="Number_of_Unique_Clients" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_Unique_Clients column" HeaderText="Number of Unique Clients" SortExpression="Number_of_Unique_Clients" UniqueName="Number_of_Unique_Clients">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -248,11 +309,11 @@
                     </div>
                 </div>
             </div>
-            <%--Display Number of Animals Seen Companywide--%>
+            <%--Display Number of Animals Seen Company Wide--%>
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of Animals Seen Companywide</h2>
+                        <h2>Number of Animals Seen Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -313,7 +374,7 @@
                                         <Columns>
                                             <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                             </telerik:GridBoundColumn>
-                                            <telerik:GridBoundColumn DataField="Number_of_animals_seen" DataType="System.Int32" FilterControlAltText="Filter Number_of_animals_seen column" HeaderText="Number of Animals Seen" SortExpression="Number_of_animals_seen" UniqueName="Number_of_animals_seen">
+                                            <telerik:GridBoundColumn DataField="Number_of_animals_seen" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_animals_seen column" HeaderText="Number of Animals Seen" SortExpression="Number_of_animals_seen" UniqueName="Number_of_animals_seen">
                                             </telerik:GridBoundColumn>
                                         </Columns>
                                     </MasterTableView>
@@ -369,11 +430,32 @@
                     </div>
                 </div>
             </div>
-            <%--This section is for Average dollar per customer companywide  chart--%>
+            <%--Number of Animal Seen Peer Comparison--%>
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Average Dollar Earned per Customer Companywide</h2>
+                        <h2>Number of Animals Seen Peer Comparison</h2>
+                        <ul class="nav navbar-right panel_toolbox" onclick="redraw">
+                            <li onclick="redraw"><a class="collapse-link" onclick="redraw"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="">
+                            <%--Chart--%>
+                            <telerik:RadHtmlChart ID="AnimalsSeenIndustryRHC1" runat="server">
+                            </telerik:RadHtmlChart>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--This section is for Average dollar per customer company wide  chart--%>
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Average Dollar Earned per Customer Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -430,7 +512,7 @@
                             </asp:ObjectDataSource>
                             <%--Table--%>
                             <telerik:RadGrid ID="AvgDollarPerCustomerCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AvgDollarPerCustomerCompanyODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
-                                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                                <GroupingSettings CollapseAllTooltip="Collapse all groups" ></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                     <Selecting AllowRowSelect="True" />
                                 </ClientSettings>
@@ -438,7 +520,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_customer" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_customer column" HeaderText="Average Dollar per Customer" SortExpression="Average_Dollar_per_customer" UniqueName="Average_Dollar_per_customer">
+                                        <telerik:GridBoundColumn DataField="Average_Dollar_per_customer" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_customer column" HeaderText="Average Dollar per Customer" SortExpression="Average_Dollar_per_customer" UniqueName="Average_Dollar_per_customer">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -468,12 +550,12 @@
                                     <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
                                     <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:Parameter DefaultValue="0" Name="branchRef" Type="Int32" />
+                                    <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
                                     <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                                 </SelectParameters>
                             </asp:ObjectDataSource>
                             <%--Table--%>
-                            <telerik:RadGrid ID="AvgDollarPerCustomerBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AvgDollarPerCustomerBranchODS1" ShowGroupPanel="True" Skin="MetroTouch">
+                            <telerik:RadGrid ID="AvgDollarPerCustomerBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AvgDollarPerCustomerBranchODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
                                 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                                 <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                     <Selecting AllowRowSelect="True" />
@@ -493,11 +575,11 @@
                     </div>
                 </div>
             </div>
-            <%--This section is for Number of New Customers companywide  chart--%>
+            <%--This section is for Number of New Customers company wide  chart--%>
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of New Customers Companywide</h2>
+                        <h2>Number of New Customers Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -554,7 +636,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_New_Customers" DataType="System.Int32" FilterControlAltText="Filter Number_of_New_Customers column" HeaderText="Number of New Customers" SortExpression="Number_of_New_Customers" UniqueName="Number_of_New_Customers">
+                                        <telerik:GridBoundColumn DataField="Number_of_New_Customers" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_New_Customers column" HeaderText="Number of New Customers" SortExpression="Number_of_New_Customers" UniqueName="Number_of_New_Customers">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -578,22 +660,42 @@
                         <div class="">
                             <%--Chart--%>
                             <telerik:RadHtmlChart ID="NewCustomersBranchRHC1" runat="server">
-                                <ChartTitle Text="No of New Customers Branch Comparison">
-                                </ChartTitle>
                             </telerik:RadHtmlChart>
                             <%--Datasource--%>
-                            
+                            <asp:ObjectDataSource ID="NewCustomersBranchODS1" runat="server" SelectMethod="usp_NewCustomersBranch" TypeName="Test.BLL.Customer.NewCustomersBranchBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
                             <%--Table--%>
-                            
+                            <telerik:RadGrid ID="NewCustomersBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="NewCustomersBranchODS1" ShowGroupPanel="True">
+<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
+                                </ClientSettings>
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="NewCustomersBranchODS1">
+                                    <Columns>
+                                        <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch Name" SortExpression="Branch_Name" UniqueName="Branch_Name">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="Number_of_New_Customers" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Number_of_New_Customers column" HeaderText="Number of New Customers" SortExpression="Number_of_New_Customers" UniqueName="Number_of_New_Customers">
+                                        </telerik:GridBoundColumn>
+                                    </Columns>
+                                </MasterTableView>
+                            </telerik:RadGrid>
                         </div>
                     </div>
                 </div>
             </div>
-            <%--This section is for Number of Small Animals companywide  chart--%>
+            <%--This section is for Number of Small Animals company wide  chart--%>
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of Small Animals Companywide</h2>
+                        <h2>Number of Small Animals Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -652,7 +754,7 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_Small_Animals" DataType="System.Int32" FilterControlAltText="Filter Number_of_Small_Animals column" HeaderText="Number of Small Animals" SortExpression="Number_of_Small_Animals" UniqueName="Number_of_Small_Animals">
+                                        <telerik:GridBoundColumn DataField="Number_of_Small_Animals" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_Small_Animals column" HeaderText="Number of Small Animals" SortExpression="Number_of_Small_Animals" UniqueName="Number_of_Small_Animals">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>
@@ -661,11 +763,59 @@
                     </div>
                 </div>
             </div>
-            <%--This section is for Number of Large Animals companywide  chart--%>
+
+            <%--This section is for Number of Small Animals branch comparison  chart--%>
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Number of Large Animals Companywide</h2>
+                        <h2>Number of Small Animals Branch Comparison</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="">
+                            <%--Chart--%>
+                            <telerik:RadHtmlChart ID="SmallAnimalsBranchRHC1" runat="server" Skin="Material">
+                            </telerik:RadHtmlChart>
+                            <%--Datasource--%>
+                            <asp:ObjectDataSource ID="SmallAnimalsBranchODS1" runat="server" SelectMethod="usp_SmallAnimalsBranch" TypeName="Test.BLL.Customer.SmallAnimalsBranchBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+                            <%--Table--%>
+                            <telerik:RadGrid ID="SmallAnimalsBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="SmallAnimalsBranchODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
+                                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
+                                    <Selecting AllowRowSelect="True" />
+                                </ClientSettings>
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="SmallAnimalsBranchODS1">
+                                    <Columns>
+                                        <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="Number_of_Small_Animals" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Number_of_Small_Animals column" HeaderText="Number of Small Animals" SortExpression="Number_of_Small_Animals" UniqueName="Number_of_Small_Animals">
+                                        </telerik:GridBoundColumn>
+                                    </Columns>
+                                </MasterTableView>
+                            </telerik:RadGrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--This section is for Number of Large Animals company wide  chart--%>
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Number of Large Animals Company Wide</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                             </li>
@@ -725,7 +875,54 @@
                                     <Columns>
                                         <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
                                         </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_of_Large_Animals" DataType="System.Int32" FilterControlAltText="Filter Number_of_Large_Animals column" HeaderText="Number of Large Animals" SortExpression="Number_of_Large_Animals" UniqueName="Number_of_Large_Animals">
+                                        <telerik:GridBoundColumn DataField="Number_of_Large_Animals" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_of_Large_Animals column" HeaderText="Number of Large Animals" SortExpression="Number_of_Large_Animals" UniqueName="Number_of_Large_Animals">
+                                        </telerik:GridBoundColumn>
+                                    </Columns>
+                                </MasterTableView>
+                            </telerik:RadGrid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--This section is for Number of Large Animals branch comparison  chart--%>
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Number of Large Animals Branch Comparison</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="">
+                            <%--Chart--%>
+                            <telerik:RadHtmlChart ID="LargeAnimalsBranchRHC1" runat="server" Skin="Material">
+                            </telerik:RadHtmlChart>
+                            <%--Datasource--%>
+                            <asp:ObjectDataSource ID="LargeAnimalsBranchODS1" runat="server" SelectMethod="usp_LargeAnimalsBranch" TypeName="Test.BLL.Customer.LargeAnimalsBranchBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                                    <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                                    <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+                            <%--Table--%>
+                            <telerik:RadGrid ID="LargeAnimalsBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="LargeAnimalsBranchODS1" ShowGroupPanel="True" Skin="MetroTouch" CellSpacing="-1" GridLines="Both">
+                                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
+                                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
+                                    <Selecting AllowRowSelect="True" />
+                                </ClientSettings>
+                                <MasterTableView AutoGenerateColumns="False" DataSourceID="LargeAnimalsBranchODS1">
+                                    <Columns>
+                                        <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
+                                        </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="Number_of_Large_Animals" DataFormatString="{0:N0}" DataType="System.Decimal" FilterControlAltText="Filter Number_of_Large_Animals column" HeaderText="Number of Large Animals" SortExpression="Number_of_Large_Animals" UniqueName="Number_of_Large_Animals">
                                         </telerik:GridBoundColumn>
                                     </Columns>
                                 </MasterTableView>

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Test.Models;
-using Test.Models.Interface.Productivity;
-using Test.Models.Repository.Productivity;
+using Test.Models.Interface.Customer;
+using Test.Models.Repository.Customer;
 
-namespace Test.BLL.Productivity
+namespace Test.BLL.Customer
 {
     public class AnimalsSeenIndustryBL : IDisposable
     {
