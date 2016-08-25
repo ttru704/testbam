@@ -31,31 +31,13 @@ namespace Test {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// RadAjaxLoadingPanel1 control.
+        /// RadSkinManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
-        
-        /// <summary>
-        /// RadAjaxManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
-        
-        /// <summary>
-        /// RadTabStrip1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTabStrip RadTabStrip1;
+        protected global::Telerik.Web.UI.RadSkinManager RadSkinManager1;
         
         /// <summary>
         /// DatePicker1 control.
@@ -76,31 +58,31 @@ namespace Test {
         protected global::Telerik.Web.UI.RadDatePicker DatePicker2;
         
         /// <summary>
-        /// Company control.
+        /// CompanyDDL1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Company;
+        protected global::System.Web.UI.WebControls.DropDownList CompanyDDL1;
         
         /// <summary>
-        /// Branch control.
+        /// BranchDDL1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList Branch;
+        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
         
         /// <summary>
-        /// TimeType control.
+        /// TimeDDL1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList TimeType;
+        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// Button1 control.
@@ -112,66 +94,39 @@ namespace Test {
         protected global::Telerik.Web.UI.RadButton Button1;
         
         /// <summary>
-        /// RadClientExportManager1 control.
+        /// LoadingPanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel LoadingPanel1;
         
         /// <summary>
-        /// CustomersSeenByEmployeeCompanyRHC1 control.
+        /// RadAjaxManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart CustomersSeenByEmployeeCompanyRHC1;
+        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
         
         /// <summary>
-        /// CustomersSeenByEmployeeCompanyG1 control.
+        /// RadTabStrip1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmployeeCompanyG1;
+        protected global::Telerik.Web.UI.RadTabStrip RadTabStrip1;
         
         /// <summary>
-        /// CustomersSeenByEmployeeCompanyODS1 control.
+        /// RadMultiPage1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmployeeCompanyODS1;
-        
-        /// <summary>
-        /// AnimalsSeenByEmployeeCompanyRHC1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart AnimalsSeenByEmployeeCompanyRHC1;
-        
-        /// <summary>
-        /// AnimalsSeenByEmployeeCompanyODS1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AnimalsSeenByEmployeeCompanyODS1;
-        
-        /// <summary>
-        /// AnimalsSeenByEmployeeCompanyG1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid AnimalsSeenByEmployeeCompanyG1;
+        protected global::Telerik.Web.UI.RadMultiPage RadMultiPage1;
     }
 }

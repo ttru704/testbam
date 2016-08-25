@@ -10,7 +10,8 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
+        <telerik:RadSkinManager ID="RadSkinManager1" runat="server" ShowChooser="true" />
+<%--        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
             <AjaxSettings>
                 <telerik:AjaxSetting AjaxControlID="Button1">
@@ -31,25 +32,10 @@
                     </UpdatedControls>
                 </telerik:AjaxSetting>
             </AjaxSettings>
-        </telerik:RadAjaxManager>
+        </telerik:RadAjaxManager>--%>
         <div class="right_col" role="main">
             <%--KPI menu--%>
-            <telerik:RadTabStrip ID="RadTabStrip1" runat="server" SelectedIndex="1" Skin="MetroTouch" Style="overflow: visible" MultiPageID="RadMultiPage1" Align="Center">
-                <Tabs>
-                    <telerik:RadTab runat="server" NavigateUrl="~/financialKPI.aspx" Text="Financial " Width="150px">
-                    </telerik:RadTab>
-                    <telerik:RadTab runat="server" NavigateUrl="~/employeeKPI.aspx" Text="Employee" Width="150px" Selected="True" SelectedIndex="0">
-                        <Tabs>
-                            <telerik:RadTab runat="server" Text="Company" Selected="True">
-                            </telerik:RadTab>
-                            <telerik:RadTab runat="server" Text="Branch">
-                            </telerik:RadTab>
-                        </Tabs>
-                    </telerik:RadTab>
-                    <telerik:RadTab runat="server" NavigateUrl="~/customerKPI.aspx" Text="Customer" Width="150px">
-                    </telerik:RadTab>
-                </Tabs>
-            </telerik:RadTabStrip>
+            EMPLOYEE
             <br />
             <%--Datepickers and input--%>
             <div class="text-center">
@@ -63,7 +49,7 @@
                         CssClass="rcCalPopup"
                         Width="2em" />
                 </telerik:RadDatePicker>
-                <asp:DropDownList ID="Company" runat="server" Width="100px" Visible="false">
+                <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px" Visible="false">
                     <asp:ListItem>1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
                     <asp:ListItem>3</asp:ListItem>
@@ -73,7 +59,7 @@
                 <%--<asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
                     <asp:ListItem Value="0">All Branches</asp:ListItem>
                 </asp:DropDownList>--%>
-                <telerik:RadDropDownList ID="Branch" runat="server" Height="24px" Width="197px">
+                <telerik:RadDropDownList ID="BranchDDL1" runat="server" Height="24px" Width="197px">
                     <Items>
                         <telerik:DropDownListItem Text="All Branches" Value="0" />
                     </Items>
@@ -82,7 +68,7 @@
                     <asp:ListItem Value="1"> Monthly </asp:ListItem>
                     <asp:ListItem Value="2" Selected="True"> Yearly </asp:ListItem>
                 </asp:DropDownList>--%>
-                <telerik:RadDropDownList ID="TimeType" runat="server" Height="24px" Width="197px">
+                <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="24px" Width="197px">
                     <Items>
                         <telerik:DropDownListItem Text="Weekly" Value="3" />
                         <telerik:DropDownListItem Text="Monthly" Value="1" />
@@ -96,123 +82,47 @@
 
             <br />
             <%--KPIs--%>
-            <%--Number of Customers Seen By Employee--%>
-            <div class="col-12">
-                <div class="x_panel" style="width: 100%">
-                    <div class="x_title">
-                        <h2>Number of Customers Seen By Employee</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content" style="width: 100%">
-                        <div class="" style="width: 100%">
-                            <%--Export button--%>
-                            <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                            <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
-                            </telerik:RadClientExportManager>
-                            <%--Chart--%>
-                            <telerik:RadHtmlChart ID="CustomersSeenByEmployeeCompanyRHC1" Width="100%" class="chart" runat="server" CssClass="MonthlyExport" Skin="Material">
-                            </telerik:RadHtmlChart>
-                            <%--Table--%>
-                            <telerik:RadGrid ID="CustomersSeenByEmployeeCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="CustomersSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
-                                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
-                                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
-                                    <Selecting AllowRowSelect="True" />
-                                </ClientSettings>
-                                <MasterTableView AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmployeeCompanyODS1">
-                                    <Columns>
-                                        <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name">
-                                        </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
-                                        </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column" HeaderText="Number Of Customers Seen" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee">
-                                        </telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                            <%--Datasource--%>
-                            <asp:ObjectDataSource ID="CustomersSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_CustomersSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.CustomersSeenByEmployeeCompanyBL">
-                                <SelectParameters>
-                                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-01-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-12-31" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                                    <asp:ControlParameter ControlID="Company" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:ControlParameter ControlID="TimeType" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
-                                </SelectParameters>
-                            </asp:ObjectDataSource>
-                        </div>
-                    </div>
-                </div>
+            <%--KPI Container--%>
+            <div class="demo-container no-bg">
+                <telerik:RadAjaxLoadingPanel runat="server" ID="LoadingPanel1" Skin="MetroTouch">
+                </telerik:RadAjaxLoadingPanel>
+                <telerik:RadAjaxManager runat="server" ID="RadAjaxManager1" EnablePageHeadUpdate="true">
+                    <ajaxsettings>
+                        <telerik:AjaxSetting AjaxControlID="RadTabStrip1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RadTabStrip1"></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="RadMultiPage1" LoadingPanelID="LoadingPanel1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="RadMultiPage1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RadMultiPage1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                    </ajaxsettings>
+                </telerik:RadAjaxManager>
+                <script type="text/javascript">
+                    /* <![CDATA[ */
+                    function onTabSelecting(sender, args) {
+
+                        if (args.get_tab().get_pageViewID()) {
+                            args.get_tab().set_postBack(false);
+                        }
+                    }
+                    /* ]]> */
+                </script>
+                <telerik:RadTabStrip RenderMode="Lightweight" OnClientTabSelecting="onTabSelecting" ID="RadTabStrip1" SelectedIndex="0"
+                    runat="server" MultiPageID="RadMultiPage1" Skin="MetroTouch" Width="100%" Align="Justify"
+                    OnTabClick="RadTabStrip1_TabClick">
+                </telerik:RadTabStrip>
+                <telerik:RadMultiPage ID="RadMultiPage1" CssClass="RadMultiPage" runat="server" SelectedIndex="0" OnPageViewCreated="RadMultiPage1_PageViewCreated">
+                </telerik:RadMultiPage>
             </div>
 
-            <%--Number of Animal Seen By Employee--%>
-            <div class="col-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Number of Animals Seen By Employee</h2>
-                        <ul class="nav navbar-right panel_toolbox" onclick="redraw">
-                            <li onclick="redraw"><a class="collapse-link" onclick="redraw"><i class="fa fa-chevron-up" onclick="redraw"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                        <div class="">
-                            <%--Chart--%>
-                            <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="MetroTouch"></telerik:RadHtmlChart>
-                            <%--Datasource--%>
-                            <asp:ObjectDataSource ID="AnimalsSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AnimalsSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AnimalsSeenByEmployeeCompanyBL">
-                                <SelectParameters>
-                                    <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-01-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                                    <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-12-31" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                                    <asp:ControlParameter ControlID="Company" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                                    <asp:ControlParameter ControlID="TimeType" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
-                                </SelectParameters>
-                            </asp:ObjectDataSource>
-                            <%--Table--%>
-                            <telerik:RadGrid ID="AnimalsSeenByEmployeeCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AnimalsSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
-                                <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
-                                <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
-                                    <Selecting AllowRowSelect="True" />
-                                </ClientSettings>
-                                <MasterTableView AutoGenerateColumns="False" DataSourceID="AnimalsSeenByEmployeeCompanyODS1">
-                                    <Columns>
-                                        <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name">
-                                        </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="TimePeriod" FilterControlAltText="Filter TimePeriod column" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod">
-                                        </telerik:GridBoundColumn>
-                                        <telerik:GridBoundColumn DataField="Number_Of_Animals_Seen_By_An_Employee" DataFormatString="{0:N0}" DataType="System.Int32" FilterControlAltText="Filter Number_Of_Animals_Seen_By_An_Employee column" HeaderText="Number of Animals Seen" SortExpression="Number_Of_Animals_Seen_By_An_Employee" UniqueName="Number_Of_Animals_Seen_By_An_Employee">
-                                        </telerik:GridBoundColumn>
-                                    </Columns>
-                                </MasterTableView>
-                            </telerik:RadGrid>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
             
 
         </div>
     </form>
-    <script>
-        var $ = $telerik.$;
-
-        function exportRadHtmlChart() {
-            $find('<%=RadClientExportManager1.ClientID%>').exportPDF($(".MonthlyExport"));
-        };
-
-        //$("#CustomersSeenByEmpComRHC1").data("RadHtmlChart").options.transitions = false;
-        //var redraw = $(".chart").data("RadHtmlChart").redraw();
-        //$("#CustomersSeenByEmpComRHC1").data("RadHtmlChart").options.transitions = true;
-
-        <%--        function redraw() {
-            console.log("its working");
-            $telerik.$("<%=AnimalsSeenByEmpComRHC1.ClientID%>").data("kendoChart").redraw();
-            
-        }--%>
-    </script>
 </asp:Content>

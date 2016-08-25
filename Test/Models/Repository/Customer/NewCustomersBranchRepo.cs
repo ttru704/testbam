@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_NewCustomersBranch_Result> INewCustomersBranchRepo.usp_NewCustomersBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        List<usp_NewCustomersBranch_Result> INewCustomersBranchRepo.usp_NewCustomersBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
         {
             return context.usp_NewCustomersBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

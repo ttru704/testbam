@@ -15,38 +15,87 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
+            Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
+            Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
+            Session["Branch"] = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
+            Session["Time"] = Convert.ToInt16(TimeDDL1.SelectedItem.Value);
+            if (!Page.IsPostBack)
+            {
+                AddTab("Company");
+                AddPageView(RadTabStrip1.FindTabByText("Company"));
+                //AddTab("Branch");
+                //AddTab("Peer");
 
+            }
         }
+        
+        //This is for the RadTabStrip to work
+            private void AddTab(string tabName)
+            {
+                RadTab tab = new RadTab();
+                tab.Text = tabName;
+                tab.Width = Unit.Pixel(200);
+                RadTabStrip1.Tabs.Add(tab);
+            }
+
+            protected void RadMultiPage1_PageViewCreated(object sender, RadMultiPageEventArgs e)
+            {
+                string userControlName = "E" + e.PageView.ID + "CS.ascx";
+
+                Control userControl = Page.LoadControl(userControlName);
+                userControl.ID = "E" + e.PageView.ID + "_userControl";
+
+                e.PageView.Controls.Add(userControl);
+            }
+
+            private void AddPageView(RadTab tab)
+            {
+                RadPageView pageView = new RadPageView();
+                pageView.ID = tab.Text;
+                pageView.CssClass = "contentWrapper" + tab.Index;
+                RadMultiPage1.PageViews.Add(pageView);
+                tab.PageViewID = pageView.ID;
+            }
+
+            protected void RadTabStrip1_TabClick(object sender, RadTabStripEventArgs e)
+            {
+                AddPageView(e.Tab);
+                e.Tab.PageView.Selected = true;
+            }
 
         //This is a class that help displaying chart with multiple branches
 
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            DateTime start = DatePicker1.SelectedDate.GetValueOrDefault();
-            DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
-            ListtoDataTableConverter converter = new ListtoDataTableConverter();
-
-            CustomersSeenByEmployeeCompanyBL customersSeenByEmployeeCompanyBL = new CustomersSeenByEmployeeCompanyBL();
-            List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, 1, 2);
-
-
-            DataTable customersSeenByEmployeeCompanyDT = converter.ToDataTable(customersSeenByEmployeeCompanyList);
-
-
-            RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeCompanyRHC1, customersSeenByEmployeeCompanyDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
-
-            AnimalsSeenByEmployeeCompanyBL animalsSeenByEmployeeCompanyBL = new AnimalsSeenByEmployeeCompanyBL();
-            List<usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, 1, 2);
-
-            DataTable animalsSeenByEmployeeCompanyDT = converter.ToDataTable(animalsSeenByEmployeeCompanyList);
-            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeCompanyRHC1, animalsSeenByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
-
-
-
-            //var redraw = $(".chart").data("kendoChart").redraw();
-
             
+
+            //Do we need this?
+            //DateTime start = DatePicker1.SelectedDate.GetValueOrDefault();
+            //DateTime end = DatePicker2.SelectedDate.GetValueOrDefault();
+
+            //ListtoDataTableConverter converter = new ListtoDataTableConverter();
+
+            //CustomersSeenByEmployeeCompanyBL customersSeenByEmployeeCompanyBL = new CustomersSeenByEmployeeCompanyBL();
+            //List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, 1, 2);
+
+
+            //DataTable customersSeenByEmployeeCompanyDT = converter.ToDataTable(customersSeenByEmployeeCompanyList);
+
+
+            //RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeCompanyRHC1, customersSeenByEmployeeCompanyDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
+
+            //AnimalsSeenByEmployeeCompanyBL animalsSeenByEmployeeCompanyBL = new AnimalsSeenByEmployeeCompanyBL();
+            //List<usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, 1, 2);
+
+            //DataTable animalsSeenByEmployeeCompanyDT = converter.ToDataTable(animalsSeenByEmployeeCompanyList);
+            //RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeCompanyRHC1, animalsSeenByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
+
+
+
+
+
         }
     }
 }

@@ -29,14 +29,17 @@ namespace Test.Models
         public Nullable<int> Street_Number { get; set; }
         public string Street_Name { get; set; }
         public string Suburb { get; set; }
-        public string State { get; set; }
         public string Zip_Code { get; set; }
-        public string Country { get; set; }
-        public string Region { get; set; }
         public System.DateTime Last_Updated { get; set; }
         public string Status { get; set; }
+        public Nullable<long> Region_Ref { get; set; }
+        public Nullable<long> State_Ref { get; set; }
+        public Nullable<long> Country_Ref { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
+        public virtual Country_Profile Country_Profile { get; set; }
+        public virtual Region_Profile Region_Profile { get; set; }
+        public virtual State_Profile State_Profile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Configuration> Configurations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

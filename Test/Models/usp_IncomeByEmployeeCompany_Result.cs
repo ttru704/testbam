@@ -13,9 +13,9 @@ namespace Test.Models
     
     public partial class usp_IncomeByEmployeeCompany_Result
     {
-        public string Employee { get; set; }
+        public string Employee_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
-        public Nullable<decimal> Income_By_Employee { get; set; }
+        public decimal Income_By_Employee { get; set; }
         public string TimePeriod { get; set; }
     }
 }

@@ -217,14 +217,20 @@
     <Content Include="bin\Telerik.Web.UI.Skins.dll" />
     <Content Include="build\css\custom.css" />
     <Content Include="build\css\custom.min.css" />
+    <Content Include="CBranchCS.ascx" />
+    <Content Include="CCompanyCS.ascx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CPeerCS.ascx" />
     <Content Include="customerKPI.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="defaulttest.aspx" />
+    <Content Include="ECompanyCS.ascx" />
     <Content Include="employeeKPI.aspx" />
+    <Content Include="FBranchCS.ascx" />
+    <Content Include="FCompanyCS.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -234,6 +240,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="financialKPI.aspx" />
+    <Content Include="FPeerCS.ascx" />
     <Content Include="missedcharge.aspx" />
     <Content Include="Models\BAM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -440,6 +447,7 @@
     <Compile Include="BLL\Customer\AnimalsSeenSingleBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerBranchBL.cs" />
     <Compile Include="BLL\Customer\AvgDollarPerCustomerCompanyBL.cs" />
+    <Compile Include="BLL\Customer\AvgDollarPerCustomerPeerBL.cs" />
     <Compile Include="BLL\Customer\LargeAnimalsBranchBL.cs" />
     <Compile Include="BLL\Customer\LargeAnimalsCompanyBL.cs" />
     <Compile Include="BLL\Customer\NewCustomersBranchBL.cs" />
@@ -471,14 +479,34 @@
     <Compile Include="BLL\Financial\TransExcludeZeroTotalBranchBL.cs" />
     <Compile Include="BLL\Financial\TransExcludeZeroTotalCompanyBL.cs" />
     <Compile Include="BLL\Productivity\AnimalsSeenByEmployeeCompanyBL.cs" />
-    <Compile Include="BLL\Customer\AnimalsSeenIndustryBL.cs" />
     <Compile Include="BLL\Productivity\CustomersSeenByEmployeeCompanyBL.cs" />
+    <Compile Include="CBranchCS.ascx.cs">
+      <DependentUpon>CBranchCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CBranchCS.ascx.designer.cs">
+      <DependentUpon>CBranchCS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CCompanyCS.ascx.cs">
+      <DependentUpon>CCompanyCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CCompanyCS.ascx.designer.cs">
+      <DependentUpon>CCompanyCS.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CPeerCS.ascx.cs">
+      <DependentUpon>CPeerCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CPeerCS.ascx.designer.cs">
+      <DependentUpon>CPeerCS.ascx</DependentUpon>
     </Compile>
     <Compile Include="customerKPI.aspx.cs">
       <DependentUpon>customerKPI.aspx</DependentUpon>
@@ -501,12 +529,40 @@
     <Compile Include="defaulttest.aspx.designer.cs">
       <DependentUpon>defaulttest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ECompanyCS.ascx.cs">
+      <DependentUpon>ECompanyCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ECompanyCS.ascx.designer.cs">
+      <DependentUpon>ECompanyCS.ascx</DependentUpon>
+    </Compile>
     <Compile Include="employeeKPI.aspx.cs">
       <DependentUpon>employeeKPI.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="employeeKPI.aspx.designer.cs">
       <DependentUpon>employeeKPI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FBranchCS.ascx.cs">
+      <DependentUpon>FBranchCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FBranchCS.ascx.designer.cs">
+      <DependentUpon>FBranchCS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="FCompanyCS.ascx.cs">
+      <DependentUpon>FCompanyCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FCompanyCS.ascx.designer.cs">
+      <DependentUpon>FCompanyCS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="FPeerCS.ascx.cs">
+      <DependentUpon>FPeerCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FPeerCS.ascx.designer.cs">
+      <DependentUpon>FPeerCS.ascx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -575,6 +631,9 @@
     <Compile Include="Models\Connection_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Country_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Interface\Customer\IAnimalsSeenBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAnimalsSeenChangesRepo.cs" />
@@ -582,6 +641,7 @@
     <Compile Include="Models\Interface\Customer\IAnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerPeerRepo.cs" />
     <Compile Include="Models\Interface\Customer\ILargeAnimalsBranchRepo.cs" />
     <Compile Include="Models\Interface\Customer\ILargeAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Interface\Customer\INewCustomersBranchRepo.cs" />
@@ -614,7 +674,6 @@
     <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Interface\IBranchDropDownListRepo.cs" />
     <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeCompanyRepo.cs" />
-    <Compile Include="Models\Interface\Customer\IAnimalsSeenIndustryRepo.cs" />
     <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -639,6 +698,9 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RadHtmlChartGroupDataSource.cs" />
+    <Compile Include="Models\Region_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Repository\BranchDropDownListRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenChangesRepo.cs" />
@@ -646,6 +708,7 @@
     <Compile Include="Models\Repository\Customer\AnimalsSeenSingleRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerPeerRepo.cs" />
     <Compile Include="Models\Repository\Customer\LargeAnimalsBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\LargeAnimalsCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\NewCustomersBranchRepo.cs" />
@@ -677,12 +740,14 @@
     <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmployeeCompanyRepo.cs" />
-    <Compile Include="Models\Repository\Customer\AnimalsSeenIndustryRepo.cs" />
     <Compile Include="Models\Repository\Productivity\CustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Staff_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Staff_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\State_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Subject_Profile.cs">
@@ -715,7 +780,7 @@
     <Compile Include="Models\usp_AnimalsSeenCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_AnimalsSeenIndustry_Result.cs">
+    <Compile Include="Models\usp_AnimalsSeenPeer_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_AvgCustomersSeenByEmployeeCompany_Result.cs">
@@ -727,10 +792,16 @@
     <Compile Include="Models\usp_AvgDollarPerCustomerCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_AvgDollarPerCustomerPeer_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_AvgDollarPerTransactionBranch_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_AvgDollarPerTransactionCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerTransactionPeer_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_BranchDropDownList_Result.cs">

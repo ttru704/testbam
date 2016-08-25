@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_AnimalsSeenBranch_Result> IAnimalsSeenBranchRepo.usp_AnimalsSeenBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        List<usp_AnimalsSeenBranch_Result> IAnimalsSeenBranchRepo.usp_AnimalsSeenBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
         {
             return context.usp_AnimalsSeenBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

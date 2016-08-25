@@ -11,11 +11,11 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_AnimalsSeenIndustry_Result
+    public partial class usp_AvgDollarPerTransactionPeer_Result
     {
         public string Name { get; set; }
         public Nullable<System.DateTime> Year_Month { get; set; }
-        public Nullable<decimal> Number_of_Animals_Seen { get; set; }
+        public Nullable<decimal> Average_Dollar_per_Transaction { get; set; }
         public string TimePeriod { get; set; }
     }
 }

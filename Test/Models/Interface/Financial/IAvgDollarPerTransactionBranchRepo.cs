@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface IAvgDollarPerTransactionBranchRepo: IDisposable
     {
-        List<usp_AvgDollarPerTransactionBranch_Result> usp_AvgDollarPerTransactionBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType);
+        List<usp_AvgDollarPerTransactionBranch_Result> usp_AvgDollarPerTransactionBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType);
     }
 }

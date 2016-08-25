@@ -13,76 +13,71 @@
             <!-- top tiles -->
             <div class="row tile_count">
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" runat="server">
-                    <span class="count_top"><i class="fa fa-money"></i> Total Sales</span>
-                    <div class="count blue"> 
+                    <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
+                    <div class="count blue">
                         <asp:Label ID="Label1" runat="server" Text="Label" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom" runat="server">
-                        <i id="color" class="red">
-                            <i class="fa fa-sort-desc"></i>
-                            <asp:Label ID="LabelPercent1" runat="server"></asp:Label>
-                        </i>From last Month
+                    <span id="Label1span" class="count_bottom" runat="server">
+                        <i id="icon1" runat="server"></i>
+                        <asp:Label ID="LabelPercent1" runat="server" Font-Bold="true"></asp:Label>
                     </span>
+                    <span>From Last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-money"></i> Avg $ per Transaction</span>
+                    <span class="count_top"><i class="fa fa-money"></i>Avg $ per Transaction</span>
                     <div class="count blue">
                         <asp:Label ID="Label2" runat="server" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom">
-                        <i class="green">
-                            <i class="fa fa-sort-asc"></i>
-                            <asp:Label ID="LabelPercent2" runat="server"></asp:Label>
-                        </i>From last Month</span>
+                    <span id="Label2span" class="count_bottom" runat="server">
+                        <i id="icon2" runat="server"></i>
+                        <asp:Label ID="LabelPercent2" runat="server" Font-Bold="true"></asp:Label>
+                    </span>
+                    <span>From Last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-money"></i> Avg $ per Customer</span>
+                    <span class="count_top"><i class="fa fa-money"></i>Avg $ per Customer</span>
                     <div class="count blue">
                         <asp:Label ID="Label3" runat="server" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom">
-                        <i class="green">
-                            <i class="fa fa-sort-asc"></i>
-                            <asp:Label ID="LabelPercent3" runat="server"></asp:Label>
-                        </i>From last Month</span>
+                    <span id="Label3span" class="count_bottom" runat="server">
+                        <i id="icon3" runat="server"></i>
+                        <asp:Label ID="LabelPercent3" runat="server" Font-Bold="true"></asp:Label>
+                    </span>
+                    <span>From Last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-plus"></i>New Customers</span>
-                    <div class="count blue" >
+                    <div class="count blue">
                         <asp:Label ID="Label4" runat="server" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom">
-                        <i class="green">
-                            <i class="fa fa-sort-asc"></i>
-                            <asp:Label ID="LabelPercent4" runat="server"></asp:Label>
-                        </i>From last Month</span>
+                    <span id="Label4span" class="count_bottom" runat="server">
+                        <i id="icon4" runat="server"></i>
+                        <asp:Label ID="LabelPercent4" runat="server" Font-Bold="true"></asp:Label>
+                    </span>
+                    <span>From Last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-plus"></i>Unique Customers Seen</span>
                     <div class="count blue">
                         <asp:Label ID="Label5" runat="server" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom">
-                        <i class="red">
-                            <i class="fa fa-sort-desc"></i>
-                            <asp:Label ID="LabelPercent5" runat="server"></asp:Label>
-                        </i>From last Month</span>
+                    <span id="Label5span" class="count_bottom" runat="server">
+                        <i id="icon5" runat="server"></i>
+                        <asp:Label ID="LabelPercent5" runat="server" Font-Bold="true"></asp:Label>
+                    </span>
+                    <span>From Last Month</span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top"><i class="fa fa-paw"></i>Animals Seen</span>
                     <div class="count blue">
                         <asp:Label ID="Label6" runat="server" class="count blue"></asp:Label>
                     </div>
-                    <span class="count_bottom">
-                        <i class="red">
-                            <i class="fa fa-sort-desc"></i>
-                            <asp:Label ID="LabelPercent6" runat="server"></asp:Label>
-                        </i>From last Month</span>
+                    <span id="Label6span" class="count_bottom" runat="server">
+                        <i id="icon6" runat="server"></i>
+                        <asp:Label ID="LabelPercent6" runat="server" Font-Bold="true"></asp:Label>
+                    </span>
+                    <span>From Last Month</span>
                 </div>
-                
-
-
-            </div>
             <!-- /top tiles -->
 
 

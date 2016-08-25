@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface INewCustomersBranchRepo: IDisposable
     {
-        List<usp_NewCustomersBranch_Result> usp_NewCustomersBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType);
+        List<usp_NewCustomersBranch_Result> usp_NewCustomersBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType);
     }
 }

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_AvgDollarPerTransactionBranch_Result> IAvgDollarPerTransactionBranchRepo.usp_AvgDollarPerTransactionBranch(DateTime? start, DateTime? end, int companyRef, int branchRef, int timeType)
+        List<usp_AvgDollarPerTransactionBranch_Result> IAvgDollarPerTransactionBranchRepo.usp_AvgDollarPerTransactionBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
         {
             return context.usp_AvgDollarPerTransactionBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

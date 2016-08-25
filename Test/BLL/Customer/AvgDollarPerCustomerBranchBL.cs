@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.avgDollarPerCustomerBranchRepo = avgDollarPerCustomerBranchRepo;
         }
 
-        public List<usp_AvgDollarPerCustomerBranch_Result> usp_AvgDollarPerCustomerBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        public List<usp_AvgDollarPerCustomerBranch_Result> usp_AvgDollarPerCustomerBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
         {
             return avgDollarPerCustomerBranchRepo.usp_AvgDollarPerCustomerBranch(start, end, companyRef, branchRef, timeType);
         }

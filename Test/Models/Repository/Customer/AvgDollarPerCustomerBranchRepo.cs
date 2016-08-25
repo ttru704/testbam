@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_AvgDollarPerCustomerBranch_Result> IAvgDollarPerCustomerBranchRepo.usp_AvgDollarPerCustomerBranch(DateTime start, DateTime end, int companyRef, int branchRef, int timeType)
+        List<usp_AvgDollarPerCustomerBranch_Result> IAvgDollarPerCustomerBranchRepo.usp_AvgDollarPerCustomerBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
         {
             return context.usp_AvgDollarPerCustomerBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

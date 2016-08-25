@@ -22,7 +22,7 @@ namespace Test.BLL.Productivity
             this.animalsSeenByEmployeeCompanyRepo = animalsSeenByEmployeeCompanyRepo;
         }
 
-        public List<usp_AnimalsSeenByEmployeeCompany_Result> usp_AnimalsSeenByEmployeeCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_AnimalsSeenByEmployeeCompany_Result> usp_AnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType)
         {
             return animalsSeenByEmployeeCompanyRepo.usp_AnimalsSeenByEmployeeCompany(start, end, companyRef, timeType);
         }

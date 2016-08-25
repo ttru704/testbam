@@ -25,12 +25,12 @@
     <Property Name="Street_Number" Type="int" />
     <Property Name="Street_Name" Type="nvarchar" MaxLength="255" />
     <Property Name="Suburb" Type="nvarchar" MaxLength="100" />
-    <Property Name="State" Type="varchar" MaxLength="50" />
     <Property Name="Zip_Code" Type="varchar" MaxLength="50" />
-    <Property Name="Country" Type="varchar" MaxLength="50" />
-    <Property Name="Region" Type="varchar" MaxLength="50" />
     <Property Name="Last_Updated" Type="datetime" Nullable="false" />
     <Property Name="Status" Type="char" MaxLength="1" />
+    <Property Name="Region_Ref" Type="bigint" />
+    <Property Name="State_Ref" Type="bigint" />
+    <Property Name="Country_Ref" Type="bigint" />
   </EntityType>
   <EntityType Name="Branch_Profile_Types">
     <Key>
@@ -107,6 +107,14 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="Disk_Id" Type="nvarchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="Country_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Abbr" Type="nvarchar" MaxLength="16" />
+  </EntityType>
   <EntityType Name="Key_Performance_Indexes">
     <Key>
       <PropertyRef Name="Ref_Number" />
@@ -170,6 +178,15 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="Last_Updated" Type="datetime" Nullable="false" />
     <Property Name="Status" Type="char" MaxLength="1" />
   </EntityType>
+  <EntityType Name="Region_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="State_Ref" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Abbr" Type="nvarchar" MaxLength="16" />
+  </EntityType>
   <EntityType Name="Staff_Profile">
     <Key>
       <PropertyRef Name="Company_Ref" />
@@ -191,6 +208,15 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="Ref_Number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Business_Type" Type="bigint" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Country_Ref" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Abbr" Type="nvarchar" MaxLength="16" />
   </EntityType>
   <EntityType Name="Subject_Profile">
     <Key>
@@ -321,6 +347,42 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
       </Principal>
       <Dependent Role="Branch_Profile">
         <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRN_Country_Profile">
+    <End Role="Country_Profile" Type="Self.Country_Profile" Multiplicity="0..1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="Country_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRN_Region_Profile">
+    <End Role="Region_Profile" Type="Self.Region_Profile" Multiplicity="0..1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="Region_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRN_State_Profile">
+    <End Role="State_Profile" Type="Self.State_Profile" Multiplicity="0..1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="State_Ref" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -528,6 +590,18 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="REG_State_Profile">
+    <End Role="State_Profile" Type="Self.State_Profile" Multiplicity="1" />
+    <End Role="Region_Profile" Type="Self.Region_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Region_Profile">
+        <PropertyRef Name="State_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="SBT_Business_Types">
     <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
     <End Role="Subject_Types" Type="Self.Subject_Types" Multiplicity="*" />
@@ -549,6 +623,18 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
       </Principal>
       <Dependent Role="Staff_Profile">
         <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STP_Country_Profile">
+    <End Role="Country_Profile" Type="Self.Country_Profile" Multiplicity="1" />
+    <End Role="State_Profile" Type="Self.State_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="State_Profile">
+        <PropertyRef Name="Country_Ref" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -613,10 +699,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     </ReferentialConstraint>
   </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="Get_TimeType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
-    <Parameter Name="Type" Type="int" Mode="In" />
-    <Parameter Name="Date" Type="datetime" Mode="In" />
-  </Function>
   <Function Name="usp_AnimalsSeenBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
@@ -639,7 +721,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
-  <Function Name="usp_AnimalsSeenIndustry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="usp_AnimalsSeenPeer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="branchRef" Type="int" Mode="In" />
@@ -671,6 +753,16 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_AvgDollarPerCustomerPeer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="branchRef" Type="int" Mode="In" />
+    <Parameter Name="size" Type="int" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
+    <Parameter Name="country" Type="int" Mode="In" />
+    <Parameter Name="state" Type="int" Mode="In" />
+    <Parameter Name="region" Type="int" Mode="In" />
+  </Function>
   <Function Name="usp_AvgDollarPerCustomerSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
@@ -690,6 +782,16 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_AvgDollarPerTransactionPeer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="branchRef" Type="int" Mode="In" />
+    <Parameter Name="size" Type="int" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
+    <Parameter Name="country" Type="int" Mode="In" />
+    <Parameter Name="state" Type="int" Mode="In" />
+    <Parameter Name="region" Type="int" Mode="In" />
+  </Function>
   <Function Name="usp_AvgDollarPerTransactionSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
@@ -706,7 +808,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
-    <Parameter Name="Timetype" Type="int" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_IncomeByProductCategoryCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
@@ -855,6 +957,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <EntitySet Name="Client_Profile" EntityType="Self.Client_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Company_Profile" EntityType="Self.Company_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Configurations" EntityType="Self.Configurations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country_Profile" EntityType="Self.Country_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Key_Performance_Indexes" EntityType="Self.Key_Performance_Indexes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KPI_For_Business" EntityType="Self.KPI_For_Business" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="KPI_For_Company" EntityType="Self.KPI_For_Company" Schema="dbo" store:Type="Tables" />
@@ -862,8 +965,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <EntitySet Name="KPI_Types" EntityType="Self.KPI_Types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Params" EntityType="Self.Params" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product_Profile" EntityType="Self.Product_Profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Region_Profile" EntityType="Self.Region_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff_Profile" EntityType="Self.Staff_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Staff_Types" EntityType="Self.Staff_Types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State_Profile" EntityType="Self.State_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject_Profile" EntityType="Self.Subject_Profile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Subject_Types" EntityType="Self.Subject_Types" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -888,6 +993,18 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     </AssociationSet>
     <AssociationSet Name="BRN_Company_Profile" Association="Self.BRN_Company_Profile">
       <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="BRN_Country_Profile" Association="Self.BRN_Country_Profile">
+      <End Role="Country_Profile" EntitySet="Country_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="BRN_Region_Profile" Association="Self.BRN_Region_Profile">
+      <End Role="Region_Profile" EntitySet="Region_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="BRN_State_Profile" Association="Self.BRN_State_Profile">
+      <End Role="State_Profile" EntitySet="State_Profile" />
       <End Role="Branch_Profile" EntitySet="Branch_Profile" />
     </AssociationSet>
     <AssociationSet Name="BRT_Business_Types" Association="Self.BRT_Business_Types">
@@ -958,6 +1075,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
       <End Role="Company_Profile" EntitySet="Company_Profile" />
       <End Role="Product_Profile" EntitySet="Product_Profile" />
     </AssociationSet>
+    <AssociationSet Name="REG_State_Profile" Association="Self.REG_State_Profile">
+      <End Role="State_Profile" EntitySet="State_Profile" />
+      <End Role="Region_Profile" EntitySet="Region_Profile" />
+    </AssociationSet>
     <AssociationSet Name="SBT_Business_Types" Association="Self.SBT_Business_Types">
       <End Role="Business_Types" EntitySet="Business_Types" />
       <End Role="Subject_Types" EntitySet="Subject_Types" />
@@ -965,6 +1086,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <AssociationSet Name="STF_Company_Profile" Association="Self.STF_Company_Profile">
       <End Role="Company_Profile" EntitySet="Company_Profile" />
       <End Role="Staff_Profile" EntitySet="Staff_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="STP_Country_Profile" Association="Self.STP_Country_Profile">
+      <End Role="Country_Profile" EntitySet="Country_Profile" />
+      <End Role="State_Profile" EntitySet="State_Profile" />
     </AssociationSet>
     <AssociationSet Name="STP_Staff_Types" Association="Self.STP_Staff_Types">
       <End Role="Staff_Types" EntitySet="Staff_Types" />
