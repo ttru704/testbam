@@ -22,6 +22,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
         
         /// <summary>
+        /// RadButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton1;
+        
+        /// <summary>
         /// RadClientExportManager1 control.
         /// </summary>
         /// <remarks>
@@ -83,5 +92,95 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid AnimalsSeenByEmployeeCompanyG1;
+        
+        /// <summary>
+        /// AvgCustomersSeenByEmployeeCompanyRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart AvgCustomersSeenByEmployeeCompanyRHC1;
+        
+        /// <summary>
+        /// AvgCustomersSeenByEmployeeCompanyODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgCustomersSeenByEmployeeCompanyODS1;
+        
+        /// <summary>
+        /// AvgCustomersSeenByEmployeeCompanyG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid AvgCustomersSeenByEmployeeCompanyG1;
+        
+        /// <summary>
+        /// AvgAnimalsSeenByEmployeeCompanyRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart AvgAnimalsSeenByEmployeeCompanyRHC1;
+        
+        /// <summary>
+        /// AvgAnimalsSeenByEmployeeCompanyODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgAnimalsSeenByEmployeeCompanyODS1;
+        
+        /// <summary>
+        /// AvgAnimalsSeenByEmployeeCompanyG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid AvgAnimalsSeenByEmployeeCompanyG1;
+        
+        /// <summary>
+        /// RadButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton2;
+        
+        /// <summary>
+        /// IncomeByEmployeeCompanyRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart IncomeByEmployeeCompanyRHC1;
+        
+        /// <summary>
+        /// IncomeByEmployeeCompanyODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource IncomeByEmployeeCompanyODS1;
+        
+        /// <summary>
+        /// IncomeByEmployeeCompanyG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid IncomeByEmployeeCompanyG1;
     }
 }

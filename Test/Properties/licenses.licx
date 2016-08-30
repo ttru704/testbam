@@ -1,3 +1,10 @@
+Telerik.Web.UI.RadFormDecorator, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
+Telerik.Web.UI.RadWindow, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
+Telerik.Web.UI.RadWindowManager, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
+Telerik.Web.UI.RadODataDataSource, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
+Telerik.Web.UI.RadTreeView, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
+Telerik.Web.UI.RadDropDownTree, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
+Telerik.Web.UI.RadPanelBar, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.GridHeaderContextMenu, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.GridFilterMenu, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4
 Telerik.Web.UI.RadMultiPage, Telerik.Web.UI, Version=2016.2.607.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4

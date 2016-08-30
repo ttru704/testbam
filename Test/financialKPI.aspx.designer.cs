@@ -22,15 +22,6 @@ namespace Test {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// RadStyleSheetManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadStyleSheetManager RadStyleSheetManager1;
-        
-        /// <summary>
         /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +38,105 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
+        
+        /// <summary>
+        /// BranchDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
+        
+        /// <summary>
+        /// RadWindow_ContentTemplate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadWindow RadWindow_ContentTemplate;
+        
+        /// <summary>
+        /// CountryDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox CountryDDL1;
+        
+        /// <summary>
+        /// CountryODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource CountryODS1;
+        
+        /// <summary>
+        /// StateDLL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox StateDLL1;
+        
+        /// <summary>
+        /// StateODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource StateODS1;
+        
+        /// <summary>
+        /// RegionDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox RegionDDL1;
+        
+        /// <summary>
+        /// RegionODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource RegionODS1;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
+        
+        /// <summary>
+        /// Button3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button3;
+        
+        /// <summary>
+        /// TimeDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// DatePicker1 control.
@@ -76,15 +166,6 @@ namespace Test {
         protected global::System.Web.UI.WebControls.DropDownList CompanyDDL1;
         
         /// <summary>
-        /// BranchDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
-        
-        /// <summary>
         /// BranchDropDownODS1 control.
         /// </summary>
         /// <remarks>
@@ -92,15 +173,6 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource BranchDropDownODS1;
-        
-        /// <summary>
-        /// TimeDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// Button1 control.

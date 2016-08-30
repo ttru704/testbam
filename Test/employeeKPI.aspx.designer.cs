@@ -31,13 +31,31 @@ namespace Test {
         protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
-        /// RadSkinManager1 control.
+        /// EmployeeSB1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadSkinManager RadSkinManager1;
+        protected global::Telerik.Web.UI.RadSearchBox EmployeeSB1;
+        
+        /// <summary>
+        /// EmployeeODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource EmployeeODS1;
+        
+        /// <summary>
+        /// TimeDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// DatePicker1 control.
@@ -65,24 +83,6 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CompanyDDL1;
-        
-        /// <summary>
-        /// BranchDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
-        
-        /// <summary>
-        /// TimeDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// Button1 control.

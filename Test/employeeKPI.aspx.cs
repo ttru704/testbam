@@ -13,29 +13,36 @@ namespace Test
 {
     public partial class employeekpi : System.Web.UI.Page
     {
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
             Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
             Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
-            Session["Branch"] = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
-            Session["Time"] = Convert.ToInt16(TimeDDL1.SelectedItem.Value);
+            Int64? employee = Session["Employee"] as Int64?;
+            Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
             if (!Page.IsPostBack)
             {
                 AddTab("Company");
                 AddPageView(RadTabStrip1.FindTabByText("Company"));
-                //AddTab("Branch");
+                AddTab("Individual");
                 //AddTab("Peer");
 
             }
         }
-        
+
+        protected void EmployeeSB_Search(object sender, SearchBoxEventArgs e)
+        {
+            Session["Employee"] = Convert.ToInt64(e.Value);
+        }
+
+
         //This is for the RadTabStrip to work
-            private void AddTab(string tabName)
+        private void AddTab(string tabName)
             {
                 RadTab tab = new RadTab();
                 tab.Text = tabName;
-                tab.Width = Unit.Pixel(200);
+            tab.Width = Unit.Percentage(45);//.Pixel(200);
                 RadTabStrip1.Tabs.Add(tab);
             }
 

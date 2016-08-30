@@ -54,6 +54,47 @@ namespace Test
 
                 DataTable serviceOnlySalesBranchDT = converter.ToDataTable(serviceOnlySalesBranchList);
                 RadHtmlChartGroupDataSource.GroupDataSource(ServiceOnlySalesBranchRHC1, serviceOnlySalesBranchDT, "Branch_Name", "LineSeries", "Service_Total_Only", "TimePeriod");
+
+                //Format yaxis of charts
+                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales (000s)";
+                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+
+                AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction (000s)";
+                AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+
+                TransExcludeZeroTotalBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Transactions";
+
+                RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Retail Sales (000s)";
+                RetailOnlySalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+
+                ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Service Sales (000s)";
+                ServiceOnlySalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+
+                //format x axis based on the selected time type
+                if (time == 1)
+                {
+                    TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    TransExcludeZeroTotalBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    RetailOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    ServiceOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                }
+                else if (time == 2)
+                {
+                    TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    TransExcludeZeroTotalBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    RetailOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    ServiceOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                }
+                else if (time == 3)
+                {
+                    TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    TransExcludeZeroTotalBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    RetailOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    ServiceOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                }
             }
 
         }

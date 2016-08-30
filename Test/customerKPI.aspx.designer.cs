@@ -49,6 +49,24 @@ namespace Test {
         protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
         
         /// <summary>
+        /// BranchDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
+        
+        /// <summary>
+        /// TimeDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
+        
+        /// <summary>
         /// DatePicker1 control.
         /// </summary>
         /// <remarks>
@@ -74,24 +92,6 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CompanyDDL1;
-        
-        /// <summary>
-        /// BranchDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
-        
-        /// <summary>
-        /// TimeDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList TimeDDL1;
         
         /// <summary>
         /// Button1 control.

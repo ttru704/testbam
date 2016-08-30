@@ -29,5 +29,23 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadHtmlChart AvgDollarPerCustomerPeerRHC1;
+        
+        /// <summary>
+        /// AvgDollarPerCustomerPeerODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgDollarPerCustomerPeerODS1;
+        
+        /// <summary>
+        /// AvgDollarPerCustomerPeerG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid AvgDollarPerCustomerPeerG1;
     }
 }

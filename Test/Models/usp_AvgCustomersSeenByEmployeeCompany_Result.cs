@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class usp_AvgCustomersSeenByEmployeeCompany_Result
     {
-        public string Employee_Name { get; set; }
+        public string Company_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
         public decimal Number_Of_Customers_Seen_By_An_Employee { get; set; }
         public string TimePeriod { get; set; }

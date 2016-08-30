@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
-        <telerik:RadSkinManager ID="RadSkinManager1" runat="server" ShowChooser="true" />
+        <%--<telerik:RadSkinManager ID="RadSkinManager1" runat="server" ShowChooser="true" />--%>
 <%--        <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
         <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
             <AjaxSettings>
@@ -39,6 +39,22 @@
             <br />
             <%--Datepickers and input--%>
             <div class="text-center">
+                <telerik:RadSearchBox ID="EmployeeSB1" runat="server" EnableAutoComplete="true" DataSourceID="EmployeeODS1" Filter="StartsWith"
+                    DataTextField="Name"  DataValueField="Stf_Number" Width="197px" Height="24px" EmptyMessage="Search for Employee" OnSearch="EmployeeSB_Search" Skin="MetroTouch" HighlightFirstMatch="True">
+                </telerik:RadSearchBox>
+                <asp:ObjectDataSource ID="EmployeeODS1" runat="server" SelectMethod="usp_EmployeeSearchBox" TypeName="Test.BLL.EmployeeSearchBoxBL">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="CompanyDDL1" PropertyName="SelectedValue" DefaultValue="1" Name="companyRef" Type="Int32"></asp:ControlParameter>
+                    </SelectParameters>
+                </asp:ObjectDataSource>     
+                <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="24px" Width="197px">
+                    <Items>
+                        <telerik:DropDownListItem Text="Weekly" Value="3" />
+                        <telerik:DropDownListItem Text="Monthly" Value="1" />
+                        <telerik:DropDownListItem Text="Yearly" Value="2" Selected="true" />
+                    </Items>
+                </telerik:RadDropDownList>
+
                 <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-01-01" SelectedDate="2015-01-01" Height="24px" Width="197px">
                     <DatePopupButton
                         CssClass="rcCalPopup"
@@ -50,7 +66,7 @@
                         Width="2em" />
                 </telerik:RadDatePicker>
                 <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px" Visible="false">
-                    <asp:ListItem>1</asp:ListItem>
+                    <asp:ListItem Selected="True">1</asp:ListItem>
                     <asp:ListItem>2</asp:ListItem>
                     <asp:ListItem>3</asp:ListItem>
                     <asp:ListItem>4</asp:ListItem>
@@ -59,23 +75,12 @@
                 <%--<asp:DropDownList ID="Branch" runat="server" AutoPostBack="True" DataTextField="Branch_Ref" DataValueField="Branch_Ref" Width="100px">
                     <asp:ListItem Value="0">All Branches</asp:ListItem>
                 </asp:DropDownList>--%>
-                <telerik:RadDropDownList ID="BranchDDL1" runat="server" Height="24px" Width="197px">
-                    <Items>
-                        <telerik:DropDownListItem Text="All Branches" Value="0" />
-                    </Items>
-                </telerik:RadDropDownList>
+                
                 <%--<asp:DropDownList ID="TimeType" runat="server" Width="100px">
                     <asp:ListItem Value="1"> Monthly </asp:ListItem>
                     <asp:ListItem Value="2" Selected="True"> Yearly </asp:ListItem>
                 </asp:DropDownList>--%>
-                <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="24px" Width="197px">
-                    <Items>
-                        <telerik:DropDownListItem Text="Weekly" Value="3" />
-                        <telerik:DropDownListItem Text="Monthly" Value="1" />
-                        <telerik:DropDownListItem Text="Yearly" Value="2" Selected="true" />
-
-                    </Items>
-                </telerik:RadDropDownList>
+                
                 <%--<asp:Button ID="Button1" runat="server" Text="View" OnClick="Button1_Click" />--%>
                 <telerik:RadButton ID="Button1" runat="server" Text="View" OnClick="Button1_Click"></telerik:RadButton>
             </div>
@@ -86,7 +91,25 @@
             <div class="demo-container no-bg">
                 <telerik:RadAjaxLoadingPanel runat="server" ID="LoadingPanel1" Skin="MetroTouch">
                 </telerik:RadAjaxLoadingPanel>
-                <telerik:RadAjaxManager runat="server" ID="RadAjaxManager1" EnablePageHeadUpdate="true">
+                <telerik:RadAjaxManager runat="server" ID="RadAjaxManager1">
+                    <AjaxSettings>
+                        <telerik:AjaxSetting AjaxControlID="EmployeeSB1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="EmployeeSB1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="RadTabStrip1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RadTabStrip1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="RadMultiPage1" LoadingPanelID="LoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="RadMultiPage1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RadMultiPage1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                    </AjaxSettings>
                     <ajaxsettings>
                         <telerik:AjaxSetting AjaxControlID="RadTabStrip1">
                             <UpdatedControls>

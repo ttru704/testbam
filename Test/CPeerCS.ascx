@@ -12,8 +12,32 @@
                     <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" runat="server" Skin="Metro">
                     </telerik:RadHtmlChart>
                     <%--Datasource--%>
-
+                    <asp:ObjectDataSource ID="AvgDollarPerCustomerPeerODS1" runat="server" SelectMethod="usp_AvgDollarPerCustomerPeer" TypeName="Test.BLL.Customer.AvgDollarPerCustomerPeerBL">
+                        <SelectParameters>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-04-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-09-01&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Branch" DefaultValue="1" Name="branchRef" Type="Int32"></asp:SessionParameter>
+                            <asp:Parameter DefaultValue="1" Name="size" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="1" Name="timeType" Type="Int32"></asp:SessionParameter>
+                            <asp:Parameter DefaultValue="1" Name="country" Type="Int32"></asp:Parameter>
+                            <asp:Parameter DefaultValue="1" Name="state" Type="Int32"></asp:Parameter>
+                            <asp:Parameter DefaultValue="2" Name="region" Type="Int32"></asp:Parameter>
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
                     <%--Table--%>
+                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" runat="server" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Material">
+                        <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                            <Selecting AllowRowSelect="True"></Selecting>
+                        </ClientSettings>
+
+                        <MasterTableView DataSourceID="AvgDollarPerCustomerPeerODS1" AutoGenerateColumns="False">
+                            <Columns>
+                                <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="Average_Dollar_per_Customer" HeaderText="Average Dollar per Customer" SortExpression="Average_Dollar_per_Customer" UniqueName="Average_Dollar_per_Customer" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Customer column"></telerik:GridBoundColumn>
+                            </Columns>
+                        </MasterTableView>
+                    </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>

@@ -36,10 +36,12 @@
                                 <MinorGridLines Visible="false" />
                             </XAxis>
                             <YAxis>
-                                <TitleAppearance Text="Total Sales" Position="Center">
+                                <TitleAppearance Position="Center">
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
                                 <MinorGridLines Visible="false" />
+                                <LabelsAppearance DataFormatString ="C0">
+                                </LabelsAppearance>
                             </YAxis>
                         </PlotArea>
 
@@ -94,7 +96,7 @@
                             <YAxis Color="Black">
                                 <MajorGridLines Color="#EFEFEF" Width="1" />
                                 <MinorGridLines Color="#F7F7F7" Width="1" />
-                                <TitleAppearance Position="Center" Text="$" RotationAngle="90" />
+                                <TitleAppearance Position="Center" Text="$"  />
                             </YAxis>
                             <Series>
                                 <telerik:AreaSeries Name="Average Per Transaction" DataFieldY="Average_Dollar_per_Transaction">
@@ -225,7 +227,7 @@
                             <YAxis Color="Black">
                                 <MajorGridLines Color="#EFEFEF" Width="1" />
                                 <MinorGridLines Color="#F7F7F7" Width="1" />
-                                <TitleAppearance Position="Center" Text="$" RotationAngle="90" />
+                                <TitleAppearance Position="Center" />
                             </YAxis>
                             <Series>
                                 <telerik:AreaSeries Name="Retail Sales" DataFieldY="Retail_Total_Only">
@@ -292,7 +294,7 @@
                             <YAxis Color="Black">
                                 <MajorGridLines Color="#EFEFEF" Width="1" />
                                 <MinorGridLines Color="#F7F7F7" Width="1" />
-                                <TitleAppearance Position="Center" Text="$" RotationAngle="90" />
+                                <TitleAppearance Position="Center"/>
                             </YAxis>
                             <Series>
                                 <telerik:AreaSeries Name="Service Sales" DataFieldY="Service_Total_Only">
@@ -398,4 +400,39 @@
 
     })(window);
     <%--For responsive chart--%>
+    function pageLoad() {
+                var chart = $find("<%=AvgDollarPerTransactionCompanyRHC1.ClientID%>");
+                chart._chartObject.options.valueAxis.labels.template = "#= FormatLongNumber(value) #";
+                chart.repaint();
+            };
+ 
+ 
+            function FormatLongNumber(value) {
+ 
+                if (value === 0) {
+                    return 0;
+                }
+ 
+                // hundreds
+                if (value <= 999) {
+                    return value;
+                }
+ 
+                // thousands
+                if (value >= 1000 && value <= 999999) {
+                    return (value / 1000) + 'K';
+                }
+ 
+                // millions
+                if (value >= 1000000 && value <= 999999999) {
+                    return (value / 1000000) + 'M';
+                }
+ 
+                // billions
+                if (value >= 1000000000 && value <= 999999999999) {
+                    return (value / 1000000000) + 'B';
+                }
+ 
+                return value;
+            }
 </script>

@@ -71,6 +71,49 @@ namespace Test
                 DataTable largeAnimalsBranchDT = converter.ToDataTable(largeAnimalsBranchlist);
                 RadHtmlChartGroupDataSource.GroupDataSource(LargeAnimalsBranchRHC1, largeAnimalsBranchDT, "Branch_Name", "LineSeries", "Number_of_Large_Animals", "TimePeriod");
 
+                //format yaxis of chart
+                UniqueCustomersSeenBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Customers";
+
+                AnimalsSeenBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Animals";
+
+                AvgDollarPerCustomerBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="Average per Customer (000s)";
+                AvgDollarPerCustomerBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+
+                NewCustomersBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Customers";
+
+                SmallAnimalsBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Animals";
+
+                LargeAnimalsBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Animals";
+
+                //format xaxis of chart based on selected time type
+                if (time == 1)
+                {
+                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                }
+                else if (time == 2)
+                {
+                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                }
+                else if (time == 3)
+                {
+                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                }
+
             }
         }
 

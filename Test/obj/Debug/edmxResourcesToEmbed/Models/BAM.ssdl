@@ -712,6 +712,13 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_AnimalsSeenByEmployeeIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="staffNumber" Type="bigint" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
+  </Function>
   <Function Name="usp_AnimalsSeenChanges" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
@@ -730,6 +737,12 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   </Function>
   <Function Name="usp_AnimalsSeenSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_AvgAnimalsSeenByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_AvgCustomersSeenByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
@@ -798,16 +811,36 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   <Function Name="usp_BranchDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_CountryDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="branchRef" Type="int" Mode="In" />
+  </Function>
   <Function Name="usp_CustomersSeenByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_CustomersSeenByEmployeeIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="staffNumber" Type="bigint" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_EmployeeSearchBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="companyRef" Type="int" Mode="In" />
+  </Function>
   <Function Name="usp_IncomeByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_IncomeByEmployeeIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="staffNumber" Type="bigint" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_IncomeByProductCategoryCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -819,6 +852,13 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_IncomeFromAnimalTypeEmployeeIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="staffNumber" Type="bigint" Mode="In" />
+    <Parameter Name="TimeType" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_LargeAnimalsBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
@@ -851,6 +891,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   </Function>
   <Function Name="usp_NewCustomersSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_RegionDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="stateRef" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_RetailOnlySalesBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
@@ -890,6 +933,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_StateDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="countryRef" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_TotalSalesBranch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />

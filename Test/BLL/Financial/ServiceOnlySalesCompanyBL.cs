@@ -8,7 +8,7 @@ using Test.Models.Repository.Financial;
 
 namespace Test.BLL.Financial
 {
-    public class ServiceOnlySalesCompanyBL
+    public class ServiceOnlySalesCompanyBL : IDisposable
     {
         private IServiceOnlySalesCompanyRepo serviceOnlySalesCompanyRepo;
 

@@ -32,8 +32,8 @@ namespace Test
                 AddTab("Company");
                 AddPageView(RadTabStrip1.FindTabByText("Company"));
                 AddTab("Branch");
-                //AddTab("Peer");
-
+                AddTab("Peer");
+                Int32? state = Session["State"] as Int32?;
             }
         }
 
@@ -76,9 +76,9 @@ namespace Test
         protected void Button1_Click(object sender, EventArgs e)
         {
             
-
-            BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
-            List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
+            
+            //BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
+            //List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
             
             
 
@@ -131,14 +131,6 @@ namespace Test
             //    AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Total Yearly Sales";
             //    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
             //};
-
-            
-            
-
-           
-            
-
-
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,7 +145,18 @@ namespace Test
 
         }
 
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Session["Country"] = Convert.ToInt32(CountryDDL1.SelectedItem.Value);
+            Session["State"] = Convert.ToInt32(StateDLL1.SelectedItem.Value);
+            Session["Region"] = Convert.ToInt32(RegionDDL1.SelectedItem.Value);
+        }
 
+        private int branchNumber;
+        protected void BranchDDL1_SelectedIndexChanged(object sender, DropDownListEventArgs e)
+        {
+            branchNumber = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
+        }
     }
 
 }

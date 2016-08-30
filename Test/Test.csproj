@@ -227,7 +227,9 @@
     <Content Include="customerKPI.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="defaulttest.aspx" />
+    <Content Include="Dialog1.aspx" />
     <Content Include="ECompanyCS.ascx" />
+    <Content Include="EIndividualCS.ascx" />
     <Content Include="employeeKPI.aspx" />
     <Content Include="FBranchCS.ascx" />
     <Content Include="FCompanyCS.ascx" />
@@ -441,6 +443,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BLL\BranchDropDownListBL.cs" />
+    <Compile Include="BLL\CountryDropDownListBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenChangesBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenCompanyBL.cs" />
@@ -460,11 +463,13 @@
     <Compile Include="BLL\Customer\UniqueCustomersSeenChangesBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenCompanyBL.cs" />
     <Compile Include="BLL\Customer\UniqueCustomersSeenSingleBL.cs" />
+    <Compile Include="BLL\EmployeeSearchBoxBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerCustomerChangesBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerCustomerSingleBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerTransactionBranchBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerTransactionChangesBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerTransactionCompanyBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerTransactionPeerBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerTransactionSingleBL.cs" />
     <Compile Include="BLL\Financial\IncomeByProductCategoryCompanyBL.cs" />
     <Compile Include="BLL\Financial\IncomeByServiceActivityCompanyBL.cs" />
@@ -479,7 +484,16 @@
     <Compile Include="BLL\Financial\TransExcludeZeroTotalBranchBL.cs" />
     <Compile Include="BLL\Financial\TransExcludeZeroTotalCompanyBL.cs" />
     <Compile Include="BLL\Productivity\AnimalsSeenByEmployeeCompanyBL.cs" />
+    <Compile Include="BLL\Productivity\AnimalsSeenByEmployeeIndividualBL.cs" />
+    <Compile Include="BLL\Productivity\AvgAnimalsSeenByEmployeeCompanyBL.cs" />
+    <Compile Include="BLL\Productivity\AvgCustomersSeenByEmployeeCompanyBL.cs" />
     <Compile Include="BLL\Productivity\CustomersSeenByEmployeeCompanyBL.cs" />
+    <Compile Include="BLL\Productivity\CustomersSeenByEmployeeIndividualBL.cs" />
+    <Compile Include="BLL\Productivity\IncomeByEmployeeCompanyBL.cs" />
+    <Compile Include="BLL\Productivity\IncomeByEmployeeIndividualBL.cs" />
+    <Compile Include="BLL\Productivity\IncomeFromAnimalTypeEmployeeIndividualBL.cs" />
+    <Compile Include="BLL\RegionDropDownListBL.cs" />
+    <Compile Include="BLL\StateDropDownListBL.cs" />
     <Compile Include="CBranchCS.ascx.cs">
       <DependentUpon>CBranchCS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -529,12 +543,26 @@
     <Compile Include="defaulttest.aspx.designer.cs">
       <DependentUpon>defaulttest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dialog1.aspx.cs">
+      <DependentUpon>Dialog1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dialog1.aspx.designer.cs">
+      <DependentUpon>Dialog1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ECompanyCS.ascx.cs">
       <DependentUpon>ECompanyCS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ECompanyCS.ascx.designer.cs">
       <DependentUpon>ECompanyCS.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EIndividualCS.ascx.cs">
+      <DependentUpon>EIndividualCS.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EIndividualCS.ascx.designer.cs">
+      <DependentUpon>EIndividualCS.ascx</DependentUpon>
     </Compile>
     <Compile Include="employeeKPI.aspx.cs">
       <DependentUpon>employeeKPI.aspx</DependentUpon>
@@ -659,6 +687,7 @@
     <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionChangesRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionPeerRepo.cs" />
     <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByProductCategoryCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByServiceActivityCompanyRepo.cs" />
@@ -673,8 +702,19 @@
     <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\ITransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Interface\IBranchDropDownListRepo.cs" />
+    <Compile Include="Models\Interface\ICountryDropDownListRepo.cs" />
+    <Compile Include="Models\Interface\IEmployeeSearchBoxRepo.cs" />
+    <Compile Include="Models\Interface\IRegionDropDownListRepo.cs" />
+    <Compile Include="Models\Interface\IStateDropDownListRepo.cs" />
     <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IAvgAnimalsSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IAvgCustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\ICustomersSeenByEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IIncomeByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IIncomeByEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Interface\Productivity\IIncomeFromAnimalTypeEmployeeIndividualRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -702,6 +742,7 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repository\BranchDropDownListRepo.cs" />
+    <Compile Include="Models\Repository\CountryDropDownListRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenBranchRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenChangesRepo.cs" />
     <Compile Include="Models\Repository\Customer\AnimalsSeenCompanyRepo.cs" />
@@ -721,11 +762,13 @@
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenChangesRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenCompanyRepo.cs" />
     <Compile Include="Models\Repository\Customer\UniqueCustomersSeenSingleRepo.cs" />
+    <Compile Include="Models\Repository\EmployeeSearchBoxRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerCustomerSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionChangesRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionPeerRepo.cs" />
     <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByProductCategoryCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByServiceActivityCompanyRepo.cs" />
@@ -740,7 +783,16 @@
     <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\TransExcludeZeroTotalCompanyRepo.cs" />
     <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\AnimalsSeenByEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\AvgAnimalsSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\AvgCustomersSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Repository\Productivity\CustomersSeenByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\CustomersSeenByEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\IncomeByEmployeeCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\IncomeByEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Repository\Productivity\IncomeFromAnimalTypeEmployeeIndividualRepo.cs" />
+    <Compile Include="Models\Repository\RegionDropDownListRepo.cs" />
+    <Compile Include="Models\Repository\StateDropDownListRepo.cs" />
     <Compile Include="Models\Staff_Profile.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -777,10 +829,16 @@
     <Compile Include="Models\usp_AnimalsSeenByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_AnimalsSeenByEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_AnimalsSeenCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_AnimalsSeenPeer_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgAnimalsSeenByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_AvgCustomersSeenByEmployeeCompany_Result.cs">
@@ -807,16 +865,34 @@
     <Compile Include="Models\usp_BranchDropDownList_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_CountryDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_CustomersSeenByEmployeeCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_CustomersSeenByEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_EmployeeSearchBox_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_IncomeByEmployeeCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByEmployee_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_IncomeByProductCategoryCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_IncomeByServiceActivityCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeFromAnimalTypeEmployeeIndividual_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_LargeAnimalsBranch_Result.cs">
@@ -829,6 +905,9 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_NewCustomersCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RegionDropDownList_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_RetailOnlySalesBranch_Result.cs">
@@ -847,6 +926,9 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_SmallAnimalsCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_StateDropDownList_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_TotalSalesBranch_Result.cs">

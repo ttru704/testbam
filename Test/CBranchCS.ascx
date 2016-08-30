@@ -108,7 +108,7 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            <%--This section is for Average dollar per customer branch comparison  chart--%>
+            <%--Display Average dollar per customer branch comparison--%>
             <telerik:RadPanelItem Text="Average Dollar per Customer Branch Comparison" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>

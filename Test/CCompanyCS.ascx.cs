@@ -16,6 +16,35 @@ namespace Test
             int? company = Session["Company"] as int?;
             int? branch = Session["Branch"] as int?;
             int? time = Session["Time"] as int?;
+
+            //format xaxis based on selected time type
+            if (time == 1)
+            {
+                UniqueCustomersSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                AnimalsSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                AvgDollarPerCustomerCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                NewCustomersCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                SmallAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                LargeAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+            }
+            else if (time == 2)
+            {
+                UniqueCustomersSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                AnimalsSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                AvgDollarPerCustomerCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                NewCustomersCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                SmallAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                LargeAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+            }
+            else if (time == 3)
+            {
+                UniqueCustomersSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                AnimalsSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                AvgDollarPerCustomerCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                NewCustomersCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                SmallAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                LargeAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+            }
         }
     }
 }

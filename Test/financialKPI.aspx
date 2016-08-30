@@ -11,7 +11,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <form id="form1" runat="server">
-        <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>
+        <%--<telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>--%>
         <telerik:RadScriptManager ID="ScriptManager1" runat="server" EnableTheming="True">
             <Scripts>
             </Scripts>
@@ -97,6 +97,60 @@
             <br />
             <%--Datepickers and input--%>
             <div class="text-center">
+                <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" height="24px" Width="197px">
+                    <Items>
+                        <telerik:DropDownListItem Text="All Branches" Value="0" />
+                    </Items>
+                </telerik:RadDropDownList>
+                <telerik:RadWindow RenderMode="Lightweight" runat="server" ID="RadWindow_ContentTemplate" RestrictionZoneID="ContentTemplateZone"
+                    Modal="true" Width="340px" Height="340px">
+                    <ContentTemplate>
+                        <div>
+                        </div>
+                        <div class="contButton">
+                            <telerik:RadComboBox RenderMode="Lightweight" ID="CountryDDL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" Width="186px"
+                                AutoPostBack="true" EmptyMessage="- Select a Country -" DataSourceID="CountryODS1"
+                                Skin="Metro">
+                            </telerik:RadComboBox>
+                            <br />
+                            <asp:ObjectDataSource ID="CountryODS1" runat="server" SelectMethod="usp_CountryDropDownList" TypeName="Test.BLL.CountryDropDownListBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="BranchDDL1" PropertyName="SelectedValue" Name="branchRef" Type="Int32" DefaultValue=""></asp:ControlParameter>
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+                            <telerik:RadComboBox RenderMode="Lightweight" ID="StateDLL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" Width="186px"
+                                AutoPostBack="true" EmptyMessage="- Select a State -" DataSourceID="StateODS1"
+                                Skin="Metro">
+                            </telerik:RadComboBox>
+                            <asp:ObjectDataSource ID="StateODS1" runat="server" SelectMethod="usp_StateDropDownList" TypeName="Test.BLL.StateDropDownListBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="CountryDDL1" PropertyName="SelectedValue" Name="countryRef" Type="Int32"></asp:ControlParameter>
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+                             <br />
+                            <telerik:RadComboBox RenderMode="Lightweight" ID="RegionDDL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" Width="186px"
+                                AutoPostBack="true" EmptyMessage="- Select a Region -" DataSourceID="RegionODS1"
+                                Skin="Metro">
+                            </telerik:RadComboBox>
+                            <asp:ObjectDataSource ID="RegionODS1" runat="server" SelectMethod="usp_RegionDropDownList" TypeName="Test.BLL.RegionDropDownListBL">
+                                <SelectParameters>
+                                    <asp:ControlParameter ControlID="StateDLL1" PropertyName="SelectedValue" Name="stateRef" Type="Int32"></asp:ControlParameter>
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
+                        </div>
+                        <div class="contButton">
+                            <asp:Button ID="Button2" Text="Done" runat="server" OnClick="Button2_Click"></asp:Button>
+                        </div>
+                    </ContentTemplate>
+                </telerik:RadWindow>
+                <asp:Button ID="Button3" Text="Country-State-Region" runat="server" OnClientClick="openWinContentTemplate(); return false;" />
+                <telerik:RadDropDownList ID="TimeDDL1" runat="server" height="24px" Width="197px">
+                    <Items>
+                        <telerik:DropDownListItem Text="Weekly" Value="3" />
+                        <telerik:DropDownListItem Text="Monthly" Value="1" Selected="true" />
+                        <telerik:DropDownListItem Text="Yearly" Value="2" />
+                    </Items>
+                </telerik:RadDropDownList>
                 <telerik:RadDatePicker ID="DatePicker1" runat="server" Class="Random" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-04-01" SelectedDate="2015-04-01" Height="24px" Width="200px">
                     <DatePopupButton
                         CssClass="rcCalPopup"
@@ -107,6 +161,16 @@
                         CssClass="rcCalPopup"
                         Width="2em" />
                 </telerik:RadDatePicker>
+                <%--<telerik:RadWindowManager RenderMode="Lightweight" ID="RadWindowManager1" ShowContentDuringLoad="false" VisibleStatusbar="false"
+                    ReloadOnShow="true" runat="server" EnableShadow="true">
+                    <Windows>
+                        <telerik:RadWindow RenderMode="Lightweight" ID="RadWindow1" runat="server" Behaviors="Close" OnClientClose="OnClientClose"
+                            NavigateUrl="Dialog1.aspx">
+                        </telerik:RadWindow>
+                    </Windows>
+                </telerik:RadWindowManager>
+                <%--<telerik:RadButton ID="Button2" Text="Peer Comparison" OnClientClicked="openWin" runat="server"></telerik:RadButton>--%>
+                
 
                 <asp:DropDownList ID="CompanyDDL1" runat="server" Width="100px" OnSelectedIndexChanged="Company_SelectedIndexChanged" Visible="false">
                     <asp:ListItem>1</asp:ListItem>
@@ -114,25 +178,12 @@
                     <asp:ListItem>3</asp:ListItem>
                 </asp:DropDownList>
 
-
-                <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" height="24px" Width="197px">
-                    <Items>
-                        <telerik:DropDownListItem Text="All Branches" Value="0" />
-                    </Items>
-                </telerik:RadDropDownList>
                 <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.BranchDropDownListBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>
                 </asp:ObjectDataSource>
-                <telerik:RadDropDownList ID="TimeDDL1" runat="server" height="24px" Width="197px">
-                    <Items>
-                        <telerik:DropDownListItem Text="Weekly" Value="3" />
-                        <telerik:DropDownListItem Text="Monthly" Value="1" Selected="true" />
-                        <telerik:DropDownListItem Text="Yearly" Value="2" />
 
-                    </Items>
-                </telerik:RadDropDownList>
                 <telerik:RadButton ID="Button1" runat="server" Text="View" OnClick="Button1_Click"></telerik:RadButton>
             </div>
 
@@ -143,8 +194,51 @@
             <div class="demo-container no-bg">
                 <telerik:RadAjaxLoadingPanel runat="server" ID="LoadingPanel1" Skin="MetroTouch">
                 </telerik:RadAjaxLoadingPanel>
-                <telerik:RadAjaxManager runat="server" ID="RadAjaxManager1" EnablePageHeadUpdate="true">
+                <telerik:RadAjaxManager runat="server" ID="RadAjaxManager1">
                     <AjaxSettings>
+                        <telerik:AjaxSetting AjaxControlID="BranchDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="CountryDDL1"></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="CountryDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="RadTabStrip1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RadTabStrip1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="RadMultiPage1" LoadingPanelID="LoadingPanel1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="RadMultiPage1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RadMultiPage1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="BranchDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="CountryDDL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="CountryDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="CountryDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="StateDLL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RegionDDL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
                         <telerik:AjaxSetting AjaxControlID="RadTabStrip1">
                             <UpdatedControls>
                                 <telerik:AjaxUpdatedControl ControlID="RadTabStrip1"></telerik:AjaxUpdatedControl>
@@ -169,7 +263,7 @@
                     /* ]]> */
                 </script>
                 <telerik:RadTabStrip RenderMode="Lightweight" OnClientTabSelecting="onTabSelecting" ID="RadTabStrip1" SelectedIndex="0"
-                    runat="server" MultiPageID="RadMultiPage1" Skin="MetroTouch" Width="100%" Align="Justify"
+                    runat="server" MultiPageID="RadMultiPage1" Skin="MetroTouch" Width="100%" Align="Justify" Orientation="HorizontalTop"
                     OnTabClick="RadTabStrip1_TabClick">
                 </telerik:RadTabStrip>
                 <telerik:RadMultiPage ID="RadMultiPage1" CssClass="RadMultiPage" runat="server" SelectedIndex="0" OnPageViewCreated="RadMultiPage1_PageViewCreated">
@@ -181,7 +275,13 @@
         </div>
 
     </form>
-    <script>
+    <script type="text/javascript">
+        //<![CDATA[
+        Sys.Application.add_load(function () {
+            $windowContentDemo.contentTemplateID = "<%=RadWindow_ContentTemplate.ClientID%>";
+            $windowContentDemo.templateWindowID = "<%=RadWindow_ContentTemplate.ClientID %>";
+        });
+        //]]>
         <%--For panning and zooming--%>
         (function (global) {
             var chart;
@@ -235,9 +335,34 @@
                 TO = setTimeout(resizeChart, 200);
             }
 
+
         })(window);
+
+        (function (global, undefined) {
+            var demo = {};
+            function populateValue() {
+                $get(demo.label).innerHTML = $get(demo.textBox).value;
+                //the RadWindow's content template is an INaming container and the server code block is needed
+                $find(demo.contentTemplateID).close();
+            }
+            function openWinContentTemplate() {
+                $find(demo.templateWindowID).show();
+            }
+            function openWinNavigateUrl() {
+                $find(demo.urlWindowID).show();
+            }
+            global.$windowContentDemo = demo;
+            global.populateValue = populateValue;
+            global.openWinContentTemplate = openWinContentTemplate;
+            global.openWinNavigateUrl = openWinNavigateUrl;
+        })(window);
+        //function openWin() {
+        //    var oWnd = radopen("Dialog1.aspx", "RadWindow1");
+        //};
+
         <%--For responsive chart--%>
     </script>
+
 </asp:Content>
 
 

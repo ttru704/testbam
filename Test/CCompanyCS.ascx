@@ -18,7 +18,7 @@
                                 </telerik:ColumnSeries>
                             </Series>
                             <XAxis DataLabelsField="TimePeriod" Type="auto">
-                                <TitleAppearance Text="Time Period">
+                                <TitleAppearance>
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
                                 <LabelsAppearance DataFormatString="MMM yyyy">
@@ -78,7 +78,7 @@
                             </Series>
 
                             <XAxis DataLabelsField="TimePeriod" Type="Auto">
-                                <TitleAppearance Text="Period">
+                                <TitleAppearance >
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
                                 <LabelsAppearance DataFormatString="MMM yyyy">
@@ -140,14 +140,14 @@
                         </Legend>
                         <PlotArea>
                             <XAxis Color="Black" DataLabelsField="TimePeriod" Type="Auto">
-                                <TitleAppearance Position="Center" Text="Time Period" />
+                                <TitleAppearance Position="Center"/>
                                 <LabelsAppearance DataFormatString="MMM yy">
                                 </LabelsAppearance>
                             </XAxis>
                             <YAxis Color="Black">
                                 <MajorGridLines Color="#EFEFEF" Width="1" />
                                 <MinorGridLines Color="#F7F7F7" Width="1" />
-                                <TitleAppearance Position="Center" Text="$" RotationAngle="90" />
+                                <TitleAppearance Position="Center" Text="Average per Customer" RotationAngle="90" />
                             </YAxis>
                             <Series>
                                 <telerik:AreaSeries Name="Average Dollar per Customer" DataFieldY="Average_Dollar_per_customer">
@@ -204,7 +204,7 @@
                                 </telerik:ColumnSeries>
                             </Series>
                             <XAxis DataLabelsField="TimePeriod" Type="auto">
-                                <TitleAppearance Text="Time Period">
+                                <TitleAppearance >
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
                                 <LabelsAppearance DataFormatString="MMM yyyy">
@@ -263,7 +263,7 @@
                             </Series>
 
                             <XAxis DataLabelsField="TimePeriod" Type="Auto">
-                                <TitleAppearance Text="Period">
+                                <TitleAppearance>
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
                                 <LabelsAppearance DataFormatString="MMM yyyy">
@@ -323,7 +323,7 @@
                             </Series>
 
                             <XAxis DataLabelsField="TimePeriod" Type="Auto">
-                                <TitleAppearance Text="Period">
+                                <TitleAppearance >
                                     <TextStyle Margin="20" />
                                 </TitleAppearance>
                                 <LabelsAppearance>

@@ -8,7 +8,7 @@ using Test.Models.Repository.Customer;
 
 namespace Test.BLL.Customer
 {
-    public class AvgDollarPerCustomerPeerBL
+    public class AvgDollarPerCustomerPeerBL: IDisposable
     {
         private IAvgDollarPerCustomerPeerRepo avgDollarPerCustomerPeerRepo;
 

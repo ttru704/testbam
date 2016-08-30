@@ -416,16 +416,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="usp_AvgDollarPerTransactionPeer" FunctionName="KPIModel.Store.usp_AvgDollarPerTransactionPeer">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerTransactionPeer_Result">
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
-          <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
-          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_AvgDollarPerTransactionSingle" FunctionName="KPIModel.Store.usp_AvgDollarPerTransactionSingle" />
     <FunctionImportMapping FunctionImportName="usp_BranchDropDownList" FunctionName="KPIModel.Store.usp_BranchDropDownList">
       <ResultMapping>
@@ -607,12 +597,12 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_UniqueCustomersSeenSingle" FunctionName="KPIModel.Store.usp_UniqueCustomersSeenSingle" />
-    <FunctionImportMapping FunctionImportName="usp_AnimalsSeenByEmployeeCompany" FunctionName="KPIModel.Store.usp_AnimalsSeenByEmployeeCompany">
+    <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenByEmployeeCompany_Result">
-          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+        <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
+          <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
           <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-          <ScalarProperty Name="Number_Of_Animals_Seen_By_An_Employee" ColumnName="Number_Of_Animals_Seen_By_An_Employee" />
+          <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
           <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -620,9 +610,19 @@
     <FunctionImportMapping FunctionImportName="usp_AvgCustomersSeenByEmployeeCompany" FunctionName="KPIModel.Store.usp_AvgCustomersSeenByEmployeeCompany">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.usp_AvgCustomersSeenByEmployeeCompany_Result">
-          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
           <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
           <ScalarProperty Name="Number_Of_Customers_Seen_By_An_Employee" ColumnName="Number_Of_Customers_Seen_By_An_Employee" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_AnimalsSeenByEmployeeCompany" FunctionName="KPIModel.Store.usp_AnimalsSeenByEmployeeCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenByEmployeeCompany_Result">
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_Of_Animals_Seen_By_An_Employee" ColumnName="Number_Of_Animals_Seen_By_An_Employee" />
           <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
         </ComplexTypeMapping>
       </ResultMapping>
@@ -637,6 +637,34 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_CustomersSeenByEmployeeIndividual" FunctionName="KPIModel.Store.usp_CustomersSeenByEmployeeIndividual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_CustomersSeenByEmployeeIndividual_Result">
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_Of_Customers_Seen_By_An_Employee" ColumnName="Number_Of_Customers_Seen_By_An_Employee" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_EmployeeSearchBox" FunctionName="KPIModel.Store.usp_EmployeeSearchBox">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_EmployeeSearchBox_Result">
+          <ScalarProperty Name="Stf_Number" ColumnName="Stf_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_AnimalsSeenByEmployeeIndividual" FunctionName="KPIModel.Store.usp_AnimalsSeenByEmployeeIndividual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_AnimalsSeenByEmployeeIndividual_Result">
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Number_Of_Animals_Seen_By_An_Employee" ColumnName="Number_Of_Animals_Seen_By_An_Employee" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_IncomeByEmployeeCompany" FunctionName="KPIModel.Store.usp_IncomeByEmployeeCompany">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByEmployeeCompany_Result">
@@ -647,13 +675,67 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="usp_TotalSalesBranch" FunctionName="KPIModel.Store.usp_TotalSalesBranch">
+    <FunctionImportMapping FunctionImportName="usp_IncomeByEmployeeIndividual" FunctionName="KPIModel.Store.usp_IncomeByEmployeeIndividual">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_TotalSalesBranch_Result">
-          <ScalarProperty Name="Branch_Name" ColumnName="Branch_Name" />
+        <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByEmployeeIndividual_Result">
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
           <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-          <ScalarProperty Name="Total_Sales" ColumnName="Total_Sales" />
+          <ScalarProperty Name="Income_By_Employee" ColumnName="Income_By_Employee" />
           <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_IncomeFromAnimalTypeEmployeeIndividual" FunctionName="KPIModel.Store.usp_IncomeFromAnimalTypeEmployeeIndividual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_IncomeFromAnimalTypeEmployeeIndividual_Result">
+          <ScalarProperty Name="Employee_Name" ColumnName="Employee_Name" />
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Income_By_Vet_For_Each_Animal_Type" ColumnName="Income_By_Vet_For_Each_Animal_Type" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_AvgAnimalsSeenByEmployeeCompany" FunctionName="KPIModel.Store.usp_AvgAnimalsSeenByEmployeeCompany">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_AvgAnimalsSeenByEmployeeCompany_Result">
+          <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Average_Number_Of_Animals_Seen_By_Employee" ColumnName="Average_Number_Of_Animals_Seen_By_Employee" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_AvgDollarPerTransactionPeer" FunctionName="KPIModel.Store.usp_AvgDollarPerTransactionPeer">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_AvgDollarPerTransactionPeer_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Year_Month" ColumnName="Year_Month" />
+          <ScalarProperty Name="Average_Dollar_per_Transaction" ColumnName="Average_Dollar_per_Transaction" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_CountryDropDownList" FunctionName="KPIModel.Store.usp_CountryDropDownList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_CountryDropDownList_Result">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_RegionDropDownList" FunctionName="KPIModel.Store.usp_RegionDropDownList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_RegionDropDownList_Result">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_StateDropDownList" FunctionName="KPIModel.Store.usp_StateDropDownList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_StateDropDownList_Result">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

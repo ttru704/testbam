@@ -78,101 +78,101 @@
                     </span>
                     <span>From Last Month</span>
                 </div>
-            <!-- /top tiles -->
+                <!-- /top tiles -->
 
 
-            <div class="col-sm-12">
-                <%-- Line chart --%>
                 <div class="col-sm-12">
-                    <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesCompanyODS1" Skin="MetroTouch" Width="100%">
-                        <ClientEvents OnLoad="chartLoad" />
-                        <PlotArea>
-                            <Series>
-                                <telerik:LineSeries DataFieldY="Total_Sales">
-                                    <LabelsAppearance DataFormatString="N0">
+                    <%-- Line chart --%>
+                    <div class="col-sm-12">
+                        <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesCompanyODS1" Skin="MetroTouch" Width="100%">
+                            <ClientEvents OnLoad="chartLoad" />
+                            <PlotArea>
+                                <Series>
+                                    <telerik:LineSeries DataFieldY="Total_Sales">
+                                        <LabelsAppearance DataFormatString="N0">
+                                        </LabelsAppearance>
+                                        <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
+                                    </telerik:LineSeries>
+                                </Series>
+                                <XAxis DataLabelsField="YearMonth" Type="Date">
+                                    <TitleAppearance Text="Time Period">
+                                        <TextStyle Margin="20" />
+                                    </TitleAppearance>
+                                    <LabelsAppearance DataFormatString="MMM yyyy" RotationAngle="60">
                                     </LabelsAppearance>
-                                    <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
-                                </telerik:LineSeries>
-                            </Series>
-                            <XAxis DataLabelsField="YearMonth" Type="Date">
-                                <TitleAppearance Text="Time Period">
-                                    <TextStyle Margin="20" />
-                                </TitleAppearance>
-                                <LabelsAppearance DataFormatString="MMM yyyy" RotationAngle="60">
-                                </LabelsAppearance>
-                                <MajorGridLines Visible="false" />
-                                <MinorGridLines Visible="false" />
-                            </XAxis>
-                            <YAxis>
-                                <TitleAppearance Text="Total Sales" >
-                                    <TextStyle Margin="10" />
-                                </TitleAppearance>
-                                <MinorGridLines Visible="false" />
-                            </YAxis>
-                        </PlotArea>
+                                    <MajorGridLines Visible="false" />
+                                    <MinorGridLines Visible="false" />
+                                </XAxis>
+                                <YAxis>
+                                    <TitleAppearance Text="Total Sales">
+                                        <TextStyle Margin="10" />
+                                    </TitleAppearance>
+                                    <MinorGridLines Visible="false" />
+                                </YAxis>
+                            </PlotArea>
 
-                        <ChartTitle Text="Total Sales">
-                        </ChartTitle>
-                    </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2015/09/01" Name="end" Type="DateTime" />
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
-                            <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                </div>
-
-
-                
-                <div class="col-sm-6">
-                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
-                        <ClientEvents OnLoad="chartLoad" />
-                        <ChartTitle Text="Income by Product Category Companywide"> </ChartTitle>
-                        <PlotArea>
-                            <Series>
-                                <telerik:PieSeries StartAngle="90" DataFieldY="Income"  ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
-                                    <LabelsAppearance Visible="false"></LabelsAppearance>
-                                    <TooltipsAppearance DataFormatString="{0:N0} %" />
-                                </telerik:PieSeries>
-                            </Series>
-                        </PlotArea>
-                        <Zoom Enabled="False"></Zoom>
-                    </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
+                            <ChartTitle Text="Total Sales">
+                            </ChartTitle>
+                        </telerik:RadHtmlChart>
+                        <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
+                                <asp:Parameter DefaultValue="2015/09/01" Name="end" Type="DateTime" />
+                                <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                                <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
                     </div>
-                <div class="col-sm-6">
-                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
-                        <ClientEvents OnLoad="chartLoad" />
-                        <ChartTitle Text="Income by Service Activity Companywide"> </ChartTitle>
-                        <PlotArea>
-                            <Series>
-                                <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
-                                    <LabelsAppearance Visible="false"></LabelsAppearance>
-                                    <TooltipsAppearance DataFormatString="{0:N0} %" />
-                                </telerik:PieSeries>
-                            </Series>
-                        </PlotArea>
-                        <Zoom Enabled="False"></Zoom>
-                    </telerik:RadHtmlChart>
-                    <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                </div>
-                <%--This is donut chart for Income by Product Category of a company--%>
-                <div class="col-sm-6">
-                    <%--<telerik:RadHtmlChart ID="ProductCategory1" runat="server" DataSourceID="ObjectDataSource5">
+
+
+
+                    <div class="col-sm-6">
+                        <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
+                            <ClientEvents OnLoad="chartLoad" />
+                            <ChartTitle Text="Income by Product Category Companywide"></ChartTitle>
+                            <PlotArea>
+                                <Series>
+                                    <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
+                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                        <TooltipsAppearance DataFormatString="{0:N0} %" />
+                                    </telerik:PieSeries>
+                                </Series>
+                            </PlotArea>
+                            <Zoom Enabled="False"></Zoom>
+                        </telerik:RadHtmlChart>
+                        <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
+                                <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                                <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
+                    <div class="col-sm-6">
+                        <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
+                            <ClientEvents OnLoad="chartLoad" />
+                            <ChartTitle Text="Income by Service Activity Companywide"></ChartTitle>
+                            <PlotArea>
+                                <Series>
+                                    <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
+                                        <LabelsAppearance Visible="false"></LabelsAppearance>
+                                        <TooltipsAppearance DataFormatString="{0:N0} %" />
+                                    </telerik:PieSeries>
+                                </Series>
+                            </PlotArea>
+                            <Zoom Enabled="False"></Zoom>
+                        </telerik:RadHtmlChart>
+                        <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
+                            <SelectParameters>
+                                <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
+                                <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                                <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </div>
+                    <%--This is donut chart for Income by Product Category of a company--%>
+                    <div class="col-sm-6">
+                        <%--<telerik:RadHtmlChart ID="ProductCategory1" runat="server" DataSourceID="ObjectDataSource5">
                         <Appearance>
                         </Appearance>
                         <ChartTitle Text="Income by Product Category Companywide">
@@ -199,11 +199,11 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--This is donut chart of Product Category--%>
-                </div>
+                    </div>
 
-            </div>
-            <%--Grids/data tables end--%>
-            <%--<telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="ObjectDataSource5">
+                </div>
+                <%--Grids/data tables end--%>
+                <%--<telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="ObjectDataSource5">
 <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                 <MasterTableView AutoGenerateColumns="False" DataSourceID="ObjectDataSource5">
                     <Columns>
@@ -214,6 +214,7 @@
                     </Columns>
                 </MasterTableView>
             </telerik:RadGrid>--%>
+            </div>
         </div>
 
 

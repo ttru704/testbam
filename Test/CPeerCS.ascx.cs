@@ -28,6 +28,24 @@ namespace Test
                 List<usp_AvgDollarPerCustomerPeer_Result> avgDollarPerCustomerPeerList = avgDollarPerCustomerPeerBL.usp_AvgDollarPerCustomerPeer(start, end, branch, 1, time, 1, 1, 2);
                 DataTable avgDollarPerCustomerPeerDT = converter.ToDataTable(avgDollarPerCustomerPeerList);
                 RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerPeerRHC1, avgDollarPerCustomerPeerDT, "Name", "LineSeries", "Average_Dollar_per_Customer", "TimePeriod");
+
+                //format yaxis
+                AvgDollarPerCustomerPeerRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Customer (000s)";
+                AvgDollarPerCustomerPeerRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+
+                //format xaxis based on selected time type
+                if (time == 1)
+                {
+                    AvgDollarPerCustomerPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                }
+                else if (time == 2)
+                {
+                    AvgDollarPerCustomerPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                }
+                else if (time == 3)
+                {
+                    AvgDollarPerCustomerPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                }
             }
         }
     }
