@@ -58,10 +58,10 @@ namespace Test
                 //format xaxis of charts based on selected time type
                 if (time == 1)
                 {
-                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
                 }
                 else if (time == 2)
                 {

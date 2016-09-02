@@ -26,6 +26,7 @@ namespace Test
             Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
             Session["Branch"] = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
             Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
+            Int64? productSerivce = Session["ProductService"] as Int64?;
 
             if (!Page.IsPostBack)
             {
@@ -33,6 +34,7 @@ namespace Test
                 AddPageView(RadTabStrip1.FindTabByText("Company"));
                 AddTab("Branch");
                 AddTab("Peer");
+                AddTab("Product&Service");
                 Int32? state = Session["State"] as Int32?;
             }
         }
@@ -147,6 +149,7 @@ namespace Test
 
         protected void Button2_Click(object sender, EventArgs e)
         {
+            Session["BranchType"] = Convert.ToInt32(BranchTypeDDL1.SelectedItem.Value);
             Session["Country"] = Convert.ToInt32(CountryDDL1.SelectedItem.Value);
             Session["State"] = Convert.ToInt32(StateDLL1.SelectedItem.Value);
             Session["Region"] = Convert.ToInt32(RegionDDL1.SelectedItem.Value);
@@ -156,6 +159,11 @@ namespace Test
         protected void BranchDDL1_SelectedIndexChanged(object sender, DropDownListEventArgs e)
         {
             branchNumber = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
+        }
+
+        protected void ProductServiceNameSearchBoxSB1_Search(object sender, SearchBoxEventArgs e)
+        {
+            Session["ProductService"] = Convert.ToInt64(e.Value);
         }
     }
 

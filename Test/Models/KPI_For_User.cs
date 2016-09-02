@@ -15,7 +15,7 @@ namespace Test.Models
     public partial class KPI_For_User
     {
         public long Kpi_For_Company_Ref { get; set; }
-        public long User_Ref { get; set; }
+        public string User_Ref { get; set; }
         public System.DateTime Last_Updated { get; set; }
     
         public virtual KPI_For_Company KPI_For_Company { get; set; }

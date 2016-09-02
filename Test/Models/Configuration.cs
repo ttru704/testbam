@@ -17,7 +17,7 @@ namespace Test.Models
         public long Ref_Number { get; set; }
         public long Company_Ref { get; set; }
         public long Branch_Ref { get; set; }
-        public long User_Ref { get; set; }
+        public string User_Ref { get; set; }
         public long Param { get; set; }
         public string Value { get; set; }
     

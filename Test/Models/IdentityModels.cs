@@ -7,12 +7,18 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Test.Models;
+using System.Data.Entity;
 
 namespace Test.Models
 {
     // You can add User data for the user by adding more properties to your User class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public string Name { get; set; }
+        public long Company_Ref { get; set; }
+
+        
+
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -32,6 +38,35 @@ namespace Test.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder); // This needs to go before the other rules!
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("User_Profile").Property(p => p.Id).HasColumnName("Ref_Number");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User_Profile").Property(p => p.UserName).HasColumnName("User_Name");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User_Profile").Property(p => p.PasswordHash).HasColumnName("Password");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User_Profile").Property(p => p.Email).HasColumnName("Email");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User_Profile").Property(p => p.Name).HasColumnName("Name");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User_Profile").Property(p => p.Company_Ref).HasColumnName("Company_Ref");
+
+
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles").Property(p => p.Id).HasColumnName("Ref_Number");
+
+            modelBuilder.Entity<IdentityUserRole>().ToTable("User_Roles").Property(p => p.UserId).HasColumnName("User_Id");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("User_Roles").Property(p => p.RoleId).HasColumnName("Role_Id");
+
+
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("User_Claims").Property(p => p.Id).HasColumnName("Ref_Number");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("User_Claims").Property(p => p.UserId).HasColumnName("User_Id");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("User_Claims").Property(p => p.ClaimType).HasColumnName("Claim_Type");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("User_Claims").Property(p => p.ClaimValue).HasColumnName("Claim_Value");
+
+
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("User_Logins").Property(p => p.UserId).HasColumnName("User_Id");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("User_Logins").Property(p => p.LoginProvider).HasColumnName("Login_Provider");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("User_Logins").Property(p => p.ProviderKey).HasColumnName("Provider_Key");
+
         }
 
         public static ApplicationDbContext Create()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
 
 namespace Test
 {
@@ -36,11 +37,11 @@ namespace Test
             //Tiitle of x-axis changes accordingly to the selection of timetype dropdown list
             if (time == 1)
             {
-                TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
             }
             else if (time == 2)
             {
@@ -64,6 +65,25 @@ namespace Test
         protected void AvgPerTransactionComODS1_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
 
+        }
+
+        protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
+                e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
+                sender.ToString();
+            Type t = sender.GetType();
+            t.Name.ToString();
+            RadGrid rg = (RadGrid)sender;
+            string gridname = rg.DataSourceID;
+            
+            {
+                //rg.ExportSettings.FileName ="chartname"; 
+                rg.ExportSettings.ExportOnlyData = true;
+                rg.ExportSettings.IgnorePaging = true;
+                rg.ExportSettings.OpenInNewWindow = true;
+                rg.ExportSettings.UseItemStyles = true;
+            }
         }
     }
 }

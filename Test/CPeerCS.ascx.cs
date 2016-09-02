@@ -36,7 +36,7 @@ namespace Test
                 //format xaxis based on selected time type
                 if (time == 1)
                 {
-                    AvgDollarPerCustomerPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    AvgDollarPerCustomerPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
                 }
                 else if (time == 2)
                 {

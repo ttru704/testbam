@@ -49,7 +49,7 @@
                 </telerik:RadSearchBox>
                 <telerik:RadButton ID="RadButton1" runat="server" Text="Search"></telerik:RadButton>
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:KPIConnectionString %>" SelectCommand="usp_SearchBoxforProductandServiceName" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:KPIConnectionString %>" SelectCommand="usp_SearchBox1SearchContext" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:KPIConnectionString %>" SelectCommand="usp_SearchContextForProductServiceSB" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
                 <br />
             </div>
         </div>

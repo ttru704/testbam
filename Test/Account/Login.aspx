@@ -1,65 +1,83 @@
-﻿<%@ Page Title="Log in" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Test.Account.Login" Async="true" %>
+﻿<%@ Page Title="Log in" Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Test.Account.Login" Async="true" %>
 
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+<!DOCTYPE html>
 
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                <div class="form-horizontal">
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
+
+<head>
+    <meta charset="utf-8">
+    <title>Welcome to BAM</title>
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700|Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="../documentation/Design/Login Page/Style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <form runat="server">
+        <div class="container">
+            <div class="top">
+                <h1 id="title" class="hidden">Welcome to <span id="logo">BAM&nbsp; </span></h1>
+
+            </div>
+            <div class="login-box animated fadeInUp">
+                <div class="box-header">
+                    <h2>Log In</h2>
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
                             <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:PlaceHolder>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Email</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="text-danger" ErrorMessage="The email field is required." />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
-                        <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" />
-                        </div>
-                    </div>
                 </div>
-                <p>
-                    <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register as a new user</asp:HyperLink>
-                </p>
-                <p>
-                    <%-- Enable this once you have account confirmation enabled for password reset functionality
-                    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled">Forgot your password?</asp:HyperLink>
-                    --%>
-                </p>
-            </section>
-        </div>
+                <label for="username">Username</label>
+                <br />
 
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                <uc:OpenAuthProviders runat="server" ID="OpenAuthLogin" />
-            </section>
+                <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
+                 <br />
+                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" CssClass="text-danger" ErrorMessage="The email field is required." />
+
+                <br />
+                <label for="password">Password</label>
+                <br />
+                <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
+                                            <br />
+                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
+
+
+
+             
+                                            <br />
+
+
+
+             
+                <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" BackColor="#73879C" ForeColor="White" />
+                <a href="#">
+                    <p class="small">Forgot your password?</p>
+                </a>
+
+
+                <div class="checkbox">
+                    <asp:CheckBox runat="server" ID="RememberMe" />
+
+                    <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                </div>
+
+
+
+            </div>
         </div>
-    </div>
-</asp:Content>
+    </form>
+</body>
+
+
+
+
+</html>
+

@@ -20,12 +20,12 @@ namespace Test
             //format xaxis based on selected time type
             if (time == 1)
             {
-                UniqueCustomersSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                AnimalsSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                AvgDollarPerCustomerCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                NewCustomersCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                SmallAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                LargeAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                UniqueCustomersSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                AnimalsSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                AvgDollarPerCustomerCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                NewCustomersCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                SmallAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                LargeAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
             }
             else if (time == 2)
             {

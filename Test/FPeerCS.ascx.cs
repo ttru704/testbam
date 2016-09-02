@@ -24,6 +24,8 @@ namespace Test
                 int? country = Session["Country"] as int?;
                 int? state = Session["State"] as int?;
                 int? region = Session["Region"] as int?;
+                int? branchType = Session["BranchType"] as int?;
+
                 ListtoDataTableConverter converter = new ListtoDataTableConverter();
 
                 AvgDollarPerTransactionPeerBL avgDollarPerTransactionPeerBL = new AvgDollarPerTransactionPeerBL();
@@ -33,12 +35,12 @@ namespace Test
 
                 //format y axis of chart
                 AvgDollarPerTransactionPeerRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction (000s)";
-                AvgDollarPerTransactionPeerRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
+                //AvgDollarPerTransactionPeerRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
 
                 //format x axis of chart
                 if (time == 1)
                 {
-                    AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
                 }
                 else if (time == 2)
                 {

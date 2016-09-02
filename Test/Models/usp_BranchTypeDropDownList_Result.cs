@@ -11,11 +11,9 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_IncomeByEmployee_Result
+    public partial class usp_BranchTypeDropDownList_Result
     {
-        public string Employee_Name { get; set; }
-        public Nullable<System.DateTime> YearMonth { get; set; }
-        public decimal Income_By_Employee { get; set; }
-        public string TimePeriod { get; set; }
+        public long Ref_Number { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -17,81 +17,6 @@
             </Scripts>
         </telerik:RadScriptManager>
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Default"></telerik:RadAjaxLoadingPanel>
-        <%--<telerik:RadAjaxManager ID="RadAjaxManager1" runat="server" DefaultLoadingPanelID="RadAjaxLoadingPanel1">
-            <AjaxSettings>
-                <telerik:AjaxSetting AjaxControlID="BranchDDL1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchRHC1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchRHC1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchRHC1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="Button1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="TotalSalesCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchRHC1" UpdatePanelCssClass=""  LoadingPanelID="RadAjaxLoadingPanel1"/>
-                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerTransactionCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
-                        <telerik:AjaxUpdatedControl ControlID="AvgDollarPerTransactionBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
-                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesCompanyRHC1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass="" />
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesCompanyRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
-                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchRHC1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1" />
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchRHC1" LoadingPanelID="RadAjaxLoadingPanel1" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="TotalSalesComG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="TotalSalesComG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="TotalSalesBranchG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="AvgPerTransactionComG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="AvgPerTransactionComG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="RadGrid1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="RadGrid1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="TransExcludeZeroTotalComG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalComG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="TransExcludeZeroTotalBranchG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="TransExcludeZeroTotalBranchG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="RetailOnlySalesComG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesComG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="ServiceOnlySalesComG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesComG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="RetailOnlySalesBranchG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="RetailOnlySalesBranchG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="ServiceOnlySalesBranchG1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchG1" UpdatePanelCssClass="" />
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-            </AjaxSettings>
-        </telerik:RadAjaxManager>--%>
         <div class="right_col" role="main">
             FINANCIAL
             <br />
@@ -108,6 +33,17 @@
                         <div>
                         </div>
                         <div class="contButton">
+                            <telerik:RadComboBox RenderMode="Lightweight" ID="BranchTypeDDL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" Width="186px"
+                                AutoPostBack="true" EmptyMessage="- Select a Branch Type -" DataSourceID="BranchTypeODS1"
+                                Skin="Metro">
+                            </telerik:RadComboBox>
+                            <br />
+                            <asp:ObjectDataSource ID="BranchTypeODS1" runat="server" SelectMethod="usp_BranchTypeDropDownList" TypeName="Test.BLL.BranchTypeDropDownListBL">
+                                <SelectParameters>
+                                    <asp:Parameter DefaultValue="1" Name="businessType" Type="Int32"></asp:Parameter>
+
+                                </SelectParameters>
+                            </asp:ObjectDataSource>
                             <telerik:RadComboBox RenderMode="Lightweight" ID="CountryDDL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" Width="186px"
                                 AutoPostBack="true" EmptyMessage="- Select a Country -" DataSourceID="CountryODS1"
                                 Skin="Metro">
@@ -143,7 +79,8 @@
                         </div>
                     </ContentTemplate>
                 </telerik:RadWindow>
-                <asp:Button ID="Button3" Text="Country-State-Region" runat="server" OnClientClick="openWinContentTemplate(); return false;" />
+                <asp:Button ID="Button3" Text="Peer Comparison" runat="server" OnClientClick="openWinContentTemplate(); return false;" />
+                
                 <telerik:RadDropDownList ID="TimeDDL1" runat="server" height="24px" Width="197px">
                     <Items>
                         <telerik:DropDownListItem Text="Weekly" Value="3" />
@@ -202,9 +139,24 @@
                                 <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                             </UpdatedControls>
                         </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="BranchTypeDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="BranchTypeDDL1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
                         <telerik:AjaxSetting AjaxControlID="CountryDDL1">
                             <UpdatedControls>
-                                <telerik:AjaxUpdatedControl ControlID="StateDLL1"></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="StateDLL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RegionDDL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="ProductServiceNameSearchBoxSB1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="ProductServiceNameSearchBoxSB1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                             </UpdatedControls>
                         </telerik:AjaxSetting>
                         <telerik:AjaxSetting AjaxControlID="RadTabStrip1">
@@ -224,19 +176,39 @@
                                 <telerik:AjaxUpdatedControl ControlID="StateDLL1"></telerik:AjaxUpdatedControl>
                             </UpdatedControls>
                         </telerik:AjaxSetting>
-                        <telerik:AjaxSetting AjaxControlID="CountryDDL1">
+                        <telerik:AjaxSetting AjaxControlID="BranchTypeDDL1">
                             <UpdatedControls>
-                                <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="BranchTypeDDL1"></telerik:AjaxUpdatedControl>
                             </UpdatedControls>
                         </telerik:AjaxSetting>
                         <telerik:AjaxSetting AjaxControlID="CountryDDL1">
                             <UpdatedControls>
-                                <telerik:AjaxUpdatedControl ControlID="StateDLL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1"></telerik:AjaxUpdatedControl>
                             </UpdatedControls>
                         </telerik:AjaxSetting>
                         <telerik:AjaxSetting AjaxControlID="StateDLL1">
                             <UpdatedControls>
                                 <telerik:AjaxUpdatedControl ControlID="RegionDDL1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="BranchTypeDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="BranchTypeDDL1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="CountryDDL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="StateDLL1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="StateDLL1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="RegionDDL1"></telerik:AjaxUpdatedControl>
+                            </UpdatedControls>
+                        </telerik:AjaxSetting>
+                        <telerik:AjaxSetting AjaxControlID="ProductServiceNameSearchBoxSB1">
+                            <UpdatedControls>
+                                <telerik:AjaxUpdatedControl ControlID="ProductServiceNameSearchBoxSB1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                             </UpdatedControls>
                         </telerik:AjaxSetting>
                         <telerik:AjaxSetting AjaxControlID="RadTabStrip1">

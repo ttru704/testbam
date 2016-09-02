@@ -73,11 +73,11 @@ namespace Test
                 //format x axis based on the selected time type
                 if (time == 1)
                 {
-                    TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    TransExcludeZeroTotalBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    RetailOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
-                    ServiceOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monlthy";
+                    TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    TransExcludeZeroTotalBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    RetailOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    ServiceOnlySalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
                 }
                 else if (time == 2)
                 {

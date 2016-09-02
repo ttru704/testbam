@@ -19,20 +19,38 @@ namespace Test.Models
         {
             this.Configurations = new HashSet<Configuration>();
             this.KPI_For_User = new HashSet<KPI_For_User>();
+            this.User_Claims = new HashSet<User_Claims>();
+            this.User_Logins = new HashSet<User_Logins>();
+            this.User_Roles = new HashSet<User_Roles>();
         }
     
-        public long Ref_Number { get; set; }
+        public string Ref_Number { get; set; }
         public long Company_Ref { get; set; }
         public string Name { get; set; }
-        public bool Is_Admin { get; set; }
+        public Nullable<bool> Is_Admin { get; set; }
         public string User_Name { get; set; }
         public string Password { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string SecurityStamp { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public int AccessFailedCount { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Configuration> Configurations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KPI_For_User> KPI_For_User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Claims> User_Claims { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Logins> User_Logins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Roles> User_Roles { get; set; }
     }
 }
