@@ -1,6 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FCompanyCS.ascx.cs" Inherits="Test.FCompanyCS" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
+<%@ Register Src="~/RetailOnlySalesCompany.ascx" TagName="control" TagPrefix="Fcontrol"  %>
+
 
 <div class="demo-container size-thin">
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
@@ -262,7 +264,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Income by Service Activity Companywide--%>
-            <telerik:RadPanelItem Text="Income by Product Category Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Income by Service Category Company-wide" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
@@ -442,10 +444,12 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
+            
         </Items>
         <ExpandAnimation Type="None" />
         <CollapseAnimation Type="None" />
     </telerik:RadPanelBar>
+<Fcontrol:control ID="RetailOnlySalesCompanyUC" runat="server"/>
 </div>
 <script>
     //This is very important (without this, the hide export button will stop working)

@@ -7,12 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace Test
 {
-    public partial class manageEmployee : System.Web.UI.Page
+    public partial class RetailOnlySalesCompany : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        
     }
 }

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Test.Models;
-using Test.Models.Interface;
-using Test.Models.Repository;
+using Test.Models.Interface.Controls;
+using Test.Models.Repository.Controls;
 
-namespace Test.BLL
+namespace Test.BLL.Controls
 {
     public class ProductServiceNameSearchBoxBL: IDisposable
     {
@@ -22,9 +22,9 @@ namespace Test.BLL
             this.ProductServiceNameSearchBoxRepo = ProductServiceNameSearchBoxRepo;
         }
 
-        public List<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(int? companyRef)
+        public List<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(int? companyRef, string productClass)
         {
-            return ProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(companyRef);
+            return ProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(companyRef, productClass);
         }
 
         private bool disposedValue = false;

@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Test.Models.Interface;
+using Test.Models.Interface.Controls;
 
-namespace Test.Models.Repository
+namespace Test.Models.Repository.Controls
 {
-    public class CountryDropDownListRepo: IDisposable, ICountryDropDownListRepo
+    public class ProductServiceNameSearchBoxRepo:IDisposable, IProductServiceNameSearchBoxRepo
     {
         private KPIEntities context = new KPIEntities();
 
-        public CountryDropDownListRepo()
+        public ProductServiceNameSearchBoxRepo()
         {
 
         }
 
-        List<usp_CountryDropDownList_Result> ICountryDropDownListRepo.usp_CountryDropDownList(int? branchRef)
+        List<usp_ProductServiceNameSearchBox_Result> IProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(int? companyRef, string productClass)
         {
-            return context.usp_CountryDropDownList(branchRef).ToList();
+            return context.usp_ProductServiceNameSearchBox(companyRef, productClass).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

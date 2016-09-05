@@ -123,6 +123,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="4000" />
     <Property Name="Kpi_Type" Type="bigint" Nullable="false" />
+    <Property Name="Control_Name" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="KPI_For_Business">
     <Key>
@@ -149,6 +150,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="Kpi_For_Company_Ref" Type="bigint" Nullable="false" />
     <Property Name="User_Ref" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="Last_Updated" Type="datetime" Nullable="false" />
+    <Property Name="Viewable" Type="bit" />
   </EntityType>
   <EntityType Name="KPI_Types">
     <Key>
@@ -333,7 +335,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
       <PropertyRef Name="Ref_Number" />
     </Key>
     <Property Name="Ref_Number" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="Company_Ref" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_Ref" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="Is_Admin" Type="bit" />
     <Property Name="User_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -1070,17 +1072,18 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
-  <Function Name="usp_IncomeByServiceActivityCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="start" Type="date" Mode="In" />
-    <Parameter Name="end" Type="date" Mode="In" />
-    <Parameter Name="companyRef" Type="int" Mode="In" />
-  </Function>
-  <Function Name="usp_IncomeByServiceIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="usp_IncomeByProductServiceIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
     <Parameter Name="companyRef" Type="int" Mode="In" />
     <Parameter Name="productNumnber" Type="bigint" Mode="In" />
+    <Parameter Name="productClass" Type="char" Mode="In" />
     <Parameter Name="TimeType" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_IncomeByServiceActivityCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="start" Type="date" Mode="In" />
+    <Parameter Name="end" Type="date" Mode="In" />
+    <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
   <Function Name="usp_IncomeFromAnimalTypeEmployeeIndividual" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
@@ -1128,6 +1131,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   </Function>
   <Function Name="usp_ProductServiceNameSearchBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="productClass" Type="char" Mode="In" />
   </Function>
   <Function Name="usp_RaiseException" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Error_Num" Type="int" Mode="In" />

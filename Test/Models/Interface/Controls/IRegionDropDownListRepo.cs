@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Test.Models.Interface
+namespace Test.Models.Interface.Controls
 {
     public interface IRegionDropDownListRepo:IDisposable
     {

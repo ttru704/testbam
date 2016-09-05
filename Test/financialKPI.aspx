@@ -38,7 +38,7 @@
                                 Skin="Metro">
                             </telerik:RadComboBox>
                             <br />
-                            <asp:ObjectDataSource ID="BranchTypeODS1" runat="server" SelectMethod="usp_BranchTypeDropDownList" TypeName="Test.BLL.BranchTypeDropDownListBL">
+                            <asp:ObjectDataSource ID="BranchTypeODS1" runat="server" SelectMethod="usp_BranchTypeDropDownList" TypeName="Test.BLL.Controls.BranchTypeDropDownListBL">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="1" Name="businessType" Type="Int32"></asp:Parameter>
 
@@ -49,7 +49,7 @@
                                 Skin="Metro">
                             </telerik:RadComboBox>
                             <br />
-                            <asp:ObjectDataSource ID="CountryODS1" runat="server" SelectMethod="usp_CountryDropDownList" TypeName="Test.BLL.CountryDropDownListBL">
+                            <asp:ObjectDataSource ID="CountryODS1" runat="server" SelectMethod="usp_CountryDropDownList" TypeName="Test.BLL.Controls.CountryDropDownListBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="BranchDDL1" PropertyName="SelectedValue" Name="branchRef" Type="Int32" DefaultValue=""></asp:ControlParameter>
                                 </SelectParameters>
@@ -58,7 +58,7 @@
                                 AutoPostBack="true" EmptyMessage="- Select a State -" DataSourceID="StateODS1"
                                 Skin="Metro">
                             </telerik:RadComboBox>
-                            <asp:ObjectDataSource ID="StateODS1" runat="server" SelectMethod="usp_StateDropDownList" TypeName="Test.BLL.StateDropDownListBL">
+                            <asp:ObjectDataSource ID="StateODS1" runat="server" SelectMethod="usp_StateDropDownList" TypeName="Test.BLL.Controls.StateDropDownListBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="CountryDDL1" PropertyName="SelectedValue" Name="countryRef" Type="Int32"></asp:ControlParameter>
                                 </SelectParameters>
@@ -68,7 +68,7 @@
                                 AutoPostBack="true" EmptyMessage="- Select a Region -" DataSourceID="RegionODS1"
                                 Skin="Metro">
                             </telerik:RadComboBox>
-                            <asp:ObjectDataSource ID="RegionODS1" runat="server" SelectMethod="usp_RegionDropDownList" TypeName="Test.BLL.RegionDropDownListBL">
+                            <asp:ObjectDataSource ID="RegionODS1" runat="server" SelectMethod="usp_RegionDropDownList" TypeName="Test.BLL.Controls.RegionDropDownListBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="StateDLL1" PropertyName="SelectedValue" Name="stateRef" Type="Int32"></asp:ControlParameter>
                                 </SelectParameters>
@@ -115,7 +115,7 @@
                     <asp:ListItem>3</asp:ListItem>
                 </asp:DropDownList>
 
-                <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.BranchDropDownListBL">
+                <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.Controls.BranchDropDownListBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
                     </SelectParameters>

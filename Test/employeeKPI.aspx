@@ -42,7 +42,7 @@
                 <telerik:RadSearchBox ID="EmployeeSB1" runat="server" EnableAutoComplete="true" DataSourceID="EmployeeODS1" Filter="StartsWith"
                     DataTextField="Name"  DataValueField="Stf_Number" Width="197px" Height="24px" EmptyMessage="Search for Employee" OnSearch="EmployeeSB_Search" Skin="MetroTouch" HighlightFirstMatch="True">
                 </telerik:RadSearchBox>
-                <asp:ObjectDataSource ID="EmployeeODS1" runat="server" SelectMethod="usp_EmployeeSearchBox" TypeName="Test.BLL.EmployeeSearchBoxBL">
+                <asp:ObjectDataSource ID="EmployeeODS1" runat="server" SelectMethod="usp_EmployeeSearchBox" TypeName="Test.BLL.Controls.EmployeeSearchBoxBL">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="CompanyDDL1" PropertyName="SelectedValue" DefaultValue="1" Name="companyRef" Type="Int32"></asp:ControlParameter>
                     </SelectParameters>

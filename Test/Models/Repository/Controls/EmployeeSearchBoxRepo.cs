@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Test.Models.Interface;
+using Test.Models.Interface.Controls;
 
-namespace Test.Models.Repository
+namespace Test.Models.Repository.Controls
 {
-    public class SearchContextForProductServiceSBRepo:IDisposable, ISearchContextForProductServiceSBRepo
+    public class EmployeeSearchBoxRepo: IDisposable, IEmployeeSearchBoxRepo
     {
         private KPIEntities context = new KPIEntities();
 
-        public SearchContextForProductServiceSBRepo()
+        public EmployeeSearchBoxRepo()
         {
 
         }
 
-        List<usp_SearchContextForProductServiceSB_Result> ISearchContextForProductServiceSBRepo.usp_SearchContextForProductServiceSB()
+        List<usp_EmployeeSearchBox_Result> IEmployeeSearchBoxRepo.usp_EmployeeSearchBox(int? companyRef)
         {
-            return context.usp_SearchContextForProductServiceSB().ToList();
+            return context.usp_EmployeeSearchBox(companyRef).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

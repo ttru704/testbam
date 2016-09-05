@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Test.Models;
-using Test.Models.Interface;
-using Test.Models.Repository;
+using Test.Models.Interface.Controls;
+using Test.Models.Repository.Controls;
 
-namespace Test.BLL
+namespace Test.BLL.Controls
 {
     public class BranchTypeDropDownListBL:IDisposable
     {

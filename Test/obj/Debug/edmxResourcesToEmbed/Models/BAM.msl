@@ -108,6 +108,7 @@
     <EntitySetMapping Name="Key_Performance_Indexes">
       <EntityTypeMapping TypeName="KPIModel.Key_Performance_Indexes">
         <MappingFragment StoreEntitySet="Key_Performance_Indexes">
+          <ScalarProperty Name="Control_Name" ColumnName="Control_Name" />
           <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
@@ -137,6 +138,7 @@
     <EntitySetMapping Name="KPI_For_User">
       <EntityTypeMapping TypeName="KPIModel.KPI_For_User">
         <MappingFragment StoreEntitySet="KPI_For_User">
+          <ScalarProperty Name="Viewable" ColumnName="Viewable" />
           <ScalarProperty Name="Kpi_For_Company_Ref" ColumnName="Kpi_For_Company_Ref" />
           <ScalarProperty Name="User_Ref" ColumnName="User_Ref" />
           <ScalarProperty Name="Last_Updated" ColumnName="Last_Updated" />
@@ -839,16 +841,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_CompanyInfoInsert" FunctionName="KPIModel.Store.usp_CompanyInfoInsert" />
-    <FunctionImportMapping FunctionImportName="usp_IncomeByServiceIndividual" FunctionName="KPIModel.Store.usp_IncomeByServiceIndividual">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByServiceIndividual_Result">
-          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
-          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
-          <ScalarProperty Name="Income_By_Service" ColumnName="Income_By_Service" />
-          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_SearchContextForProductServiceSB" FunctionName="KPIModel.Store.usp_SearchContextForProductServiceSB">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.usp_SearchContextForProductServiceSB_Result">
@@ -863,6 +855,16 @@
           <ScalarProperty Name="Prd_Number" ColumnName="Prd_Number" />
           <ScalarProperty Name="Prd_Name" ColumnName="Prd_Name" />
           <ScalarProperty Name="Prd_Class" ColumnName="Prd_Class" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_IncomeByProductServiceIndividual" FunctionName="KPIModel.Store.usp_IncomeByProductServiceIndividual">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_IncomeByProductServiceIndividual_Result">
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="YearMonth" ColumnName="YearMonth" />
+          <ScalarProperty Name="Income_By_Service" ColumnName="Income_By_Service" />
+          <ScalarProperty Name="TimePeriod" ColumnName="TimePeriod" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

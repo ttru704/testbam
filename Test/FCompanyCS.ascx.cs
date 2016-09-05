@@ -59,6 +59,11 @@ namespace Test
                 RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
                 ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
             }
+
+            if (1 > 0)
+            {
+                RetailOnlySalesCompanyUC.Visible = true;
+            }
             
         }
 

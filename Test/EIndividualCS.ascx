@@ -3,7 +3,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
-    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
+    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1"  Width="100%" Skin="MetroTouch">
         <Items>
             <telerik:RadPanelItem Text="Number of Customers Seen By Employee" Expanded="False">
                 <ContentTemplate>

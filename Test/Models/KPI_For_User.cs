@@ -17,6 +17,7 @@ namespace Test.Models
         public long Kpi_For_Company_Ref { get; set; }
         public string User_Ref { get; set; }
         public System.DateTime Last_Updated { get; set; }
+        public Nullable<bool> Viewable { get; set; }
     
         public virtual KPI_For_Company KPI_For_Company { get; set; }
         public virtual User_Profile User_Profile { get; set; }

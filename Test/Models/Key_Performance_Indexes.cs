@@ -24,6 +24,7 @@ namespace Test.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public long Kpi_Type { get; set; }
+        public string Control_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KPI_For_Business> KPI_For_Business { get; set; }

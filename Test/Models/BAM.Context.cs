@@ -1282,7 +1282,25 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_CompanyInfoInsert", companyNumberParameter, companyNameParameter, businessTypeParameter);
         }
     
-        public virtual ObjectResult<usp_IncomeByServiceIndividual_Result> usp_IncomeByServiceIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<long> productNumnber, Nullable<int> timeType)
+        public virtual ObjectResult<usp_SearchContextForProductServiceSB_Result> usp_SearchContextForProductServiceSB()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_SearchContextForProductServiceSB_Result>("usp_SearchContextForProductServiceSB");
+        }
+    
+        public virtual ObjectResult<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(Nullable<int> companyRef, string productClass)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var productClassParameter = productClass != null ?
+                new ObjectParameter("productClass", productClass) :
+                new ObjectParameter("productClass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ProductServiceNameSearchBox_Result>("usp_ProductServiceNameSearchBox", companyRefParameter, productClassParameter);
+        }
+    
+        public virtual ObjectResult<usp_IncomeByProductServiceIndividual_Result> usp_IncomeByProductServiceIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<long> productNumnber, string productClass, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
                 new ObjectParameter("start", start) :
@@ -1300,25 +1318,15 @@ namespace Test.Models
                 new ObjectParameter("productNumnber", productNumnber) :
                 new ObjectParameter("productNumnber", typeof(long));
     
+            var productClassParameter = productClass != null ?
+                new ObjectParameter("productClass", productClass) :
+                new ObjectParameter("productClass", typeof(string));
+    
             var timeTypeParameter = timeType.HasValue ?
                 new ObjectParameter("TimeType", timeType) :
                 new ObjectParameter("TimeType", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByServiceIndividual_Result>("usp_IncomeByServiceIndividual", startParameter, endParameter, companyRefParameter, productNumnberParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_SearchContextForProductServiceSB_Result> usp_SearchContextForProductServiceSB()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_SearchContextForProductServiceSB_Result>("usp_SearchContextForProductServiceSB");
-        }
-    
-        public virtual ObjectResult<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(Nullable<int> companyRef)
-        {
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ProductServiceNameSearchBox_Result>("usp_ProductServiceNameSearchBox", companyRefParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByProductServiceIndividual_Result>("usp_IncomeByProductServiceIndividual", startParameter, endParameter, companyRefParameter, productNumnberParameter, productClassParameter, timeTypeParameter);
         }
     }
 }

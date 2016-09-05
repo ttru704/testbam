@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Test.Models.Interface;
-
-namespace Test.Models.Repository
+using Test.Models.Interface.Financial;
+namespace Test.Models.Repository.Financial
 {
-    public class BranchDropDownListRepo: IDisposable, IBranchDropDownListRepo
+    public class IncomeByProductServiceIndividualRepo : IDisposable, IIncomeByProductServiceIndividualRepo
     {
         private KPIEntities context = new KPIEntities();
 
-        public BranchDropDownListRepo()
+        public IncomeByProductServiceIndividualRepo()
         {
 
         }
 
-        List<usp_BranchDropDownList_Result> IBranchDropDownListRepo.usp_BranchDropDownList(int companyRef)
+        List<usp_IncomeByProductServiceIndividual_Result> IIncomeByProductServiceIndividualRepo.usp_IncomeByProductServiceIndividual(DateTime? start, DateTime? end, int? companyRef, long? productNumnber, string productClass, int? timeType)
         {
-            return context.usp_BranchDropDownList(companyRef).ToList();
+            return context.usp_IncomeByProductServiceIndividual(start, end, companyRef, productNumnber, productClass, timeType).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

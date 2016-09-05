@@ -35,7 +35,6 @@ namespace Test
                 AddTab("Branch");
                 AddTab("Peer");
                 AddTab("Product&Service");
-                Int32? state = Session["State"] as Int32?;
             }
         }
 
@@ -77,12 +76,11 @@ namespace Test
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
-            
+
             //BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
             //List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
-            
-            
+
+
 
             //String.Format("{0: mmm yy}", dt.Columns["Year_Month"]);
             //DateTime.ParseExact(dt.Columns["Year_Month"])
@@ -108,7 +106,7 @@ namespace Test
             //    TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = "{0:N0}";
 
 
-                
+
             //    //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM";
             //    AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Average per Transaction Branch Comparison";
             //    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
@@ -117,7 +115,7 @@ namespace Test
             //    ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
             //    RetailOnlySalesBranchRHC1.ChartTitle.Text = "Retail Only Sales Branch Comparison";
             //    ServiceOnlySalesBranchRHC1.ChartTitle.Text = "Service Only Sales Branch Comparison";
-                
+
             //    //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value, \'yyyy/MM/dd\')#"; -disappears and all the graphs below it too
 
             //    //AvgPerTransactionBranchRHC1.PlotArea.XAxis.BaseUnit = "months";

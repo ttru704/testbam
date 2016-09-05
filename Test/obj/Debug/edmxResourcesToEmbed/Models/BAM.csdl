@@ -142,6 +142,7 @@
     <Property Name="Kpi_Type" Type="Int64" Nullable="false" />
     <NavigationProperty Name="KPI_For_Business" Relationship="Self.KFB_Key_Performance_Indexs" FromRole="Key_Performance_Indexes" ToRole="KPI_For_Business" />
     <NavigationProperty Name="KPI_Types" Relationship="Self.KPI_Kpi_Types" FromRole="Key_Performance_Indexes" ToRole="KPI_Types" />
+    <Property Name="Control_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="KPI_For_Business">
     <Key>
@@ -176,6 +177,7 @@
     <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="KPI_For_Company" Relationship="Self.KFU_Kpi_for_Company" FromRole="KPI_For_User" ToRole="KPI_For_Company" />
     <NavigationProperty Name="User_Profile" Relationship="Self.KFU_User_Profile" FromRole="KPI_For_User" ToRole="User_Profile" />
+    <Property Name="Viewable" Type="Boolean" />
   </EntityType>
   <EntityType Name="KPI_Types">
     <Key>
@@ -1370,16 +1372,18 @@
       <Parameter Name="companyName" Mode="In" Type="String" />
       <Parameter Name="businessType" Mode="In" Type="Int64" />
     </FunctionImport>
-    <FunctionImport Name="usp_IncomeByServiceIndividual" ReturnType="Collection(KPIModel.usp_IncomeByServiceIndividual_Result)">
+    <FunctionImport Name="usp_SearchContextForProductServiceSB" ReturnType="Collection(KPIModel.usp_SearchContextForProductServiceSB_Result)" />
+    <FunctionImport Name="usp_ProductServiceNameSearchBox" ReturnType="Collection(KPIModel.usp_ProductServiceNameSearchBox_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="productClass" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByProductServiceIndividual" ReturnType="Collection(KPIModel.usp_IncomeByProductServiceIndividual_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
       <Parameter Name="companyRef" Mode="In" Type="Int32" />
       <Parameter Name="productNumnber" Mode="In" Type="Int64" />
+      <Parameter Name="productClass" Mode="In" Type="String" />
       <Parameter Name="TimeType" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="usp_SearchContextForProductServiceSB" ReturnType="Collection(KPIModel.usp_SearchContextForProductServiceSB_Result)" />
-    <FunctionImport Name="usp_ProductServiceNameSearchBox" ReturnType="Collection(KPIModel.usp_ProductServiceNameSearchBox_Result)">
-      <Parameter Name="companyRef" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
@@ -1628,12 +1632,6 @@
     <Property Type="Int64" Name="Ref_Number" Nullable="false" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
   </ComplexType>
-  <ComplexType Name="usp_IncomeByServiceIndividual_Result">
-    <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="100" />
-    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
-    <Property Type="Decimal" Name="Income_By_Service" Nullable="false" Precision="10" Scale="0" />
-    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
-  </ComplexType>
   <ComplexType Name="usp_SearchContextForProductServiceSB_Result">
     <Property Type="String" Name="Name" Nullable="false" MaxLength="7" />
     <Property Type="String" Name="Prd_Class" Nullable="true" MaxLength="1" />
@@ -1642,5 +1640,11 @@
     <Property Type="Int64" Name="Prd_Number" Nullable="false" />
     <Property Type="String" Name="Prd_Name" Nullable="true" MaxLength="100" />
     <Property Type="String" Name="Prd_Class" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByProductServiceIndividual_Result">
+    <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Service" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
   </ComplexType>
 </Schema>

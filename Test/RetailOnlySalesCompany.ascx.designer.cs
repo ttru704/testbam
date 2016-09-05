@@ -10,25 +10,7 @@
 namespace Test {
     
     
-    public partial class FProduct_ServiceCS {
-        
-        /// <summary>
-        /// RadAjaxManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
-        
-        /// <summary>
-        /// RadAjaxLoadingPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
+    public partial class RetailOnlySalesCompany {
         
         /// <summary>
         /// RadPanelBar1 control.
@@ -40,57 +22,48 @@ namespace Test {
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
         
         /// <summary>
-        /// ServiceSB1 control.
+        /// RadClientExportManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox ServiceSB1;
+        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
         
         /// <summary>
-        /// ServiceODS1 control.
+        /// RetailOnlySalesCompanyEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ServiceODS1;
+        protected global::Telerik.Web.UI.RadButton RetailOnlySalesCompanyEB;
         
         /// <summary>
-        /// IncomeByServiceIndividualRHC1 control.
+        /// RetailOnlySalesCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart IncomeByServiceIndividualRHC1;
+        protected global::Telerik.Web.UI.RadHtmlChart RetailOnlySalesCompanyRHC1;
         
         /// <summary>
-        /// ProductSB1 control.
+        /// RetailOnlySalesCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox ProductSB1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource RetailOnlySalesCompanyODS1;
         
         /// <summary>
-        /// ProductODS1 control.
+        /// RetailOnlySalesComG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource ProductODS1;
-        
-        /// <summary>
-        /// IncomeByProductIndividualRHC1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart IncomeByProductIndividualRHC1;
+        protected global::Telerik.Web.UI.RadGrid RetailOnlySalesComG1;
     }
 }
