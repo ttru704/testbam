@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI.GridExcelBuilder;
+using Test.BLL.Controls;
 using Test.BLL.Customer;
 using Test.Models;
 
@@ -22,6 +23,22 @@ namespace Test
                 int? company = Session["Company"] as int?;
                 int? branch = Session["Branch"] as int?;
                 int? time = Session["Time"] as int?;
+
+                // call the session that stores the user ref
+                string userRef = Session["UserRef"] as string;
+
+                //Store the list of kpi that the current user is allowed to view
+                ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+                List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 2, "Branch Comparison");
+
+                //loop through the list of kpi that current user is allowed to view then make these kpi visible to user
+                foreach (var element in viewableKpiList)
+                {
+                    string name = element.Name;
+                    string toolTip = element.Description;
+                    RadPanelBar1.FindItemByText(name).Visible = true;
+                    RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
+                }
 
                 ListtoDataTableConverter converter = new ListtoDataTableConverter();
 

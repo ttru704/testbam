@@ -4,7 +4,6 @@
 
 <!DOCTYPE html>
 
-
 <head>
     <meta charset="utf-8">
     <title>Welcome to BAM</title>
@@ -39,24 +38,24 @@
                 <br />
 
                 <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                 <br />
-                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" CssClass="text-danger" ErrorMessage="The email field is required." />
+                <br />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email" CssClass="text-danger" ErrorMessage="The email field is required." />
 
                 <br />
                 <label for="password">Password</label>
                 <br />
                 <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                                            <br />
-                                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
+                <br />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
 
 
 
-             
-                                            <br />
+
+                <br />
 
 
 
-             
+
                 <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" BackColor="#73879C" ForeColor="White" />
                 <a href="#">
                     <p class="small">Forgot your password?</p>
@@ -78,6 +77,4 @@
 
 
 
-
-</html>
 

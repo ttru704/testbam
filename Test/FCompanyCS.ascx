@@ -1,14 +1,13 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="FCompanyCS.ascx.cs" Inherits="Test.FCompanyCS" %>
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
-<%@ Register Src="~/RetailOnlySalesCompany.ascx" TagName="control" TagPrefix="Fcontrol"  %>
-
 
 <div class="demo-container size-thin">
+
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--This section is for Total Sales Company--%>
-            <telerik:RadPanelItem Text="Total Sales Company-wide" Expanded="false" ToolTip="The total sales for the entire company">
+            <telerik:RadPanelItem Text="Total Sales - Company" Expanded="false" Visible="false">
                 <ContentTemplate>
                     <%--This export manager is for all the KPI charts--%>
                     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
@@ -67,7 +66,7 @@
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="TotalSalesComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TotalSalesCompanyODS" ExportSettings-FileName="TotalSalesCompanyWide" ShowGroupPanel="True" Skin="Bootstrap" OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="TotalSalesComG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TotalSalesCompanyODS" ExportSettings-FileName="TotalSalesCompanyWide" ShowGroupPanel="True" Skin="Bootstrap">
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
@@ -86,7 +85,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Average Dollar Earned Per Transaction Companywide--%>
-            <telerik:RadPanelItem Text="Average Dollar Earned Per Transaction Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Average Dollar per Transaction - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <div class="export">
@@ -129,7 +128,7 @@
                         </telerik:RadHtmlChart>
                     </div>
                     <%--Datasource--%>
-                    <asp:ObjectDataSource ID="AvgDollarPerTransactionCompanyODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionCompany" TypeName="Test.BLL.Financial.AvgDollarPerTransactionCompanyBL" OnSelecting="AvgPerTransactionComODS1_Selecting">
+                    <asp:ObjectDataSource ID="AvgDollarPerTransactionCompanyODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionCompany" TypeName="Test.BLL.Financial.AvgDollarPerTransactionCompanyBL">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
@@ -155,7 +154,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of Transactions excluding Zero Total Bills companywide presented on column chart--%>
-            <telerik:RadPanelItem Text="Number of Transactions Excluding Zero Total Bills Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Transactions excluding zero total bills - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <div class="export">
@@ -223,7 +222,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Income by Product Category Companywide--%>
-            <telerik:RadPanelItem Text="Income by Product Category Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Income by Product Category - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
@@ -264,7 +263,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Income by Service Activity Companywide--%>
-            <telerik:RadPanelItem Text="Income by Service Category Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Income by Service Activity - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
@@ -305,7 +304,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Retail Only Sales companywide chart--%>
-            <telerik:RadPanelItem Text="Retail Only Sales Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Retail Only Sales - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <div class="export">
@@ -375,7 +374,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Service Only Sales companywide chart--%>
-            <telerik:RadPanelItem Text="Service Only Sales Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Service Only Sales - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <div class="export">
@@ -444,23 +443,22 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            
         </Items>
         <ExpandAnimation Type="None" />
         <CollapseAnimation Type="None" />
     </telerik:RadPanelBar>
-<Fcontrol:control ID="RetailOnlySalesCompanyUC" runat="server"/>
 </div>
-<script>
-    //This is very important (without this, the hide export button will stop working)
-    var $ = $telerik.$;
-    //For Exporting Charts
-    function exportTotalSalesCompanyRHC1(sender, args) {
-        exportRadHtmlChart('<%=TotalSalesCompanyRHC1.ClientID%>')
-    }
+<telerik:RadScriptBlock runat="server">
+    <script>
+        //This is very important (without this, the hide export button will stop working)
+        var $ = $telerik.$;
+        //For Exporting Charts
+        function exportTotalSalesCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=TotalSalesCompanyRHC1.ClientID%>')
+        }
 
-    function exportAvgDollarPerTransactionCompanyRHC1(sender, args) {
-        exportRadHtmlChart('<%=AvgDollarPerTransactionCompanyRHC1.ClientID%>')
+        function exportAvgDollarPerTransactionCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=AvgDollarPerTransactionCompanyRHC1.ClientID%>')
     }
 
     function exportTransExcludeZeroTotalCompanyRHC1(sender, args) {
@@ -484,102 +482,89 @@
 
 
     <%--For panning and zooming--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
 
 
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
-    <%--For panning and zooming--%>
+        })(window);
+        <%--For panning and zooming--%>
 
         <%--For responsive chart--%>
-    (function (global) {
-        var chart;
-        //Hide Export Button 
+        (function (global) {
+            var chart;
+            //Hide Export Button 
 
-        $("div.export").mouseover(function () {
-            $(".RadButton", this).css("display", "inline-block");
-        });
-        $("div.export").mouseout(function () {
-            $(".RadButton", this).css("display", "none");
-        });
+            $("div.export").mouseover(function () {
+                $(".RadButton", this).css("display", "inline-block");
+            });
+            $("div.export").mouseout(function () {
+                $(".RadButton", this).css("display", "none");
+            });
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
+
+            global.chartLoad = ChartLoad;
+
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
+
+
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
+
+        })(window);
+
+        //format Y axis value based on value
+        function pageLoad() {
+
+            var chart1 = $find("<%=TotalSalesCompanyRHC1.ClientID%>");
+            chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart1.repaint();
+            var chart2 = $find("<%=AvgDollarPerTransactionCompanyRHC1.ClientID%>");
+        chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart2.repaint();
+        var chart3 = $find("<%=TransExcludeZeroTotalCompanyRHC1.ClientID%>");
+        chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart3.repaint();
+        var chart4 = $find("<%=RetailOnlySalesCompanyRHC1.ClientID%>");
+        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart4.repaint();
+        var chart5 = $find("<%=ServiceOnlySalesCompanyRHC1.ClientID%>");
+            chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart5.repaint();
         }
-
-        global.chartLoad = ChartLoad;
-
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
-
-
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
-
-    })(window);
-    <%--function pageLoad() {
-        var chart = $find("<%=AvgDollarPerTransactionCompanyRHC1.ClientID%>");
-        chart._chartObject.options.valueAxis.labels.template = "#= FormatLongNumber(value) #";
-        chart.repaint();
-    };
-
-
-    function FormatLongNumber(value) {
-
-        if (value === 0) {
-            return 0;
-        }
-
-        // hundreds
-        if (value <= 999) {
-            return value;
-        }
-
-        // thousands
-        if (value >= 1000 && value <= 999999) {
-            return (value / 1000) + 'K';
-        }
-
-        // millions
-        if (value >= 1000000 && value <= 999999999) {
-            return (value / 1000000) + 'M';
-        }
-
-        // billions
-        if (value >= 1000000000 && value <= 999999999999) {
-            return (value / 1000000000) + 'B';
-        }
-
-        return value;
-    }--%>
-</script>
+    
+    </script>
+</telerik:RadScriptBlock>

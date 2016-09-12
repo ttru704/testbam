@@ -31,7 +31,7 @@ namespace Test
 
                 //format yaxis
                 AvgDollarPerCustomerPeerRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Customer (000s)";
-                AvgDollarPerCustomerPeerRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                //AvgDollarPerCustomerPeerRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
 
                 //format xaxis based on selected time type
                 if (time == 1)

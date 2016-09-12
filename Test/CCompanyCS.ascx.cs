@@ -4,6 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
+using Test.BLL.Controls;
+using Test.Models;
 
 namespace Test
 {
@@ -17,7 +20,19 @@ namespace Test
             int? branch = Session["Branch"] as int?;
             int? time = Session["Time"] as int?;
 
-            //format xaxis based on selected time type
+            //addItem();
+
+            string userRef = Session["UserRef"] as string;
+            ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+            List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 2, "Company");
+            foreach (var element in viewableKpiList)
+            {
+                string name = element.Name;
+                string toolTip = element.Description;
+                RadPanelBar1.FindItemByText(name).Visible = true;
+                RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
+            }
+
             if (time == 1)
             {
                 UniqueCustomersSeenCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
@@ -44,6 +59,31 @@ namespace Test
                 NewCustomersCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
                 SmallAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
                 LargeAnimalsCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+            }
+        }
+        protected void addItem()
+        {
+            string userRef = Session["UserRef"] as string;
+
+            ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+            List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 2, "Company");
+
+            foreach (var element in viewableKpiList)
+            {
+                var name = element.Name;
+                var controlName = "CCompanyKPIControls/" + element.Control_Name + ".ascx";
+                var desc = element.Description;
+
+                RadPanelItem item = new RadPanelItem();
+                item.Text = name;
+                item.Expanded = false;
+                RadPanelBar1.Items.Add(item);
+
+                RadPanelItem childItem = new RadPanelItem();
+                childItem.Controls.Add(LoadControl(controlName));
+                item.Items.Add(childItem);
+
+                childItem.ToolTip = desc;
             }
         }
     }

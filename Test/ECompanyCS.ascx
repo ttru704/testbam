@@ -5,9 +5,9 @@
 <div class="demo-container size-thin">
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
-            <telerik:RadPanelItem Text="Number of Customers Seen By Employee" Expanded="False">
+            <%--Number of Customers Seen By Employee - Company--%>
+            <telerik:RadPanelItem Text="Number of Customers Seen by Employee - Company" Visible="false" Expanded="False">
                 <ContentTemplate>
-                    <%--Number of Customers Seen By Employee--%>
                     <%--Export button--%>
                     <telerik:RadButton RenderMode="Lightweight" runat="server" ID="RadButton1" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
@@ -42,9 +42,9 @@
                     </asp:ObjectDataSource>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            <telerik:RadPanelItem Text="Number of Animal Seen By Employee" Expanded="false">
+            <%--Number of Animal Seen By Employee - Company--%>
+            <telerik:RadPanelItem Text="Number of Animals Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
-                    <%--Number of Animal Seen By Employee--%>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="MetroTouch"></telerik:RadHtmlChart>
                     <%--Datasource--%>
@@ -75,7 +75,8 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            <telerik:RadPanelItem Text="Average Number of Customers Seen by Employee" Expanded="false">
+            <%--Average Number of Customers Seen by Employee - Company--%>
+            <telerik:RadPanelItem Text="Average Customers Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AvgCustomersSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
@@ -103,7 +104,8 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            <telerik:RadPanelItem Text="Average Number of Animals Seen by Employee" Expanded="false">
+            <%--Average Number of Animals Seen by Employee - Company--%>
+            <telerik:RadPanelItem Text="Average Animals Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AvgAnimalsSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
@@ -131,7 +133,8 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            <telerik:RadPanelItem Text="Income by Employee" Expanded="false">
+            <%--Income by Employee - Company--%>
+            <telerik:RadPanelItem Text="Income by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadButton RenderMode="Lightweight" runat="server" ID="RadButton2" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>

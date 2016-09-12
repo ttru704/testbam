@@ -11,12 +11,9 @@ namespace Test.Models
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class usp_UserDropDownList_Result
     {
-        public string Database { get; set; }
+        public string Ref_Number { get; set; }
         public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
     }
 }

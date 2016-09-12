@@ -17,7 +17,7 @@ namespace Test.Models.Repository.Identity
 
         void ICompanyInfoInsertRepo.usp_CompanyInfoInsert(int companyNumber, string companyName, int businessType)
         {
-            
+            context.usp_CompanyInfoInsert(companyNumber, companyName, businessType);
         }
 
         private bool disposedValue = false; // To detect redundant calls

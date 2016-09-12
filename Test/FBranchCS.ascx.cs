@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using Test.BLL.Controls;
 using Test.BLL.Financial;
 using Test.Models;
 
@@ -23,7 +24,19 @@ namespace Test
                 int? branch = Session["Branch"] as int?;
                 int? time = Session["Time"] as int?;
 
-                ListtoDataTableConverter converter = new ListtoDataTableConverter();
+                //addItem();
+                string userRef = Session["UserRef"] as string;
+                ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+                List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Branch Comparison");
+                foreach (var element in viewableKpiList)
+                {
+                    string name = element.Name;
+                    string toolTip = element.Description;
+                    RadPanelBar1.FindItemByText(name).Visible = true;
+                    RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
+                }
+
+                    ListtoDataTableConverter converter = new ListtoDataTableConverter();
 
                 TotalSalesBranchBL totalSalesBranchBL = new TotalSalesBranchBL();
                 List<usp_TotalSalesBranch_Result> totalSalesBranchList = totalSalesBranchBL.usp_TotalSalesBranch(start, end, company, branch, time);
@@ -98,8 +111,35 @@ namespace Test
             }
 
         }
+        //protected void addItem()
+        //{
+        //    string userRef = Session["UserRef"] as string;
 
-        
+        //    ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+        //    List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Branch");
+
+        //    foreach (var element in viewableKpiList)
+        //    {
+        //        var name = element.Name;
+        //        var controlName = "FBranchKPIControls/" + element.Control_Name + ".ascx";
+        //        var desc = element.Description;
+
+        //        RadPanelItem item = new RadPanelItem();
+        //        item.Text = name;
+        //        item.Expanded = false;
+        //        item.ToolTip = desc;
+        //        RadPanelBar1.Items.Add(item);
+
+        //        RadPanelItem childItem = new RadPanelItem();
+        //        childItem.Controls.Add(LoadControl(controlName));
+        //        item.Items.Add(childItem);
+
+
+        //    }
+        //}
+
+
+
 
         protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
         {

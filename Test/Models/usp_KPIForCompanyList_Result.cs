@@ -11,11 +11,9 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_Country_Result
+    public partial class usp_KPIForCompanyList_Result
     {
-        public Nullable<long> ID { get; set; }
-        public Nullable<long> ParentID { get; set; }
-        public string Text_Field { get; set; }
-        public Nullable<int> Value_Field { get; set; }
+        public long Kpi_For_Company { get; set; }
+        public string Name { get; set; }
     }
 }

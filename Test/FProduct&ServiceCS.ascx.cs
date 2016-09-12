@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -35,6 +35,7 @@ namespace Test
 
         protected void ServiceSB1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
         {
+            
             DateTime? start = Session["StartDate"] as DateTime?;
             DateTime? end = Session["EndDate"] as DateTime?;
             int? company = Session["Company"] as int?;

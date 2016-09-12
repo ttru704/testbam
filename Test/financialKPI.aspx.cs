@@ -21,20 +21,30 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
-            Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
-            Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
-            Session["Branch"] = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
-            Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
-            Int64? productSerivce = Session["ProductService"] as Int64?;
-
-            if (!Page.IsPostBack)
+            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
+            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
+            if (authentication == true)
             {
-                AddTab("Company");
-                AddPageView(RadTabStrip1.FindTabByText("Company"));
-                AddTab("Branch");
-                AddTab("Peer");
-                AddTab("Product&Service");
+
+                Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
+                Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
+                Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
+                Session["Branch"] = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
+                Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
+                Int64? productSerivce = Session["ProductService"] as Int64?;
+
+                if (!Page.IsPostBack)
+                {
+                    AddTab("Company");
+                    AddPageView(RadTabStrip1.FindTabByText("Company"));
+                    AddTab("Branch");
+                    AddTab("Peer");
+                    AddTab("Product&Service");
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Account/Login.aspx");
             }
         }
 
@@ -144,13 +154,25 @@ namespace Test
         {
 
         }
+        protected void CountryDDL1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int countryRef = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
+            StateDDL1.DataBind();
+        }
+        protected void Try(object sender, EventArgs e)
+        {
+            int stateRef = Convert.ToInt32(StateDDL1.SelectedItem.Value);
+            RegionDDL1.DataBind();
+        }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
             Session["BranchType"] = Convert.ToInt32(BranchTypeDDL1.SelectedItem.Value);
             Session["Country"] = Convert.ToInt32(CountryDDL1.SelectedItem.Value);
-            Session["State"] = Convert.ToInt32(StateDLL1.SelectedItem.Value);
+            Session["State"] = Convert.ToInt32(StateDDL1.SelectedItem.Value);
             Session["Region"] = Convert.ToInt32(RegionDDL1.SelectedItem.Value);
+
+
         }
 
         private int branchNumber;
@@ -163,6 +185,8 @@ namespace Test
         {
             Session["ProductService"] = Convert.ToInt64(e.Value);
         }
+
+        
     }
 
 }

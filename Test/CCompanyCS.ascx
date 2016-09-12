@@ -6,7 +6,7 @@
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--Display Number of Unique Customers Seen by a company--%>
-            <telerik:RadPanelItem Text="Number of Unique Customers Seen Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Unique Customers Seen - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="UniqueCustomersSeenCompanyRHC1" runat="server" DataSourceID="UniqueCustomersSeenCompanyODC1" Skin="MetroTouch">
@@ -65,7 +65,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--Display Number of Animals Seen Company Wide--%>
-            <telerik:RadPanelItem Text="Number of Animals Seen Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Animals Seen - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AnimalsSeenCompanyRHC1" runat="server" DataSourceID="AnimalsSeenCompanyODS1" Skin="Vista">
@@ -126,7 +126,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Average dollar per customer company wide  chart--%>
-            <telerik:RadPanelItem Text="Average Dollar per Customer Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Average Dollar per Customer - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AvgDollarPerCustomerCompanyRHC1" runat="server" DataSourceID="AvgDollarPerCustomerCompanyODS1" Skin="Metro">
@@ -192,7 +192,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of New Customers company wide  chart--%>
-            <telerik:RadPanelItem Text="Number of New Customers Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Number of New Customers - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="NewCustomersCompanyRHC1" runat="server" DataSourceID="NewCustomersCompanyODS1" Skin="Silk">
@@ -250,7 +250,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of Small Animals company wide  chart--%>
-            <telerik:RadPanelItem Text="Number of Small Animals Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Small Animals - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="SmallAnimalsCompanyRHC1" runat="server" DataSourceID="SmallAnimalsCompanyODS1" Skin="Material">
@@ -310,7 +310,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of Large Animals company wide  chart--%>
-            <telerik:RadPanelItem Text="Number of Large Animals Company-wide" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Large Animals - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="LargeAnimalsCompanyRHC1" runat="server" DataSourceID="LargeAnimalsCompanyODS1">
@@ -429,5 +429,15 @@
         }
 
     })(window);
-    <%--For responsive chart--%>
+    <%--(function pageLoad() {
+        var chart = $find("<%=UniqueCustomersSeenCompanyRHC1.ClientID%>");
+        chart.get_kendoWidget().options.valueAxis.labels.template =
+            "#if(9999999>value > 9999) {# #=value / 1000# #} else{# #=value / 1000000# #}#";
+        chart.repaint();
+    })(window);--%>
+    function pageLoad() {
+            var chart = $find("<%=UniqueCustomersSeenCompanyRHC1.ClientID%>");
+        chart.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #} else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #} else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart.repaint();
+        }
 </script>

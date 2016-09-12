@@ -7,9 +7,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
+<asp:Content ID="ContentHeaderTitle" ContentPlaceHolderID="kpiNameHeader" runat="server">
+    Customer
+</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
         <div class="right_col" role="main">
             CUSTOMER
             
@@ -99,7 +101,6 @@
             </div>
 
         </div>
-    </form>
     <script>
         (function () {
             var demo = window.demo = {};

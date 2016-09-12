@@ -11,9 +11,10 @@ namespace Test.Models
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class usp_ViewableKpiList_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public string Name { get; set; }
+        public string Control_Name { get; set; }
+        public string Description { get; set; }
     }
 }

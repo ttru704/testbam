@@ -32,8 +32,6 @@ namespace Test.Account
         {
             if (IsValid)
             {
-
-
                 // Validate the user password
                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
@@ -45,17 +43,33 @@ namespace Test.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        
-                        KPIEntities ab = new KPIEntities();
-                        var companyRef = (from User_Profile in ab.User_Profile
-                                         where User_Profile.Email == Email.Text
-                                         select User_Profile.Company_Ref).Single();
+                        HttpContext.Current.User.Identity.ToString();
+                            KPIEntities db = new KPIEntities();
+                        var companyRef = (from User_Profile in db.User_Profile
+                                          where User_Profile.Email == Email.Text
+                                          select User_Profile.Company_Ref).Single();
                         //var companyRef = from User_Profile in ab.User_Profile
                         //                 where User_Profile.Ref_Number == userId
                         //                 select User_Profile.Company_Ref;
                         Session["CompanyRef"] = companyRef;
-                        Response.Redirect("~/About.aspx");
-                        
+                        var userRef = (from User_Profile in db.User_Profile
+                                       where User_Profile.Email == Email.Text
+                                       select User_Profile.Ref_Number).Single();
+                        Session["UserRef"] = userRef;
+                        //Type t = sender.GetType();
+                        //t.Name.ToString();
+                        if (HttpContext.Current.User.Identity.IsAuthenticated) { 
+                            if (Page.User.IsInRole("Admin"))
+                            {
+                                //Console.WriteLine(HttpContext.Current.User.Identity.Name.ToString());
+                                Response.Redirect("~/createUserforCFL.aspx");
+                            }
+                            else
+                            {
+                                //Console.WriteLine(HttpContext.Current.User.Identity.Name.ToString());
+                                Response.Redirect("~/dashboard.aspx");
+                            }
+                        }
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

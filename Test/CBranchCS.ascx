@@ -6,7 +6,7 @@
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--Display Number of Unique Customers Seen branch comparison--%>
-            <telerik:RadPanelItem Text="Number of Unique Customers Seen Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Unique Customers Seen - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="UniqueCustomersSeenBranchRHC1" runat="server" Skin="Material">
@@ -75,7 +75,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--Display Number of Animals Seen Branch Comparison--%>
-            <telerik:RadPanelItem Text="Number of Animals Seen Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Animals Seen - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AnimalsSeenBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
@@ -109,7 +109,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--Display Average dollar per customer branch comparison--%>
-            <telerik:RadPanelItem Text="Average Dollar per Customer Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Average Dollar per Customer - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AvgDollarPerCustomerBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
@@ -143,7 +143,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of New Customers Branch Comparison--%>
-            <telerik:RadPanelItem Text="Number of New Customers Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Number of New Customers - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="NewCustomersBranchRHC1" runat="server">
@@ -177,7 +177,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of Small Animals branch comparison  chart--%>
-            <telerik:RadPanelItem Text="Number of Small Animals Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Small Animals - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="SmallAnimalsBranchRHC1" runat="server" Skin="Material">
@@ -212,7 +212,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of Large Animals branch comparison  chart--%>
-            <telerik:RadPanelItem Text="Number of Large Animals Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Large Animals - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="LargeAnimalsBranchRHC1" runat="server" Skin="Material">

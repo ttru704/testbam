@@ -6,7 +6,7 @@
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--This section is for Total Sales Branch Comparison--%>
-            <telerik:RadPanelItem Text="Total Sales Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Total Sales - Branch Comparison" Visible="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server" Skin="Metro">
@@ -48,7 +48,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Average Per Transaction Branch Comparison--%>
-            <telerik:RadPanelItem Text="Average Per Transaction Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Average Dollar per Transaction - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="AvgDollarPerTransactionBranchRHC1" runat="server" Skin="Metro">
@@ -100,7 +100,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Number of Transactions excluding Zero Total Bills branch comparison --%>
-            <telerik:RadPanelItem Text="Number of Transactions Excluding Zero Total Bills Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Number of Transactions excluding zero total bills - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="TransExcludeZeroTotalBranchRHC1" runat="server" Skin="Material"></telerik:RadHtmlChart>
@@ -134,7 +134,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Retail Only Sales branch comparison chart--%>
-            <telerik:RadPanelItem Text="Retail Only Sales Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Retail Only Sales - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
@@ -168,7 +168,7 @@
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--This section is for Service Only Sales branch comparison chart--%>
-            <telerik:RadPanelItem Text="Service Only Sales Branch Comparison" Expanded="false">
+            <telerik:RadPanelItem Text="Service Only Sales - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>

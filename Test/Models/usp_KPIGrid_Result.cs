@@ -11,9 +11,11 @@ namespace Test.Models
 {
     using System;
     
-    public partial class ufn_GetPeriodDateRanges_Result
+    public partial class usp_KPIGrid_Result
     {
-        public Nullable<System.DateTime> RangeStart { get; set; }
-        public Nullable<System.DateTime> RangeEnd { get; set; }
+        public Nullable<long> Kpi_For_Company { get; set; }
+        public string KpiType { get; set; }
+        public string Name { get; set; }
+        public Nullable<bool> Viewable { get; set; }
     }
 }

@@ -10,12 +10,21 @@ using Test.Models;
 
 namespace Test
 {
-    public partial class settings : System.Web.UI.Page
+    public partial class newUser : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Int64? CompanyRef = Session["CompanyRef"] as Int64?;
-            var a = CompanyRef.Value;
+            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
+            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
+            if (authentication == true)
+            {
+                Int64? CompanyRef = Session["CompanyRef"] as Int64?;
+                var a = CompanyRef.Value;
+            }
+            else
+            {
+                Response.Redirect("~/Account/Login.aspx");
+            }
         }
 
         protected void CreateUser_Click(object sender, EventArgs e)

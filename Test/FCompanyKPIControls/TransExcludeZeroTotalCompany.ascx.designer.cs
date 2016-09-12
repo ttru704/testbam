@@ -7,63 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Test {
+namespace Test.FCompanyKPIControls {
     
     
-    public partial class settings {
+    public partial class TransExcludeZeroTotalCompany {
         
         /// <summary>
-        /// form1 control.
+        /// RadClientExportManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
         
         /// <summary>
-        /// ErrorMessage control.
+        /// TransExcludeZeroTotalCompanyEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        protected global::Telerik.Web.UI.RadButton TransExcludeZeroTotalCompanyEB;
         
         /// <summary>
-        /// NameTextbox control.
+        /// TransExcludeZeroTotalCompanyRHC1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NameTextbox;
+        protected global::Telerik.Web.UI.RadHtmlChart TransExcludeZeroTotalCompanyRHC1;
         
         /// <summary>
-        /// Email control.
+        /// TransExcludeZeroTotalCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.WebControls.ObjectDataSource TransExcludeZeroTotalCompanyODS1;
         
         /// <summary>
-        /// Password control.
+        /// TransExcludeZeroTotalComG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password;
-        
-        /// <summary>
-        /// ConfirmPassword control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
+        protected global::Telerik.Web.UI.RadGrid TransExcludeZeroTotalComG1;
     }
 }

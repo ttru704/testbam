@@ -8,7 +8,7 @@ using Test.Models;
 
 namespace Test.BLL.Identity
 {
-    public class CompanyInfoInsertBL
+    public class CompanyInfoInsertBL:IDisposable
     {
         private ICompanyInfoInsertRepo companyInfoInsertRepo;
 
@@ -24,7 +24,7 @@ namespace Test.BLL.Identity
 
         public void usp_CompanyInfoInsert(int companyNumber, string companyName, int businessType)
         {
-            
+            companyInfoInsertRepo.usp_CompanyInfoInsert(companyNumber, companyName, businessType);
         }
 
         private bool disposedValue = false;

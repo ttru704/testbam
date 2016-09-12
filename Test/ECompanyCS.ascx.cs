@@ -8,6 +8,7 @@ using Telerik.Web.UI;
 using Test.Models;
 using Test.BLL.Productivity;
 using System.Data;
+using Test.BLL.Controls;
 
 namespace Test
 {
@@ -23,6 +24,21 @@ namespace Test
                 int? branch = Session["Branch"] as int?;
                 int? time = Session["Time"] as int?;
 
+                // call the session that stores the user ref
+                string userRef = Session["UserRef"] as string;
+
+                //Store the list of kpi that the current user is allowed to view
+                ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+                List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 3, "Company");
+
+                //loop through the list of kpi that current user is allowed to view then make these kpi visible to user
+                foreach (var element in viewableKpiList)
+                {
+                    string name = element.Name;
+                    string toolTip = element.Description;
+                    RadPanelBar1.FindItemByText(name).Visible = true;
+                    RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
+                }
 
                 ListtoDataTableConverter converter = new ListtoDataTableConverter();
 

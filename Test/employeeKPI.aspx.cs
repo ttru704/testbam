@@ -16,18 +16,27 @@ namespace Test
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
-            Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
-            Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
-            Int64? employee = Session["Employee"] as Int64?;
-            Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
-            if (!Page.IsPostBack)
+            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
+            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
+            if (authentication == true)
             {
-                AddTab("Company");
-                AddPageView(RadTabStrip1.FindTabByText("Company"));
-                AddTab("Individual");
-                //AddTab("Peer");
+                Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
+                Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
+                Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
+                Int64? employee = Session["Employee"] as Int64?;
+                Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
+                if (!Page.IsPostBack)
+                {
+                    AddTab("Company");
+                    AddPageView(RadTabStrip1.FindTabByText("Company"));
+                    AddTab("Individual");
+                    //AddTab("Peer");
 
+                }
+            }
+            else
+            {
+                Response.Redirect("~/Account/Login.aspx");
             }
         }
 
