@@ -18,12 +18,12 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-            if (authentication == true)
+            bool admin = Page.User.IsInRole("Admin");
+            if (HttpContext.Current.User.Identity.IsAuthenticated == true & admin == false)
             {
                 //Use this to store list of control name which will be used to display which kpis logged in clinic user can see
                 string userRef = Session["UserRef"] as string;
+                Int64? company = Session["CompanyRef"] as Int64?;
                 //ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
                 //List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Company");
 
@@ -39,7 +39,7 @@ namespace Test
                 //    var c = element.Description;
 
                 //}
-                RadHtmlChart1.DataBind();
+                TotalSalesCompanyRHC1.DataBind();
 
                 //IncomeByProductCategoryComRHC1.Appearance.FillStyle.BackgroundColor = ChartColors.GetColor();
 
@@ -49,14 +49,22 @@ namespace Test
 
                 //Bind Total Sales Single Value
                 TotalSalesSingleBL totalSalesSingle = new TotalSalesSingleBL();
-                Label1.Text = '$' + String.Format("{0:0.00}", totalSalesSingle.usp_TotalSalesSingle(1));
+                double? totalSalesSingleLabel = totalSalesSingle.usp_TotalSalesSingle(company);
+                if (totalSalesSingleLabel > 100000)
+                {
+                    string totalSalesSingleLabelString = String.Format("{0:C0}K", (totalSalesSingleLabel / 1000));
+                    Label1.Text = totalSalesSingleLabelString;
+                }
+                
+
+
 
                 //Bind Total Sales $ Change
                 TotalSalesChangesBL totalSalesChanges = new TotalSalesChangesBL();
-                LabelPercent1.Text = String.Format("{0:0.00}", totalSalesChanges.usp_TotalSalesChanges(1)) + '%';
+                LabelPercent1.Text = String.Format("{0:0.00}", totalSalesChanges.usp_TotalSalesChanges(company)) + '%';
 
                 //Change the icon's color and arrrow
-                var x1 = Convert.ToInt32(totalSalesChanges.usp_TotalSalesChanges(1));
+                var x1 = Convert.ToInt32(totalSalesChanges.usp_TotalSalesChanges(company));
                 if (x1 < 0)
                 {
                     Label1span.Attributes["style"] = "color: red";
@@ -70,12 +78,12 @@ namespace Test
 
                 //Bind Average Per Transaction Single Value
                 AvgDollarPerTransactionSingleBL avgPerTransactionSingle = new AvgDollarPerTransactionSingleBL();
-                Label2.Text = '$' + String.Format("{0:0.00}", avgPerTransactionSingle.usp_AvgDollarPerTransactionSingle(1));
+                Label2.Text = '$' + String.Format("{0:0}", avgPerTransactionSingle.usp_AvgDollarPerTransactionSingle(company));
                 //Bind Average Per Transaction Change
                 AvgDollarPerTransactionChangesBL avgPerTransactionChanges = new AvgDollarPerTransactionChangesBL();
-                LabelPercent2.Text = String.Format("{0:0.00}", avgPerTransactionChanges.usp_AvgDollarPerTransactionChanges(1)) + '%';
+                LabelPercent2.Text = String.Format("{0:0.00}", avgPerTransactionChanges.usp_AvgDollarPerTransactionChanges(company)) + '%';
                 //Change the icon's color and arrrow
-                var x2 = Convert.ToInt32(avgPerTransactionChanges.usp_AvgDollarPerTransactionChanges(1));
+                var x2 = Convert.ToInt32(avgPerTransactionChanges.usp_AvgDollarPerTransactionChanges(company));
                 if (x2 < 0)
                 {
                     Label2span.Attributes["style"] = "color: red";
@@ -89,12 +97,12 @@ namespace Test
 
                 //Bind Average Dollar Per Customer Single Value
                 AvgDollarPerCustomerSingleBL avgDollarPerCustomerSingle = new AvgDollarPerCustomerSingleBL();
-                Label3.Text = '$' + String.Format("{0:0.00}", avgDollarPerCustomerSingle.usp_AvgDollarPerCustomerSingle(1));
+                Label3.Text = '$' + String.Format("{0:0}", avgDollarPerCustomerSingle.usp_AvgDollarPerCustomerSingle(company));
                 //Bind Average Dollar Per Customer Change
                 AvgDollarPerCustomerChangesBL avgDollarPerCustomerChanges = new AvgDollarPerCustomerChangesBL();
-                LabelPercent3.Text = String.Format("{0:0.00}", avgDollarPerCustomerChanges.usp_AvgDollarPerCustomerChanges(1)) + '%';
+                LabelPercent3.Text = String.Format("{0:0.00}", avgDollarPerCustomerChanges.usp_AvgDollarPerCustomerChanges(company)) + '%';
                 //Change the icon's color and arrrow
-                var x3 = Convert.ToInt32(avgDollarPerCustomerChanges.usp_AvgDollarPerCustomerChanges(1));
+                var x3 = Convert.ToInt32(avgDollarPerCustomerChanges.usp_AvgDollarPerCustomerChanges(company));
                 if (x3 < 0)
                 {
                     Label3span.Attributes["style"] = "color: red";
@@ -108,12 +116,12 @@ namespace Test
 
                 //Bind Number of New Customers Single Value
                 NewCustomersSingleBL newCustomersSingle = new NewCustomersSingleBL();
-                Label4.Text = String.Format("{0}", newCustomersSingle.usp_NewCustomersSingle(1));
+                Label4.Text = String.Format("{0}", newCustomersSingle.usp_NewCustomersSingle(company));
                 //Bind Number of New Customer Change
                 NewCustomersChangesBL newCustomersChanges = new NewCustomersChangesBL();
-                LabelPercent4.Text = String.Format("{0:0.00}", newCustomersChanges.usp_NewCustomersChanges(1)) + '%';
+                LabelPercent4.Text = String.Format("{0:0.00}", newCustomersChanges.usp_NewCustomersChanges(company)) + '%';
                 //Change the icon's color and arrrow
-                var x4 = Convert.ToInt32(newCustomersChanges.usp_NewCustomersChanges(1));
+                var x4 = Convert.ToInt32(newCustomersChanges.usp_NewCustomersChanges(company));
                 if (x4 < 0)
                 {
                     Label4span.Attributes["style"] = "color: red";
@@ -127,12 +135,12 @@ namespace Test
 
                 //Bind Unique Number of New Customers Single Value
                 UniqueCustomersSeenSingleBL uniqueCustomersSeenSingle = new UniqueCustomersSeenSingleBL();
-                Label5.Text = String.Format("{0}", uniqueCustomersSeenSingle.usp_UniqueCustomersSeenSingle(1));
+                Label5.Text = String.Format("{0}", uniqueCustomersSeenSingle.usp_UniqueCustomersSeenSingle(company));
                 //Bind Unique Number of New Customers Change
                 UniqueCustomersSeenChangesBL uniqueCustomersSeenChanges = new UniqueCustomersSeenChangesBL();
-                LabelPercent5.Text = String.Format("{0:0.00}", uniqueCustomersSeenChanges.usp_UniqueCustomersSeenChanges(1)) + '%';
+                LabelPercent5.Text = String.Format("{0:0.00}", uniqueCustomersSeenChanges.usp_UniqueCustomersSeenChanges(company)) + '%';
                 //Change the icon's color and arrrow
-                var x5 = Convert.ToInt32(uniqueCustomersSeenChanges.usp_UniqueCustomersSeenChanges(1));
+                var x5 = Convert.ToInt32(uniqueCustomersSeenChanges.usp_UniqueCustomersSeenChanges(company));
                 if (x5 < 0)
                 {
                     Label5span.Attributes["style"] = "color: red";
@@ -146,12 +154,12 @@ namespace Test
 
                 //Bind Animals Seen Single Value
                 AnimalsSeenSingleBL animalsSeenSingle = new AnimalsSeenSingleBL();
-                Label6.Text = String.Format("{0}", animalsSeenSingle.usp_AnimalsSeenSingle(1));
+                Label6.Text = String.Format("{0}", animalsSeenSingle.usp_AnimalsSeenSingle(company));
                 //Bind Animals Seen Change
                 AnimalsSeenChangesBL animalsSeenChanges = new AnimalsSeenChangesBL();
-                LabelPercent6.Text = String.Format("{0:0.00}", animalsSeenChanges.usp_AnimalsSeenChanges(1)) + '%';
+                LabelPercent6.Text = String.Format("{0:0.00}", animalsSeenChanges.usp_AnimalsSeenChanges(company)) + '%';
                 //Change the icon's color and arrrow
-                var x6 = Convert.ToInt32(animalsSeenChanges.usp_AnimalsSeenChanges(1));
+                var x6 = Convert.ToInt32(animalsSeenChanges.usp_AnimalsSeenChanges(company));
                 if (x6 < 0)
                 {
                     Label6span.Attributes["style"] = "color: red";
@@ -163,9 +171,13 @@ namespace Test
                     icon6.Attributes["class"] = "fa fa-sort-asc";
                 }
             }
-            else
+            else if (HttpContext.Current.User.Identity.IsAuthenticated == false)
             {
                 Response.Redirect("~/Account/Login.aspx");
+            }
+            else if (HttpContext.Current.User.Identity.IsAuthenticated == true & admin == true)
+            {
+                Response.Redirect("~/createUserforCFL.aspx");
             }
         }
 

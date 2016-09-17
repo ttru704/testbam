@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Productivity
 
         }
 
-        List<usp_AvgAnimalsSeenByEmployeeCompany_Result> IAvgAnimalsSeenByEmployeeCompanyRepo.usp_AvgAnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType)
+        List<usp_AvgAnimalsSeenByEmployeeCompany_Result> IAvgAnimalsSeenByEmployeeCompanyRepo.usp_AvgAnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, Int64? companyRef, int? timeType)
         {
             return context.usp_AvgAnimalsSeenByEmployeeCompany(start, end, companyRef, timeType).ToList();
         }

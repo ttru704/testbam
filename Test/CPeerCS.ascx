@@ -16,12 +16,12 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-04-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-09-01&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="Branch" DefaultValue="1" Name="branchRef" Type="Int32"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="size" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="BranchRef" DefaultValue="" Name="branchRef" Type="Int64"></asp:SessionParameter>
+                            <asp:Parameter DefaultValue="4" Name="branchType" Type="Int64"></asp:Parameter>
                             <asp:SessionParameter SessionField="Time" DefaultValue="1" Name="timeType" Type="Int32"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="country" Type="Int32"></asp:Parameter>
-                            <asp:Parameter DefaultValue="1" Name="state" Type="Int32"></asp:Parameter>
-                            <asp:Parameter DefaultValue="2" Name="region" Type="Int32"></asp:Parameter>
+                            <asp:Parameter DefaultValue="1" Name="country" Type="Int64"></asp:Parameter>
+                            <asp:Parameter DefaultValue="1" Name="state" Type="Int64"></asp:Parameter>
+                            <asp:Parameter DefaultValue="9" Name="region" Type="Int64"></asp:Parameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>

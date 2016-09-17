@@ -15,9 +15,9 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_AvgDollarPerTransactionPeer_Result> IAvgDollarPerTransactionPeerRepo.usp_AvgDollarPerTransactionPeer(DateTime? start, DateTime? end, int? branchRef, int? size, int? timeType, int? country, int? state, int? region)
+        List<usp_AvgDollarPerTransactionPeer_Result> IAvgDollarPerTransactionPeerRepo.usp_AvgDollarPerTransactionPeer(DateTime? start, DateTime? end, long? branchRef, long? branchType, int? timeType, long? country, long? state, long? region)
         {
-            return context.usp_AvgDollarPerTransactionPeer(start, end, branchRef, size, timeType, country, state, region).ToList();
+            return context.usp_AvgDollarPerTransactionPeer(start, end, branchRef, branchType, timeType, country, state, region).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

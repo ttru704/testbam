@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface IRetailOnlySalesCompanyRepo: IDisposable
     {
-        List<usp_RetailOnlySalesCompany_Result> usp_RetailOnlySalesCompany(DateTime start, DateTime end, int companyRef, int timeType);
+        List<usp_RetailOnlySalesCompany_Result> usp_RetailOnlySalesCompany(DateTime start, DateTime end, long companyRef, int timeType);
     }
 }

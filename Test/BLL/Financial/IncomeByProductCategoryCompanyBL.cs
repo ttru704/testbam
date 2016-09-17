@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.IncomeByProductCategoryCompanyRepo = IncomeByProductCategoryCompanyRepo;
         }
 
-        public List<usp_IncomeByProductCategoryCompany_Result> usp_IncomeByProductCategoryCompany(DateTime start, DateTime end, int companyRef)
+        public List<usp_IncomeByProductCategoryCompany_Result> usp_IncomeByProductCategoryCompany(DateTime start, DateTime end, long companyRef)
         {
             return IncomeByProductCategoryCompanyRepo.usp_IncomeByProductCategoryCompany(start, end, companyRef);
         }

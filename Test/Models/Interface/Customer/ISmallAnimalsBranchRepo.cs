@@ -8,7 +8,7 @@ namespace Test.Models.Interface.Customer
 {
     public interface ISmallAnimalsBranchRepo : IDisposable
     {
-        List<usp_SmallAnimalsBranch_Result> usp_SmallAnimalsBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType);
+        List<usp_SmallAnimalsBranch_Result> usp_SmallAnimalsBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType);
 
     }
 }

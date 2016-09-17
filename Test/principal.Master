@@ -77,7 +77,7 @@
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
-                            <h2>John Doe</h2>
+                            <h2><asp:Label ID="userName1" runat="server"></asp:Label></h2>
                         </div>
                     </div>
                     <!-- /menu profile quick info -->
@@ -133,18 +133,17 @@
             </div>
 
             <!-- top navigation -->
-            <div class="top_nav">
+            <div class="top_nav navbar-fixed-top">
                 <div class="nav_menu">
                     <nav>
                         <div class="nav toggle">
                             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                         </div>
-                        <asp:ContentPlaceHolder runat="server" ID="kpiNameHeader">
-                        </asp:ContentPlaceHolder>
+                        
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="production/images/img.jpg" alt="">John Doe
+                                    <img src="production/images/img.jpg" alt=""><asp:Label ID="userName2" runat="server"></asp:Label>
                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -154,12 +153,12 @@
                                     </li>
                                 </ul>
                             </li>
-
-                            <li role="presentation" class="dropdown">
-                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"></a>
-                            </li>
                         </ul>
                     </nav>
+                    <div>
+                        <asp:ContentPlaceHolder runat="server" ID="kpiNameHeader">
+                        </asp:ContentPlaceHolder>
+                    </div>
                 </div>
             </div>
             <!-- /top navigation -->

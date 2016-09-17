@@ -22,7 +22,7 @@ namespace Test.BLL.Productivity
             this.incomeByEmployeeIndividualRepo = incomeByEmployeeIndividualRepo;
         }
 
-        public List<usp_IncomeByEmployeeIndividual_Result> usp_IncomeByEmployeeIndividual(DateTime? start, DateTime? end, int? companyRef, long? staffNumber, int? timeType)
+        public List<usp_IncomeByEmployeeIndividual_Result> usp_IncomeByEmployeeIndividual(DateTime? start, DateTime? end, Int64? companyRef, long? staffNumber, int? timeType)
         {
             return incomeByEmployeeIndividualRepo.usp_IncomeByEmployeeIndividual(start, end, companyRef, staffNumber, timeType);
         }

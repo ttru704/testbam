@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Productivity
 {
     public interface ICustomersSeenByEmployeeIndividualRepo : IDisposable
     {
-        List<usp_CustomersSeenByEmployeeIndividual_Result> usp_CustomersSeenByEmployeeIndividual(DateTime? start, DateTime? end, int? companyRef, long? staffNumber, int? timeType);
+        List<usp_CustomersSeenByEmployeeIndividual_Result> usp_CustomersSeenByEmployeeIndividual(DateTime? start, DateTime? end, Int64? companyRef, long? staffNumber, int? timeType);
     }
 }

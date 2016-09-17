@@ -9,6 +9,6 @@ namespace Test.Models.Interface.Financial
 {
     interface IIncomeByServiceActivityCompanyRepo : IDisposable
     {
-        List<usp_IncomeByServiceActivityCompany_Result> usp_IncomeByServiceActivityCompany(DateTime start, DateTime end, int companyRef);
+        List<usp_IncomeByServiceActivityCompany_Result> usp_IncomeByServiceActivityCompany(DateTime start, DateTime end, long companyRef);
     }
 }

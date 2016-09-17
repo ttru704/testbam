@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface IAnimalsSeenSingleRepo : IDisposable
     {
-        double? usp_AnimalsSeenSingle(int companyRef);
+        double? usp_AnimalsSeenSingle(Int64? companyRef);
     }
 }

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_AnimalsSeenCompany_Result> IAnimalsSeenCompanyRepo.usp_AnimalsSeenCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_AnimalsSeenCompany_Result> IAnimalsSeenCompanyRepo.usp_AnimalsSeenCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_AnimalsSeenCompany(start, end, companyRef, timeType).ToList();
         }

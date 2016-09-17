@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Productivity
 
         }
 
-        List<usp_IncomeByEmployeeCompany_Result> IIncomeByEmployeeCompanyRepo.usp_IncomeByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType)
+        List<usp_IncomeByEmployeeCompany_Result> IIncomeByEmployeeCompanyRepo.usp_IncomeByEmployeeCompany(DateTime? start, DateTime? end, Int64? companyRef, int? timeType)
         {
             return context.usp_IncomeByEmployeeCompany(start, end, companyRef, timeType).ToList();
         }

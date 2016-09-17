@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Controls
 {
     public interface IRegionDropDownListRepo:IDisposable
     {
-        List<usp_RegionDropDownList_Result> usp_RegionDropDownList(int? stateRef);
+        List<usp_RegionDropDownList_Result> usp_RegionDropDownList(long? stateRef);
     }
 }

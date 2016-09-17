@@ -3,14 +3,14 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
-    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1"  Width="100%" Skin="MetroTouch">
+    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <telerik:RadPanelItem Text="Number of Customers Seen By Employee" Expanded="False">
                 <ContentTemplate>
                     <%--Export button--%>
-                            <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                            <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
-                            </telerik:RadClientExportManager>
+                    <telerik:RadButton RenderMode="Lightweight" runat="server" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1">
+                    </telerik:RadClientExportManager>
                     <%--Chart--%>
                     <telerik:RadHtmlChart ID="CustomersSeenByEmployeeIndividualRHC1" runat="server" CssClass="MonthlyExport1"></telerik:RadHtmlChart>
                     <%--Datasource--%>
@@ -18,7 +18,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
@@ -48,7 +49,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
@@ -77,7 +79,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
@@ -106,7 +109,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="TIme" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
@@ -132,103 +136,125 @@
     </telerik:RadPanelBar>
 
 </div>
-<script>
+<telerik:RadScriptBlock runat="server">
+    <script>
     
     <%--For panning and zooming--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
-    <%--For panning and zooming--%>
+        })(window);
+        <%--For panning and zooming--%>
 
         <%--For responsive chart--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
+        })(window);
     <%--For responsive chart--%>
 
-    (function (global, undefined) {
-        var telerikDemo = global.telerikDemo = {};
-        telerikDemo.initialize = function () {
-            $ = $telerik.$;
-            //show or hide the print button when the mouse is over or leaves the chart
-            $("$RadHtmlChart").mouseover(function () {
-                $(".RadButton", this).css("display", "inline-block");
-            });
-            $("$RadHtmlChart").mouseout(function () {
-                $(".RadButton", this).css("display", "none");
-            });
-        };
-        telerikDemo.printChartOnly = function (sender, args) {
-            //Prevent printing if the browser is Safari due to a bug in WebKit related to gradients
-            if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
-                alert("Your browser has a printing bug. See the Description section for more details. Please use a different browser (e.g., Internet Explorer or Firefox)");
-                return;
-            }
-            //Get the sibling chart that is to be hidden during printing
-            var allChartContainers = $(''),
-                currChartContainer = $(sender.get_element().parentNode)[0],
-                siblingChartContainer;
-            if (allChartContainers[0] == currChartContainer) {
-                siblingChartContainer = allChartContainers[1];
-            }
-            else {
-                siblingChartContainer = allChartContainers[0];
-            }
-            //Add a class to the sibling chart that will hide it when printing the target chart
-            $(siblingChartContainer).addClass('chartToHide');
+        (function (global, undefined) {
+            var telerikDemo = global.telerikDemo = {};
+            telerikDemo.initialize = function () {
+                $ = $telerik.$;
+                //show or hide the print button when the mouse is over or leaves the chart
+                $("$RadHtmlChart").mouseover(function () {
+                    $(".RadButton", this).css("display", "inline-block");
+                });
+                $("$RadHtmlChart").mouseout(function () {
+                    $(".RadButton", this).css("display", "none");
+                });
+            };
+            telerikDemo.printChartOnly = function (sender, args) {
+                //Prevent printing if the browser is Safari due to a bug in WebKit related to gradients
+                if (navigator.userAgent.search("Safari") >= 0 && navigator.userAgent.search("Chrome") < 0) {
+                    alert("Your browser has a printing bug. See the Description section for more details. Please use a different browser (e.g., Internet Explorer or Firefox)");
+                    return;
+                }
+                //Get the sibling chart that is to be hidden during printing
+                var allChartContainers = $(''),
+                    currChartContainer = $(sender.get_element().parentNode)[0],
+                    siblingChartContainer;
+                if (allChartContainers[0] == currChartContainer) {
+                    siblingChartContainer = allChartContainers[1];
+                }
+                else {
+                    siblingChartContainer = allChartContainers[0];
+                }
+                //Add a class to the sibling chart that will hide it when printing the target chart
+                $(siblingChartContainer).addClass('chartToHide');
 
-            //hide the print button
-            $(sender.get_element()).css("display", "none");
+                //hide the print button
+                $(sender.get_element()).css("display", "none");
 
-            //call the browser print() method
-            window.print();
+                //call the browser print() method
+                window.print();
 
-            //Remove the class that hides the sibling chart
-            $(siblingChartContainer).removeClass('chartToHide');
-        }
-    })(window);
-</script>
+                //Remove the class that hides the sibling chart
+                $(siblingChartContainer).removeClass('chartToHide');
+            }
+        })(window);
+
+        //format Y axis value based on value
+        function pageLoad() {
+
+            var chart1 = $find("<%=CustomersSeenByEmployeeIndividualRHC1.ClientID%>");
+        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart1.repaint();
+
+        var chart2 = $find("<%=AnimalsSeenByEmployeeIndividualRHC1.ClientID%>");
+        chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart2.repaint();
+
+        var chart3 = $find("<%=IncomeByEmployeeIndividualRHC1.ClientID%>");
+            chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart3.repaint();
+
+            var chart4 = $find("<%=IncomeFromAnimalTypeEmployeeIndividualRHC1.ClientID%>");
+        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart4.repaint();
+    }
+    </script>
+</telerik:RadScriptBlock>

@@ -501,8 +501,9 @@
     <Compile Include="BLL\Financial\AvgDollarPerTransactionPeerBL.cs" />
     <Compile Include="BLL\Financial\AvgDollarPerTransactionSingleBL.cs" />
     <Compile Include="BLL\Financial\IncomeByProductCategoryCompanyBL.cs" />
+    <Compile Include="BLL\Financial\IncomeByProductIndividualBL.cs" />
     <Compile Include="BLL\Financial\IncomeByServiceActivityCompanyBL.cs" />
-    <Compile Include="BLL\Financial\IncomeByProductServiceIndividualBL.cs" />
+    <Compile Include="BLL\Financial\IncomeByServiceIndividualBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesBranchBL.cs" />
     <Compile Include="BLL\Financial\RetailOnlySalesCompanyBL.cs" />
     <Compile Include="BLL\Financial\ServiceOnlySalesBranchBL.cs" />
@@ -725,6 +726,7 @@
     </Compile>
     <Compile Include="Models\Interface\Controls\IDeleteFromKpiForUserRepo.cs" />
     <Compile Include="Models\Interface\Controls\IInsertIntoKpiForUserRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IIncomeByProductIndividualRepo.cs" />
     <Compile Include="Models\Repository\Controls\DeleteFromKpiForUserRepo.cs" />
     <Compile Include="Models\Repository\Controls\InsertIntoKpiForUserRepo.cs" />
     <Compile Include="FCompanyKPIControls\TotalSalesCompany.ascx.cs">
@@ -822,6 +824,7 @@
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repository\Controls\ViewableKpiListRepo.cs" />
+    <Compile Include="Models\Repository\Financial\IncomeByProductIndividualRepo.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
@@ -930,10 +933,13 @@
     <Compile Include="Models\usp_IncomeByProductCategoryCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usp_IncomeByProductServiceIndividual_Result.cs">
+    <Compile Include="Models\usp_IncomeByProductIndividual_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_IncomeByServiceActivityCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByServiceIndividual_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_IncomeFromAnimalTypeEmployeeIndividual_Result.cs">
@@ -1065,7 +1071,7 @@
     <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByProductCategoryCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByServiceActivityCompanyRepo.cs" />
-    <Compile Include="Models\Interface\Financial\IIncomeByProductServiceIndividualRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IIncomeByServiceIndividualRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Interface\Financial\IRetailOnlySalesCompanyRepo.cs" />
     <Compile Include="Models\Interface\Financial\IServiceOnlySalesBranchRepo.cs" />
@@ -1128,7 +1134,7 @@
     <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionSingleRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByProductCategoryCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByServiceActivityCompanyRepo.cs" />
-    <Compile Include="Models\Repository\Financial\IncomeByProductServiceIndividualRepo.cs" />
+    <Compile Include="Models\Repository\Financial\IncomeByServiceIndividualRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesBranchRepo.cs" />
     <Compile Include="Models\Repository\Financial\RetailOnlySalesCompanyRepo.cs" />
     <Compile Include="Models\Repository\Financial\ServiceOnlySalesBranchRepo.cs" />

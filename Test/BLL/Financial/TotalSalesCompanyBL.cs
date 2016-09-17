@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.totalSalesCompanyRepo = totalSalesCompanyRepo;
         }
 
-        public List<usp_TotalSalesCompany_Result> usp_TotalSalesCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_TotalSalesCompany_Result> usp_TotalSalesCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return totalSalesCompanyRepo.usp_TotalSalesCompany(start, end, companyRef, timeType);
         }

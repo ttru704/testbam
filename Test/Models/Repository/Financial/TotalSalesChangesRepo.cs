@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        double? ITotalSalesChangesRepo.usp_TotalSalesChanges(int companyRef)
+        double? ITotalSalesChangesRepo.usp_TotalSalesChanges(Int64? companyRef)
         {
             return context.usp_TotalSalesChanges(companyRef).SingleOrDefault();
         }

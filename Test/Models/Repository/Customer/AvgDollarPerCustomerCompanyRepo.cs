@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_AvgDollarPerCustomerCompany_Result> IAvgDollarPerCustomerCompanyRepo.usp_AvgDollarPerCustomerCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_AvgDollarPerCustomerCompany_Result> IAvgDollarPerCustomerCompanyRepo.usp_AvgDollarPerCustomerCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_AvgDollarPerCustomerCompany(start, end, companyRef, timeType).ToList();
         }

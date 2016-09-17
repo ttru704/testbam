@@ -31,7 +31,10 @@ namespace Test
         {
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+
+            //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
+            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref = Convert.ToInt64(companyIdDropdown.SelectedItem.Value) };
             IdentityResult result = manager.Create(user, Password.Text);
             var userID = user.Id;
@@ -69,8 +72,9 @@ namespace Test
                 //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                 //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
 
+                //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
+                //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
 
-                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
                 Message.Text = "A new user has been sucessfully created";
                 //IdentityHelper.RedirectToReturnUrl("~/dashboard", Response);
 

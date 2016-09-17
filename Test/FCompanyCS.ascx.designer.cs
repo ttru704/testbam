@@ -139,13 +139,22 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid TransExcludeZeroTotalComG1;
         
         /// <summary>
-        /// IncomeByProductCategoryComRHC1 control.
+        /// IncomeByProductCategoryCompanyEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart IncomeByProductCategoryComRHC1;
+        protected global::Telerik.Web.UI.RadButton IncomeByProductCategoryCompanyEB;
+        
+        /// <summary>
+        /// IncomeByProductCategoryCompanyRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart IncomeByProductCategoryCompanyRHC1;
         
         /// <summary>
         /// IncomeByProductCategoryCompanyODS1 control.
@@ -166,13 +175,22 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid IncomeByProductCategoryCompanyG1;
         
         /// <summary>
-        /// IncomeByServiceActivityComRHC1 control.
+        /// IncomeByServiceActivityCompanyEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadHtmlChart IncomeByServiceActivityComRHC1;
+        protected global::Telerik.Web.UI.RadButton IncomeByServiceActivityCompanyEB;
+        
+        /// <summary>
+        /// IncomeByServiceActivityCompanyRHC1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadHtmlChart IncomeByServiceActivityCompanyRHC1;
         
         /// <summary>
         /// IncomeByServiceActivityCompanyODS1 control.

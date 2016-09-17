@@ -36,7 +36,8 @@
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-01-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-12-31" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -52,7 +53,8 @@
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-01-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-12-31" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="2" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -85,7 +87,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -114,7 +117,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -144,7 +148,8 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="2015-01-01" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -168,67 +173,92 @@
         <ExpandAnimation Type="None" />
         <CollapseAnimation Type="None" />
     </telerik:RadPanelBar>
-    
+
 </div>
-<script>
-    var $ = $telerik.$;
+<telerik:RadScriptBlock runat="server">
+    <script>
+        var $ = $telerik.$;
 
-    function exportRadHtmlChart() {
-        $find('<%=RadClientExportManager1.ClientID%>').exportPDF($("#CustomersSeenByEmployeeCompanyRHC1"));
-        };
+        function exportRadHtmlChart() {
+            $find('<%=RadClientExportManager1.ClientID%>').exportPDF($("#CustomersSeenByEmployeeCompanyRHC1"));
+    };
     <%--For panning and zooming--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
-    <%--For panning and zooming--%>
+        })(window);
+        <%--For panning and zooming--%>
 
         <%--For responsive chart--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
+        })(window);
     <%--For responsive chart--%>
-</script>
+        //format Y axis value based on value
+        function pageLoad() {
+
+            var chart1 = $find("<%=CustomersSeenByEmployeeCompanyRHC1.ClientID%>");
+        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart1.repaint();
+
+        var chart2 = $find("<%=AnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
+        chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart2.repaint();
+
+        var chart3 = $find("<%=AvgCustomersSeenByEmployeeCompanyRHC1.ClientID%>");
+            chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart3.repaint();
+
+            var chart4 = $find("<%=AvgAnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
+        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart4.repaint();
+
+        var chart5 = $find("<%=IncomeByEmployeeCompanyRHC1.ClientID%>");
+        chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart5.repaint();
+    }
+    </script>
+</telerik:RadScriptBlock>

@@ -3,13 +3,20 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+
+<asp:Content ID="ContentTitle" ContentPlaceHolderID="kpiNameHeader" runat="Server">
+    <header style="padding: inherit; margin-top: 15px">
+        <h3>As of 14th of May</h3>
+    </header>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
         <!-- page content -->
         <div class="right_col" role="main">
             <!-- top tiles -->
-            <div class="row tile_count">
+            <div class="row tile_count" style="margin-top: 55px;">
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" runat="server">
                     <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
                     <div class="count blue">
@@ -82,7 +89,7 @@
                 <div class="col-sm-12">
                     <%-- Line chart --%>
                     <div class="col-sm-12">
-                        <telerik:RadHtmlChart ID="RadHtmlChart1" runat="server" DataSourceID="TotalSalesCompanyODS1" Skin="MetroTouch" Width="100%">
+                        <telerik:RadHtmlChart ID="TotalSalesCompanyRHC1" runat="server" DataSourceID="TotalSalesCompanyODS1" Skin="MetroTouch" Width="100%">
                             <ClientEvents OnLoad="chartLoad" />
                             <PlotArea>
                                 <Series>
@@ -115,15 +122,12 @@
                         <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
-                                <asp:Parameter DefaultValue="2015/09/01" Name="end" Type="DateTime" />
-                                <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                                <asp:Parameter DefaultValue="2015/09/30" Name="end" Type="DateTime" />
+                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
                                 <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </div>
-
-
-
                     <div class="col-sm-6">
                         <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
                             <ClientEvents OnLoad="chartLoad" />
@@ -142,7 +146,10 @@
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
                                 <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
-                                <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+
+
+
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </div>
@@ -164,7 +171,10 @@
                             <SelectParameters>
                                 <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
                                 <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
-                                <asp:Parameter DefaultValue="1" Name="companyRef" Type="Int32" />
+                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+
+
+
                             </SelectParameters>
                         </asp:ObjectDataSource>
                     </div>
@@ -242,6 +252,14 @@
 
         })(window);
         <%--For responsive chart--%>
+
+        //format Y axis value based on value
+        function pageLoad() {
+
+            var chart1 = $find("<%=TotalSalesCompanyRHC1.ClientID%>");
+            chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart1.repaint();
+        }
     </script>
 
 </asp:Content>

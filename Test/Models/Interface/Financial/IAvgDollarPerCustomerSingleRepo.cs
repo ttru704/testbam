@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface IAvgDollarPerCustomerSingleRepo : IDisposable
     {
-        double? usp_AvgDollarPerCustomerSingle(int companyRef);
+        double? usp_AvgDollarPerCustomerSingle(Int64? companyRef);
     }
 }

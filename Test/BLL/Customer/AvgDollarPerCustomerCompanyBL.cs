@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.avgDollarPerCustomerCompanyRepo = avgDollarPerCustomerCompanyRepo;
         }
 
-        public List<usp_AvgDollarPerCustomerCompany_Result> usp_AvgDollarPerCustomerCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_AvgDollarPerCustomerCompany_Result> usp_AvgDollarPerCustomerCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return avgDollarPerCustomerCompanyRepo.usp_AvgDollarPerCustomerCompany(start, end, companyRef, timeType);
         }

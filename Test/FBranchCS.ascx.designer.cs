@@ -22,6 +22,24 @@ namespace Test {
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
         
         /// <summary>
+        /// RadClientExportManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        
+        /// <summary>
+        /// TotalSalesBranchEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton TotalSalesBranchEB;
+        
+        /// <summary>
         /// TotalSalesBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid TotalSalesBranchG1;
+        
+        /// <summary>
+        /// AvgDollarPerTransactionBranchEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AvgDollarPerTransactionBranchEB;
         
         /// <summary>
         /// AvgDollarPerTransactionBranchRHC1 control.
@@ -76,6 +103,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource AvgDollarPerTransactionBranchODS1;
         
         /// <summary>
+        /// TransExcludeZeroTotalBranchEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton TransExcludeZeroTotalBranchEB;
+        
+        /// <summary>
         /// TransExcludeZeroTotalBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -103,6 +139,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid TransExcludeZeroTotalBranchG1;
         
         /// <summary>
+        /// RetailOnlySalesBranchEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RetailOnlySalesBranchEB;
+        
+        /// <summary>
         /// RetailOnlySalesBranchRHC1 control.
         /// </summary>
         /// <remarks>
@@ -128,6 +173,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid RetailOnlySalesBranchG1;
+        
+        /// <summary>
+        /// ServiceOnlySalesBranchEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton ServiceOnlySalesBranchEB;
         
         /// <summary>
         /// ServiceOnlySalesBranchRHC1 control.

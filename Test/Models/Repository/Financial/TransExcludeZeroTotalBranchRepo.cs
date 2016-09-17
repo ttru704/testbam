@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_TransExcludeZeroTotalBranch_Result> ITransExcludeZeroTotalBranchRepo.usp_TransExcludeZeroTotalBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        List<usp_TransExcludeZeroTotalBranch_Result> ITransExcludeZeroTotalBranchRepo.usp_TransExcludeZeroTotalBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return context.usp_TransExcludeZeroTotalBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

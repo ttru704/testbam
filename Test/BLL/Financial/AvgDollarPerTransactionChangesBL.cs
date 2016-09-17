@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.avgDollarPerTransactionChangesRepo = avgDollarPerTransactionChangesRepo;
         }
 
-        public double? usp_AvgDollarPerTransactionChanges(int companyRef)
+        public double? usp_AvgDollarPerTransactionChanges(Int64? companyRef)
         {
             return avgDollarPerTransactionChangesRepo.usp_AvgDollarPerTransactionChanges(companyRef);
         }

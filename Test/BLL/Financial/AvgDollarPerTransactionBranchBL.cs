@@ -24,7 +24,7 @@ namespace Test.BLL.Financial
             this.AvgDollarPerTransactionBranchRepo = AvgDollarPerTransactionBranchRepo;
         }
 
-        public List<usp_AvgDollarPerTransactionBranch_Result> usp_AvgDollarPerTransactionBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        public List<usp_AvgDollarPerTransactionBranch_Result> usp_AvgDollarPerTransactionBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return AvgDollarPerTransactionBranchRepo.usp_AvgDollarPerTransactionBranch(start, end, companyRef, branchRef, timeType);
         }

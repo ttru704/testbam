@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_LargeAnimalsCompany_Result> ILargeAnimalsCompanyRepo.usp_LargeAnimalsCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_LargeAnimalsCompany_Result> ILargeAnimalsCompanyRepo.usp_LargeAnimalsCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_LargeAnimalsCompany(start, end, companyRef, timeType).ToList();
         }

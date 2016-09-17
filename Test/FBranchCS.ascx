@@ -8,7 +8,12 @@
             <%--This section is for Total Sales Branch Comparison--%>
             <telerik:RadPanelItem Text="Total Sales - Branch Comparison" Visible="false">
                 <ContentTemplate>
+                    <%--This export manager is for all the KPI charts--%>
+                    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
                     <%--Chart--%>
+                    <br />
+                    <div class="export">
+                        <telerik:RadButton ID="TotalSalesBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTotalSalesBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                     <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server" Skin="Metro">
                         <ClientEvents OnLoad="chartLoad" />
                         <Pan Enabled="true" Lock="Y" />
@@ -17,23 +22,28 @@
                             <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                         </Zoom>
                     </telerik:RadHtmlChart>
+                        </div>
                     <%--DataSource--%>
                     <asp:ObjectDataSource ID="TotalSalesBranchODS1" runat="server" SelectMethod="usp_TotalSalesBranch" TypeName="Test.BLL.Financial.TotalSalesBranchBL">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" PropertyName="SelectedValue" DefaultValue="1" Name="companyRef" Type="Int32"></asp:ControlParameter>
-                            <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="BranchRef" DefaultValue="" Name="branchRef" Type="Int64"></asp:SessionParameter>
                             <asp:ControlParameter ControlID="TimeDDL1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="TotalSalesBranchG1" runat="server" DataSourceID="TotalSalesBranchODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Bootstrap">
+                    <hr />
+                    <br />
+                    <telerik:RadGrid ID="TotalSalesBranchG1" runat="server" DataSourceID="TotalSalesBranchODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Total Sales Branch Comparison"  OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="TotalSalesBranchODS1">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="TotalSalesBranchODS1">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch Name" SortExpression="Branch_Name" UniqueName="Branch_Name">
                                 </telerik:GridBoundColumn>
@@ -51,7 +61,10 @@
             <telerik:RadPanelItem Text="Average Dollar per Transaction - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="AvgDollarPerTransactionBranchRHC1" runat="server" Skin="Metro">
+                    <br />
+                    <div class="export">
+                        <telerik:RadButton ID="AvgDollarPerTransactionBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerTransactionBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="AvgDollarPerTransactionBranchRHC1" runat="server" Skin="Metro">
                         <Pan Enabled="true" Lock="Y" />
                         <ChartTitle Text="Average Dollar Earned Per Transaction">
                         </ChartTitle>
@@ -64,13 +77,17 @@
                             <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                         </Zoom>
                     </telerik:RadHtmlChart>
+                        </div>
                     <%--Table--%>
-                    <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1" CellSpacing="-1" GridLines="Both"
-                        AllowSorting="True" AllowPaging="True" OnNeedDataSource="RadGrid1_NeedDataSource" Skin="Bootstrap" ShowGroupPanel="True">
+                    <hr />
+                    <br />
+                    <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1" CellSpacing="-1" GridLines="Both" AllowSorting="True" AllowPaging="True" OnNeedDataSource="RadGrid1_NeedDataSource" Skin="Bootstrap" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison"  OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="AvgDollarPerTransactionBranchODS1" AllowFilteringByColumn="True">
+                       <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="AvgDollarPerTransactionBranchODS1" AllowFilteringByColumn="True">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
                                 </telerik:GridBoundColumn>
@@ -92,8 +109,8 @@
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                            <asp:Parameter DefaultValue="0" Name="branchRef" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
                             <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -103,24 +120,33 @@
             <telerik:RadPanelItem Text="Number of Transactions excluding zero total bills - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="TransExcludeZeroTotalBranchRHC1" runat="server" Skin="Material"></telerik:RadHtmlChart>
+                    <br />
+                    <div class="export">
+                        <telerik:RadButton ID="TransExcludeZeroTotalBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTransExcludeZeroTotalBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                         <telerik:RadHtmlChart ID="TransExcludeZeroTotalBranchRHC1" runat="server" Skin="Material"></telerik:RadHtmlChart>
+                        </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="TransExcludeZeroTotalBranchODS1" runat="server" SelectMethod="usp_TransExcludeZeroTotalBranch" TypeName="Test.BLL.Financial.TransExcludeZeroTotalBranchBL">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                            <asp:ControlParameter ControlID="BranchDDL1" DefaultValue="0" Name="branchRef" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" Skin="Bootstrap">
+                    <hr />
+                    <br />
+                    <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Transactions Excluding Zero Total Bills Branch Comparison"  OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="TransExcludeZeroTotalBranchODS1">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="TransExcludeZeroTotalBranchODS1">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
                                 </telerik:GridBoundColumn>
@@ -137,24 +163,33 @@
             <telerik:RadPanelItem Text="Retail Only Sales - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
+                    <br />
+                     <div class="export">
+                        <telerik:RadButton ID="RetailOnlySalesBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportRetailOnlySalesBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                         <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
+                        </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="RetailOnlySalesBranchODS1" runat="server" SelectMethod="usp_RetailOnlySalesBranch" TypeName="Test.BLL.Financial.RetailOnlySalesBranchBL">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                            <asp:Parameter DefaultValue="0" Name="branchRef" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="RetailOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="RetailOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Bootstrap">
+                    <hr />
+                    <br />
+                    <telerik:RadGrid ID="RetailOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="RetailOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Retail Only Sales Branch Comparison"  OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="RetailOnlySalesBranchODS1">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="RetailOnlySalesBranchODS1">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
                                 </telerik:GridBoundColumn>
@@ -171,24 +206,33 @@
             <telerik:RadPanelItem Text="Service Only Sales - Branch Comparison" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
+                    <br />
+                    <div class="export">
+                        <telerik:RadButton ID="ServiceOnlySalesBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportServiceOnlySalesBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
+                        </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="ServiceOnlySalesBranchODS1" runat="server" SelectMethod="usp_ServiceOnlySalesBranch" TypeName="Test.BLL.Financial.ServiceOnlySalesBranchBL">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
                             <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="CompanyDDL1" DefaultValue="1" Name="companyRef" PropertyName="SelectedValue" Type="Int32" />
-                            <asp:Parameter DefaultValue="0" Name="branchRef" Type="Int32" />
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
+
                             <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="ServiceOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ServiceOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Bootstrap">
+                    <hr />
+                    <br />
+                    <telerik:RadGrid ID="ServiceOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ServiceOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Service Only Sales Branch Comparison"  OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="ServiceOnlySalesBranchODS1">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="ServiceOnlySalesBranchODS1">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Branch_Name" FilterControlAltText="Filter Branch_Name column" HeaderText="Branch" SortExpression="Branch_Name" UniqueName="Branch_Name">
                                 </telerik:GridBoundColumn>
@@ -206,60 +250,126 @@
         <CollapseAnimation Type="None" />
     </telerik:RadPanelBar>
 </div>
-<script>
+<telerik:RadScriptBlock runat="server">
+    <script>
+         var $ = $telerik.$;
+        //For Exporting Charts
+         function exportTotalSalesBranchRHC1(sender, args) {
+            exportRadHtmlChart('<%=TotalSalesBranchRHC1.ClientID%>')
+        }
+
+        function exportAvgDollarPerTransactionBranchRHC1(sender, args) {
+            exportRadHtmlChart('<%=AvgDollarPerTransactionBranchRHC1.ClientID%>')
+        }
+
+        function exportTransExcludeZeroTotalBranchRHC1(sender, args) {
+            exportRadHtmlChart('<%=TransExcludeZeroTotalBranchRHC1.ClientID%>')
+        }
+
+        function exportRetailOnlySalesBranchRHC1(sender, args) {
+            exportRadHtmlChart('<%=RetailOnlySalesBranchRHC1.ClientID%>')
+        }
+        function exportServiceOnlySalesBranchRHC1(sender, args) {
+            exportRadHtmlChart('<%=ServiceOnlySalesBranchRHC1.ClientID%>')
+        }
+
+        function exportRadHtmlChart(chartId) {
+            var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
+            var manager = $find('<%=RadClientExportManager1.ClientID%>');
+            var pdfSettings = {
+                fileName: chartTitle
+                
+            };
+            
+            manager.set_pdfSettings(pdfSettings);
+            manager.exportPDF($("#" + chartId));
+        }
+
     <%--For panning and zooming--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
-    <%--For panning and zooming--%>
+        })(window);
+        <%--For panning and zooming--%>
 
         <%--For responsive chart--%>
-    (function (global) {
-        var chart;
+        (function (global) {
+            var chart;
+            //Hide Export Button 
 
-        function ChartLoad(sender, args) {
-            chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-        }
+            $("div.export").mouseover(function () {
+                $(".RadButton", this).css("display", "inline-block");
+            });
+            $("div.export").mouseout(function () {
+                $(".RadButton", this).css("display", "none");
+            });
+            function ChartLoad(sender, args) {
+                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
+            }
 
-        global.chartLoad = ChartLoad;
+            global.chartLoad = ChartLoad;
 
-        function resizeChart() {
-            if (chart)
-                chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-        }
+            function resizeChart() {
+                if (chart)
+                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
+            }
 
 
-        //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-        //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-        var TO = false;
-        window.onresize = function () {
-            if (TO !== false)
-                clearTimeout(TO);
-            TO = setTimeout(resizeChart, 200);
-        }
+            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
+            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
+            var TO = false;
+            window.onresize = function () {
+                if (TO !== false)
+                    clearTimeout(TO);
+                TO = setTimeout(resizeChart, 200);
+            }
 
-    })(window);
+        })(window);
     <%--For responsive chart--%>
-</script>
+
+        //format Y axis value based on value
+        function pageLoad() {
+
+            var chart1 = $find("<%=TotalSalesBranchRHC1.ClientID%>");
+        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart1.repaint();
+
+        var chart2 = $find("<%=AvgDollarPerTransactionBranchRHC1.ClientID%>");
+        chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart2.repaint();
+
+        var chart3 = $find("<%=TransExcludeZeroTotalBranchRHC1.ClientID%>");
+            chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart3.repaint();
+
+            var chart4 = $find("<%=RetailOnlySalesBranchRHC1.ClientID%>");
+        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart4.repaint();
+
+        var chart5 = $find("<%=ServiceOnlySalesBranchRHC1.ClientID%>");
+        chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart5.repaint();
+    }
+    </script>
+</telerik:RadScriptBlock>

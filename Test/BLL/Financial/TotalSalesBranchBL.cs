@@ -25,7 +25,7 @@ namespace Test.BLL.Financial
             this.totalSalesBranchRepo = totalSalesBranchRepo;
         }
 
-        public List<usp_TotalSalesBranch_Result> usp_TotalSalesBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        public List<usp_TotalSalesBranch_Result> usp_TotalSalesBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return totalSalesBranchRepo.usp_TotalSalesBranch(start, end, companyRef, branchRef, timeType);
         }

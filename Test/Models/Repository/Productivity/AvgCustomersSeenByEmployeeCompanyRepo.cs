@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Productivity
 
         }
 
-        List<usp_AvgCustomersSeenByEmployeeCompany_Result> IAvgCustomersSeenByEmployeeCompanyRepo.usp_AvgCustomersSeenByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType)
+        List<usp_AvgCustomersSeenByEmployeeCompany_Result> IAvgCustomersSeenByEmployeeCompanyRepo.usp_AvgCustomersSeenByEmployeeCompany(DateTime? start, DateTime? end, Int64? companyRef, int? timeType)
         {
             return context.usp_AvgCustomersSeenByEmployeeCompany(start, end, companyRef, timeType).ToList();
         }

@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class usp_RegionDropDownList_Result
     {
-        public long Ref_Number { get; set; }
-        public string Name { get; set; }
+        public long Region_Ref { get; set; }
+        public string Region_Name { get; set; }
     }
 }

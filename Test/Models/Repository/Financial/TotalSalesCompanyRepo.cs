@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_TotalSalesCompany_Result> ITotalSalesCompanyRepo.usp_TotalSalesCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_TotalSalesCompany_Result> ITotalSalesCompanyRepo.usp_TotalSalesCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_TotalSalesCompany(start, end, companyRef, timeType).ToList();
         }

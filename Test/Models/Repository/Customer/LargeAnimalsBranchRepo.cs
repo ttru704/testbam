@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_LargeAnimalsBranch_Result> ILargeAnimalsBranchRepo.usp_LargeAnimalsBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        List<usp_LargeAnimalsBranch_Result> ILargeAnimalsBranchRepo.usp_LargeAnimalsBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return context.usp_LargeAnimalsBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

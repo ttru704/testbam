@@ -14,17 +14,15 @@ namespace Test.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             //RegisterHyperLink.NavigateUrl = "Register";
-            //// Enable this once you have account confirmation enabled for password reset functionality
-            ////ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-
+            ////// Enable this once you have account confirmation enabled for password reset functionality
+            //////ForgotPasswordHyperLink.NavigateUrl = "Forgot";
+            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
             //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
             //if (!String.IsNullOrEmpty(returnUrl))
             //{
             //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
             //}
-
-
-
+            
         }
 
         protected void LogIn(object sender, EventArgs e)
@@ -43,8 +41,7 @@ namespace Test.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        HttpContext.Current.User.Identity.ToString();
-                            KPIEntities db = new KPIEntities();
+                        KPIEntities db = new KPIEntities();
                         var companyRef = (from User_Profile in db.User_Profile
                                           where User_Profile.Email == Email.Text
                                           select User_Profile.Company_Ref).Single();
@@ -58,18 +55,8 @@ namespace Test.Account
                         Session["UserRef"] = userRef;
                         //Type t = sender.GetType();
                         //t.Name.ToString();
-                        if (HttpContext.Current.User.Identity.IsAuthenticated) { 
-                            if (Page.User.IsInRole("Admin"))
-                            {
-                                //Console.WriteLine(HttpContext.Current.User.Identity.Name.ToString());
-                                Response.Redirect("~/createUserforCFL.aspx");
-                            }
-                            else
-                            {
-                                //Console.WriteLine(HttpContext.Current.User.Identity.Name.ToString());
+                        
                                 Response.Redirect("~/dashboard.aspx");
-                            }
-                        }
                         break;
                     case SignInStatus.LockedOut:
                         Response.Redirect("/Account/Lockout");

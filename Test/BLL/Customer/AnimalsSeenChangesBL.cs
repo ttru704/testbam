@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.animalsSeenChangesRepo = animalsSeenChangesRepo;
         }
 
-        public double? usp_AnimalsSeenChanges(int companyRef)
+        public double? usp_AnimalsSeenChanges(Int64? companyRef)
         {
             return animalsSeenChangesRepo.usp_AnimalsSeenChanges(companyRef);
         }

@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.transExcludeZeroTotalCompanyRepo = transExcludeZeroTotalCompanyRepo;
         }
 
-        public List<usp_TransExcludeZeroTotalCompany_Result> usp_TransExcludeZeroTotalCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_TransExcludeZeroTotalCompany_Result> usp_TransExcludeZeroTotalCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return transExcludeZeroTotalCompanyRepo.usp_TransExcludeZeroTotalCompany(start, end, companyRef, timeType);
         }

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_NewCustomersCompany_Result> INewCustomersCompanyRepo.usp_NewCustomersCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_NewCustomersCompany_Result> INewCustomersCompanyRepo.usp_NewCustomersCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_NewCustomersCompany(start, end, companyRef, timeType).ToList();
         }

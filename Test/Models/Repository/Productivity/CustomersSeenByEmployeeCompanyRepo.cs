@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Productivity
 
         }
 
-        List<usp_CustomersSeenByEmployeeCompany_Result> ICustomersSeenByEmployeeCompanyRepo.usp_CustomersSeenByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType)
+        List<usp_CustomersSeenByEmployeeCompany_Result> ICustomersSeenByEmployeeCompanyRepo.usp_CustomersSeenByEmployeeCompany(DateTime? start, DateTime? end, Int64? companyRef, int? timeType)
         {
             return context.usp_CustomersSeenByEmployeeCompany(start, end, companyRef, timeType).ToList();
         }

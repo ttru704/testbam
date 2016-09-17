@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.uniqueCustomersSeenCompanyRepo = uniqueCustomersSeenCompanyRepo;
         }
 
-        public List<usp_UniqueCustomersSeenCompany_Result> usp_UniqueCustomersSeenCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_UniqueCustomersSeenCompany_Result> usp_UniqueCustomersSeenCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return uniqueCustomersSeenCompanyRepo.usp_UniqueCustomersSeenCompany(start, end, companyRef, timeType);
         }

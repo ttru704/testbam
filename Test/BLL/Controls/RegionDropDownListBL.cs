@@ -22,7 +22,7 @@ namespace Test.BLL.Controls
             this.RegionDropDownListRepo = RegionDropDownListRepo;
         }
 
-        public List<usp_RegionDropDownList_Result> usp_RegionDropDownList(int? stateRef)
+        public List<usp_RegionDropDownList_Result> usp_RegionDropDownList(long? stateRef)
         {
             return RegionDropDownListRepo.usp_RegionDropDownList(stateRef);
         }

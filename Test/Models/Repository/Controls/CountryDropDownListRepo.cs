@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Controls
 
         }
 
-        List<usp_CountryDropDownList_Result> ICountryDropDownListRepo.usp_CountryDropDownList(int? branchRef)
+        List<usp_CountryDropDownList_Result> ICountryDropDownListRepo.usp_CountryDropDownList(long? branchRef)
         {
             return context.usp_CountryDropDownList(branchRef).ToList();
         }

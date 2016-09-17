@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface IUniqueCustomersSeenSingleRepo : IDisposable
     {
-        double? usp_UniqueCustomersSeenSingle(int companyRef);
+        double? usp_UniqueCustomersSeenSingle(long? companyRef);
     }
 }

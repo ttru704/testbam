@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.retailOnlySalesCompanyRepo = retailOnlySalesCompanyRepo;
         }
 
-        public List<usp_RetailOnlySalesCompany_Result> usp_RetailOnlySalesCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_RetailOnlySalesCompany_Result> usp_RetailOnlySalesCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return retailOnlySalesCompanyRepo.usp_RetailOnlySalesCompany(start, end, companyRef, timeType);
         }

@@ -13,6 +13,15 @@ namespace Test {
     public partial class CCompanyCS {
         
         /// <summary>
+        /// RadClientExportManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        
+        /// <summary>
         /// RadPanelBar1 control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
+        
+        /// <summary>
+        /// UniqueCustomersSeenCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton UniqueCustomersSeenCompanyEB;
         
         /// <summary>
         /// UniqueCustomersSeenCompanyRHC1 control.
@@ -40,13 +58,22 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid RadGrid1;
         
         /// <summary>
-        /// UniqueCustomersSeenCompanyODC1 control.
+        /// UniqueCustomersSeenCompanyODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenCompanyODC1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource UniqueCustomersSeenCompanyODS1;
+        
+        /// <summary>
+        /// AnimalsSeenCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AnimalsSeenCompanyEB;
         
         /// <summary>
         /// AnimalsSeenCompanyRHC1 control.
@@ -76,6 +103,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AnimalsSeenComG1;
         
         /// <summary>
+        /// AvgDollarPerCustomerCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AvgDollarPerCustomerCompanyEB;
+        
+        /// <summary>
         /// AvgDollarPerCustomerCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -101,6 +137,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid AvgDollarPerCustomerCompanyG1;
+        
+        /// <summary>
+        /// NewCustomersCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton NewCustomersCompanyEB;
         
         /// <summary>
         /// NewCustomersCompanyRHC1 control.
@@ -130,6 +175,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid NewCustomersCompanyG1;
         
         /// <summary>
+        /// SmallAnimalsCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton SmallAnimalsCompanyEB;
+        
+        /// <summary>
         /// SmallAnimalsCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -155,6 +209,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid SmallAnimalsCompanyG1;
+        
+        /// <summary>
+        /// LargeAnimalsCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton LargeAnimalsCompanyEB;
         
         /// <summary>
         /// LargeAnimalsCompanyRHC1 control.

@@ -15,9 +15,9 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_AvgDollarPerCustomerPeer_Result> IAvgDollarPerCustomerPeerRepo.usp_AvgDollarPerCustomerPeer(DateTime? start, DateTime? end, int? branchRef, int? size, int? timeType, int? country, int? state, int? region)
+        List<usp_AvgDollarPerCustomerPeer_Result> IAvgDollarPerCustomerPeerRepo.usp_AvgDollarPerCustomerPeer(DateTime? start, DateTime? end, long? branchRef, long? branchType, int? timeType, long? country, long? state, long? region)
         {
-            return context.usp_AvgDollarPerCustomerPeer(start, end, branchRef, size, timeType, country, state, region).ToList();
+            return context.usp_AvgDollarPerCustomerPeer(start, end, branchRef, branchType, timeType, country, state, region).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

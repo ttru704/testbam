@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_AvgDollarPerTransactionCompany_Result> IAvgDollarPerTransactionCompanyRepo.usp_AvgDollarPerTransactionCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_AvgDollarPerTransactionCompany_Result> IAvgDollarPerTransactionCompanyRepo.usp_AvgDollarPerTransactionCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_AvgDollarPerTransactionCompany(start, end, companyRef, timeType).ToList();
         }

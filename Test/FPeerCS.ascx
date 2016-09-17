@@ -8,36 +8,47 @@
             <%--This section is for Average dollar per transaction peer comparison  chart--%>
             <telerik:RadPanelItem Text="Average Dollar per Transaction Peer Comparison" Expanded="false">
                 <ContentTemplate>
+                    <%--This export manager is for all the KPI charts--%>
+                    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="AvgDollarPerTransactionPeerRHC1" runat="server" Skin="Metro">
-                    </telerik:RadHtmlChart>
-                    <%--Datasource--%>
-                    <asp:ObjectDataSource ID="AvgDollarPerTransactionPeerODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionPeer" TypeName="Test.BLL.Financial.AvgDollarPerTransactionPeerBL">
-                        <SelectParameters>
-                            <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-04-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-09-01&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="Branch" DefaultValue="1" Name="branchRef" Type="Int32"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="size" Type="Int32"></asp:Parameter>
-                            <asp:SessionParameter SessionField="Time" DefaultValue="1" Name="timeType" Type="Int32"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="country" Type="Int32"></asp:Parameter>
-                            <asp:Parameter DefaultValue="1" Name="state" Type="Int32"></asp:Parameter>
-                            <asp:Parameter DefaultValue="2" Name="region" Type="Int32"></asp:Parameter>
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                    <%--Table--%>
-                    <telerik:RadGrid ID="AvgDollarPerTransactionPeerG1" runat="server" DataSourceID="AvgDollarPerTransactionPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro">
-                        <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
-                            <Selecting AllowRowSelect="True"></Selecting>
-                        </ClientSettings>
+                    <br />
+                    <div class="export">
+                        <telerik:RadButton ID="AvgDollarPerTransactionPeerEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerTransactionPeerRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="AvgDollarPerTransactionPeerRHC1" runat="server" Skin="Metro">
+                        </telerik:RadHtmlChart>
+                        </div>
+                        <%--Datasource--%>
+                        <asp:ObjectDataSource ID="AvgDollarPerTransactionPeerODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionPeer" TypeName="Test.BLL.Financial.AvgDollarPerTransactionPeerBL">
 
-                        <MasterTableView DataSourceID="AvgDollarPerTransactionPeerODS1" AutoGenerateColumns="False">
-                            <Columns>
-                                <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" HeaderText="Average Dollar per Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column"></telerik:GridBoundColumn>
-                            </Columns>
-                        </MasterTableView>
-                    </telerik:RadGrid>
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="StartDate" Name="start" Type="DateTime"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="EndDate" Name="end" Type="DateTime"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="BranchType" Name="branchType" Type="Int64"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="Time" Name="timeType" Type="Int32"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="Country" Name="country" Type="Int64"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="State" Name="state" Type="Int64"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="Region" Name="region" Type="Int64"></asp:SessionParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                        
+                        <%--Table--%>
+                        <hr />
+                        <br />
+                        <telerik:RadGrid ID="AvgDollarPerTransactionPeerG1" runat="server" DataSourceID="AvgDollarPerTransactionPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro" OnItemCommand="ExportGridCustomiser" ExportSettings-FileName="Average Dollar per Transaction Peer Comparison">
+                            <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                                <Selecting AllowRowSelect="True"></Selecting>
+                            </ClientSettings>
+                            <ExportSettings HideStructureColumns="true"></ExportSettings>
+                            <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="AvgDollarPerTransactionPeerODS1" AutoGenerateColumns="False">
+                                <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
+                                <Columns>
+                                    <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" HeaderText="Average Dollar per Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column"></telerik:GridBoundColumn>
+                                </Columns>
+                            </MasterTableView>
+                        </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
@@ -46,6 +57,23 @@
     </telerik:RadPanelBar>
 </div>
 <script>
+    var $ = $telerik.$
+        function exportAvgDollarPerTransactionPeerRHC1(sender, args) {
+            exportRadHtmlChart('<%=AvgDollarPerTransactionPeerRHC1.ClientID%>')
+        }
+
+        function exportRadHtmlChart(chartId) {
+            var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
+            var manager = $find('<%=RadClientExportManager1.ClientID%>');
+            var pdfSettings = {
+                fileName: chartTitle
+                
+            };
+            
+            manager.set_pdfSettings(pdfSettings);
+            manager.exportPDF($("#" + chartId));
+        }
+
     <%--For panning and zooming--%>
     (function (global) {
         var chart;
@@ -77,6 +105,14 @@
         <%--For responsive chart--%>
     (function (global) {
         var chart;
+        //Hide Export Button 
+
+        $("div.export").mouseover(function () {
+            $(".RadButton", this).css("display", "inline-block");
+        });
+        $("div.export").mouseout(function () {
+            $(".RadButton", this).css("display", "none");
+        });
 
         function ChartLoad(sender, args) {
             chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
@@ -100,5 +136,12 @@
         }
 
     })(window);
-    <%--For responsive chart--%>
+
+    //format Y axis value based on value
+    function pageLoad() {
+
+        var chart1 = $find("<%=AvgDollarPerTransactionPeerRHC1.ClientID%>");
+        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart1.repaint();
+    }
 </script>

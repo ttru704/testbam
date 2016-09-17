@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Controls
 
         }
 
-        List<usp_RegionDropDownList_Result> IRegionDropDownListRepo.usp_RegionDropDownList(int? stateRef)
+        List<usp_RegionDropDownList_Result> IRegionDropDownListRepo.usp_RegionDropDownList(long? stateRef)
         {
             return context.usp_RegionDropDownList(stateRef).ToList();
         }

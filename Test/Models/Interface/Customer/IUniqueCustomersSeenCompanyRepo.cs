@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface IUniqueCustomersSeenCompanyRepo: IDisposable
     {
-        List<usp_UniqueCustomersSeenCompany_Result> usp_UniqueCustomersSeenCompany(DateTime start, DateTime end, int companyRef, int timeType);
+        List<usp_UniqueCustomersSeenCompany_Result> usp_UniqueCustomersSeenCompany(DateTime start, DateTime end, long companyRef, int timeType);
     }
 }

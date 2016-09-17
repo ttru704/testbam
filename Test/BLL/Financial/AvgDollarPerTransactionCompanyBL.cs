@@ -21,7 +21,7 @@ namespace Test.BLL.Financial
             this.AvgDollarPerTransactionCompanyRepo = AvgDollarPerTransactionCompanyRepo;
         }
 
-        public List<usp_AvgDollarPerTransactionCompany_Result> usp_AvgDollarPerTransactionCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        public List<usp_AvgDollarPerTransactionCompany_Result> usp_AvgDollarPerTransactionCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return AvgDollarPerTransactionCompanyRepo.usp_AvgDollarPerTransactionCompany(start, end, companyRef, timeType);
         }

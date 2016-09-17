@@ -22,9 +22,9 @@ namespace Test.BLL.Controls
             this.ProductServiceNameSearchBoxRepo = ProductServiceNameSearchBoxRepo;
         }
 
-        public List<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(int? companyRef, string productClass)
+        public List<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(Int64? companyRef, string Class)
         {
-            return ProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(companyRef, productClass);
+            return ProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(companyRef, Class);
         }
 
         private bool disposedValue = false;

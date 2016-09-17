@@ -21,7 +21,7 @@ namespace Test.BLL.Productivity
             this.avgAnimalsSeenByEmployeeCompanyRepo = avgAnimalsSeenByEmployeeCompanyRepo;
         }
 
-        public List<usp_AvgAnimalsSeenByEmployeeCompany_Result> usp_AvgAnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType)
+        public List<usp_AvgAnimalsSeenByEmployeeCompany_Result> usp_AvgAnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, Int64? companyRef, int? timeType)
         {
             return avgAnimalsSeenByEmployeeCompanyRepo.usp_AvgAnimalsSeenByEmployeeCompany(start, end, companyRef, timeType);
         }

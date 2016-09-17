@@ -33,7 +33,10 @@ namespace Test
             var a = CompanyRef.Value;
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+
+            //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
+
+            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
 
             var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref= a };
             IdentityResult result = manager.Create(user, Password.Text);
@@ -42,8 +45,12 @@ namespace Test
 
             if (result.Succeeded)
             {
-                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                IdentityHelper.RedirectToReturnUrl("~/dashboard", Response);
+                //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
+                //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+
+                //IdentityHelper.RedirectToReturnUrl("~/dashboard", Response);
+
+                Message.Text = "A new user has been sucessfully created";
             }
             else
             {

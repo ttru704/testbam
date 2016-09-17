@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Controls
 {
     public interface ICountryDropDownListRepo: IDisposable
     {
-        List<usp_CountryDropDownList_Result> usp_CountryDropDownList(int? branchRef);
+        List<usp_CountryDropDownList_Result> usp_CountryDropDownList(long? branchRef);
     }
 }

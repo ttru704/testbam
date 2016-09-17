@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface ITotalSalesChangesRepo : IDisposable
     {
-        double? usp_TotalSalesChanges(int companyRef);
+        double? usp_TotalSalesChanges(Int64? companyRef);
     }
 }

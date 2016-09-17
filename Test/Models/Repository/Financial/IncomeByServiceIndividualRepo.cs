@@ -5,18 +5,18 @@ using System.Web;
 using Test.Models.Interface.Financial;
 namespace Test.Models.Repository.Financial
 {
-    public class IncomeByProductServiceIndividualRepo : IDisposable, IIncomeByProductServiceIndividualRepo
+    public class IncomeByServiceIndividualRepo : IDisposable, IIncomeByServiceIndividualRepo
     {
         private KPIEntities context = new KPIEntities();
 
-        public IncomeByProductServiceIndividualRepo()
+        public IncomeByServiceIndividualRepo()
         {
 
         }
 
-        List<usp_IncomeByProductServiceIndividual_Result> IIncomeByProductServiceIndividualRepo.usp_IncomeByProductServiceIndividual(DateTime? start, DateTime? end, int? companyRef, long? productNumnber, string productClass, int? timeType)
+        List<usp_IncomeByServiceIndividual_Result> IIncomeByServiceIndividualRepo.usp_IncomeByServiceIndividual(DateTime? start, DateTime? end, Int64? companyRef, long? productNumnber, int? timeType)
         {
-            return context.usp_IncomeByProductServiceIndividual(start, end, companyRef, productNumnber, productClass, timeType).ToList();
+            return context.usp_IncomeByServiceIndividual(start, end, companyRef, productNumnber, timeType).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

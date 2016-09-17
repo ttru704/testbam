@@ -13,7 +13,7 @@ namespace Test
 {
     public partial class employeekpi : System.Web.UI.Page
     {
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
@@ -48,44 +48,44 @@ namespace Test
 
         //This is for the RadTabStrip to work
         private void AddTab(string tabName)
-            {
-                RadTab tab = new RadTab();
-                tab.Text = tabName;
+        {
+            RadTab tab = new RadTab();
+            tab.Text = tabName;
             tab.Width = Unit.Percentage(45);//.Pixel(200);
-                RadTabStrip1.Tabs.Add(tab);
-            }
+            RadTabStrip1.Tabs.Add(tab);
+        }
 
-            protected void RadMultiPage1_PageViewCreated(object sender, RadMultiPageEventArgs e)
-            {
-                string userControlName = "E" + e.PageView.ID + "CS.ascx";
+        protected void RadMultiPage1_PageViewCreated(object sender, RadMultiPageEventArgs e)
+        {
+            string userControlName = "E" + e.PageView.ID + "CS.ascx";
 
-                Control userControl = Page.LoadControl(userControlName);
-                userControl.ID = "E" + e.PageView.ID + "_userControl";
+            Control userControl = Page.LoadControl(userControlName);
+            userControl.ID = "E" + e.PageView.ID + "_userControl";
 
-                e.PageView.Controls.Add(userControl);
-            }
+            e.PageView.Controls.Add(userControl);
+        }
 
-            private void AddPageView(RadTab tab)
-            {
-                RadPageView pageView = new RadPageView();
-                pageView.ID = tab.Text;
-                pageView.CssClass = "contentWrapper" + tab.Index;
-                RadMultiPage1.PageViews.Add(pageView);
-                tab.PageViewID = pageView.ID;
-            }
+        private void AddPageView(RadTab tab)
+        {
+            RadPageView pageView = new RadPageView();
+            pageView.ID = tab.Text;
+            pageView.CssClass = "contentWrapper" + tab.Index;
+            RadMultiPage1.PageViews.Add(pageView);
+            tab.PageViewID = pageView.ID;
+        }
 
-            protected void RadTabStrip1_TabClick(object sender, RadTabStripEventArgs e)
-            {
-                AddPageView(e.Tab);
-                e.Tab.PageView.Selected = true;
-            }
+        protected void RadTabStrip1_TabClick(object sender, RadTabStripEventArgs e)
+        {
+            AddPageView(e.Tab);
+            e.Tab.PageView.Selected = true;
+        }
 
         //This is a class that help displaying chart with multiple branches
 
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
+
 
             //Do we need this?
             //DateTime start = DatePicker1.SelectedDate.GetValueOrDefault();

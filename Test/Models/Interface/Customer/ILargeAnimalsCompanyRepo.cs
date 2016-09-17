@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface ILargeAnimalsCompanyRepo: IDisposable
     {
-        List<usp_LargeAnimalsCompany_Result> usp_LargeAnimalsCompany(DateTime start, DateTime end, int companyRef, int timeType);
+        List<usp_LargeAnimalsCompany_Result> usp_LargeAnimalsCompany(DateTime start, DateTime end, long companyRef, int timeType);
     }
 }

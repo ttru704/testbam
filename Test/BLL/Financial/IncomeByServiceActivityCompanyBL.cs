@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.IncomeByServiceActivityCompanyRepo = IncomeByServiceActivityCompanyRepo;
         }
 
-        public List<usp_IncomeByServiceActivityCompany_Result> usp_IncomeByServiceActivityCompany(DateTime start, DateTime end, int companyRef)
+        public List<usp_IncomeByServiceActivityCompany_Result> usp_IncomeByServiceActivityCompany(DateTime start, DateTime end, long companyRef)
         {
             return IncomeByServiceActivityCompanyRepo.usp_IncomeByServiceActivityCompany(start, end, companyRef);
         }

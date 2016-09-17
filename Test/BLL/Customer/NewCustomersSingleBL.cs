@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.newCustomersSingleRepo = newCustomersSingleRepo;
         }
 
-        public double? usp_NewCustomersSingle(int companyRef)
+        public double? usp_NewCustomersSingle(Int64? companyRef)
         {
             return newCustomersSingleRepo.usp_NewCustomersSingle(companyRef);
         }

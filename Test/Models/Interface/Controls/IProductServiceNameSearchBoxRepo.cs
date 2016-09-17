@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Controls
 {
     public interface IProductServiceNameSearchBoxRepo:IDisposable
     {
-        List<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(int? companyRef, string productClass);
+        List<usp_ProductServiceNameSearchBox_Result> usp_ProductServiceNameSearchBox(Int64? companyRef, string Class);
     }
 }

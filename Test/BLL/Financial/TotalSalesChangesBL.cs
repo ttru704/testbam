@@ -22,7 +22,7 @@ namespace Test.BLL.Financial
             this.totalSalesChangesRepo = totalSalesChangesRepo;
         }
 
-        public double? usp_TotalSalesChanges(int companyRef)
+        public double? usp_TotalSalesChanges(Int64? companyRef)
         {
             return totalSalesChangesRepo.usp_TotalSalesChanges(companyRef);
         }

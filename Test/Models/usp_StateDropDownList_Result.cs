@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class usp_StateDropDownList_Result
     {
-        public long Ref_Number { get; set; }
-        public string Name { get; set; }
+        public long State_Ref { get; set; }
+        public string State_Name { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        double? IAvgDollarPerCustomerChangesRepo.usp_AvgDollarPerCustomerChanges(int companyRef)
+        double? IAvgDollarPerCustomerChangesRepo.usp_AvgDollarPerCustomerChanges(Int64? companyRef)
         {
             return context.usp_AvgDollarPerCustomerChanges(companyRef).SingleOrDefault();
         }

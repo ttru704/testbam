@@ -36,12 +36,13 @@
             <hr />
         </div>
         <div class="form-horizontal">
+            <telerik:RadButton ID="Update" runat="server" Text="Update" OnClick="Update_Click"></telerik:RadButton>
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" OnSelectedIndexChanged="userDDL1_OnClientSelectedIndexChanged" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Ref_Number"></telerik:RadDropDownList>
                     <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:KPIConnectionString %>' SelectCommand="usp_UserDropDownList" SelectCommandType="StoredProcedure">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="4" Name="companyRef" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:SqlDataSource>
                     <telerik:RadComboBox ID="KpiTypeDDL1" runat="server" AutoPostBack="true" DataSourceID="SqlDataSource3" Width="300px"
@@ -51,12 +52,10 @@
                             <telerik:RadComboBoxItem Text="All" Value="0" Selected="true"></telerik:RadComboBoxItem>
                         </Items>
                     </telerik:RadComboBox>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:KPIConnectionString %>' SelectCommand="select Name,
-       Ref_Number
-from KPI_Types"></asp:SqlDataSource>
-                    <telerik:RadButton ID="Update" runat="server" Text="Update" OnClick="Update_Click"></telerik:RadButton>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:KPIConnectionString %>' SelectCommand="SELECT [Name], [Ref_Number] FROM [KPI_Types]"></asp:SqlDataSource>
+                    
 
-                    <telerik:RadGrid runat="server" ID="kpiG1" CellSpacing="-1" GridLines="Both" CommandItemDisplay="TopAndBottom" DataSourceID="SqlDataSource1" OnSelectedCellChanged="kpiG1_SelectedCellChanged">
+                    <telerik:RadGrid runat="server" ID="kpiG1" CellSpacing="-1" GridLines="Both" DataSourceID="SqlDataSource1" OnSelectedCellChanged="kpiG1_SelectedCellChanged">
                         <ClientSettings EnablePostBackOnRowClick="false">
                             <Selecting AllowRowSelect="true" />
                         </ClientSettings>

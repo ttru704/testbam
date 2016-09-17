@@ -43,16 +43,9 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="companyIdDropdown" CssClass="col-md-2 control-label">Company ID</asp:Label>
             <div class="col-md-10">
-                <asp:DropDownList runat="server" ID="companyIdDropdown" CssClass="form-control">
-                    <asp:ListItem>1</asp:ListItem>
-                    <asp:ListItem>2</asp:ListItem>
-                    <asp:ListItem>3</asp:ListItem>
-                    <asp:ListItem>4</asp:ListItem>
-                    <asp:ListItem>5</asp:ListItem>
-                    <asp:ListItem>6</asp:ListItem>
-                    <asp:ListItem>7</asp:ListItem>
-                    <asp:ListItem>8</asp:ListItem>
+                <asp:DropDownList runat="server" ID="companyIdDropdown" CssClass="form-control" DataSourceID="companyList" DataTextField="Name" DataValueField="Ref_Number">
                 </asp:DropDownList>
+                <asp:SqlDataSource ID="companyList" runat="server" ConnectionString='<%$ ConnectionStrings:KPIConnectionString %>' SelectCommand="SELECT [Ref_Number], [Name] FROM [Company_Profile]"></asp:SqlDataSource>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="companyIdDropdown"
                     CssClass="text-danger" ErrorMessage="The company number field is required." />
             </div>

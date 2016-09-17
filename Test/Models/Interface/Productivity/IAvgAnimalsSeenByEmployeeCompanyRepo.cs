@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Productivity
 {
     public interface IAvgAnimalsSeenByEmployeeCompanyRepo: IDisposable
     {
-        List<usp_AvgAnimalsSeenByEmployeeCompany_Result> usp_AvgAnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, int? companyRef, int? timeType);
+        List<usp_AvgAnimalsSeenByEmployeeCompany_Result> usp_AvgAnimalsSeenByEmployeeCompany(DateTime? start, DateTime? end, Int64? companyRef, int? timeType);
     }
 }

@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface ILargeAnimalsBranchRepo: IDisposable
     {
-        List<usp_LargeAnimalsBranch_Result> usp_LargeAnimalsBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType);
+        List<usp_LargeAnimalsBranch_Result> usp_LargeAnimalsBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType);
     }
 }

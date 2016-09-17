@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        double? IAnimalsSeenSingleRepo.usp_AnimalsSeenSingle(int companyRef)
+        double? IAnimalsSeenSingleRepo.usp_AnimalsSeenSingle(Int64? companyRef)
         {
             return context.usp_AnimalsSeenSingle(companyRef).SingleOrDefault();
         }

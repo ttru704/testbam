@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.animalsSeenBranchRepo = animalsSeenBranchRepo;
         }
 
-        public List<usp_AnimalsSeenBranch_Result> usp_AnimalsSeenBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        public List<usp_AnimalsSeenBranch_Result> usp_AnimalsSeenBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return animalsSeenBranchRepo.usp_AnimalsSeenBranch(start, end, companyRef, branchRef, timeType);
         }

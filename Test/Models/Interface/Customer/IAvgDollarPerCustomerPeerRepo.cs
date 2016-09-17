@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Customer
 {
     public interface IAvgDollarPerCustomerPeerRepo: IDisposable
     {
-        List<usp_AvgDollarPerCustomerPeer_Result> usp_AvgDollarPerCustomerPeer(DateTime? start, DateTime? end, int? branchRef, int? size, int? timeType, int? country, int? state, int? region);
+        List<usp_AvgDollarPerCustomerPeer_Result> usp_AvgDollarPerCustomerPeer(DateTime? start, DateTime? end, long? branchRef, long? branchType, int? timeType, long? country, long? state, long? region);
     }
 }

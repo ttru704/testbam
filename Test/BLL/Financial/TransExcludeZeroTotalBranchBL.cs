@@ -24,7 +24,7 @@ namespace Test.BLL.Financial
             this.TransExcludeZeroTotalBranchRepo = TransExcludeZeroTotalBranchRepo;
         }
 
-        public List<usp_TransExcludeZeroTotalBranch_Result> usp_TransExcludeZeroTotalBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        public List<usp_TransExcludeZeroTotalBranch_Result> usp_TransExcludeZeroTotalBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return TransExcludeZeroTotalBranchRepo.usp_TransExcludeZeroTotalBranch(start, end, companyRef, branchRef, timeType);
         }

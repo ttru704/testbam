@@ -28,8 +28,9 @@ namespace Test
 
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
-                Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
-                Session["Branch"] = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
+                //Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
+                int? company = Session["CompanyRef"] as int?;
+                Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
                 Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
                 Int64? productSerivce = Session["ProductService"] as Int64?;
 
@@ -80,7 +81,25 @@ namespace Test
         {
             AddPageView(e.Tab);
             e.Tab.PageView.Selected = true;
+            if(e.Tab.PageView.Selected == true)
+            {
+                TimeDDL1.Visible = false;
+            }
         }
+        protected void CountryCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            StateCB.Text = "";
+            RegionCB.Text = "";
+            RegionCB.Items.Clear();
+            StateCB.DataBind();
+        }
+        protected void StateCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            RegionCB.Text = "";
+            RegionCB.AppendDataBoundItems = true;
+            RegionCB.DataBind();
+        }
+
 
         //This is a class that help displaying chart with multiple branches
 
@@ -154,37 +173,26 @@ namespace Test
         {
 
         }
-        protected void CountryDDL1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int countryRef = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
-            StateDDL1.DataBind();
-        }
-        protected void Try(object sender, EventArgs e)
-        {
-            int stateRef = Convert.ToInt32(StateDDL1.SelectedItem.Value);
-            RegionDDL1.DataBind();
-        }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Session["BranchType"] = Convert.ToInt32(BranchTypeDDL1.SelectedItem.Value);
-            Session["Country"] = Convert.ToInt32(CountryDDL1.SelectedItem.Value);
-            Session["State"] = Convert.ToInt32(StateDDL1.SelectedItem.Value);
-            Session["Region"] = Convert.ToInt32(RegionDDL1.SelectedItem.Value);
-
-
+            Session["BranchType"] = Convert.ToInt64(BranchTypeDDL1.SelectedItem.Value);
+            Session["Country"] = Convert.ToInt64(CountryCB.SelectedItem.Value);
+            Session["State"] = Convert.ToInt64(StateCB.SelectedItem.Value);
+            Session["Region"] = Convert.ToInt64(RegionCB.SelectedItem.Value);
         }
 
-        private int branchNumber;
+        private long branch;
         protected void BranchDDL1_SelectedIndexChanged(object sender, DropDownListEventArgs e)
         {
-            branchNumber = Convert.ToInt32(BranchDDL1.SelectedItem.Value);
+            branch = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
         }
 
         protected void ProductServiceNameSearchBoxSB1_Search(object sender, SearchBoxEventArgs e)
         {
             Session["ProductService"] = Convert.ToInt64(e.Value);
         }
+
 
         
     }

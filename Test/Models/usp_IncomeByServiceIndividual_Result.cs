@@ -11,9 +11,9 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_IncomeByProductServiceIndividual_Result
+    public partial class usp_IncomeByServiceIndividual_Result
     {
-        public string Product_Name { get; set; }
+        public string Service_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
         public decimal Income_By_Service { get; set; }
         public string TimePeriod { get; set; }

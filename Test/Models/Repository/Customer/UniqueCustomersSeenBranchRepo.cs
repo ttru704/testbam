@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        List<usp_UniqueCustomersSeenBranch_Result> IUniqueCustomersSeenBranchRepo.usp_UniqueCustomersSeenBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType)
+        List<usp_UniqueCustomersSeenBranch_Result> IUniqueCustomersSeenBranchRepo.usp_UniqueCustomersSeenBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType)
         {
             return context.usp_UniqueCustomersSeenBranch(start, end, companyRef, branchRef, timeType).ToList();
         }

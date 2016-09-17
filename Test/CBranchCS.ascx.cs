@@ -20,8 +20,8 @@ namespace Test
             {
                 DateTime? start = Session["StartDate"] as DateTime?;
                 DateTime? end = Session["EndDate"] as DateTime?;
-                int? company = Session["Company"] as int?;
-                int? branch = Session["Branch"] as int?;
+                Int64? company = Session["CompanyRef"] as Int64?;
+                Int64? branch = Session["BranchRef"] as Int64?;
                 int? time = Session["Time"] as int?;
 
                 // call the session that stores the user ref
@@ -93,8 +93,7 @@ namespace Test
 
                 AnimalsSeenBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Animals";
 
-                AvgDollarPerCustomerBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="Average per Customer (000s)";
-                AvgDollarPerCustomerBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                AvgDollarPerCustomerBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="Average per Customer";
 
                 NewCustomersBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Customers";
 

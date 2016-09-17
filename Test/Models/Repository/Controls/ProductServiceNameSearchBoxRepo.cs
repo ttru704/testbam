@@ -15,9 +15,9 @@ namespace Test.Models.Repository.Controls
 
         }
 
-        List<usp_ProductServiceNameSearchBox_Result> IProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(int? companyRef, string productClass)
+        List<usp_ProductServiceNameSearchBox_Result> IProductServiceNameSearchBoxRepo.usp_ProductServiceNameSearchBox(Int64? companyRef, string Class)
         {
-            return context.usp_ProductServiceNameSearchBox(companyRef, productClass).ToList();
+            return context.usp_ProductServiceNameSearchBox(companyRef, Class).ToList();
         }
 
         private bool disposedValue = false; // To detect redundant calls

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_IncomeByServiceActivityCompany_Result> IIncomeByServiceActivityCompanyRepo.usp_IncomeByServiceActivityCompany(DateTime start, DateTime end, int companyRef)
+        List<usp_IncomeByServiceActivityCompany_Result> IIncomeByServiceActivityCompanyRepo.usp_IncomeByServiceActivityCompany(DateTime start, DateTime end, long companyRef)
         {
             return context.usp_IncomeByServiceActivityCompany(start, end, companyRef).ToList();
         }

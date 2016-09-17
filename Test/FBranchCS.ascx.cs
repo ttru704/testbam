@@ -20,8 +20,8 @@ namespace Test
             {
                 DateTime? start = Session["StartDate"] as DateTime?;
                 DateTime? end = Session["EndDate"] as DateTime?;
-                int? company = Session["Company"] as int?;
-                int? branch = Session["Branch"] as int?;
+                Int64? company = Session["CompanyRef"] as Int64?;
+                Int64? branch = Session["BranchRef"] as Int64?;
                 int? time = Session["Time"] as int?;
 
                 //addItem();
@@ -36,7 +36,7 @@ namespace Test
                     RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
                 }
 
-                    ListtoDataTableConverter converter = new ListtoDataTableConverter();
+                ListtoDataTableConverter converter = new ListtoDataTableConverter();
 
                 TotalSalesBranchBL totalSalesBranchBL = new TotalSalesBranchBL();
                 List<usp_TotalSalesBranch_Result> totalSalesBranchList = totalSalesBranchBL.usp_TotalSalesBranch(start, end, company, branch, time);
@@ -69,19 +69,15 @@ namespace Test
                 RadHtmlChartGroupDataSource.GroupDataSource(ServiceOnlySalesBranchRHC1, serviceOnlySalesBranchDT, "Branch_Name", "LineSeries", "Service_Total_Only", "TimePeriod");
 
                 //Format yaxis of charts
-                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales (000s)";
-                TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales";
 
-                AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction (000s)";
-                AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction";
 
                 TransExcludeZeroTotalBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Transactions";
 
-                RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Retail Sales (000s)";
-                RetailOnlySalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Retail Sales";
 
-                ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Service Sales (000s)";
-                ServiceOnlySalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Service Sales";
 
                 //format x axis based on the selected time type
                 if (time == 1)
@@ -139,6 +135,24 @@ namespace Test
         //}
 
 
+        protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
+                e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
+                sender.ToString();
+            Type t = sender.GetType();
+            t.Name.ToString();
+            RadGrid rg = (RadGrid)sender;
+            string gridname = rg.DataSourceID;
+
+            {
+                //rg.ExportSettings.FileName ="chartname"; 
+                rg.ExportSettings.ExportOnlyData = true;
+                rg.ExportSettings.IgnorePaging = true;
+                rg.ExportSettings.OpenInNewWindow = true;
+                rg.ExportSettings.UseItemStyles = true;
+            }
+        }
 
 
         protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)

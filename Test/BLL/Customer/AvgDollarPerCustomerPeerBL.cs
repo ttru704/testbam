@@ -22,9 +22,9 @@ namespace Test.BLL.Customer
             this.avgDollarPerCustomerPeerRepo = avgDollarPerCustomerPeerRepo;
         }
 
-        public List<usp_AvgDollarPerCustomerPeer_Result> usp_AvgDollarPerCustomerPeer(DateTime? start, DateTime? end, int? branchRef, int? size, int? timeType, int? country, int? state, int? region)
+        public List<usp_AvgDollarPerCustomerPeer_Result> usp_AvgDollarPerCustomerPeer(DateTime? start, DateTime? end, long? branchRef, long? branchType, int? timeType, long? country, long? state, long? region)
         {
-            return avgDollarPerCustomerPeerRepo.usp_AvgDollarPerCustomerPeer(start, end, branchRef, size, timeType, country, state, region);
+            return avgDollarPerCustomerPeerRepo.usp_AvgDollarPerCustomerPeer(start, end, branchRef, branchType, timeType, country, state, region);
         }
 
         private bool disposedValue = false;

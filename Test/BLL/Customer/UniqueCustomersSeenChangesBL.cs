@@ -22,7 +22,7 @@ namespace Test.BLL.Customer
             this.uniqueCustomersSeenChangesRepo = uniqueCustomersSeenChangesRepo;
         }
 
-        public double? usp_UniqueCustomersSeenChanges(int companyRef)
+        public double? usp_UniqueCustomersSeenChanges(Int64? companyRef)
         {
             return uniqueCustomersSeenChangesRepo.usp_UniqueCustomersSeenChanges(companyRef);
         }

@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Financial
 
         }
 
-        List<usp_TransExcludeZeroTotalCompany_Result> ITransExcludeZeroTotalCompanyRepo.usp_TransExcludeZeroTotalCompany(DateTime start, DateTime end, int companyRef, int timeType)
+        List<usp_TransExcludeZeroTotalCompany_Result> ITransExcludeZeroTotalCompanyRepo.usp_TransExcludeZeroTotalCompany(DateTime start, DateTime end, long companyRef, int timeType)
         {
             return context.usp_TransExcludeZeroTotalCompany(start, end, companyRef, timeType).ToList();
         }

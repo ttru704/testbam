@@ -20,7 +20,7 @@ namespace Test
             {
                 DateTime? start = Session["StartDate"] as DateTime?;
                 DateTime? end = Session["EndDate"] as DateTime?;
-                int? company = Session["Company"] as int?;
+                Int64? company = Session["CompanyRef"] as Int64?;
                 int? branch = Session["Branch"] as int?;
                 int? time = Session["Time"] as int?;
 
@@ -43,27 +43,27 @@ namespace Test
                 ListtoDataTableConverter converter = new ListtoDataTableConverter();
 
                 CustomersSeenByEmployeeCompanyBL customersSeenByEmployeeCompanyBL = new CustomersSeenByEmployeeCompanyBL();
-                List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, 1, time);
+                List<usp_CustomersSeenByEmployeeCompany_Result> customersSeenByEmployeeCompanyList = customersSeenByEmployeeCompanyBL.usp_CustomersSeenByEmployeeCompany(start, end, company, time);
                 DataTable customersSeenByEmployeeCompanyDT = converter.ToDataTable(customersSeenByEmployeeCompanyList);
                 RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeCompanyRHC1, customersSeenByEmployeeCompanyDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
 
                 AnimalsSeenByEmployeeCompanyBL animalsSeenByEmployeeCompanyBL = new AnimalsSeenByEmployeeCompanyBL();
-                List<usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, 1, time);
+                List<usp_AnimalsSeenByEmployeeCompany_Result> animalsSeenByEmployeeCompanyList = animalsSeenByEmployeeCompanyBL.usp_AnimalsSeenByEmployeeCompany(start, end, company, time);
                 DataTable animalsSeenByEmployeeCompanyDT = converter.ToDataTable(animalsSeenByEmployeeCompanyList);
                 RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeCompanyRHC1, animalsSeenByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
 
                 AvgCustomersSeenByEmployeeCompanyBL avgCustomersSeenByEmployeeCompanyBL = new AvgCustomersSeenByEmployeeCompanyBL();
-                List<usp_AvgCustomersSeenByEmployeeCompany_Result> avgCustomersSeenByEmployeeCompanyList = avgCustomersSeenByEmployeeCompanyBL.usp_AvgCustomersSeenByEmployeeCompany(start, end, 1, time);
+                List<usp_AvgCustomersSeenByEmployeeCompany_Result> avgCustomersSeenByEmployeeCompanyList = avgCustomersSeenByEmployeeCompanyBL.usp_AvgCustomersSeenByEmployeeCompany(start, end, company, time);
                 DataTable avgCustomersSeenByEmployeeCompanyDT = converter.ToDataTable(avgCustomersSeenByEmployeeCompanyList);
                 RadHtmlChartGroupDataSource.GroupDataSource(AvgCustomersSeenByEmployeeCompanyRHC1, avgCustomersSeenByEmployeeCompanyDT, "Company_Name", "LineSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
 
                 AvgAnimalsSeenByEmployeeCompanyBL avgAnimalsSeenByEmployeeCompanyBL = new AvgAnimalsSeenByEmployeeCompanyBL();
-                List<usp_AvgAnimalsSeenByEmployeeCompany_Result> avgAnimalsSeenByEmployeeCompanyList = avgAnimalsSeenByEmployeeCompanyBL.usp_AvgAnimalsSeenByEmployeeCompany(start, end, 1, time);
+                List<usp_AvgAnimalsSeenByEmployeeCompany_Result> avgAnimalsSeenByEmployeeCompanyList = avgAnimalsSeenByEmployeeCompanyBL.usp_AvgAnimalsSeenByEmployeeCompany(start, end, company, time);
                 DataTable avgAnimalsSeenByEmployeeCompanyDT = converter.ToDataTable(avgAnimalsSeenByEmployeeCompanyList);
                 RadHtmlChartGroupDataSource.GroupDataSource(AvgAnimalsSeenByEmployeeCompanyRHC1, avgAnimalsSeenByEmployeeCompanyDT, "Company_Name", "LineSeries", "Average_Number_Of_Animals_Seen_By_Employee", "TimePeriod");
 
                 IncomeByEmployeeCompanyBL incomeByEmployeeCompanyBL = new IncomeByEmployeeCompanyBL();
-                List<usp_IncomeByEmployeeCompany_Result> incomeByEmployeeCompanyList = incomeByEmployeeCompanyBL.usp_IncomeByEmployeeCompany(start, end, 1, time);
+                List<usp_IncomeByEmployeeCompany_Result> incomeByEmployeeCompanyList = incomeByEmployeeCompanyBL.usp_IncomeByEmployeeCompany(start, end, company, time);
                 DataTable incomeByEmployeeCompanyDT = converter.ToDataTable(incomeByEmployeeCompanyList);
                 RadHtmlChartGroupDataSource.GroupDataSource(IncomeByEmployeeCompanyRHC1, incomeByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Income_By_Employee", "TimePeriod");
 
@@ -76,8 +76,7 @@ namespace Test
 
                 AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Animals";
 
-                IncomeByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "Income (000s)";
-                IncomeByEmployeeCompanyRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000#";
+                IncomeByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "Income";
 
                 //format xaxis based on selected time type
                 if (time == 1)

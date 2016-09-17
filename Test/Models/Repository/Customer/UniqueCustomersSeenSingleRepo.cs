@@ -15,7 +15,7 @@ namespace Test.Models.Repository.Customer
 
         }
 
-        double? IUniqueCustomersSeenSingleRepo.usp_UniqueCustomersSeenSingle(int companyRef)
+        double? IUniqueCustomersSeenSingleRepo.usp_UniqueCustomersSeenSingle(Int64? companyRef)
         {
             return context.usp_UniqueCustomersSeenSingle(companyRef).SingleOrDefault();
         }

@@ -13,5 +13,14 @@ namespace Test
         {
 
         }
+
+        protected void CountryDDL1_SelectedIndexChanged(object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            StateDDL1.DataBind();
+        }
+        protected void StateDDL1_SelectedIndexChanged(object sender, Telerik.Web.UI.RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            RegionDDL1.DataBind();
+        }
     }
 }

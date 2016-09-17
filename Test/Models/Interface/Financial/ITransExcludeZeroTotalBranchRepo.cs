@@ -8,6 +8,6 @@ namespace Test.Models.Interface.Financial
 {
     public interface ITransExcludeZeroTotalBranchRepo: IDisposable
     {
-        List<usp_TransExcludeZeroTotalBranch_Result> usp_TransExcludeZeroTotalBranch(DateTime? start, DateTime? end, int? companyRef, int? branchRef, int? timeType);
+        List<usp_TransExcludeZeroTotalBranch_Result> usp_TransExcludeZeroTotalBranch(DateTime? start, DateTime? end, long? companyRef, long? branchRef, int? timeType);
     }
 }
