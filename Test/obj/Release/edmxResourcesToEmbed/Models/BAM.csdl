@@ -1,0 +1,1659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KPIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Audit_Log">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="User_Ref" Type="Int64" Nullable="false" />
+    <Property Name="IP_Address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Log_type" Type="Int32" />
+    <Property Name="Table_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Branch_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Brn_Number" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Bs2_Number" Type="Int64" Nullable="false" />
+    <Property Name="Street_Number" Type="Int32" />
+    <Property Name="Street_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Suburb" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Zip_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Region_Ref" Type="Int64" />
+    <Property Name="State_Ref" Type="Int64" />
+    <Property Name="Country_Ref" Type="Int64" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.BRN_Company_Profile" FromRole="Branch_Profile" ToRole="Company_Profile" />
+    <NavigationProperty Name="Country_Profile" Relationship="Self.BRN_Country_Profile" FromRole="Branch_Profile" ToRole="Country_Profile" />
+    <NavigationProperty Name="Region_Profile" Relationship="Self.BRN_Region_Profile" FromRole="Branch_Profile" ToRole="Region_Profile" />
+    <NavigationProperty Name="State_Profile" Relationship="Self.BRN_State_Profile" FromRole="Branch_Profile" ToRole="State_Profile" />
+    <NavigationProperty Name="Configurations" Relationship="Self.CFG_Branch_Profile" FromRole="Branch_Profile" ToRole="Configurations" />
+    <NavigationProperty Name="Branch_Types" Relationship="Self.Branch_Profile_Types" FromRole="Branch_Profile" ToRole="Branch_Types" />
+  </EntityType>
+  <EntityType Name="Branch_Types">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Business_Type" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Business_Types" Relationship="Self.BRT_Business_Types" FromRole="Branch_Types" ToRole="Business_Types" />
+    <NavigationProperty Name="Branch_Profile" Relationship="Self.Branch_Profile_Types" FromRole="Branch_Types" ToRole="Branch_Profile" />
+  </EntityType>
+  <EntityType Name="Business_Types">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Branch_Types" Relationship="Self.BRT_Business_Types" FromRole="Business_Types" ToRole="Branch_Types" />
+    <NavigationProperty Name="Category_Types" Relationship="Self.CAT_Business_Types" FromRole="Business_Types" ToRole="Category_Types" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.CPY_Business_Types" FromRole="Business_Types" ToRole="Company_Profile" />
+    <NavigationProperty Name="KPI_For_Business" Relationship="Self.KFB_Business_Types" FromRole="Business_Types" ToRole="KPI_For_Business" />
+    <NavigationProperty Name="Subject_Types" Relationship="Self.SBT_Business_Types" FromRole="Business_Types" ToRole="Subject_Types" />
+    <NavigationProperty Name="Staff_Types" Relationship="Self.STT_Business_Types" FromRole="Business_Types" ToRole="Staff_Types" />
+  </EntityType>
+  <EntityType Name="Category_Types">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Business_Type" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Business_Types" Relationship="Self.CAT_Business_Types" FromRole="Category_Types" ToRole="Business_Types" />
+    <NavigationProperty Name="Product_Profile" Relationship="Self.PRD_Category_Types" FromRole="Category_Types" ToRole="Product_Profile" />
+  </EntityType>
+  <EntityType Name="Client_Profile">
+    <Key>
+      <PropertyRef Name="Company_Ref" />
+      <PropertyRef Name="Cln_Number" />
+    </Key>
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Cln_Number" Type="Int64" Nullable="false" />
+    <Property Name="First_Visit" Type="DateTime" Precision="3" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Last_Visit" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.CLN_Company_Profile" FromRole="Client_Profile" ToRole="Company_Profile" />
+  </EntityType>
+  <EntityType Name="Company_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Number" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Business_Type" Type="Int64" Nullable="false" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Bs2_Number" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Branch_Profile" Relationship="Self.BRN_Company_Profile" FromRole="Company_Profile" ToRole="Branch_Profile" />
+    <NavigationProperty Name="Business_Types" Relationship="Self.CPY_Business_Types" FromRole="Company_Profile" ToRole="Business_Types" />
+    <NavigationProperty Name="Client_Profile" Relationship="Self.CLN_Company_Profile" FromRole="Company_Profile" ToRole="Client_Profile" />
+    <NavigationProperty Name="Configurations" Relationship="Self.CFG_Company_Profile" FromRole="Company_Profile" ToRole="Configurations" />
+    <NavigationProperty Name="KPI_For_Company" Relationship="Self.KFC_Company_Profile" FromRole="Company_Profile" ToRole="KPI_For_Company" />
+    <NavigationProperty Name="Product_Profile" Relationship="Self.PRD_Company_Profile" FromRole="Company_Profile" ToRole="Product_Profile" />
+    <NavigationProperty Name="Staff_Profile" Relationship="Self.STF_Company_Profile" FromRole="Company_Profile" ToRole="Staff_Profile" />
+    <NavigationProperty Name="Subject_Profile" Relationship="Self.SUB_Company_Profile" FromRole="Company_Profile" ToRole="Subject_Profile" />
+    <NavigationProperty Name="User_Profile" Relationship="Self.USR_Company_Profile" FromRole="Company_Profile" ToRole="User_Profile" />
+  </EntityType>
+  <EntityType Name="Configuration">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Branch_Ref" Type="Int64" Nullable="false" />
+    <Property Name="User_Ref" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Param" Type="Int64" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Branch_Profile" Relationship="Self.CFG_Branch_Profile" FromRole="Configurations" ToRole="Branch_Profile" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.CFG_Company_Profile" FromRole="Configurations" ToRole="Company_Profile" />
+    <NavigationProperty Name="Param1" Relationship="Self.CFG_Params" FromRole="Configurations" ToRole="Params" />
+    <NavigationProperty Name="User_Profile" Relationship="Self.CFG_User_Profile" FromRole="Configurations" ToRole="User_Profile" />
+  </EntityType>
+  <EntityType Name="Country_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Abbr" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branch_Profile" Relationship="Self.BRN_Country_Profile" FromRole="Country_Profile" ToRole="Branch_Profile" />
+    <NavigationProperty Name="State_Profile" Relationship="Self.STP_Country_Profile" FromRole="Country_Profile" ToRole="State_Profile" />
+  </EntityType>
+  <EntityType Name="Key_Performance_Indexes">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="Kpi_Type" Type="Int64" Nullable="false" />
+    <Property Name="Control_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KPI_For_Business" Relationship="Self.KFB_Key_Performance_Indexs" FromRole="Key_Performance_Indexes" ToRole="KPI_For_Business" />
+    <NavigationProperty Name="KPI_Types" Relationship="Self.KPI_Kpi_Types" FromRole="Key_Performance_Indexes" ToRole="KPI_Types" />
+  </EntityType>
+  <EntityType Name="KPI_For_Business">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Business_Type" Type="Int64" Nullable="false" />
+    <Property Name="KPI" Type="Int64" Nullable="false" />
+    <Property Name="Procedure_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Business_Types" Relationship="Self.KFB_Business_Types" FromRole="KPI_For_Business" ToRole="Business_Types" />
+    <NavigationProperty Name="Key_Performance_Indexes" Relationship="Self.KFB_Key_Performance_Indexs" FromRole="KPI_For_Business" ToRole="Key_Performance_Indexes" />
+    <NavigationProperty Name="KPI_For_Company" Relationship="Self.KFC_Kpi_for_Business" FromRole="KPI_For_Business" ToRole="KPI_For_Company" />
+  </EntityType>
+  <EntityType Name="KPI_For_Company">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Kpi_For_Business_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.KFC_Company_Profile" FromRole="KPI_For_Company" ToRole="Company_Profile" />
+    <NavigationProperty Name="KPI_For_Business" Relationship="Self.KFC_Kpi_for_Business" FromRole="KPI_For_Company" ToRole="KPI_For_Business" />
+    <NavigationProperty Name="KPI_For_User" Relationship="Self.KFU_Kpi_for_Company" FromRole="KPI_For_Company" ToRole="KPI_For_User" />
+  </EntityType>
+  <EntityType Name="KPI_For_User">
+    <Key>
+      <PropertyRef Name="Kpi_For_Company_Ref" />
+      <PropertyRef Name="User_Ref" />
+    </Key>
+    <Property Name="Kpi_For_Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="User_Ref" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="KPI_For_Company" Relationship="Self.KFU_Kpi_for_Company" FromRole="KPI_For_User" ToRole="KPI_For_Company" />
+    <NavigationProperty Name="User_Profile" Relationship="Self.KFU_User_Profile" FromRole="KPI_For_User" ToRole="User_Profile" />
+  </EntityType>
+  <EntityType Name="KPI_Types">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Key_Performance_Indexes" Relationship="Self.KPI_Kpi_Types" FromRole="KPI_Types" ToRole="Key_Performance_Indexes" />
+  </EntityType>
+  <EntityType Name="Param">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataType" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Configurations" Relationship="Self.CFG_Params" FromRole="Params" ToRole="Configurations" />
+  </EntityType>
+  <EntityType Name="Product_Profile">
+    <Key>
+      <PropertyRef Name="Company_Ref" />
+      <PropertyRef Name="Prd_Number" />
+    </Key>
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Prd_Number" Type="Int64" Nullable="false" />
+    <Property Name="Prd_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Prd_Class" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Cat_1" Type="Int64" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Category_Types" Relationship="Self.PRD_Category_Types" FromRole="Product_Profile" ToRole="Category_Types" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.PRD_Company_Profile" FromRole="Product_Profile" ToRole="Company_Profile" />
+  </EntityType>
+  <EntityType Name="Region_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="State_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Abbr" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branch_Profile" Relationship="Self.BRN_Region_Profile" FromRole="Region_Profile" ToRole="Branch_Profile" />
+    <NavigationProperty Name="State_Profile" Relationship="Self.REG_State_Profile" FromRole="Region_Profile" ToRole="State_Profile" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User_Roles" Relationship="Self.FK_dbo_User_Roles_dbo_Roles_Role_Id" FromRole="Roles" ToRole="User_Roles" />
+  </EntityType>
+  <EntityType Name="Staff_Profile">
+    <Key>
+      <PropertyRef Name="Company_Ref" />
+      <PropertyRef Name="Stf_Number" />
+    </Key>
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Stf_Number" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Stf_Type" Type="Int64" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Date_Started" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.STF_Company_Profile" FromRole="Staff_Profile" ToRole="Company_Profile" />
+    <NavigationProperty Name="Staff_Types" Relationship="Self.STP_Staff_Types" FromRole="Staff_Profile" ToRole="Staff_Types" />
+  </EntityType>
+  <EntityType Name="Staff_Types">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Business_Type" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Business_Types" Relationship="Self.STT_Business_Types" FromRole="Staff_Types" ToRole="Business_Types" />
+    <NavigationProperty Name="Staff_Profile" Relationship="Self.STP_Staff_Types" FromRole="Staff_Types" ToRole="Staff_Profile" />
+  </EntityType>
+  <EntityType Name="State_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Country_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Abbr" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branch_Profile" Relationship="Self.BRN_State_Profile" FromRole="State_Profile" ToRole="Branch_Profile" />
+    <NavigationProperty Name="Country_Profile" Relationship="Self.STP_Country_Profile" FromRole="State_Profile" ToRole="Country_Profile" />
+    <NavigationProperty Name="Region_Profile" Relationship="Self.REG_State_Profile" FromRole="State_Profile" ToRole="Region_Profile" />
+  </EntityType>
+  <EntityType Name="Subject_Profile">
+    <Key>
+      <PropertyRef Name="Company_Ref" />
+      <PropertyRef Name="Sub_Number" />
+    </Key>
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Sub_Number" Type="Int64" Nullable="false" />
+    <Property Name="Subject_Type" Type="Int64" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Last_Visit" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="First_Visit" Type="DateTime" Precision="3" />
+    <Property Name="Size" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.SUB_Company_Profile" FromRole="Subject_Profile" ToRole="Company_Profile" />
+    <NavigationProperty Name="Subject_Types" Relationship="Self.SUB_Subject_Types" FromRole="Subject_Profile" ToRole="Subject_Types" />
+  </EntityType>
+  <EntityType Name="Subject_Types">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" />
+    <Property Name="Business_Type" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Business_Types" Relationship="Self.SBT_Business_Types" FromRole="Subject_Types" ToRole="Business_Types" />
+    <NavigationProperty Name="Subject_Profile" Relationship="Self.SUB_Subject_Types" FromRole="Subject_Types" ToRole="Subject_Profile" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Table_Map">
+    <Key>
+      <PropertyRef Name="Table_Ref" />
+      <PropertyRef Name="Version_Number" />
+    </Key>
+    <Property Name="Table_Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Version_Number" Type="Int32" Nullable="false" />
+    <Property Name="Procedure_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Node_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transaction_Items">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Branch_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Trn_Number" Type="Int64" Nullable="false" />
+    <Property Name="Trn_Item_Number" Type="Int64" Nullable="false" />
+    <Property Name="Trn_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cln_Number" Type="Int64" Nullable="false" />
+    <Property Name="Sub_Number" Type="Int64" Nullable="false" />
+    <Property Name="Stf_Number" Type="Int64" Nullable="false" />
+    <Property Name="Prd_Number" Type="Int64" Nullable="false" />
+    <Property Name="Mult" Type="Int16" Nullable="false" />
+    <Property Name="Itm_Quantity" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="Itm_Cost" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Itm_STotal" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Itm_Discount" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Itm_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Transaction_Summary">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Branch_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Trn_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Trn_Number" Type="Int64" Nullable="false" />
+    <Property Name="Cln_Number" Type="Int64" Nullable="false" />
+    <Property Name="Sub_Number" Type="Int64" Nullable="false" />
+    <Property Name="Retail_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Service_Total" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Is_New_Client" Type="Boolean" />
+    <Property Name="Is_New_Subject" Type="Boolean" />
+    <Property Name="Mult" Type="Int16" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="User_Claims">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Claim_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Claim_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="User_Profile" Relationship="Self.FK_dbo_User_Claims_dbo_User_Profile_User_Id" FromRole="User_Claims" ToRole="User_Profile" />
+  </EntityType>
+  <EntityType Name="User_Logins">
+    <Key>
+      <PropertyRef Name="Login_Provider" />
+      <PropertyRef Name="Provider_Key" />
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="Login_Provider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Provider_Key" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="User_Profile" Relationship="Self.FK_dbo_User_Logins_dbo_User_Profile_UserId" FromRole="User_Logins" ToRole="User_Profile" />
+  </EntityType>
+  <EntityType Name="User_Profile">
+    <Key>
+      <PropertyRef Name="Ref_Number" />
+    </Key>
+    <Property Name="Ref_Number" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Company_Ref" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Is_Admin" Type="Boolean" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Company_Profile" Relationship="Self.USR_Company_Profile" FromRole="User_Profile" ToRole="Company_Profile" />
+    <NavigationProperty Name="Configurations" Relationship="Self.CFG_User_Profile" FromRole="User_Profile" ToRole="Configurations" />
+    <NavigationProperty Name="KPI_For_User" Relationship="Self.KFU_User_Profile" FromRole="User_Profile" ToRole="KPI_For_User" />
+    <NavigationProperty Name="User_Claims" Relationship="Self.FK_dbo_User_Claims_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Claims" />
+    <NavigationProperty Name="User_Logins" Relationship="Self.FK_dbo_User_Logins_dbo_User_Profile_UserId" FromRole="User_Profile" ToRole="User_Logins" />
+    <NavigationProperty Name="User_Roles" Relationship="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Roles" />
+  </EntityType>
+  <EntityType Name="User_Roles">
+    <Key>
+      <PropertyRef Name="User_Id" />
+      <PropertyRef Name="Role_Id" />
+    </Key>
+    <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Last_Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_dbo_User_Roles_dbo_Roles_Role_Id" FromRole="User_Roles" ToRole="Roles" />
+    <NavigationProperty Name="User_Profile" Relationship="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id" FromRole="User_Roles" ToRole="User_Profile" />
+  </EntityType>
+  <EntityType Name="Connection_Profile">
+    <Key>
+      <PropertyRef Name="User_Name" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="User_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Disk_Id" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="BRN_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRN_Country_Profile">
+    <End Role="Country_Profile" Type="Self.Country_Profile" Multiplicity="0..1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="Country_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRN_Region_Profile">
+    <End Role="Region_Profile" Type="Self.Region_Profile" Multiplicity="0..1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Region_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="Region_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRN_State_Profile">
+    <End Role="State_Profile" Type="Self.State_Profile" Multiplicity="0..1" />
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Profile">
+        <PropertyRef Name="State_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CFG_Branch_Profile">
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="1" />
+    <End Role="Configurations" Type="Self.Configuration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Configurations">
+        <PropertyRef Name="Branch_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BRT_Business_Types">
+    <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
+    <End Role="Branch_Types" Type="Self.Branch_Types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Branch_Types">
+        <PropertyRef Name="Business_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CAT_Business_Types">
+    <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
+    <End Role="Category_Types" Type="Self.Category_Types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Category_Types">
+        <PropertyRef Name="Business_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CPY_Business_Types">
+    <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Company_Profile">
+        <PropertyRef Name="Business_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KFB_Business_Types">
+    <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
+    <End Role="KPI_For_Business" Type="Self.KPI_For_Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="KPI_For_Business">
+        <PropertyRef Name="Business_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SBT_Business_Types">
+    <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
+    <End Role="Subject_Types" Type="Self.Subject_Types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Subject_Types">
+        <PropertyRef Name="Business_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STT_Business_Types">
+    <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
+    <End Role="Staff_Types" Type="Self.Staff_Types" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Business_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Staff_Types">
+        <PropertyRef Name="Business_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRD_Category_Types">
+    <End Role="Category_Types" Type="Self.Category_Types" Multiplicity="0..1" />
+    <End Role="Product_Profile" Type="Self.Product_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Product_Profile">
+        <PropertyRef Name="Cat_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CLN_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="Client_Profile" Type="Self.Client_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Client_Profile">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CFG_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="Configurations" Type="Self.Configuration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Configurations">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KFC_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="KPI_For_Company" Type="Self.KPI_For_Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="KPI_For_Company">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRD_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="Product_Profile" Type="Self.Product_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Product_Profile">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STF_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="Staff_Profile" Type="Self.Staff_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Staff_Profile">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUB_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="Subject_Profile" Type="Self.Subject_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Subject_Profile">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USR_Company_Profile">
+    <End Role="Company_Profile" Type="Self.Company_Profile" Multiplicity="1" />
+    <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="User_Profile">
+        <PropertyRef Name="Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CFG_Params">
+    <End Role="Params" Type="Self.Param" Multiplicity="1" />
+    <End Role="Configurations" Type="Self.Configuration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Params">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Configurations">
+        <PropertyRef Name="Param" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CFG_User_Profile">
+    <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1" />
+    <End Role="Configurations" Type="Self.Configuration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Configurations">
+        <PropertyRef Name="User_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STP_Country_Profile">
+    <End Role="Country_Profile" Type="Self.Country_Profile" Multiplicity="1" />
+    <End Role="State_Profile" Type="Self.State_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="State_Profile">
+        <PropertyRef Name="Country_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KFB_Key_Performance_Indexs">
+    <End Role="Key_Performance_Indexes" Type="Self.Key_Performance_Indexes" Multiplicity="1" />
+    <End Role="KPI_For_Business" Type="Self.KPI_For_Business" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Key_Performance_Indexes">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="KPI_For_Business">
+        <PropertyRef Name="KPI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KPI_Kpi_Types">
+    <End Role="KPI_Types" Type="Self.KPI_Types" Multiplicity="1" />
+    <End Role="Key_Performance_Indexes" Type="Self.Key_Performance_Indexes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KPI_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Key_Performance_Indexes">
+        <PropertyRef Name="Kpi_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KFC_Kpi_for_Business">
+    <End Role="KPI_For_Business" Type="Self.KPI_For_Business" Multiplicity="1" />
+    <End Role="KPI_For_Company" Type="Self.KPI_For_Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KPI_For_Business">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="KPI_For_Company">
+        <PropertyRef Name="Kpi_For_Business_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KFU_Kpi_for_Company">
+    <End Role="KPI_For_Company" Type="Self.KPI_For_Company" Multiplicity="1" />
+    <End Role="KPI_For_User" Type="Self.KPI_For_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KPI_For_Company">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="KPI_For_User">
+        <PropertyRef Name="Kpi_For_Company_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KFU_User_Profile">
+    <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1" />
+    <End Role="KPI_For_User" Type="Self.KPI_For_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="KPI_For_User">
+        <PropertyRef Name="User_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="REG_State_Profile">
+    <End Role="State_Profile" Type="Self.State_Profile" Multiplicity="1" />
+    <End Role="Region_Profile" Type="Self.Region_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Region_Profile">
+        <PropertyRef Name="State_Ref" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_User_Roles_dbo_Roles_Role_Id">
+    <End Role="Roles" Type="Self.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Roles" Type="Self.User_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="User_Roles">
+        <PropertyRef Name="Role_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="STP_Staff_Types">
+    <End Role="Staff_Types" Type="Self.Staff_Types" Multiplicity="0..1" />
+    <End Role="Staff_Profile" Type="Self.Staff_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Staff_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Staff_Profile">
+        <PropertyRef Name="Stf_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SUB_Subject_Types">
+    <End Role="Subject_Types" Type="Self.Subject_Types" Multiplicity="0..1" />
+    <End Role="Subject_Profile" Type="Self.Subject_Profile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject_Types">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="Subject_Profile">
+        <PropertyRef Name="Subject_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_User_Claims_dbo_User_Profile_User_Id">
+    <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Claims" Type="Self.User_Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="User_Claims">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_User_Logins_dbo_User_Profile_UserId">
+    <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Logins" Type="Self.User_Logins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="User_Logins">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_User_Roles_dbo_User_Profile_User_Id">
+    <End Role="User_Profile" Type="Self.User_Profile" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="User_Roles" Type="Self.User_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Profile">
+        <PropertyRef Name="Ref_Number" />
+      </Principal>
+      <Dependent Role="User_Roles">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Branch_Profile_Types">
+    <End Role="Branch_Profile" Type="Self.Branch_Profile" Multiplicity="*" />
+    <End Role="Branch_Types" Type="Self.Branch_Types" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="KPIEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Audit_Log" EntityType="Self.Audit_Log" />
+    <EntitySet Name="Branch_Profile" EntityType="Self.Branch_Profile" />
+    <EntitySet Name="Branch_Types" EntityType="Self.Branch_Types" />
+    <EntitySet Name="Business_Types" EntityType="Self.Business_Types" />
+    <EntitySet Name="Category_Types" EntityType="Self.Category_Types" />
+    <EntitySet Name="Client_Profile" EntityType="Self.Client_Profile" />
+    <EntitySet Name="Company_Profile" EntityType="Self.Company_Profile" />
+    <EntitySet Name="Configurations" EntityType="Self.Configuration" />
+    <EntitySet Name="Country_Profile" EntityType="Self.Country_Profile" />
+    <EntitySet Name="Key_Performance_Indexes" EntityType="Self.Key_Performance_Indexes" />
+    <EntitySet Name="KPI_For_Business" EntityType="Self.KPI_For_Business" />
+    <EntitySet Name="KPI_For_Company" EntityType="Self.KPI_For_Company" />
+    <EntitySet Name="KPI_For_User" EntityType="Self.KPI_For_User" />
+    <EntitySet Name="KPI_Types" EntityType="Self.KPI_Types" />
+    <EntitySet Name="Params" EntityType="Self.Param" />
+    <EntitySet Name="Product_Profile" EntityType="Self.Product_Profile" />
+    <EntitySet Name="Region_Profile" EntityType="Self.Region_Profile" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Staff_Profile" EntityType="Self.Staff_Profile" />
+    <EntitySet Name="Staff_Types" EntityType="Self.Staff_Types" />
+    <EntitySet Name="State_Profile" EntityType="Self.State_Profile" />
+    <EntitySet Name="Subject_Profile" EntityType="Self.Subject_Profile" />
+    <EntitySet Name="Subject_Types" EntityType="Self.Subject_Types" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Table_Map" EntityType="Self.Table_Map" />
+    <EntitySet Name="Transaction_Items" EntityType="Self.Transaction_Items" />
+    <EntitySet Name="Transaction_Summary" EntityType="Self.Transaction_Summary" />
+    <EntitySet Name="User_Claims" EntityType="Self.User_Claims" />
+    <EntitySet Name="User_Logins" EntityType="Self.User_Logins" />
+    <EntitySet Name="User_Profile" EntityType="Self.User_Profile" />
+    <EntitySet Name="User_Roles" EntityType="Self.User_Roles" />
+    <EntitySet Name="Connection_Profile" EntityType="Self.Connection_Profile" />
+    <AssociationSet Name="BRN_Company_Profile" Association="Self.BRN_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="BRN_Country_Profile" Association="Self.BRN_Country_Profile">
+      <End Role="Country_Profile" EntitySet="Country_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="BRN_Region_Profile" Association="Self.BRN_Region_Profile">
+      <End Role="Region_Profile" EntitySet="Region_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="BRN_State_Profile" Association="Self.BRN_State_Profile">
+      <End Role="State_Profile" EntitySet="State_Profile" />
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="CFG_Branch_Profile" Association="Self.CFG_Branch_Profile">
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+      <End Role="Configurations" EntitySet="Configurations" />
+    </AssociationSet>
+    <AssociationSet Name="BRT_Business_Types" Association="Self.BRT_Business_Types">
+      <End Role="Business_Types" EntitySet="Business_Types" />
+      <End Role="Branch_Types" EntitySet="Branch_Types" />
+    </AssociationSet>
+    <AssociationSet Name="CAT_Business_Types" Association="Self.CAT_Business_Types">
+      <End Role="Business_Types" EntitySet="Business_Types" />
+      <End Role="Category_Types" EntitySet="Category_Types" />
+    </AssociationSet>
+    <AssociationSet Name="CPY_Business_Types" Association="Self.CPY_Business_Types">
+      <End Role="Business_Types" EntitySet="Business_Types" />
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="KFB_Business_Types" Association="Self.KFB_Business_Types">
+      <End Role="Business_Types" EntitySet="Business_Types" />
+      <End Role="KPI_For_Business" EntitySet="KPI_For_Business" />
+    </AssociationSet>
+    <AssociationSet Name="SBT_Business_Types" Association="Self.SBT_Business_Types">
+      <End Role="Business_Types" EntitySet="Business_Types" />
+      <End Role="Subject_Types" EntitySet="Subject_Types" />
+    </AssociationSet>
+    <AssociationSet Name="STT_Business_Types" Association="Self.STT_Business_Types">
+      <End Role="Business_Types" EntitySet="Business_Types" />
+      <End Role="Staff_Types" EntitySet="Staff_Types" />
+    </AssociationSet>
+    <AssociationSet Name="PRD_Category_Types" Association="Self.PRD_Category_Types">
+      <End Role="Category_Types" EntitySet="Category_Types" />
+      <End Role="Product_Profile" EntitySet="Product_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="CLN_Company_Profile" Association="Self.CLN_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Client_Profile" EntitySet="Client_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="CFG_Company_Profile" Association="Self.CFG_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Configurations" EntitySet="Configurations" />
+    </AssociationSet>
+    <AssociationSet Name="KFC_Company_Profile" Association="Self.KFC_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="KPI_For_Company" EntitySet="KPI_For_Company" />
+    </AssociationSet>
+    <AssociationSet Name="PRD_Company_Profile" Association="Self.PRD_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Product_Profile" EntitySet="Product_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="STF_Company_Profile" Association="Self.STF_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Staff_Profile" EntitySet="Staff_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="SUB_Company_Profile" Association="Self.SUB_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="Subject_Profile" EntitySet="Subject_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="USR_Company_Profile" Association="Self.USR_Company_Profile">
+      <End Role="Company_Profile" EntitySet="Company_Profile" />
+      <End Role="User_Profile" EntitySet="User_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="CFG_Params" Association="Self.CFG_Params">
+      <End Role="Params" EntitySet="Params" />
+      <End Role="Configurations" EntitySet="Configurations" />
+    </AssociationSet>
+    <AssociationSet Name="CFG_User_Profile" Association="Self.CFG_User_Profile">
+      <End Role="User_Profile" EntitySet="User_Profile" />
+      <End Role="Configurations" EntitySet="Configurations" />
+    </AssociationSet>
+    <AssociationSet Name="STP_Country_Profile" Association="Self.STP_Country_Profile">
+      <End Role="Country_Profile" EntitySet="Country_Profile" />
+      <End Role="State_Profile" EntitySet="State_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="KFB_Key_Performance_Indexs" Association="Self.KFB_Key_Performance_Indexs">
+      <End Role="Key_Performance_Indexes" EntitySet="Key_Performance_Indexes" />
+      <End Role="KPI_For_Business" EntitySet="KPI_For_Business" />
+    </AssociationSet>
+    <AssociationSet Name="KPI_Kpi_Types" Association="Self.KPI_Kpi_Types">
+      <End Role="KPI_Types" EntitySet="KPI_Types" />
+      <End Role="Key_Performance_Indexes" EntitySet="Key_Performance_Indexes" />
+    </AssociationSet>
+    <AssociationSet Name="KFC_Kpi_for_Business" Association="Self.KFC_Kpi_for_Business">
+      <End Role="KPI_For_Business" EntitySet="KPI_For_Business" />
+      <End Role="KPI_For_Company" EntitySet="KPI_For_Company" />
+    </AssociationSet>
+    <AssociationSet Name="KFU_Kpi_for_Company" Association="Self.KFU_Kpi_for_Company">
+      <End Role="KPI_For_Company" EntitySet="KPI_For_Company" />
+      <End Role="KPI_For_User" EntitySet="KPI_For_User" />
+    </AssociationSet>
+    <AssociationSet Name="KFU_User_Profile" Association="Self.KFU_User_Profile">
+      <End Role="User_Profile" EntitySet="User_Profile" />
+      <End Role="KPI_For_User" EntitySet="KPI_For_User" />
+    </AssociationSet>
+    <AssociationSet Name="REG_State_Profile" Association="Self.REG_State_Profile">
+      <End Role="State_Profile" EntitySet="State_Profile" />
+      <End Role="Region_Profile" EntitySet="Region_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_User_Roles_dbo_Roles_Role_Id" Association="Self.FK_dbo_User_Roles_dbo_Roles_Role_Id">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="User_Roles" EntitySet="User_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="STP_Staff_Types" Association="Self.STP_Staff_Types">
+      <End Role="Staff_Types" EntitySet="Staff_Types" />
+      <End Role="Staff_Profile" EntitySet="Staff_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="SUB_Subject_Types" Association="Self.SUB_Subject_Types">
+      <End Role="Subject_Types" EntitySet="Subject_Types" />
+      <End Role="Subject_Profile" EntitySet="Subject_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_User_Claims_dbo_User_Profile_User_Id" Association="Self.FK_dbo_User_Claims_dbo_User_Profile_User_Id">
+      <End Role="User_Profile" EntitySet="User_Profile" />
+      <End Role="User_Claims" EntitySet="User_Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_User_Logins_dbo_User_Profile_UserId" Association="Self.FK_dbo_User_Logins_dbo_User_Profile_UserId">
+      <End Role="User_Profile" EntitySet="User_Profile" />
+      <End Role="User_Logins" EntitySet="User_Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_User_Roles_dbo_User_Profile_User_Id" Association="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id">
+      <End Role="User_Profile" EntitySet="User_Profile" />
+      <End Role="User_Roles" EntitySet="User_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="Branch_Profile_Types" Association="Self.Branch_Profile_Types">
+      <End Role="Branch_Profile" EntitySet="Branch_Profile" />
+      <End Role="Branch_Types" EntitySet="Branch_Types" />
+    </AssociationSet>
+    <FunctionImport Name="usp_AnimalsSeenBranch" ReturnType="Collection(KPIModel.usp_AnimalsSeenBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenByEmployeeCompany" ReturnType="Collection(KPIModel.usp_AnimalsSeenByEmployeeCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenByEmployeeIndividual" ReturnType="Collection(KPIModel.usp_AnimalsSeenByEmployeeIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="staffNumber" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenCompany" ReturnType="Collection(KPIModel.usp_AnimalsSeenCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenPeer" ReturnType="Collection(KPIModel.usp_AnimalsSeenPeer_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="branchRef" Mode="In" Type="Int32" />
+      <Parameter Name="size" Mode="In" Type="Int32" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AnimalsSeenSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgAnimalsSeenByEmployeeCompany" ReturnType="Collection(KPIModel.usp_AvgAnimalsSeenByEmployeeCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgCustomersSeenByEmployeeCompany" ReturnType="Collection(KPIModel.usp_AvgCustomersSeenByEmployeeCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerBranch" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerCompany" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerPeer" ReturnType="Collection(KPIModel.usp_AvgDollarPerCustomerPeer_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchType" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+      <Parameter Name="country" Mode="In" Type="Int64" />
+      <Parameter Name="state" Mode="In" Type="Int64" />
+      <Parameter Name="region" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerCustomerSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerTransactionBranch" ReturnType="Collection(KPIModel.usp_AvgDollarPerTransactionBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerTransactionChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyref" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerTransactionCompany" ReturnType="Collection(KPIModel.usp_AvgDollarPerTransactionCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerTransactionPeer" ReturnType="Collection(KPIModel.usp_AvgDollarPerTransactionPeer_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchType" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+      <Parameter Name="country" Mode="In" Type="Int64" />
+      <Parameter Name="state" Mode="In" Type="Int64" />
+      <Parameter Name="region" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_AvgDollarPerTransactionSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_BranchDropDownList" ReturnType="Collection(KPIModel.usp_BranchDropDownList_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_BranchTypeDropDownList" ReturnType="Collection(KPIModel.usp_BranchTypeDropDownList_Result)">
+      <Parameter Name="businessType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_CountryDropDownList" ReturnType="Collection(KPIModel.usp_CountryDropDownList_Result)">
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_CustomersSeenByEmployeeCompany" ReturnType="Collection(KPIModel.usp_CustomersSeenByEmployeeCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_CustomersSeenByEmployeeIndividual" ReturnType="Collection(KPIModel.usp_CustomersSeenByEmployeeIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="staffNumber" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_DeleteFromKpiForUser">
+      <Parameter Name="kpiRef" Mode="In" Type="Int32" />
+      <Parameter Name="userRef" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_EmployeeSearchBox" ReturnType="Collection(KPIModel.usp_EmployeeSearchBox_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByEmployeeCompany" ReturnType="Collection(KPIModel.usp_IncomeByEmployeeCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByEmployeeIndividual" ReturnType="Collection(KPIModel.usp_IncomeByEmployeeIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="staffNumber" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByProductCategoryCompany" ReturnType="Collection(KPIModel.usp_IncomeByProductCategoryCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByProductIndividual" ReturnType="Collection(KPIModel.usp_IncomeByProductIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="productNumnber" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByProductServiceIndividual" ReturnType="Collection(KPIModel.usp_IncomeByProductServiceIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="productNumnber" Mode="In" Type="Int64" />
+      <Parameter Name="productClass" Mode="In" Type="String" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByServiceActivityCompany" ReturnType="Collection(KPIModel.usp_IncomeByServiceActivityCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeByServiceIndividual" ReturnType="Collection(KPIModel.usp_IncomeByServiceIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="productNumnber" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_IncomeFromAnimalTypeEmployeeIndividual" ReturnType="Collection(KPIModel.usp_IncomeFromAnimalTypeEmployeeIndividual_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="staffNumber" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_InsertIntoKpiForUser">
+      <Parameter Name="kpiRef" Mode="In" Type="Int32" />
+      <Parameter Name="userRef" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_InsertKpiForCompany">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="businessType" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_KPIForCompanyList" ReturnType="Collection(KPIModel.usp_KPIForCompanyList_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_KPIGrid" ReturnType="Collection(KPIModel.usp_KPIGrid_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="userRef" Mode="In" Type="String" />
+      <Parameter Name="kpiType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_LargeAnimalsBranch" ReturnType="Collection(KPIModel.usp_LargeAnimalsBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_LargeAnimalsCompany" ReturnType="Collection(KPIModel.usp_LargeAnimalsCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_MissedCharge" ReturnType="Collection(KPIModel.usp_MissedCharge_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="firstProduct" Mode="In" Type="Int64" />
+      <Parameter Name="secondProduct" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_NewCustomersBranch" ReturnType="Collection(KPIModel.usp_NewCustomersBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_NewCustomersChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_NewCustomersCompany" ReturnType="Collection(KPIModel.usp_NewCustomersCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_NewCustomersSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ProductServiceNameSearchBox" ReturnType="Collection(KPIModel.usp_ProductServiceNameSearchBox_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="class" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="usp_RegionDropDownList" ReturnType="Collection(KPIModel.usp_RegionDropDownList_Result)">
+      <Parameter Name="stateRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_RetailOnlySalesBranch" ReturnType="Collection(KPIModel.usp_RetailOnlySalesBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_RetailOnlySalesCompany" ReturnType="Collection(KPIModel.usp_RetailOnlySalesCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SearchContextForProductServiceSB" ReturnType="Collection(KPIModel.usp_SearchContextForProductServiceSB_Result)" />
+    <FunctionImport Name="usp_ServiceOnlySalesBranch" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ServiceOnlySalesCompany" ReturnType="Collection(KPIModel.usp_ServiceOnlySalesCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SmallAnimalsBranch" ReturnType="Collection(KPIModel.usp_SmallAnimalsBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_SmallAnimalsCompany" ReturnType="Collection(KPIModel.usp_SmallAnimalsCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_StateDropDownList" ReturnType="Collection(KPIModel.usp_StateDropDownList_Result)">
+      <Parameter Name="countryRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesBranch" ReturnType="Collection(KPIModel.usp_TotalSalesBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesCompany" ReturnType="Collection(KPIModel.usp_TotalSalesCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TotalSalesSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TransExcludeZeroTotalBranch" ReturnType="Collection(KPIModel.usp_TransExcludeZeroTotalBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_TransExcludeZeroTotalCompany" ReturnType="Collection(KPIModel.usp_TransExcludeZeroTotalCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenBranch" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenBranch_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="branchRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenChanges" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenCompany" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenCompany_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenIndustry" ReturnType="Collection(KPIModel.usp_UniqueCustomersSeenIndustry_Result)">
+      <Parameter Name="start" Mode="In" Type="DateTime" />
+      <Parameter Name="end" Mode="In" Type="DateTime" />
+      <Parameter Name="TimeType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UniqueCustomersSeenSingle" ReturnType="Collection(Double)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UserDropDownList" ReturnType="Collection(KPIModel.usp_UserDropDownList_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_ViewableKpiList" ReturnType="Collection(KPIModel.usp_ViewableKpiList_Result)">
+      <Parameter Name="userRef" Mode="In" Type="String" />
+      <Parameter Name="kpiType" Mode="In" Type="Int32" />
+      <Parameter Name="kpiTab" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="usp_AnimalsSeenBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_of_Animals_Seen" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AnimalsSeenByEmployeeCompany_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_Of_Animals_Seen_By_An_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AnimalsSeenByEmployeeIndividual_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_Of_Animals_Seen_By_An_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AnimalsSeenCompany_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_animals_seen" Nullable="true" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AnimalsSeenPeer_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" />
+    <Property Type="Decimal" Name="Number_of_Animals_Seen" Nullable="true" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgAnimalsSeenByEmployeeCompany_Result">
+    <Property Type="String" Name="Company_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Average_Number_Of_Animals_Seen_By_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgCustomersSeenByEmployeeCompany_Result">
+    <Property Type="String" Name="Company_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_Of_Customers_Seen_By_An_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerCustomerBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Average_Dollar_per_Customer" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerCustomerCompany_Result">
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Average_Dollar_per_customer" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerCustomerPeer_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" />
+    <Property Type="Decimal" Name="Average_Dollar_per_Customer" Nullable="true" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerTransactionBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Average_Dollar_per_Transaction" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerTransactionCompany_Result">
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Average_Dollar_per_Transaction" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_AvgDollarPerTransactionPeer_Result">
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" />
+    <Property Type="Decimal" Name="Average_Dollar_per_Transaction" Nullable="true" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_BranchDropDownList_Result">
+    <Property Type="Int64" Name="Ref_Number" Nullable="false" />
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_BranchTypeDropDownList_Result">
+    <Property Type="Int64" Name="Ref_Number" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_CountryDropDownList_Result">
+    <Property Type="Int64" Name="Country_Ref" Nullable="false" />
+    <Property Type="String" Name="Country_Name" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="usp_CustomersSeenByEmployeeCompany_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_Of_Customers_Seen_By_An_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_CustomersSeenByEmployeeIndividual_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_Of_Customers_Seen_By_An_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_EmployeeSearchBox_Result">
+    <Property Type="Int64" Name="Stf_Number" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByEmployeeCompany_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByEmployeeIndividual_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Employee" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByProductCategoryCompany_Result">
+    <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Income" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByProductIndividual_Result">
+    <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Product" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByProductServiceIndividual_Result">
+    <Property Type="String" Name="Product_Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Service" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByServiceActivityCompany_Result">
+    <Property Type="String" Name="Category_Type" Nullable="false" MaxLength="100" />
+    <Property Type="Decimal" Name="Income" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeByServiceIndividual_Result">
+    <Property Type="String" Name="Service_Name" Nullable="true" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Service" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_IncomeFromAnimalTypeEmployeeIndividual_Result">
+    <Property Type="String" Name="Employee_Name" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Income_By_Vet_For_Each_Animal_Type" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_KPIForCompanyList_Result">
+    <Property Type="Int64" Name="Kpi_For_Company" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_KPIGrid_Result">
+    <Property Type="Int64" Name="Kpi_For_Company" Nullable="true" />
+    <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="Viewable" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_LargeAnimalsBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_of_Large_Animals" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_LargeAnimalsCompany_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_Large_Animals" Nullable="true" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_MissedCharge_Result">
+    <Property Type="Int64" Name="Transaction_Number" Nullable="false" />
+    <Property Type="DateTime" Name="Transaction_Date" Nullable="false" Precision="23" />
+    <Property Type="Int64" Name="Staff_ID" Nullable="false" />
+    <Property Type="String" Name="Product" Nullable="true" MaxLength="100" />
+    <Property Type="Decimal" Name="Item_Total" Nullable="false" Precision="18" Scale="3" />
+  </ComplexType>
+  <ComplexType Name="usp_NewCustomersBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_of_New_Customers" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_NewCustomersCompany_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_New_Customers" Nullable="true" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_ProductServiceNameSearchBox_Result">
+    <Property Type="Int64" Name="Prd_Number" Nullable="false" />
+    <Property Type="String" Name="Prd_Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Prd_Class" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="usp_RegionDropDownList_Result">
+    <Property Type="Int64" Name="Region_Ref" Nullable="false" />
+    <Property Type="String" Name="Region_Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_RetailOnlySalesBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Retail_Total_Only" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_RetailOnlySalesCompany_Result">
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Retail_Total_Only" Nullable="true" Precision="38" Scale="3" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_SearchContextForProductServiceSB_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="7" />
+    <Property Type="String" Name="Prd_Class" Nullable="true" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="usp_ServiceOnlySalesBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Service_Total_Only" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_ServiceOnlySalesCompany_Result">
+    <Property Type="DateTime" Name="Year_Month" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Service_Total_Only" Nullable="true" Precision="38" Scale="3" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_SmallAnimalsBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_of_Small_Animals" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_SmallAnimalsCompany_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_Small_Animals" Nullable="true" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_StateDropDownList_Result">
+    <Property Type="Int64" Name="State_Ref" Nullable="false" />
+    <Property Type="String" Name="State_Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_TotalSalesBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Total_Sales" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_TotalSalesCompany_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="Total_Sales" Nullable="true" Precision="38" Scale="3" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_TransExcludeZeroTotalBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="No_of_transactions_excluding_zero_total_bill" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_TransExcludeZeroTotalCompany_Result">
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="No_of_transactions_excluding_zero_total_bill" Nullable="true" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_UniqueCustomersSeenBranch_Result">
+    <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
+    <Property Type="DateTime" Name="YearMonth" Nullable="true" />
+    <Property Type="Decimal" Name="Number_of_Unique_Clients" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_UniqueCustomersSeenCompany_Result">
+    <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
+    <Property Type="String" Name="TimePeriod" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="usp_UniqueCustomersSeenIndustry_Result">
+    <Property Type="DateTime" Name="Time_Period" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="Number_of_Unique_Clients" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_UserDropDownList_Result">
+    <Property Type="String" Name="Ref_Number" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="usp_ViewableKpiList_Result">
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="Control_Name" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Description" Nullable="true" MaxLength="4000" />
+  </ComplexType>
+</Schema>

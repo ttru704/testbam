@@ -13,6 +13,15 @@ namespace Test {
     public partial class EIndividualCS {
         
         /// <summary>
+        /// RadClientExportManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        
+        /// <summary>
         /// RadPanelBar1 control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
         
         /// <summary>
-        /// RadClientExportManager1 control.
+        /// CustomersSeenByEmployeeIndividualEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        protected global::Telerik.Web.UI.RadButton CustomersSeenByEmployeeIndividualEB;
         
         /// <summary>
         /// CustomersSeenByEmployeeIndividualRHC1 control.
@@ -58,6 +67,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid CustomersSeenByEmployeeIndividualG1;
         
         /// <summary>
+        /// AnimalsSeenByEmployeeIndividualEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AnimalsSeenByEmployeeIndividualEB;
+        
+        /// <summary>
         /// AnimalsSeenByEmployeeIndividualRHC1 control.
         /// </summary>
         /// <remarks>
@@ -85,6 +103,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AnimalsSeenByEmployeeIndividualG1;
         
         /// <summary>
+        /// IncomeByEmployeeIndividualEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton IncomeByEmployeeIndividualEB;
+        
+        /// <summary>
         /// IncomeByEmployeeIndividualRHC1 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +137,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid IncomeByEmployeeIndividualG1;
+        
+        /// <summary>
+        /// IncomeFromAnimalTypeEmployeeIndividualEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton IncomeFromAnimalTypeEmployeeIndividualEB;
         
         /// <summary>
         /// IncomeFromAnimalTypeEmployeeIndividualRHC1 control.

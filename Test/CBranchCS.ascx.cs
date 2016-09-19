@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
 using Telerik.Web.UI.GridExcelBuilder;
 using Test.BLL.Controls;
 using Test.BLL.Customer;
@@ -88,17 +89,28 @@ namespace Test
                 DataTable largeAnimalsBranchDT = converter.ToDataTable(largeAnimalsBranchlist);
                 RadHtmlChartGroupDataSource.GroupDataSource(LargeAnimalsBranchRHC1, largeAnimalsBranchDT, "Branch_Name", "LineSeries", "Number_of_Large_Animals", "TimePeriod");
 
-                //format yaxis of chart
+                //Format Unique customers seen branch comparison chart
+                UniqueCustomersSeenBranchRHC1.ChartTitle.Text = "Number of Unique Customers Seen - Branch";
                 UniqueCustomersSeenBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Customers";
 
+                //Format Animals Seen branch comparison chart
+                AnimalsSeenBranchRHC1.ChartTitle.Text = "Number of Animals Seen - Branch";
                 AnimalsSeenBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Animals";
 
+                //Format Average Dollar per customer branch comparison chart
+                AvgDollarPerCustomerBranchRHC1.ChartTitle.Text = "Average Dollar per Customer - Branch";
                 AvgDollarPerCustomerBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="Average per Customer";
 
+                //Format New Cusomters branch comparison chart
+                NewCustomersBranchRHC1.ChartTitle.Text = "Number of New Customers - Branch";
                 NewCustomersBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Customers";
 
+                //Format Small animals branch comparison chart
+                SmallAnimalsBranchRHC1.ChartTitle.Text = "Number of Small Animals - Branch";
                 SmallAnimalsBranchRHC1.PlotArea.YAxis.TitleAppearance.Text ="No of Animals";
 
+                //Format Large animals branch comparison chart
+                LargeAnimalsBranchRHC1.ChartTitle.Text = "Number of Large Animals - Branch";
                 LargeAnimalsBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Animals";
 
                 //format xaxis of chart based on selected time type
@@ -145,10 +157,26 @@ namespace Test
             style.InteriorStyle.Color = System.Drawing.Color.LightGray;
             e.WorkBook.Styles.Add(style);
         }
+        
 
-        protected void RadButton1_Click(object sender, EventArgs e)
+        //This is for grid exporting
+        protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
-            RadGrid2.MasterTableView.ExportToExcel();
+            if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
+                e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
+                sender.ToString();
+            Type t = sender.GetType();
+            t.Name.ToString();
+            RadGrid rg = (RadGrid)sender;
+            string gridname = rg.DataSourceID;
+
+            {
+                //rg.ExportSettings.FileName ="chartname"; 
+                rg.ExportSettings.ExportOnlyData = true;
+                rg.ExportSettings.IgnorePaging = true;
+                rg.ExportSettings.OpenInNewWindow = true;
+                rg.ExportSettings.UseItemStyles = true;
+            }
         }
     }
 }

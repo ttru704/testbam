@@ -4,18 +4,19 @@
 
 <div class="demo-container size-thin">
 
+    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
+
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch" OnItemClick="RadPanelBar1_ItemClick">
         <Items>
             <%--This section is for Total Sales Company--%>
             <telerik:RadPanelItem Text="Total Sales - Company" Expanded="false" Visible="false">
                 <ContentTemplate>
                     <%--This export manager is for all the KPI charts--%>
-                    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
                     <%--Chart--%>
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="TotalSalesCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTotalSalesCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="TotalSalesCompanyRHC1" runat="server" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" DataSourceID="TotalSalesCompanyODS" Skin="Metro">
+                        <telerik:RadHtmlChart ID="TotalSalesCompanyRHC1" runat="server" RenderMode="Lightweight" RenderAs="Canvas" Transitions="true" DataSourceID="TotalSalesCompanyODS" Skin="Metro">
                             <ClientEvents OnLoad="chartLoad" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
@@ -51,7 +52,7 @@
                                     </LabelsAppearance>
                                 </YAxis>
                             </PlotArea>
-                            <ChartTitle Text="Total Sales Companywide">
+                            <ChartTitle Text="Total Sales Company-Wide">
                             </ChartTitle>
                         </telerik:RadHtmlChart>
                     </div>
@@ -67,12 +68,15 @@
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="TotalSalesComG1" runat="server" RenderMode="Lightweight" AllowPaging="True" AllowSorting="True" DataSourceID="TotalSalesCompanyODS" ExportSettings-FileName="Total Sales Company-Wide" ShowGroupPanel="True" Skin="Bootstrap" OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="TotalSalesComG1" runat="server" RenderMode="Lightweight" AllowPaging="True" DataSourceID="TotalSalesCompanyODS" ExportSettings-FileName="Total Sales Company-Wide" ShowGroupPanel="True" Skin="Bootstrap" OnItemCommand="ExportGridCustomiser" AllowSorting="True">
                        <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <ClientSettings AllowDragToGroup="True">
+                        </ClientSettings>
+
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="TotalSalesCompanyODS">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
@@ -127,7 +131,7 @@
                                 </Series>
                             </PlotArea>
 
-                            <ChartTitle Text="Average Dollar Value per Transaction Companywide ">
+                            <ChartTitle Text="Average Dollar Value per Transaction Company-Wide ">
                             </ChartTitle>
                         </telerik:RadHtmlChart>
                     </div>
@@ -150,6 +154,9 @@
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <ClientSettings AllowDragToGroup="True">
+                        </ClientSettings>
+
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="AvgDollarPerTransactionCompanyODS1">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
@@ -202,7 +209,7 @@
                                 </YAxis>
                             </PlotArea>
 
-                            <ChartTitle Text="No of Transactions excluding Zero Total Bills">
+                            <ChartTitle Text="No of Transactions excluding Zero Total Bills Company-Wide">
                             </ChartTitle>
                         </telerik:RadHtmlChart>
                     </div>
@@ -222,8 +229,7 @@
                     <telerik:RadGrid ID="TransExcludeZeroTotalComG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalCompanyODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" OnItemCommand="ExportGridCustomiser" ExportSettings-FileName="Transactions Excl Zero Total Company-wide">
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
-                        <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
-                            <Selecting AllowRowSelect="True" />
+                        <ClientSettings AllowDragToGroup="True">
                         </ClientSettings>
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="TransExcludeZeroTotalCompanyODS1">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
@@ -246,7 +252,7 @@
                         <telerik:RadButton ID="IncomeByProductCategoryCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByProductCategoryComRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                         <telerik:RadHtmlChart ID="IncomeByProductCategoryCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
                             <ClientEvents OnLoad="chartLoad" />
-                            <ChartTitle Text="Income by Product Category Companywide"></ChartTitle>
+                            <ChartTitle Text="Income by Product Category Company-Wide"></ChartTitle>
                             <PlotArea>
                                 <Series>
                                     <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
@@ -277,6 +283,9 @@
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <ClientSettings AllowDragToGroup="True">
+                        </ClientSettings>
+
                         <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="IncomeByProductCategoryCompanyODS1" AutoGenerateColumns="False">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
@@ -295,9 +304,11 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="IncomeByServiceActivityCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByServiceActivityComRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="IncomeByServiceActivityCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
+                        <telerik:RadHtmlChart ID="IncomeByServiceActivityCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="true" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
                             <ClientEvents OnLoad="chartLoad" />
-                            <ChartTitle Text="Income by Service Activity Companywide"></ChartTitle>
+                            <ChartTitle Text="Income by Service Activity Company-Wide">
+                                <Appearance Align="Center"></Appearance>
+                            </ChartTitle>
                             <PlotArea>
                                 <Series>
                                     <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
@@ -305,8 +316,12 @@
                                         <TooltipsAppearance DataFormatString="{0:N0} %" />
                                         <Appearance Overlay-Gradient="None"></Appearance>
                                     </telerik:PieSeries>
+                                    
                                 </Series>
                             </PlotArea>
+                            <Legend>
+                                <Appearance OffsetX="-70"></Appearance>
+                            </Legend>
                             <Zoom Enabled="False"></Zoom>
                         </telerik:RadHtmlChart>
                     </div>
@@ -328,6 +343,8 @@
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <ClientSettings AllowDragToGroup="True"></ClientSettings>
+
                         <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="IncomeByServiceActivityCompanyODS1" AutoGenerateColumns="False">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
@@ -381,7 +398,7 @@
                                 </Series>
                             </PlotArea>
 
-                            <ChartTitle Text="Retail Only Sales Companywide">
+                            <ChartTitle Text="Retail Only Sales Company-Wide">
                             </ChartTitle>
                         </telerik:RadHtmlChart>
                     </div>
@@ -404,6 +421,9 @@
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <ClientSettings AllowDragToGroup="True">
+                        </ClientSettings>
+
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="RetailOnlySalesCompanyODS1">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
@@ -459,7 +479,7 @@
                                 </Series>
                             </PlotArea>
 
-                            <ChartTitle Text="Service Only Sales Companywide">
+                            <ChartTitle Text="Service Only Sales Company-Wide">
                             </ChartTitle>
                         </telerik:RadHtmlChart>
                     </div>
@@ -480,6 +500,8 @@
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
+                        </ClientSettings>
+                        <ClientSettings AllowDragToGroup="True">
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="ServiceOnlySalesCompanyODS1">

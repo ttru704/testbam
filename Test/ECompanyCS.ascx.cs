@@ -67,15 +67,24 @@ namespace Test
                 DataTable incomeByEmployeeCompanyDT = converter.ToDataTable(incomeByEmployeeCompanyList);
                 RadHtmlChartGroupDataSource.GroupDataSource(IncomeByEmployeeCompanyRHC1, incomeByEmployeeCompanyDT, "Employee_Name", "ColumnSeries", "Income_By_Employee", "TimePeriod");
 
-                //format yaxis of charts
+                //Format Customers seen by employee company chart
+                CustomersSeenByEmployeeCompanyRHC1.ChartTitle.Text = "Number of Customers Seen by Employee - Company";
                 CustomersSeenByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Customers";
 
+                //Format Animals seen by employee company chart
+                AnimalsSeenByEmployeeCompanyRHC1.ChartTitle.Text = "Number of Animals Seen by Employee - Company";
                 AnimalsSeenByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Animals";
 
+                //Format Average number of customers seen by employee company chart
+                AvgCustomersSeenByEmployeeCompanyRHC1.ChartTitle.Text = "Average Number of Customers Seen by Employee - Company";
                 AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Customers";
 
+                //Format Average number of animals seen by employee company chart
+                AvgAnimalsSeenByEmployeeCompanyRHC1.ChartTitle.Text = "Average Number of Animals Seen by Employee - Company";
                 AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Animals";
 
+                //Format Income by Employee company chart
+                IncomeByEmployeeCompanyRHC1.ChartTitle.Text = "Income by Employee - Company";
                 IncomeByEmployeeCompanyRHC1.PlotArea.YAxis.TitleAppearance.Text = "Income";
 
                 //format xaxis based on selected time type
@@ -111,6 +120,26 @@ namespace Test
         //{
         //    ScriptManager.RegisterClientScriptBlock(this, GetType(), "mykey", "exportRadHtmlChart()", true);
         //}
+
+        //This is for grid exporting
+        protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
+                e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
+                sender.ToString();
+            Type t = sender.GetType();
+            t.Name.ToString();
+            RadGrid rg = (RadGrid)sender;
+            string gridname = rg.DataSourceID;
+
+            {
+                //rg.ExportSettings.FileName ="chartname"; 
+                rg.ExportSettings.ExportOnlyData = true;
+                rg.ExportSettings.IgnorePaging = true;
+                rg.ExportSettings.OpenInNewWindow = true;
+                rg.ExportSettings.UseItemStyles = true;
+            }
+        }
 
     }
 }

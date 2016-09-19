@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="Test.Dashboard" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -11,85 +12,85 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <!-- top tiles -->
-            <div class="row tile_count" style="margin-top: 55px;">
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" runat="server">
-                    <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
-                    <div class="count blue">
-                        <asp:Label ID="Label1" runat="server" Text="Label" class="count blue"></asp:Label>
-                    </div>
-                    <span id="Label1span" class="count_bottom" runat="server">
-                        <i id="icon1" runat="server"></i>
-                        <asp:Label ID="LabelPercent1" runat="server" Font-Bold="true"></asp:Label>
-                    </span>
-                    <span>From Last Month</span>
+    <telerik:RadStyleSheetManager runat="server"></telerik:RadStyleSheetManager>
+    <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <!-- top tiles -->
+        <div class="row tile_count" style="margin-top: 55px;">
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count" runat="server">
+                <span class="count_top"><i class="fa fa-money"></i>Total Sales</span>
+                <div class="count blue">
+                    <asp:Label ID="Label1" runat="server"  Text="Label" class="count blue"></asp:Label>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-money"></i>Avg $ per Transaction</span>
-                    <div class="count blue">
-                        <asp:Label ID="Label2" runat="server" class="count blue"></asp:Label>
-                    </div>
-                    <span id="Label2span" class="count_bottom" runat="server">
-                        <i id="icon2" runat="server"></i>
-                        <asp:Label ID="LabelPercent2" runat="server" Font-Bold="true"></asp:Label>
-                    </span>
-                    <span>From Last Month</span>
+                <span id="Label1span" class="count_bottom" runat="server">
+                    <i id="icon1" runat="server"></i>
+                    <asp:Label ID="LabelPercent1" runat="server" Font-Bold="true"></asp:Label>
+                </span>
+                <span>From Last Month</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-money"></i>Avg $ per Transaction</span>
+                <div class="count blue">
+                    <asp:Label ID="Label2" runat="server" class="count blue"></asp:Label>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-money"></i>Avg $ per Customer</span>
-                    <div class="count blue">
-                        <asp:Label ID="Label3" runat="server" class="count blue"></asp:Label>
-                    </div>
-                    <span id="Label3span" class="count_bottom" runat="server">
-                        <i id="icon3" runat="server"></i>
-                        <asp:Label ID="LabelPercent3" runat="server" Font-Bold="true"></asp:Label>
-                    </span>
-                    <span>From Last Month</span>
+                <span id="Label2span" class="count_bottom" runat="server">
+                    <i id="icon2" runat="server"></i>
+                    <asp:Label ID="LabelPercent2" runat="server" Font-Bold="true"></asp:Label>
+                </span>
+                <span>From Last Month</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-money"></i>Avg $ per Customer</span>
+                <div class="count blue">
+                    <asp:Label ID="Label3" runat="server" class="count blue"></asp:Label>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i>New Customers</span>
-                    <div class="count blue">
-                        <asp:Label ID="Label4" runat="server" class="count blue"></asp:Label>
-                    </div>
-                    <span id="Label4span" class="count_bottom" runat="server">
-                        <i id="icon4" runat="server"></i>
-                        <asp:Label ID="LabelPercent4" runat="server" Font-Bold="true"></asp:Label>
-                    </span>
-                    <span>From Last Month</span>
+                <span id="Label3span" class="count_bottom" runat="server">
+                    <i id="icon3" runat="server"></i>
+                    <asp:Label ID="LabelPercent3" runat="server" Font-Bold="true"></asp:Label>
+                </span>
+                <span>From Last Month</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-plus"></i>New Customers</span>
+                <div class="count blue">
+                    <asp:Label ID="Label4" runat="server" class="count blue"></asp:Label>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-plus"></i>Unique Customers Seen</span>
-                    <div class="count blue">
-                        <asp:Label ID="Label5" runat="server" class="count blue"></asp:Label>
-                    </div>
-                    <span id="Label5span" class="count_bottom" runat="server">
-                        <i id="icon5" runat="server"></i>
-                        <asp:Label ID="LabelPercent5" runat="server" Font-Bold="true"></asp:Label>
-                    </span>
-                    <span>From Last Month</span>
+                <span id="Label4span" class="count_bottom" runat="server">
+                    <i id="icon4" runat="server"></i>
+                    <asp:Label ID="LabelPercent4" runat="server" Font-Bold="true"></asp:Label>
+                </span>
+                <span>From Last Month</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-plus"></i>Unique Customers Seen</span>
+                <div class="count blue">
+                    <asp:Label ID="Label5" runat="server" class="count blue"></asp:Label>
                 </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-paw"></i>Animals Seen</span>
-                    <div class="count blue">
-                        <asp:Label ID="Label6" runat="server" class="count blue"></asp:Label>
-                    </div>
-                    <span id="Label6span" class="count_bottom" runat="server">
-                        <i id="icon6" runat="server"></i>
-                        <asp:Label ID="LabelPercent6" runat="server" Font-Bold="true"></asp:Label>
-                    </span>
-                    <span>From Last Month</span>
+                <span id="Label5span" class="count_bottom" runat="server">
+                    <i id="icon5" runat="server"></i>
+                    <asp:Label ID="LabelPercent5" runat="server" Font-Bold="true"></asp:Label>
+                </span>
+                <span>From Last Month</span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-paw"></i>Animals Seen</span>
+                <div class="count blue">
+                    <asp:Label ID="Label6" runat="server" class="count blue"></asp:Label>
                 </div>
-                <!-- /top tiles -->
+                <span id="Label6span" class="count_bottom" runat="server">
+                    <i id="icon6" runat="server"></i>
+                    <asp:Label ID="LabelPercent6" runat="server" Font-Bold="true"></asp:Label>
+                </span>
+                <span>From Last Month</span>
+            </div>
+            <!-- /top tiles -->
 
 
+            <div class="col-sm-12">
+                <%-- Line chart --%>
                 <div class="col-sm-12">
-                    <%-- Line chart --%>
-                    <div class="col-sm-12">
-                        <telerik:RadHtmlChart ID="TotalSalesCompanyRHC1" runat="server" DataSourceID="TotalSalesCompanyODS1" Skin="MetroTouch" Width="100%">
+                    <telerik:radhtmlchart id="TotalSalesCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" datasourceid="TotalSalesCompanyODS1" skin="MetroTouch" width="100%">
                             <ClientEvents OnLoad="chartLoad" />
                             <PlotArea>
                                 <Series>
@@ -118,18 +119,18 @@
 
                             <ChartTitle Text="Total Sales">
                             </ChartTitle>
-                        </telerik:RadHtmlChart>
-                        <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
-                                <asp:Parameter DefaultValue="2015/09/30" Name="end" Type="DateTime" />
-                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
-                                <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
-                            </SelectParameters>
-                        </asp:ObjectDataSource>
-                    </div>
-                    <div class="col-sm-6">
-                        <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
+                        </telerik:radhtmlchart>
+                    <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="2015/04/01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015/09/30" Name="end" Type="DateTime" />
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+                            <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                </div>
+                <div class="col-sm-6">
+                    <telerik:radhtmlchart id="IncomeByProductCategoryComRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" datasourceid="IncomeByProductCategoryCompanyODS1" skin="Bootstrap">
                             <ClientEvents OnLoad="chartLoad" />
                             <ChartTitle Text="Income by Product Category Companywide"></ChartTitle>
                             <PlotArea>
@@ -141,20 +142,20 @@
                                 </Series>
                             </PlotArea>
                             <Zoom Enabled="False"></Zoom>
-                        </telerik:RadHtmlChart>
-                        <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
-                                <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
-                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+                        </telerik:radhtmlchart>
+                    <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
+                        <SelectParameters>
+                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
 
 
 
-                            </SelectParameters>
-                        </asp:ObjectDataSource>
-                    </div>
-                    <div class="col-sm-6">
-                        <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                </div>
+                <div class="col-sm-6">
+                    <telerik:radhtmlchart id="IncomeByServiceActivityComRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" datasourceid="IncomeByServiceActivityCompanyODS1" skin="Material">
                             <ClientEvents OnLoad="chartLoad" />
                             <ChartTitle Text="Income by Service Activity Companywide"></ChartTitle>
                             <PlotArea>
@@ -166,64 +167,24 @@
                                 </Series>
                             </PlotArea>
                             <Zoom Enabled="False"></Zoom>
-                        </telerik:RadHtmlChart>
-                        <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
-                            <SelectParameters>
-                                <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
-                                <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
-                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
-
-
-
-                            </SelectParameters>
-                        </asp:ObjectDataSource>
-                    </div>
-                    <%--This is donut chart for Income by Product Category of a company--%>
-                    <div class="col-sm-6">
-                        <%--<telerik:RadHtmlChart ID="ProductCategory1" runat="server" DataSourceID="ObjectDataSource5">
-                        <Appearance>
-                        </Appearance>
-                        <ChartTitle Text="Income by Product Category Companywide">
-                            <Appearance Align="Center" Position="Top"></Appearance>
-                        </ChartTitle>
-                        <PlotArea>
-                            <Series>
-                                <telerik:donutSeries HoleSize="50" StartAngle="90" DataFieldY="Income" NameField="Category_Type" Name="Income">
-                                    <LabelsAppearance Visible="false">
-                                    </LabelsAppearance>
-                                  
-                                    <TooltipsAppearance DataFormatString="{0}%"></TooltipsAppearance>
-                                </telerik:donutSeries>
-                            </Series>
-                        </PlotArea>
-                        <Zoom Enabled="False"></Zoom>
-                    </telerik:RadHtmlChart>
-
-                    <asp:ObjectDataSource ID="ObjectDataSource5" runat="server" SelectMethod="ProductCategory" TypeName="Test.BLL.Financial.ProductCategoryBL">
+                        </telerik:radhtmlchart>
+                    <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2011-01-01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2020-01-01" Name="end" Type="DateTime" />
-                            <asp:Parameter DefaultValue="1" Name="branchRef" Type="Int32" />
+                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+
+
+
                         </SelectParameters>
                     </asp:ObjectDataSource>
-                    <%--This is donut chart of Product Category--%>
-                    </div>
-
                 </div>
-                <%--Grids/data tables end--%>
-                <%--<telerik:RadGrid ID="RadGrid1" runat="server" DataSourceID="ObjectDataSource5">
-<GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
-                <MasterTableView AutoGenerateColumns="False" DataSourceID="ObjectDataSource5">
-                    <Columns>
-                        <telerik:GridBoundColumn DataField="Category_Type" FilterControlAltText="Filter Category_Type column" HeaderText="Category_Type" SortExpression="Category_Type" UniqueName="Category_Type">
-                        </telerik:GridBoundColumn>
-                        <telerik:GridBoundColumn DataField="Income" DataType="System.Decimal" FilterControlAltText="Filter Income column" HeaderText="Income" SortExpression="Income" UniqueName="Income">
-                        </telerik:GridBoundColumn>
-                    </Columns>
-                </MasterTableView>
-            </telerik:RadGrid>--%>
+                <div class="col-sm-6">
+                </div>
+
             </div>
         </div>
+    </div>
     <script>
         <%--For responsive chart--%>
         (function (global) {

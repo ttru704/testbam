@@ -6,7 +6,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using Test.Models;
-using Test.BLL.Identity;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
 

@@ -22,6 +22,30 @@ namespace Test
             Int64? serviceRef = Session["Service"] as Int64?;
             Int64? productRef = Session["Product"] as Int64?;
 
+            //Format Income by Service Individual chart
+            IncomeByServiceIndividualRHC1.ChartTitle.Text = "Income by Service";
+            IncomeByServiceIndividualRHC1.PlotArea.YAxis.TitleAppearance.Text = "Income";
+
+            //Format Income by Product Individual chart
+            IncomeByProductIndividualRHC1.ChartTitle.Text = "Income by Product";
+            IncomeByProductIndividualRHC1.PlotArea.YAxis.TitleAppearance.Text = "Income";
+
+            //format x axis based on the selected time type
+            if (time == 1)
+            {
+                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+            }
+            else if (time == 2)
+            {
+                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+            }
+            else if (time == 3)
+            {
+                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+            }
 
             if (serviceRef != null)
             {
@@ -30,6 +54,8 @@ namespace Test
                 List<usp_IncomeByServiceIndividual_Result> incomeByServiceIndividualList = incomeByServiceIndividualBL.usp_IncomeByServiceIndividual_Result(start, end, company, serviceRef, time);
                 DataTable incomeByServiceIndividualDT = converter.ToDataTable(incomeByServiceIndividualList);
                 RadHtmlChartGroupDataSource.GroupDataSource(IncomeByServiceIndividualRHC1, incomeByServiceIndividualDT, "Service_Name", "BarSeries", "Income_By_Service", "TimePeriod");
+
+                
             }
 
             if (productRef != null)
@@ -40,6 +66,8 @@ namespace Test
                 List<usp_IncomeByProductIndividual_Result> incomeByProductIndividualList = incomeByProductIndividualBL.usp_IncomeByProductIndividual_Result(start, end, company, productRef, time);
                 DataTable incomeByProductIndividualDT = converter.ToDataTable(incomeByProductIndividualList);
                 RadHtmlChartGroupDataSource.GroupDataSource(IncomeByProductIndividualRHC1, incomeByProductIndividualDT, "Product_Name", "BarSeries", "Income_By_Product", "TimePeriod");
+
+                
             }
 
         }
@@ -60,6 +88,8 @@ namespace Test
             List<usp_IncomeByServiceIndividual_Result> incomeByServiceIndividualList = incomeByServiceIndividualBL.usp_IncomeByServiceIndividual_Result(start, end, company, serviceRef, time);
             DataTable incomeByServiceIndividualDT = converter.ToDataTable(incomeByServiceIndividualList);
             RadHtmlChartGroupDataSource.GroupDataSource(IncomeByServiceIndividualRHC1, incomeByServiceIndividualDT, "Service_Name", "BarSeries", "Income_By_Service", "TimePeriod");
+
+            
         }
 
         protected void ProductSB1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
@@ -77,7 +107,29 @@ namespace Test
             List<usp_IncomeByProductIndividual_Result> incomeByProductIndividualList = incomeByProductIndividualBL.usp_IncomeByProductIndividual_Result(start, end, company, productRef, time);
             DataTable incomeByProductIndividualDT = converter.ToDataTable(incomeByProductIndividualList);
             RadHtmlChartGroupDataSource.GroupDataSource(IncomeByProductIndividualRHC1, incomeByProductIndividualDT, "Product_Name", "BarSeries", "Income_By_Product", "TimePeriod");
+
+            
         }
 
+        //This is for grid exporting
+        protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
+                e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
+                sender.ToString();
+            Type t = sender.GetType();
+            t.Name.ToString();
+            RadGrid rg = (RadGrid)sender;
+            string gridname = rg.DataSourceID;
+
+            {
+                //rg.ExportSettings.FileName ="chartname"; 
+                rg.ExportSettings.ExportOnlyData = true;
+                rg.ExportSettings.IgnorePaging = true;
+                rg.ExportSettings.OpenInNewWindow = true;
+                rg.ExportSettings.UseItemStyles = true;
+            }
+        }
+        
     }
 }

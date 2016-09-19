@@ -13,6 +13,15 @@ namespace Test {
     public partial class ECompanyCS {
         
         /// <summary>
+        /// RadClientExportManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        
+        /// <summary>
         /// RadPanelBar1 control.
         /// </summary>
         /// <remarks>
@@ -22,22 +31,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
         
         /// <summary>
-        /// RadButton1 control.
+        /// CustomersSeenByEmployeeCompanyEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton1;
-        
-        /// <summary>
-        /// RadClientExportManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadClientExportManager RadClientExportManager1;
+        protected global::Telerik.Web.UI.RadButton CustomersSeenByEmployeeCompanyEB;
         
         /// <summary>
         /// CustomersSeenByEmployeeCompanyRHC1 control.
@@ -67,6 +67,15 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource CustomersSeenByEmployeeCompanyODS1;
         
         /// <summary>
+        /// AnimalsSeenByEmployeeCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AnimalsSeenByEmployeeCompanyEB;
+        
+        /// <summary>
         /// AnimalsSeenByEmployeeCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadGrid AnimalsSeenByEmployeeCompanyG1;
+        
+        /// <summary>
+        /// AvgCustomersSeenByEmployeeCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AvgCustomersSeenByEmployeeCompanyEB;
         
         /// <summary>
         /// AvgCustomersSeenByEmployeeCompanyRHC1 control.
@@ -121,6 +139,15 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AvgCustomersSeenByEmployeeCompanyG1;
         
         /// <summary>
+        /// AvgAnimalsSeenByEmployeeCompanyEB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton AvgAnimalsSeenByEmployeeCompanyEB;
+        
+        /// <summary>
         /// AvgAnimalsSeenByEmployeeCompanyRHC1 control.
         /// </summary>
         /// <remarks>
@@ -148,13 +175,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadGrid AvgAnimalsSeenByEmployeeCompanyG1;
         
         /// <summary>
-        /// RadButton2 control.
+        /// IncomeByEmployeeCompanyEB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton RadButton2;
+        protected global::Telerik.Web.UI.RadButton IncomeByEmployeeCompanyEB;
         
         /// <summary>
         /// IncomeByEmployeeCompanyRHC1 control.

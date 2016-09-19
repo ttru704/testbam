@@ -86,19 +86,31 @@ namespace Test
                 TimeDDL1.Visible = false;
             }
         }
-        protected void CountryCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        private long branch;
+        protected void BranchDDL1_SelectedIndexChanged(object sender, DropDownListEventArgs e)
         {
-            StateCB.Text = "";
-            RegionCB.Text = "";
-            RegionCB.Items.Clear();
-            StateCB.DataBind();
+            branch = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
+            var branchValue = branch.ToString();
+
+            CountryODS1.SelectParameters.Clear();
+            CountryODS1.SelectParameters.Add("branchRef", TypeCode.Int64, branchValue);
+            CountryODS1.DataBind();
+            CountryDDL1.DataBind();
         }
-        protected void StateCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
-        {
-            RegionCB.Text = "";
-            RegionCB.AppendDataBoundItems = true;
-            RegionCB.DataBind();
-        }
+
+        //protected void CountryCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        //{
+        //    StateDDL1.Text = "";
+        //    RegionDDL1.Text = "";
+        //    RegionDDL1.Items.Clear();
+        //    StateDDL1.DataBind();
+        //}
+        //protected void StateCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        //{
+        //    RegionDDL1.Text = "";
+        //    RegionDDL1.AppendDataBoundItems = true;
+        //    RegionDDL1.DataBind();
+        //}
 
 
         //This is a class that help displaying chart with multiple branches
@@ -174,27 +186,14 @@ namespace Test
 
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
+        protected void PopupButton_Click(object sender, EventArgs e)
         {
+            Session["Branch"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
             Session["BranchType"] = Convert.ToInt64(BranchTypeDDL1.SelectedItem.Value);
-            Session["Country"] = Convert.ToInt64(CountryCB.SelectedItem.Value);
-            Session["State"] = Convert.ToInt64(StateCB.SelectedItem.Value);
-            Session["Region"] = Convert.ToInt64(RegionCB.SelectedItem.Value);
+            Session["Country"] = Convert.ToInt64(CountryDDL1.SelectedItem.Value);
+            Session["State"] = Convert.ToInt64(StateDDL1.SelectedItem.Value);
+            Session["Region"] = Convert.ToInt64(RegionDDL1.SelectedItem.Value);
         }
-
-        private long branch;
-        protected void BranchDDL1_SelectedIndexChanged(object sender, DropDownListEventArgs e)
-        {
-            branch = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
-        }
-
-        protected void ProductServiceNameSearchBoxSB1_Search(object sender, SearchBoxEventArgs e)
-        {
-            Session["ProductService"] = Convert.ToInt64(e.Value);
-        }
-
-
-        
     }
 
 }

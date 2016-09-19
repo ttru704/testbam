@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a805d62aab294bc2ad714d83b1b8f2b1" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="53f9dac4cf704127b3046a71af8e9847" Name="Diagram1">
         <EntityTypeShape EntityType="KPIModel.Audit_Log" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Branch_Profile" Width="1.5" PointX="8.25" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Branch_Types" Width="1.5" PointX="6" PointY="22.625" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Business_Types" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Category_Types" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Client_Profile" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="KPIModel.Company_Profile" Width="1.5" PointX="3" PointY="23.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Company_Profile" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Configuration" Width="1.5" PointX="10.5" PointY="34.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Country_Profile" Width="1.5" PointX="6" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KPIModel.Key_Performance_Indexes" Width="1.5" PointX="0.75" PointY="28.5" IsExpanded="true" />

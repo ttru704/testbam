@@ -56,6 +56,7 @@
         <CollapseAnimation Type="None" />
     </telerik:RadPanelBar>
 </div>
+<telerik:RadScriptBlock runat="server">
 <script>
     var $ = $telerik.$
         function exportAvgDollarPerTransactionPeerRHC1(sender, args) {
@@ -145,3 +146,4 @@
         chart1.repaint();
     }
 </script>
+</telerik:RadScriptBlock>

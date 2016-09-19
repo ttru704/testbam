@@ -68,15 +68,24 @@ namespace Test
                 DataTable serviceOnlySalesBranchDT = converter.ToDataTable(serviceOnlySalesBranchList);
                 RadHtmlChartGroupDataSource.GroupDataSource(ServiceOnlySalesBranchRHC1, serviceOnlySalesBranchDT, "Branch_Name", "LineSeries", "Service_Total_Only", "TimePeriod");
 
-                //Format yaxis of charts
+                //Format Total sales branch chart
+                TotalSalesBranchRHC1.ChartTitle.Text = "Total Sales - Branch";
                 TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales";
 
+                //Format Avereage Dollar Per Transaction Branch chart
+                AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Averegae Dollar per Transaction - Branch";
                 AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction";
 
+                //Format Transaction excluding zero total bill branch comparison chart
+                TransExcludeZeroTotalBranchRHC1.ChartTitle.Text = "Number of Transactions excluding zero total bills - Branch";
                 TransExcludeZeroTotalBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of Transactions";
 
+                //Format Retail only sales branch comparison chart
+                RetailOnlySalesBranchRHC1.ChartTitle.Text = "Retail Sales - Branch";
                 RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Retail Sales";
 
+                //Format Service only sales branch comparison chart
+                ServiceOnlySalesBranchRHC1.ChartTitle.Text = "Service Sales - Branch";
                 ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Service Sales";
 
                 //format x axis based on the selected time type

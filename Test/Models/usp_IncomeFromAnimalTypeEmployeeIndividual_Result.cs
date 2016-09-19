@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class usp_IncomeFromAnimalTypeEmployeeIndividual_Result
     {
-        public string Employee_Name { get; set; }
+        public string Animal_Type_Name { get; set; }
         public Nullable<System.DateTime> YearMonth { get; set; }
         public decimal Income_By_Vet_For_Each_Animal_Type { get; set; }
         public string TimePeriod { get; set; }

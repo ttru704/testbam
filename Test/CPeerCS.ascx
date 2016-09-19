@@ -3,14 +3,19 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
+    
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--This section is for Average dollar per customer peer comparison  chart--%>
             <telerik:RadPanelItem Text="Average Dollar per Customer Peer Comparison" Expanded="false">
                 <ContentTemplate>
+                    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" runat="server" Skin="Metro">
-                    </telerik:RadHtmlChart>
+                    <div class="export">
+                        <telerik:RadButton ID="AvgDollarPerCustomerPeerEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerCustomerPeerRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" runat="server" Skin="Metro">
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgDollarPerCustomerPeerODS1" runat="server" SelectMethod="usp_AvgDollarPerCustomerPeer" TypeName="Test.BLL.Customer.AvgDollarPerCustomerPeerBL">
                         <SelectParameters>
@@ -25,12 +30,15 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" runat="server" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Material">
+                    <br />
+                    <br />
+                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Material">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
-
-                        <MasterTableView DataSourceID="AvgDollarPerCustomerPeerODS1" AutoGenerateColumns="False">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView DataSourceID="AvgDollarPerCustomerPeerODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
@@ -45,10 +53,36 @@
         <CollapseAnimation Type="None" />
     </telerik:RadPanelBar>
 </div>
+<telerik:RadScriptBlock runat="server">
 <script>
+    //for chart exporting
+    var $ = $telerik.$;
+        //For Exporting Charts
+    function exportAvgDollarPerCustomerPeerRHC1(sender, args) {
+            exportRadHtmlChart('<%=AvgDollarPerCustomerPeerRHC1.ClientID%>')
+         }
+    function exportRadHtmlChart(chartId) {
+            var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
+            var manager = $find('<%=RadClientExportManager1.ClientID%>');
+            var pdfSettings = {
+                fileName: chartTitle
+                
+            };
+            
+            manager.set_pdfSettings(pdfSettings);
+            manager.exportPDF($("#" + chartId));
+        }
+
     <%--For panning and zooming--%>
     (function (global) {
         var chart;
+        //Hide Export Button 
+        $("div.export").mouseover(function () {
+            $(".RadButton", this).css("display", "inline-block");
+        });
+        $("div.export").mouseout(function () {
+            $(".RadButton", this).css("display", "none");
+        });
 
         function ChartLoad(sender, args) {
             chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
@@ -102,3 +136,4 @@
     })(window);
     <%--For responsive chart--%>
 </script>
+</telerik:RadScriptBlock>

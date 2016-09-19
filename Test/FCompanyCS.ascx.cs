@@ -40,37 +40,37 @@ namespace Test
             }
 
             RadPanelItem item1 = RadPanelBar1.FindItemByText("Average Dollar per Transaction - Company");
-            if (item.Expanded == true)
+            if (item1.Expanded == true)
             {
                 BindAvgDollarPerTransactionCompany();
             }
 
             RadPanelItem item2 = RadPanelBar1.FindItemByText("Number of Transactions excluding zero total bills - Company");
-            if (item.Expanded == true)
+            if (item2.Expanded == true)
             {
                 BindTransExcludeZeroTotalCompany();
             }
 
             RadPanelItem item3 = RadPanelBar1.FindItemByText("Income by Product Category - Company");
-            if (item.Expanded == true)
+            if (item3.Expanded == true)
             {
                 BindIncomeByProductCategoryCompany();
             }
 
             RadPanelItem item4 = RadPanelBar1.FindItemByText("Income by Service Activity - Company");
-            if (item.Expanded == true)
+            if (item4.Expanded == true)
             {
                 BindIncomeByServiceActivityCompany();
             }
 
             RadPanelItem item5 = RadPanelBar1.FindItemByText("Retail Only Sales - Company");
-            if (item.Expanded == true)
+            if (item5.Expanded == true)
             {
                 BindRetailOnlySalesCompany();
             }
 
             RadPanelItem item6 = RadPanelBar1.FindItemByText("Service Only Sales - Company");
-            if (item.Expanded == true)
+            if (item6.Expanded == true)
             {
                 BindServiceOnlySalesCompany();
             }

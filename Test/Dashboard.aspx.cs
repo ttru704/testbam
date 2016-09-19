@@ -10,7 +10,6 @@ using Telerik.Charting;
 using System.Drawing;
 using Test.Models;
 using Test.BLL.Controls;
-using Test.BLL.Identity;
 
 namespace Test
 {

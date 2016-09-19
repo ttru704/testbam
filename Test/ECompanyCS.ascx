@@ -3,24 +3,31 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
+    <%--This export manager is for all the KPI charts--%>
+    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
+
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--Number of Customers Seen By Employee - Company--%>
             <telerik:RadPanelItem Text="Number of Customers Seen by Employee - Company" Visible="false" Expanded="False">
                 <ContentTemplate>
-                    <%--Export button--%>
-                    <telerik:RadButton RenderMode="Lightweight" runat="server" ID="RadButton1" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                    <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="CustomersSeenByEmployeeCompanyRHC1" Width="100%" runat="server" CssClass="MonthlyExport" Skin="Material">
-                    </telerik:RadHtmlChart>
+                    <div class="export">
+                        <telerik:RadButton ID="CustomersSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportCustomersSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="CustomersSeenByEmployeeCompanyRHC1" Width="100%" runat="server" CssClass="MonthlyExport" Skin="Material">
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--Table--%>
-                    <telerik:RadGrid ID="CustomersSeenByEmployeeCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="CustomersSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
+                    <br />
+                    <br />
+                    <telerik:RadGrid ID="CustomersSeenByEmployeeCompanyG1" OnItemCommand="ExportGridCustomiser" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="CustomersSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="CustomersSeenByEmployeeCompanyODS1">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView AutoGenerateColumns="False" Width="100%" CommandItemDisplay="Top" DataSourceID="CustomersSeenByEmployeeCompanyODS1">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name">
                                 </telerik:GridBoundColumn>
@@ -47,7 +54,10 @@
             <telerik:RadPanelItem Text="Number of Animals Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="MetroTouch"></telerik:RadHtmlChart>
+                    <div class="export">
+                        <telerik:RadButton ID="AnimalsSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAnimalsSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="MetroTouch"></telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AnimalsSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AnimalsSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AnimalsSeenByEmployeeCompanyBL">
                         <SelectParameters>
@@ -59,12 +69,16 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="AnimalsSeenByEmployeeCompanyG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AnimalsSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
+                    <br />
+                    <br />
+                    <telerik:RadGrid ID="AnimalsSeenByEmployeeCompanyG1" OnItemCommand="ExportGridCustomiser" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AnimalsSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
-                        <MasterTableView AutoGenerateColumns="False" DataSourceID="AnimalsSeenByEmployeeCompanyODS1">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView AutoGenerateColumns="False" Width="100%" CommandItemDisplay="Top" DataSourceID="AnimalsSeenByEmployeeCompanyODS1">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name">
                                 </telerik:GridBoundColumn>
@@ -81,7 +95,10 @@
             <telerik:RadPanelItem Text="Average Customers Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="AvgCustomersSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                    <div class="export">
+                        <telerik:RadButton ID="AvgCustomersSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgCustomersSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="AvgCustomersSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgCustomersSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AvgCustomersSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AvgCustomersSeenByEmployeeCompanyBL">
                         <SelectParameters>
@@ -93,12 +110,15 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="AvgCustomersSeenByEmployeeCompanyG1" runat="server" DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
+                    <br />
+                    <br />
+                    <telerik:RadGrid ID="AvgCustomersSeenByEmployeeCompanyG1" OnItemCommand="ExportGridCustomiser" runat="server" DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
-
-                        <MasterTableView DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" AutoGenerateColumns="False" AllowPaging="False" AllowSorting="False">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" AllowPaging="False" AllowSorting="False">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" HeaderText="Number Of Customers Seen" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee" DataType="System.Decimal" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column"></telerik:GridBoundColumn>
@@ -111,7 +131,11 @@
             <telerik:RadPanelItem Text="Average Animals Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadHtmlChart ID="AvgAnimalsSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                    <div class="export">
+                        <telerik:RadButton ID="AvgAnimalsSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgAnimalsSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="AvgAnimalsSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                    </div>
+                    >
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgAnimalsSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AvgAnimalsSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AvgAnimalsSeenByEmployeeCompanyBL">
                         <SelectParameters>
@@ -123,12 +147,15 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="AvgAnimalsSeenByEmployeeCompanyG1" runat="server" DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
+                    <br />
+                    <br />
+                    <telerik:RadGrid ID="AvgAnimalsSeenByEmployeeCompanyG1" OnItemCommand="ExportGridCustomiser" runat="server" DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
-
-                        <MasterTableView DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" AutoGenerateColumns="False">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="Average_Number_Of_Animals_Seen_By_Employee" HeaderText="Average Number Of Animals Seen" SortExpression="Average_Number_Of_Animals_Seen_By_Employee" UniqueName="Average_Number_Of_Animals_Seen_By_Employee" DataType="System.Decimal" FilterControlAltText="Filter Average_Number_Of_Animals_Seen_By_Employee column"></telerik:GridBoundColumn>
@@ -141,8 +168,10 @@
             <telerik:RadPanelItem Text="Income by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
-                    <telerik:RadButton RenderMode="Lightweight" runat="server" ID="RadButton2" OnClientClicked="exportRadHtmlChart" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                    <telerik:RadHtmlChart ID="IncomeByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                    <div class="export">
+                        <telerik:RadButton ID="IncomeByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <telerik:RadHtmlChart ID="IncomeByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="IncomeByEmployeeCompanyODS1" runat="server" SelectMethod="usp_IncomeByEmployeeCompany" TypeName="Test.BLL.Productivity.IncomeByEmployeeCompanyBL">
                         <SelectParameters>
@@ -154,12 +183,15 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <telerik:RadGrid ID="IncomeByEmployeeCompanyG1" runat="server" DataSourceID="IncomeByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
+                    <br />
+                    <br />
+                    <telerik:RadGrid ID="IncomeByEmployeeCompanyG1" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="IncomeByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
-
-                        <MasterTableView DataSourceID="IncomeByEmployeeCompanyODS1" AutoGenerateColumns="False">
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <MasterTableView DataSourceID="IncomeByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Employee_Name" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name" FilterControlAltText="Filter Employee_Name column"></telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
@@ -177,14 +209,52 @@
 </div>
 <telerik:RadScriptBlock runat="server">
     <script>
+        //Without this hide export button would not work
         var $ = $telerik.$;
 
-        function exportRadHtmlChart() {
-            $find('<%=RadClientExportManager1.ClientID%>').exportPDF($("#CustomersSeenByEmployeeCompanyRHC1"));
-    };
+        //For chart exporting
+        function exportCustomersSeenByEmployeeCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=CustomersSeenByEmployeeCompanyRHC1.ClientID%>')
+        }
+
+        function exportAnimalsSeenByEmployeeCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=AnimalsSeenByEmployeeCompanyRHC1.ClientID%>')
+        }
+
+        function exportAvgCustomersSeenByEmployeeCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=AvgCustomersSeenByEmployeeCompanyRHC1.ClientID%>')
+        }
+
+        function exportAvgAnimalsSeenByEmployeeCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=AvgAnimalsSeenByEmployeeCompanyRHC1.ClientID%>')
+        }
+
+        function exportIncomeByEmployeeCompanyRHC1(sender, args) {
+            exportRadHtmlChart('<%=IncomeByEmployeeCompanyRHC1.ClientID%>')
+        }
+
+        function exportRadHtmlChart(chartId) {
+            var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
+            var manager = $find('<%=RadClientExportManager1.ClientID%>');
+            var pdfSettings = {
+                fileName: chartTitle
+
+            };
+
+            manager.set_pdfSettings(pdfSettings);
+            manager.exportPDF($("#" + chartId));
+        }
     <%--For panning and zooming--%>
         (function (global) {
             var chart;
+            //Hide Export Button 
+
+            $("div.export").mouseover(function () {
+                $(".RadButton", this).css("display", "inline-block");
+            });
+            $("div.export").mouseout(function () {
+                $(".RadButton", this).css("display", "none");
+            });
 
             function ChartLoad(sender, args) {
                 chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
@@ -241,24 +311,24 @@
         function pageLoad() {
 
             var chart1 = $find("<%=CustomersSeenByEmployeeCompanyRHC1.ClientID%>");
-        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart1.repaint();
+            chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart1.repaint();
 
-        var chart2 = $find("<%=AnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
-        chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart2.repaint();
+            var chart2 = $find("<%=AnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
+            chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart2.repaint();
 
-        var chart3 = $find("<%=AvgCustomersSeenByEmployeeCompanyRHC1.ClientID%>");
+            var chart3 = $find("<%=AvgCustomersSeenByEmployeeCompanyRHC1.ClientID%>");
             chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart3.repaint();
 
             var chart4 = $find("<%=AvgAnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
-        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart4.repaint();
+            chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart4.repaint();
 
-        var chart5 = $find("<%=IncomeByEmployeeCompanyRHC1.ClientID%>");
-        chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart5.repaint();
-    }
+            var chart5 = $find("<%=IncomeByEmployeeCompanyRHC1.ClientID%>");
+            chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart5.repaint();
+        }
     </script>
 </telerik:RadScriptBlock>

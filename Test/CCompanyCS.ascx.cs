@@ -40,31 +40,31 @@ namespace Test
             }
 
             RadPanelItem item1 = RadPanelBar1.FindItemByText("Number of Animals Seen - Company");
-            if (item.Expanded == true)
+            if (item1.Expanded == true)
             {
                 BindAnimalsSeenCompany();
             }
 
-            RadPanelItem item2 = RadPanelBar1.FindItemByText("Number of Transactions excluding zero total bills - Company");
-            if (item.Expanded == true)
+            RadPanelItem item2 = RadPanelBar1.FindItemByText("Average Dollar per Customer - Company");
+            if (item2.Expanded == true)
             {
                 BindAvgDollarPerCustomerCompany();
             }
 
             RadPanelItem item3 = RadPanelBar1.FindItemByText("Number of New Customers - Company");
-            if (item.Expanded == true)
+            if (item3.Expanded == true)
             {
                 BindNewCustomersCompany();
             }
 
             RadPanelItem item4 = RadPanelBar1.FindItemByText("Number of Small Animals - Company");
-            if (item.Expanded == true)
+            if (item4.Expanded == true)
             {
                 BindSmallAnimalsCompany();
             }
 
             RadPanelItem item5 = RadPanelBar1.FindItemByText("Number of Large Animals - Company");
-            if (item.Expanded == true)
+            if (item5.Expanded == true)
             {
                 BindLargeAnimalsCompany();
             }
@@ -251,6 +251,27 @@ namespace Test
             LargeAnimalsCompanyODS1.SelectParameters.Add("timeType", TypeCode.Int32, timeValue);
             LargeAnimalsCompanyRHC1.DataBind();
         }
+
+        //This is for grid exporting
+        protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
+        {
+            if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
+                e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
+                sender.ToString();
+            Type t = sender.GetType();
+            t.Name.ToString();
+            RadGrid rg = (RadGrid)sender;
+            string gridname = rg.DataSourceID;
+
+            {
+                //rg.ExportSettings.FileName ="chartname"; 
+                rg.ExportSettings.ExportOnlyData = true;
+                rg.ExportSettings.IgnorePaging = true;
+                rg.ExportSettings.OpenInNewWindow = true;
+                rg.ExportSettings.UseItemStyles = true;
+            }
+        }
+
         //protected void addItem()
         //{
         //    string userRef = Session["UserRef"] as string;
