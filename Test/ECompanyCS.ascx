@@ -14,7 +14,13 @@
                     <%--Chart--%>
                     <div class="export">
                         <telerik:RadButton ID="CustomersSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportCustomersSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="CustomersSeenByEmployeeCompanyRHC1" Width="100%" runat="server" CssClass="MonthlyExport" Skin="Material">
+                        <telerik:RadHtmlChart ID="CustomersSeenByEmployeeCompanyRHC1" Width="100%" runat="server" CssClass="MonthlyExport" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatCustomersSeenByEmployeeCompanyRHC1" />
+                            <Pan Enabled="true" Lock="X" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="X" />
+                                <Selection Enabled="true" Lock="X" ModifierKey="Shift" />
+                            </Zoom>
                         </telerik:RadHtmlChart>
                     </div>
                     <%--Table--%>
@@ -56,7 +62,14 @@
                     <%--Chart--%>
                     <div class="export">
                         <telerik:RadButton ID="AnimalsSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAnimalsSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="MetroTouch"></telerik:RadHtmlChart>
+                        <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="Metro">
+                            <ClientEvents OnLoad="formatAnimalsSeenByEmployeeCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AnimalsSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AnimalsSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AnimalsSeenByEmployeeCompanyBL">
@@ -97,7 +110,14 @@
                     <%--Chart--%>
                     <div class="export">
                         <telerik:RadButton ID="AvgCustomersSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgCustomersSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AvgCustomersSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                        <telerik:RadHtmlChart ID="AvgCustomersSeenByEmployeeCompanyRHC1" runat="server" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatAvgCustomersSeenByEmployeeCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgCustomersSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AvgCustomersSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AvgCustomersSeenByEmployeeCompanyBL">
@@ -133,7 +153,14 @@
                     <%--Chart--%>
                     <div class="export">
                         <telerik:RadButton ID="AvgAnimalsSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgAnimalsSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AvgAnimalsSeenByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                        <telerik:RadHtmlChart ID="AvgAnimalsSeenByEmployeeCompanyRHC1" runat="server" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatAvgAnimalsSeenByEmployeeCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
                     </div>
                     >
                     <%--Datasource--%>
@@ -170,7 +197,14 @@
                     <%--Chart--%>
                     <div class="export">
                         <telerik:RadButton ID="IncomeByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="IncomeByEmployeeCompanyRHC1" runat="server"></telerik:RadHtmlChart>
+                        <telerik:RadHtmlChart ID="IncomeByEmployeeCompanyRHC1" runat="server" Skin="Metro">
+                            <ClientEvents OnLoad="formatIncomeByEmployeeCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="IncomeByEmployeeCompanyODS1" runat="server" SelectMethod="usp_IncomeByEmployeeCompany" TypeName="Test.BLL.Productivity.IncomeByEmployeeCompanyBL">
@@ -308,27 +342,34 @@
         })(window);
     <%--For responsive chart--%>
         //format Y axis value based on value
-        function pageLoad() {
-
+        function formatCustomersSeenByEmployeeCompanyRHC1() {
             var chart1 = $find("<%=CustomersSeenByEmployeeCompanyRHC1.ClientID%>");
             chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart1.repaint();
+        };
 
+        function formatAnimalsSeenByEmployeeCompanyRHC1() {
             var chart2 = $find("<%=AnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
             chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart2.repaint();
+        };
 
+        function formatAvgCustomersSeenByEmployeeCompanyRHC1() {
             var chart3 = $find("<%=AvgCustomersSeenByEmployeeCompanyRHC1.ClientID%>");
             chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart3.repaint();
+        };
 
+        function formatAvgAnimalsSeenByEmployeeCompanyRHC1() {
             var chart4 = $find("<%=AvgAnimalsSeenByEmployeeCompanyRHC1.ClientID%>");
             chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart4.repaint();
+        };
 
+        function formatIncomeByEmployeeCompanyRHC1() {
             var chart5 = $find("<%=IncomeByEmployeeCompanyRHC1.ClientID%>");
             chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart5.repaint();
-        }
+        };
     </script>
 </telerik:RadScriptBlock>

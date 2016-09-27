@@ -6,7 +6,7 @@
 
     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
 
-    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch" OnItemClick="RadPanelBar1_ItemClick">
+    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <%--This section is for Total Sales Company--%>
             <telerik:RadPanelItem Text="Total Sales - Company" Expanded="false" Visible="false">
@@ -16,8 +16,8 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="TotalSalesCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTotalSalesCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="TotalSalesCompanyRHC1" runat="server" RenderMode="Lightweight" RenderAs="Canvas" Transitions="true" DataSourceID="TotalSalesCompanyODS" Skin="Metro">
-                            <ClientEvents OnLoad="chartLoad" />
+                        <telerik:RadHtmlChart ID="TotalSalesCompanyRHC1" runat="server" RenderMode="Lightweight" RenderAs="Canvas" Transitions="true" DataSourceID="TotalSalesCompanyODS" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatTotalSalesCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
@@ -48,8 +48,6 @@
                                         <TextStyle Margin="20" />
                                     </TitleAppearance>
                                     <MinorGridLines Visible="false" />
-                                    <LabelsAppearance DataFormatString="C0">
-                                    </LabelsAppearance>
                                 </YAxis>
                             </PlotArea>
                             <ChartTitle Text="Total Sales Company-Wide">
@@ -59,10 +57,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="TotalSalesCompanyODS" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="companyRef" Type="Int32"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
@@ -96,8 +95,9 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="AvgDollarPerTransactionCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerTransactionCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AvgDollarPerTransactionCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="AvgDollarPerTransactionCompanyODS1" Skin="Bootstrap">
+                        <telerik:RadHtmlChart ID="AvgDollarPerTransactionCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="AvgDollarPerTransactionCompanyODS1" Skin="Material">
                             <Pan Enabled="true" Lock="Y" />
+                            <ClientEvents  OnLoad="formatAvgDollarPerTransactionCompanyRHC1"/>
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
@@ -138,10 +138,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgDollarPerTransactionCompanyODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionCompany" TypeName="Test.BLL.Financial.AvgDollarPerTransactionCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -176,8 +177,9 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="TransExcludeZeroTotalCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTransExcludeZeroTotalCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="TransExcludeZeroTotalCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="TransExcludeZeroTotalCompanyODS1" Skin="Material">
+                        <telerik:RadHtmlChart ID="TransExcludeZeroTotalCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="TransExcludeZeroTotalCompanyODS1" Skin="MetroTouch">
                             <Pan Enabled="true" Lock="Y" />
+                            <ClientEvents OnLoad="formatTransExcludeZeroTotalCompanyRHC1" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
@@ -216,10 +218,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="TransExcludeZeroTotalCompanyODS1" runat="server" SelectMethod="usp_TransExcludeZeroTotalCompany" TypeName="Test.BLL.Financial.TransExcludeZeroTotalCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -243,118 +246,6 @@
                     </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
-            <%--This section is for Income by Product Category Companywide--%>
-            <telerik:RadPanelItem Text="Income by Product Category - Company" Visible="false" Expanded="false">
-                <ContentTemplate>
-                    <%--Chart--%>
-                    <br />
-                    <div class="export">
-                        <telerik:RadButton ID="IncomeByProductCategoryCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByProductCategoryComRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="IncomeByProductCategoryCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
-                            <ClientEvents OnLoad="chartLoad" />
-                            <ChartTitle Text="Income by Product Category Company-Wide"></ChartTitle>
-                            <PlotArea>
-                                <Series>
-                                    <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
-                                        <LabelsAppearance Visible="false"></LabelsAppearance>
-                                        <TooltipsAppearance DataFormatString="{0:N0} %" />
-                                        <Appearance Overlay-Gradient="None"></Appearance>
-                                    </telerik:PieSeries>
-                                </Series>
-                            </PlotArea>
-                            <Zoom Enabled="False"></Zoom>
-                        </telerik:RadHtmlChart>
-                    </div>
-                    <%--Datasource--%>
-                    <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-
-
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                    <%--Table--%>
-                    <hr />
-                    <br />
-                    <telerik:RadGrid ID="IncomeByProductCategoryCompanyG1" RenderMode="Lightweight" runat="server" DataSourceID="IncomeByProductCategoryCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" OnItemCommand="ExportGridCustomiser" ExportSettings-FileName="Income by Product Category Company-wide">
-                        <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
-                            <Selecting AllowRowSelect="True"></Selecting>
-                        </ClientSettings>
-                        <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <ClientSettings AllowDragToGroup="True">
-                        </ClientSettings>
-
-                        <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="IncomeByProductCategoryCompanyODS1" AutoGenerateColumns="False">
-                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
-                            <Columns>
-                                <telerik:GridBoundColumn DataField="Category_Type" HeaderText="Product Category" SortExpression="Category_Type" UniqueName="Category_Type" FilterControlAltText="Filter Category_Type column"></telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="Income" HeaderText="Income (%)" SortExpression="Income" UniqueName="Income" DataType="System.Decimal" FilterControlAltText="Filter Income column"></telerik:GridBoundColumn>
-                            </Columns>
-                        </MasterTableView>
-                    </telerik:RadGrid>
-                </ContentTemplate>
-            </telerik:RadPanelItem>
-            <%--This section is for Income by Service Activity Companywide--%>
-            <telerik:RadPanelItem Text="Income by Service Activity - Company" Visible="false" Expanded="false">
-                <ContentTemplate>
-
-                    <%--Chart--%>
-                    <br />
-                    <div class="export">
-                        <telerik:RadButton ID="IncomeByServiceActivityCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByServiceActivityComRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="IncomeByServiceActivityCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="true" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
-                            <ClientEvents OnLoad="chartLoad" />
-                            <ChartTitle Text="Income by Service Activity Company-Wide">
-                                <Appearance Align="Center"></Appearance>
-                            </ChartTitle>
-                            <PlotArea>
-                                <Series>
-                                    <telerik:PieSeries StartAngle="90" DataFieldY="Income" ExplodeField="IsExploded" NameField="Category_Type" Name="Name">
-                                        <LabelsAppearance Visible="false"></LabelsAppearance>
-                                        <TooltipsAppearance DataFormatString="{0:N0} %" />
-                                        <Appearance Overlay-Gradient="None"></Appearance>
-                                    </telerik:PieSeries>
-                                    
-                                </Series>
-                            </PlotArea>
-                            <Legend>
-                                <Appearance OffsetX="-70"></Appearance>
-                            </Legend>
-                            <Zoom Enabled="False"></Zoom>
-                        </telerik:RadHtmlChart>
-                    </div>
-                    <%--Datasource--%>
-                    <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
-                        <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-
-
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                    <%--Table--%>
-                    <hr />
-                    <br />
-                    <telerik:RadGrid ID="IncomeByServiceActivityCompanyG1" RenderMode="Lightweight" runat="server" DataSourceID="IncomeByServiceActivityCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" CellSpacing="-1" Skin="Metro" GridLines="Both" OnItemCommand="ExportGridCustomiser" ExportSettings-FileName="Income By Service Activity Company-wide">
-                        <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
-                            <Selecting AllowRowSelect="True"></Selecting>
-                        </ClientSettings>
-                        <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <ClientSettings AllowDragToGroup="True"></ClientSettings>
-
-                        <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="IncomeByServiceActivityCompanyODS1" AutoGenerateColumns="False">
-                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
-                            <Columns>
-                                <telerik:GridBoundColumn DataField="Category_Type" HeaderText="Service Activity" SortExpression="Category_Type" UniqueName="Category_Type" FilterControlAltText="Filter Category_Type column"></telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="Income" HeaderText="Income (%)" SortExpression="Income" UniqueName="Income" DataType="System.Decimal" FilterControlAltText="Filter Income column"></telerik:GridBoundColumn>
-                            </Columns>
-                        </MasterTableView>
-                    </telerik:RadGrid>
-                </ContentTemplate>
-            </telerik:RadPanelItem>
             <%--This section is for Retail Only Sales companywide chart--%>
             <telerik:RadPanelItem Text="Retail Only Sales - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
@@ -362,7 +253,8 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="RetailOnlySalesCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportRetailOnlySalesCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="RetailOnlySalesCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="RetailOnlySalesCompanyODS1" Skin="MetroTouch">
+                        <telerik:RadHtmlChart ID="RetailOnlySalesCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="RetailOnlySalesCompanyODS1" Skin="Metro">
+                            <ClientEvents OnLoad="formatRetailOnlySalesCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
@@ -405,10 +297,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="RetailOnlySalesCompanyODS1" runat="server" SelectMethod="usp_RetailOnlySalesCompany" TypeName="Test.BLL.Financial.RetailOnlySalesCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -443,7 +336,8 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="ServiceOnlySalesCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportServiceOnlySalesCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="ServiceOnlySalesCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="ServiceOnlySalesCompanyODS1" Skin="Metro">
+                        <telerik:RadHtmlChart ID="ServiceOnlySalesCompanyRHC1" RenderMode="Lightweight" RenderAs="Canvas" Transitions="false" runat="server" DataSourceID="ServiceOnlySalesCompanyODS1" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatServiceOnlySalesCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
@@ -471,7 +365,7 @@
                                             <FillStyle BackgroundColor="Orange" />
                                         </Appearance>
                                         <MarkersAppearance MarkersType="Circle" BackgroundColor="White" />
-                                        <TooltipsAppearance BackgroundColor="White" />
+                                        <TooltipsAppearance BackgroundColor="White" Color="Black" />
                                         <LabelsAppearance Visible="false">
                                         </LabelsAppearance>
                                         <TooltipsAppearance DataFormatString="C0"></TooltipsAppearance>
@@ -486,10 +380,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="ServiceOnlySalesCompanyODS1" runat="server" SelectMethod="usp_ServiceOnlySalesCompany" TypeName="Test.BLL.Financial.ServiceOnlySalesCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -538,14 +433,6 @@
             exportRadHtmlChart('<%=TransExcludeZeroTotalCompanyRHC1.ClientID%>')
         }
 
-        function exportIncomeByProductCategoryComRHC1(sender, args) {
-            exportRadHtmlChart('<%=IncomeByProductCategoryCompanyRHC1.ClientID%>')
-        }
-
-        function exportIncomeByServiceActivityComRHC1(sender, args) {
-            exportRadHtmlChart('<%=IncomeByServiceActivityCompanyRHC1.ClientID%>')
-        }
-
         function exportRetailOnlySalesCompanyRHC1(sender, args) {
             exportRadHtmlChart('<%=RetailOnlySalesCompanyRHC1.ClientID%>')
         }
@@ -564,42 +451,7 @@
             manager.set_pdfSettings(pdfSettings);
             manager.exportPDF($("#" + chartId));
         }
-
-
-
-
-
-    <%--For panning and zooming--%>
-        (function (global) {
-            var chart;
-
-
-
-            function ChartLoad(sender, args) {
-                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-            }
-
-            global.chartLoad = ChartLoad;
-
-            function resizeChart() {
-                if (chart)
-                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-            }
-
-
-            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-            var TO = false;
-            window.onresize = function () {
-                if (TO !== false)
-                    clearTimeout(TO);
-                TO = setTimeout(resizeChart, 200);
-            }
-
-        })(window);
-        <%--For panning and zooming--%>
-
-        <%--For responsive chart--%>
+        <%--For panning and zooming and hiding export button--%>
         (function (global) {
             var chart;
             //Hide Export Button 
@@ -635,24 +487,34 @@
         })(window);
 
         //format Y axis value based on value
-        function pageLoad() {
-
+        function formatTotalSalesCompanyRHC1() {
             var chart1 = $find("<%=TotalSalesCompanyRHC1.ClientID%>");
             chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart1.repaint();
+        };
+        function formatAvgDollarPerTransactionCompanyRHC1() {
             var chart2 = $find("<%=AvgDollarPerTransactionCompanyRHC1.ClientID%>");
             chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart2.repaint();
+        };
+
+        function formatTransExcludeZeroTotalCompanyRHC1() {
             var chart3 = $find("<%=TransExcludeZeroTotalCompanyRHC1.ClientID%>");
             chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart3.repaint();
+        };
+
+        function formatRetailOnlySalesCompanyRHC1() {
             var chart4 = $find("<%=RetailOnlySalesCompanyRHC1.ClientID%>");
             chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart4.repaint();
+        };
+
+        function formatServiceOnlySalesCompanyRHC1() {
             var chart5 = $find("<%=ServiceOnlySalesCompanyRHC1.ClientID%>");
-        chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart5.repaint();
-    }
+            chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart5.repaint();
+        };
 
     </script>
 </telerik:RadScriptBlock>

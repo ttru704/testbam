@@ -40,10 +40,10 @@ namespace Test
             }
         }
 
-        protected void EmployeeSB_Search(object sender, SearchBoxEventArgs e)
-        {
-            Session["Employee"] = Convert.ToInt64(e.Value);
-        }
+        //protected void EmployeeSB_Search(object sender, SearchBoxEventArgs e)
+        //{
+        //    Session["Employee"] = Convert.ToInt64(e.Value);
+        //}
 
 
         //This is for the RadTabStrip to work
@@ -112,6 +112,11 @@ namespace Test
 
 
 
+        }
+
+        protected void EmployeeCB1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["Employee"] = Convert.ToInt64(e.Value);
         }
     }
 }

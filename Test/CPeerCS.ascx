@@ -13,7 +13,13 @@
                     <%--Chart--%>
                     <div class="export">
                         <telerik:RadButton ID="AvgDollarPerCustomerPeerEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerCustomerPeerRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" runat="server" Skin="Metro">
+                        <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" runat="server" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatAvgDollarPerCustomerPeerRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
                         </telerik:RadHtmlChart>
                     </div>
                     <%--Datasource--%>
@@ -21,18 +27,18 @@
                         <SelectParameters>
                             <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-04-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-09-01&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="BranchRef" DefaultValue="" Name="branchRef" Type="Int64"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="4" Name="branchType" Type="Int64"></asp:Parameter>
+                            <asp:SessionParameter SessionField="Branch" DefaultValue="" Name="branchRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="BranchType" DefaultValue="" Name="branchType" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="Time" DefaultValue="1" Name="timeType" Type="Int32"></asp:SessionParameter>
-                            <asp:Parameter DefaultValue="1" Name="country" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="1" Name="state" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="9" Name="region" Type="Int64"></asp:Parameter>
+                            <asp:SessionParameter SessionField="Country" DefaultValue="" Name="country" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="State" DefaultValue="" Name="state" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Region" DefaultValue="" Name="region" Type="Int64"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
                     <br />
                     <br />
-                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Material">
+                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
@@ -107,8 +113,6 @@
 
     })(window);
     <%--For panning and zooming--%>
-
-        <%--For responsive chart--%>
     (function (global) {
         var chart;
 
@@ -134,6 +138,13 @@
         }
 
     })(window);
-    <%--For responsive chart--%>
+    
+    //format Y axis value based on value
+    function formatAvgDollarPerCustomerPeerRHC1() {
+
+        var chart1 = $find("<%=AvgDollarPerCustomerPeerRHC1.ClientID%>");
+        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+        chart1.repaint();
+    };
 </script>
 </telerik:RadScriptBlock>

@@ -53,12 +53,12 @@ namespace Test
                 AnimalsSeenBranchBL animalsSeenBranchBL = new AnimalsSeenBranchBL();
                 List<usp_AnimalsSeenBranch_Result> animalsSeenBranchList = animalsSeenBranchBL.usp_AnimalsSeenBranch(start, end, company, branch, time);
                 DataTable animalsSeenBranchDT = converter.ToDataTable(animalsSeenBranchList);
-                RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Name", "BarSeries", "Number_of_Animals_Seen", "TimePeriod");
+                RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenBranchRHC1, animalsSeenBranchDT, "Branch_Name", "ColumnSeries", "Number_of_Animals_Seen", "TimePeriod");
 
                 AvgDollarPerCustomerBranchBL avgDollarPerCustomerBranchBL = new AvgDollarPerCustomerBranchBL();
                 List<usp_AvgDollarPerCustomerBranch_Result> avgDollarPerCustomerBranchList = avgDollarPerCustomerBranchBL.usp_AvgDollarPerCustomerBranch(start, end, company, branch, time);
                 DataTable avgDollarPerCustomerBranchDT = converter.ToDataTable(avgDollarPerCustomerBranchList);
-                RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "BarSeries", "Average_Dollar_per_Customer", "TimePeriod");
+                RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerBranchRHC1, avgDollarPerCustomerBranchDT, "Branch_Name", "LineSeries", "Average_Dollar_per_Customer", "TimePeriod");
 
                 
 
@@ -66,7 +66,7 @@ namespace Test
                 List<usp_NewCustomersBranch_Result> newCustomersBranchList = newCustomersBranchBL.usp_NewCustomersBranch(start, end, company, branch, time);
 
                 DataTable newCustomersBranchDT = converter.ToDataTable(newCustomersBranchList);
-                RadHtmlChartGroupDataSource.GroupDataSource(NewCustomersBranchRHC1, newCustomersBranchDT, "Branch_Name", "BarSeries", "Number_of_New_Customers", "TimePeriod");
+                RadHtmlChartGroupDataSource.GroupDataSource(NewCustomersBranchRHC1, newCustomersBranchDT, "Branch_Name", "ColumnSeries", "Number_of_New_Customers", "TimePeriod");
                 NewCustomersBranchRHC1.ChartTitle.Text = "No of New Customers Branch Comparison";
                 NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
                 NewCustomersBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "No of New Customers";

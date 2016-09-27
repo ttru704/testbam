@@ -214,6 +214,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
+    <Content Include="addPhoneNumber.aspx" />
     <Content Include="bin\Telerik.Web.UI.Skins.dll" />
     <Content Include="build\css\custom.css" />
     <Content Include="build\css\custom.min.css" />
@@ -225,6 +226,7 @@
     <Content Include="CCompanyKPIControls\NewCustomersCompany.ascx" />
     <Content Include="CCompanyKPIControls\SmallAnimalsCompany.ascx" />
     <Content Include="CCompanyKPIControls\UniqueCustomersSeenCompany.ascx" />
+    <Content Include="changePassword.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -259,7 +261,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="FPeerCS.ascx" />
-    <Content Include="FProduct&amp;ServiceCS.ascx" />
+    <Content Include="FProductServiceCS.ascx" />
     <Content Include="Models\BAM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BAM.edmx</DependentUpon>
@@ -456,6 +458,13 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Content Include="bin\RadHtmlChartGroupDataSource.cs" />
+    <Compile Include="addPhoneNumber.aspx.cs">
+      <DependentUpon>addPhoneNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addPhoneNumber.aspx.designer.cs">
+      <DependentUpon>addPhoneNumber.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -472,6 +481,7 @@
     <Compile Include="BLL\Controls\CountryDropDownListBL.cs" />
     <Compile Include="BLL\Controls\DeleteFromKpiForUserBL.cs" />
     <Compile Include="BLL\Controls\InsertIntoKpiForUserBL.cs" />
+    <Compile Include="BLL\Controls\KPIGridBL.cs" />
     <Compile Include="BLL\Controls\ViewableKpiListBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenBranchBL.cs" />
     <Compile Include="BLL\Customer\AnimalsSeenChangesBL.cs" />
@@ -582,6 +592,13 @@
     </Compile>
     <Compile Include="CCompanyKPIControls\UniqueCustomersSeenCompany.ascx.designer.cs">
       <DependentUpon>UniqueCustomersSeenCompany.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="changePassword.aspx.cs">
+      <DependentUpon>changePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="changePassword.aspx.designer.cs">
+      <DependentUpon>changePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
@@ -716,12 +733,12 @@
     <Compile Include="financialKPI.aspx.designer.cs">
       <DependentUpon>financialKPI.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FProduct&amp;ServiceCS.ascx.cs">
-      <DependentUpon>FProduct&amp;ServiceCS.ascx</DependentUpon>
+    <Compile Include="FProductServiceCS.ascx.cs">
+      <DependentUpon>FProductServiceCS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FProduct&amp;ServiceCS.ascx.designer.cs">
-      <DependentUpon>FProduct&amp;ServiceCS.ascx</DependentUpon>
+    <Compile Include="FProductServiceCS.ascx.designer.cs">
+      <DependentUpon>FProductServiceCS.ascx</DependentUpon>
     </Compile>
     <Compile Include="Models\Audit_Log.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -770,6 +787,7 @@
     </Compile>
     <Compile Include="Models\Interface\Controls\IDeleteFromKpiForUserRepo.cs" />
     <Compile Include="Models\Interface\Controls\IInsertIntoKpiForUserRepo.cs" />
+    <Compile Include="Models\Interface\Controls\IKPIGridRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByProductIndividualRepo.cs" />
     <Compile Include="Models\Key_Performance_Indexes.cs">
       <DependentUpon>BAM.tt</DependentUpon>
@@ -822,6 +840,7 @@
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Interface\Controls\IViewableKpiListRepo.cs" />
+    <Compile Include="Models\Repository\Controls\KPIGridRepo.cs" />
     <Compile Include="Models\Repository\Controls\ViewableKpiListRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByProductIndividualRepo.cs" />
     <Compile Include="Models\Role.cs">

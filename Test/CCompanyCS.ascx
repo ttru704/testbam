@@ -5,7 +5,7 @@
 <div class="demo-container size-thin">
     <%--This export manager is for all the KPI charts--%>
     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
-    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch" OnItemClick="RadPanelBar1_ItemClick" >
+    <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch" >
         <Items>
             <%--Display Number of Unique Customers Seen by a company--%>
             <telerik:RadPanelItem Text="Number of Unique Customers Seen - Company" Visible="false" Expanded="false">
@@ -15,6 +15,12 @@
                     <div class="export">
                         <telerik:RadButton ID="UniqueCustomersSeenCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportUniqueCustomersSeenCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                         <telerik:RadHtmlChart ID="UniqueCustomersSeenCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="UniqueCustomersSeenCompanyODS1" Skin="MetroTouch">
+                            <ClientEvents OnLoad="formatUniqueCustomersSeenCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
                             <PlotArea>
                                 <Series>
                                     <telerik:ColumnSeries DataFieldY="Number_of_Unique_Clients">
@@ -41,7 +47,6 @@
 
                             <ChartTitle Text="No of Unique Customers Company-Wide">
                             </ChartTitle>
-                            <Zoom Enabled="False"></Zoom>
                         </telerik:RadHtmlChart>
                     </div>
                     <%--Table--%>
@@ -66,10 +71,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="UniqueCustomersSeenCompanyODS1" runat="server" SelectMethod="usp_UniqueCustomersSeenCompany" TypeName="Test.BLL.Customer.UniqueCustomersSeenCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -82,7 +88,13 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="AnimalsSeenCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAnimalsSeenCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AnimalsSeenCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="AnimalsSeenCompanyODS1" Skin="Vista">
+                        <telerik:RadHtmlChart ID="AnimalsSeenCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="AnimalsSeenCompanyODS1" Skin="Material">
+                            <ClientEvents OnLoad="formatAnimalsSeenCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
                             <PlotArea>
                                 <Series>
                                     <telerik:LineSeries Name="No of Animals Seen" DataFieldY="Number_of_animals_seen">
@@ -111,16 +123,16 @@
 
                             <ChartTitle Text="Number of Animals Seens Company-Wide">
                             </ChartTitle>
-                            <Zoom Enabled="False"></Zoom>
                         </telerik:RadHtmlChart>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AnimalsSeenCompanyODS1" runat="server" SelectMethod="usp_AnimalsSeenCompany" TypeName="Test.BLL.Customer.AnimalsSeenCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -152,7 +164,8 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="AvgDollarPerCustomerCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerCustomerCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AvgDollarPerCustomerCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="AvgDollarPerCustomerCompanyODS1" Skin="Metro">
+                        <telerik:RadHtmlChart ID="AvgDollarPerCustomerCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="AvgDollarPerCustomerCompanyODS1" Skin="Telerik">
+                            <ClientEvents OnLoad="formatAvgDollarPerCustomerCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
@@ -192,10 +205,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgDollarPerCustomerCompanyODS1" runat="server" SelectMethod="usp_AvgDollarPerCustomerCompany" TypeName="Test.BLL.Customer.AvgDollarPerCustomerCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -227,7 +241,13 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="NewCustomersCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportNewCustomersCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="NewCustomersCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="NewCustomersCompanyODS1" Skin="Silk">
+                        <telerik:RadHtmlChart ID="NewCustomersCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="NewCustomersCompanyODS1" Skin="Metro">
+                            <ClientEvents OnLoad="formatNewCustomersCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
                             <PlotArea>
                                 <Series>
                                     <telerik:ColumnSeries DataFieldY="Number_of_New_Customers">
@@ -259,10 +279,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="NewCustomersCompanyODS1" runat="server" SelectMethod="usp_NewCustomersCompany" TypeName="Test.BLL.Customer.NewCustomersCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -294,7 +315,13 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="SmallAnimalsCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportSmallAnimalsCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="SmallAnimalsCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="SmallAnimalsCompanyODS1" Skin="Material">
+                        <telerik:RadHtmlChart ID="SmallAnimalsCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="SmallAnimalsCompanyODS1" Skin="Metro">
+                            <ClientEvents OnLoad="formatSmallAnimalsCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
                             <PlotArea>
                                 <Series>
                                     <telerik:LineSeries Name="Small Animals" DataFieldY="Number_of_Small_Animals">
@@ -328,10 +355,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="SmallAnimalsCompanyODS1" runat="server" SelectMethod="usp_SmallAnimalsCompany" TypeName="Test.BLL.Customer.SmallAnimalsCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -361,7 +389,13 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="LargeAnimalsCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportLargeAnimalsCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="LargeAnimalsCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="LargeAnimalsCompanyODS1">
+                        <telerik:RadHtmlChart ID="LargeAnimalsCompanyRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="LargeAnimalsCompanyODS1" Skin="Material">
+                            <ClientEvents OnLoad="formatLargeAnimalsCompanyRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
                             <PlotArea>
                                 <Series>
                                     <telerik:LineSeries Name="Large Animals" DataFieldY="Number_of_Large_Animals">
@@ -395,10 +429,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="LargeAnimalsCompanyODS1" runat="server" SelectMethod="usp_LargeAnimalsCompany" TypeName="Test.BLL.Customer.LargeAnimalsCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="" Name="start" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="end" Type="DateTime"></asp:Parameter>
-                            <asp:Parameter Name="companyRef" Type="Int64"></asp:Parameter>
-                            <asp:Parameter DefaultValue="" Name="timeType" Type="Int32"></asp:Parameter>
+                            <asp:SessionParameter SessionField="StartDate" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="EndDate" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="Time" DefaultValue="" Name="timeType" Type="Int32"></asp:SessionParameter>
+
 
                         </SelectParameters>
                     </asp:ObjectDataSource>
@@ -541,31 +576,35 @@
     })(window);--%>
 
     //format Y axis value based on value
-    function pageLoad() {
-
+    function formatUniqueCustomersSeenCompanyRHC1() {
         var chart1 = $find("<%=UniqueCustomersSeenCompanyRHC1.ClientID%>");
         chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
         chart1.repaint();
-
+    };
+    function formatAnimalsSeenCompanyRHC1() {
         var chart2 = $find("<%=AnimalsSeenCompanyRHC1.ClientID%>");
         chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
         chart2.repaint();
-
+    };
+    function formatAvgDollarPerCustomerCompanyRHC1() {
         var chart3 = $find("<%=AvgDollarPerCustomerCompanyRHC1.ClientID%>");
         chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
         chart3.repaint();
-
+    };
+    function formatNewCustomersCompanyRHC1() {
         var chart4 = $find("<%=NewCustomersCompanyRHC1.ClientID%>");
             chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart4.repaint();
-
-            var chart5 = $find("<%=SmallAnimalsCompanyRHC1.ClientID%>");
+    };
+    function formatSmallAnimalsCompanyRHC1() {
+        var chart5 = $find("<%=SmallAnimalsCompanyRHC1.ClientID%>");
         chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
         chart5.repaint();
-
+    };
+    function formatLargeAnimalsCompanyRHC1() {
         var chart6 = $find("<%=LargeAnimalsCompanyRHC1.ClientID%>");
         chart6.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
         chart6.repaint();
-    }
+    };
 </script>
 </telerik:RadScriptBlock>

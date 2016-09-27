@@ -77,15 +77,15 @@ namespace Test
         protected void Page_Load(object sender, EventArgs e)
         {
             //Store current user's name
-            //string userEmail = HttpContext.Current.User.Identity.Name;
-            //KPIEntities db = new KPIEntities();
-            //string userName = (from User_Profile in db.User_Profile
-            //                   where User_Profile.Email == userEmail
-            //                   select User_Profile.Name).Single();
+            string userEmail = HttpContext.Current.User.Identity.Name;
+            KPIEntities db = new KPIEntities();
+            string userName = (from User_Profile in db.User_Profile
+                               where User_Profile.Email == userEmail
+                               select User_Profile.Name).Single();
 
             //Set labels appear on the side bar and the top bar to be the current user's name
-            userName1.Text = "John";
-            userName2.Text = "John";
+            userName1.Text = userName;
+            userName2.Text = userName;
             if (HttpContext.Current.User.IsInRole("Admin"))
             {
                 adminLink.Visible = true;

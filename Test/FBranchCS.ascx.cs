@@ -64,7 +64,6 @@ namespace Test
 
                 ServiceOnlySalesBranchBL serviceOnlySalesComBL = new ServiceOnlySalesBranchBL();
                 List<usp_ServiceOnlySalesBranch_Result> serviceOnlySalesBranchList = serviceOnlySalesComBL.usp_ServiceOnlySalesBranch(start, end, company, branch, time);
-
                 DataTable serviceOnlySalesBranchDT = converter.ToDataTable(serviceOnlySalesBranchList);
                 RadHtmlChartGroupDataSource.GroupDataSource(ServiceOnlySalesBranchRHC1, serviceOnlySalesBranchDT, "Branch_Name", "LineSeries", "Service_Total_Only", "TimePeriod");
 
@@ -162,11 +161,6 @@ namespace Test
                 rg.ExportSettings.UseItemStyles = true;
             }
         }
-
-
-        protected void RadGrid1_NeedDataSource(object sender, GridNeedDataSourceEventArgs e)
-        {
-
-        }
+        
     }
 }

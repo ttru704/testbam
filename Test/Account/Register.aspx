@@ -44,7 +44,7 @@
                     <asp:ListItem>5</asp:ListItem>
                     <asp:ListItem>6</asp:ListItem>
                     <asp:ListItem>7</asp:ListItem>
-                    <asp:ListItem>8</asp:ListItem>
+                    <asp:ListItem>18</asp:ListItem>
                 </asp:DropDownList>
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="companyIdDropdown"
                     CssClass="text-danger" ErrorMessage="The company number field is required." />

@@ -5,6 +5,24 @@
 <div class="demo-container size-thin">
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
+            <telerik:RadPanelItem Width="100%">
+                <ContentTemplate>
+                    <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" height="24px" Width="120px" Skin="Metro">
+                        <Items>
+                            <telerik:DropDownListItem Text="All Branches" Value="0" />
+                        </Items>
+                    </telerik:RadDropDownList>
+                    <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.Controls.BranchDropDownListBL">
+                        <SelectParameters>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                </ContentTemplate>
+            </telerik:RadPanelItem>
+        </Items>
+
+        <Items>
             <%--This section is for Total Sales Branch Comparison--%>
             <telerik:RadPanelItem Text="Total Sales - Branch Comparison" Visible="false">
                 <ContentTemplate>
@@ -14,15 +32,15 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="TotalSalesBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTotalSalesBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                    <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server" Skin="Metro">
-                        <ClientEvents OnLoad="chartLoad" />
-                        <Pan Enabled="true" Lock="Y" />
-                        <Zoom Enabled="true">
-                            <MouseWheel Enabled="true" Lock="Y" />
-                            <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
-                        </Zoom>
-                    </telerik:RadHtmlChart>
-                        </div>
+                        <telerik:RadHtmlChart ID="TotalSalesBranchRHC1" runat="server" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatTotalSalesBranchRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--DataSource--%>
                     <asp:ObjectDataSource ID="TotalSalesBranchODS1" runat="server" SelectMethod="usp_TotalSalesBranch" TypeName="Test.BLL.Financial.TotalSalesBranchBL">
                         <SelectParameters>
@@ -36,7 +54,7 @@
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="TotalSalesBranchG1" runat="server" DataSourceID="TotalSalesBranchODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Total Sales Branch Comparison"  OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="TotalSalesBranchG1" runat="server" DataSourceID="TotalSalesBranchODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Total Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
@@ -65,27 +83,32 @@
                     <div class="export">
                         <telerik:RadButton ID="AvgDollarPerTransactionBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerTransactionBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                         <telerik:RadHtmlChart ID="AvgDollarPerTransactionBranchRHC1" runat="server" Skin="Metro">
-                        <Pan Enabled="true" Lock="Y" />
-                        <ChartTitle Text="Average Dollar Earned Per Transaction">
-                        </ChartTitle>
-                        <PlotArea>
-                            <XAxis BaseUnit="Months">
-                            </XAxis>
-                        </PlotArea>
-                        <Zoom Enabled="true">
-                            <MouseWheel Enabled="true" Lock="Y" />
-                            <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
-                        </Zoom>
-                    </telerik:RadHtmlChart>
-                        </div>
+                            <ClientEvents OnLoad="formatAvgDollarPerTransactionBranchRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                            <ChartTitle Text="Average Dollar Earned Per Transaction">
+                            </ChartTitle>
+                            <PlotArea>
+                                <XAxis BaseUnit="Months">
+                                </XAxis>
+                            </PlotArea>
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1" CellSpacing="-1" GridLines="Both" AllowSorting="True" AllowPaging="True" OnNeedDataSource="RadGrid1_NeedDataSource" Skin="Bootstrap" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison"  OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1" CellSpacing="-1" GridLines="Both" AllowSorting="True" AllowPaging="True" Skin="Metro" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison" OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                         </ClientSettings>
-                       <ExportSettings HideStructureColumns="true"></ExportSettings>
+                        <ExportSettings HideStructureColumns="true"></ExportSettings>
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" DataSourceID="AvgDollarPerTransactionBranchODS1" AllowFilteringByColumn="True">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
@@ -123,8 +146,15 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="TransExcludeZeroTotalBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportTransExcludeZeroTotalBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                         <telerik:RadHtmlChart ID="TransExcludeZeroTotalBranchRHC1" runat="server" Skin="Material"></telerik:RadHtmlChart>
-                        </div>
+                        <telerik:RadHtmlChart ID="TransExcludeZeroTotalBranchRHC1" runat="server" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatTransExcludeZeroTotalBranchRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="TransExcludeZeroTotalBranchODS1" runat="server" SelectMethod="usp_TransExcludeZeroTotalBranch" TypeName="Test.BLL.Financial.TransExcludeZeroTotalBranchBL">
                         <SelectParameters>
@@ -139,7 +169,7 @@
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Transactions Excluding Zero Total Bills Branch Comparison"  OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Transactions Excluding Zero Total Bills Branch Comparison" OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
@@ -164,10 +194,17 @@
                 <ContentTemplate>
                     <%--Chart--%>
                     <br />
-                     <div class="export">
+                    <div class="export">
                         <telerik:RadButton ID="RetailOnlySalesBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportRetailOnlySalesBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                         <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
-                        </div>
+                        <telerik:RadHtmlChart ID="RetailOnlySalesBranchRHC1" runat="server" Skin="Bootstrap">
+                            <ClientEvents OnLoad="formatRetailOnlySalesBranchRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="RetailOnlySalesBranchODS1" runat="server" SelectMethod="usp_RetailOnlySalesBranch" TypeName="Test.BLL.Financial.RetailOnlySalesBranchBL">
                         <SelectParameters>
@@ -182,7 +219,7 @@
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="RetailOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="RetailOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Retail Only Sales Branch Comparison"  OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="RetailOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="RetailOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Retail Only Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
@@ -209,8 +246,15 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="ServiceOnlySalesBranchEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportServiceOnlySalesBranchRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server" Skin="Metro"></telerik:RadHtmlChart>
-                        </div>
+                        <telerik:RadHtmlChart ID="ServiceOnlySalesBranchRHC1" runat="server" Skin="Material">
+                            <ClientEvents OnLoad="formatServiceOnlySalesBranchRHC1" />
+                            <Pan Enabled="true" Lock="Y" />
+                            <Zoom Enabled="true">
+                                <MouseWheel Enabled="true" Lock="Y" />
+                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                            </Zoom>
+                        </telerik:RadHtmlChart>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="ServiceOnlySalesBranchODS1" runat="server" SelectMethod="usp_ServiceOnlySalesBranch" TypeName="Test.BLL.Financial.ServiceOnlySalesBranchBL">
                         <SelectParameters>
@@ -225,7 +269,7 @@
                     <%--Table--%>
                     <hr />
                     <br />
-                    <telerik:RadGrid ID="ServiceOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ServiceOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Bootstrap" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Service Only Sales Branch Comparison"  OnItemCommand="ExportGridCustomiser">
+                    <telerik:RadGrid ID="ServiceOnlySalesBranchG1" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ServiceOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Service Only Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
@@ -252,18 +296,18 @@
 </div>
 <telerik:RadScriptBlock runat="server">
     <script>
-         var $ = $telerik.$;
+        var $ = $telerik.$;
         //For Exporting Charts
-         function exportTotalSalesBranchRHC1(sender, args) {
+        function exportTotalSalesBranchRHC1(sender, args) {
             exportRadHtmlChart('<%=TotalSalesBranchRHC1.ClientID%>')
         }
 
         function exportAvgDollarPerTransactionBranchRHC1(sender, args) {
             exportRadHtmlChart('<%=AvgDollarPerTransactionBranchRHC1.ClientID%>')
-        }
+         }
 
-        function exportTransExcludeZeroTotalBranchRHC1(sender, args) {
-            exportRadHtmlChart('<%=TransExcludeZeroTotalBranchRHC1.ClientID%>')
+         function exportTransExcludeZeroTotalBranchRHC1(sender, args) {
+             exportRadHtmlChart('<%=TransExcludeZeroTotalBranchRHC1.ClientID%>')
         }
 
         function exportRetailOnlySalesBranchRHC1(sender, args) {
@@ -273,45 +317,18 @@
             exportRadHtmlChart('<%=ServiceOnlySalesBranchRHC1.ClientID%>')
         }
 
+
         function exportRadHtmlChart(chartId) {
             var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
             var manager = $find('<%=RadClientExportManager1.ClientID%>');
             var pdfSettings = {
                 fileName: chartTitle
-                
+
             };
-            
+
             manager.set_pdfSettings(pdfSettings);
             manager.exportPDF($("#" + chartId));
         }
-
-    <%--For panning and zooming--%>
-        (function (global) {
-            var chart;
-
-            function ChartLoad(sender, args) {
-                chart = sender.get_kendoWidget(); //store a reference to the Kendo Chart widget, we will use its methods
-            }
-
-            global.chartLoad = ChartLoad;
-
-            function resizeChart() {
-                if (chart)
-                    chart.resize(); //redraw the chart so it takes the new size of its container when it changes (e.g., browser window size change, parent container size change)
-            }
-
-
-            //this logic ensures that the chart resizing will happen only once, at most - every 200ms
-            //to prevent calling the handler too often if old browsers fire the window.onresize event multiple times
-            var TO = false;
-            window.onresize = function () {
-                if (TO !== false)
-                    clearTimeout(TO);
-                TO = setTimeout(resizeChart, 200);
-            }
-
-        })(window);
-        <%--For panning and zooming--%>
 
         <%--For responsive chart--%>
         (function (global) {
@@ -346,30 +363,37 @@
             }
 
         })(window);
-    <%--For responsive chart--%>
 
         //format Y axis value based on value
-        function pageLoad() {
+        function formatTotalSalesBranchRHC1() {
+            var chart = $find("<%=TotalSalesBranchRHC1.ClientID%>");
+            chart.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart.repaint();
+        };
 
-            var chart1 = $find("<%=TotalSalesBranchRHC1.ClientID%>");
-        chart1.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart1.repaint();
+        function formatAvgDollarPerTransactionBranchRHC1() {
+            var chart2 = $find("<%=AvgDollarPerTransactionBranchRHC1.ClientID%>");
+            chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart2.repaint();
+        };
 
-        var chart2 = $find("<%=AvgDollarPerTransactionBranchRHC1.ClientID%>");
-        chart2.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart2.repaint();
-
-        var chart3 = $find("<%=TransExcludeZeroTotalBranchRHC1.ClientID%>");
+        function formatTransExcludeZeroTotalBranchRHC1() {
+            var chart3 = $find("<%=TransExcludeZeroTotalBranchRHC1.ClientID%>");
             chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
             chart3.repaint();
+        };
 
+        function formatRetailOnlySalesBranchRHC1() {
             var chart4 = $find("<%=RetailOnlySalesBranchRHC1.ClientID%>");
-        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart4.repaint();
+            chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart4.repaint();
+        };
 
-        var chart5 = $find("<%=ServiceOnlySalesBranchRHC1.ClientID%>");
-        chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart5.repaint();
-    }
+        function formatServiceOnlySalesBranchRHC1() {
+            var chart5 = $find("<%=ServiceOnlySalesBranchRHC1.ClientID%>");
+            chart5.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart5.repaint();
+        };
+
     </script>
 </telerik:RadScriptBlock>

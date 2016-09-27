@@ -60,129 +60,142 @@
 
 <body class="nav-md">
     <form runat="server">
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col" style="position: fixed">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>BAM</span></a>
-                    </div>
-
-                    <div class="clearfix"></div>
-
-                    <!-- menu profile quick info -->
-                    <div class="profile">
-                        <div class="profile_pic">
-                            <img src="production/images/img.jpg" alt="..." class="img-circle profile_img">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col" style="position: fixed">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i><span>BAM</span></a>
                         </div>
-                        <div class="profile_info">
-                            <span>Welcome,</span>
-                            <h2><asp:Label ID="userName1" runat="server"></asp:Label></h2>
+
+                        <div class="clearfix"></div>
+
+                        <!-- menu profile quick info -->
+                        <div class="profile">
+                            <div class="profile_pic">
+                                <img src="production/images/user.png" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>Welcome,</span>
+                                <h2>
+                                    <asp:Label ID="userName1" runat="server"></asp:Label></h2>
+                            </div>
                         </div>
+                        <!-- /menu profile quick info -->
+
+                        <br />
+
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>General</h3>
+                                <ul class="nav side-menu">
+                                    <li>
+                                        <a runat="server" id="adminLink1" href="dashboard.aspx"><i class="fa fa-home"></i>Dashboard </a>
+                                    </li>
+
+                                    <li>
+                                        <a runat="server" id="adminLink2"><i class="fa fa-table"></i>Display KPI <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="financialKPI.aspx">Financial</a></li>
+                                            <li><a href="customerKPI.aspx">Customer</a></li>
+                                            <li><a href="employeeKPI.aspx">Employee</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a runat="server" id="adminLink3"><i class="fa fa-bar-chart-o"></i>What If Analysis <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="What-if page.aspx">What-if Analysis</a></li>
+                                            <li><a href="chartjs2.html">Chart JS2</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a runat="server" id="adminLink4" href="missedcharge.aspx"><i class="fa fa-clone"></i>Missed Charge</a>
+                                        <ul class="nav child_menu">
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a runat="server" id="adminLink5"><i class="fa fa-edit"></i>Settings<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="newUser.aspx">New User</a></li>
+                                            <li><a href="userManagement.aspx">User Management</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="createUserforCFL.aspx" runat="server" id="adminLink" visible="false"><i class="fa fa-clone"></i>Create User</a>
+                                        <ul class="nav child_menu">
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a runat="server" id="a1" href="changePassword.aspx"><i class="fa fa-home"></i>Change Password </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
                     </div>
-                    <!-- /menu profile quick info -->
+                </div>
 
-                    <br />
+                <!-- top navigation -->
+                <div class="top_nav navbar-fixed-top">
+                    <div class="nav_menu">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
 
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                        <div class="menu_section">
-                            <h3>General</h3>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a runat="server" id="adminLink1" href="dashboard.aspx"><i class="fa fa-home"></i>Dashboard </a>
-                                </li>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="">
 
-                                <li>
-                                    <a runat="server" id="adminLink2"><i class="fa fa-table"></i>Display KPI <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="financialKPI.aspx">Financial</a></li>
-                                        <li><a href="customerKPI.aspx">Customer</a></li>
-                                        <li><a href="employeeKPI.aspx">Employee</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a runat="server" id="adminLink3"><i class="fa fa-bar-chart-o"></i>What If Analysis <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="What-if page.aspx">What-if Analysis</a></li>
-                                        <li><a href="chartjs2.html">Chart JS2</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a runat="server" id="adminLink4" href="missedcharge.aspx"><i class="fa fa-clone"></i>Missed Charge</a>
-                                    <ul class="nav child_menu">
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a runat="server" id="adminLink5"><i class="fa fa-edit"></i>Settings<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="newUser.aspx">New User</a></li>
-                                        <li><a href="userManagement.aspx">User Management</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="createUserforCFL.aspx" runat="server" id="adminLink" visible="false"><i class="fa fa-clone"></i>Create User</a>
-                                    <ul class="nav child_menu">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
+                                        <img src="production/images/user.png" alt=""><asp:Label ID="userName2" runat="server"></asp:Label>
+                                        <span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <%--<li><a href="Account/Login.aspx"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>--%>
+                                        <li>
+                                            <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Account/Login" OnLoggingOut="Unnamed_LoggingOut" />
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
+                        </nav>
+                        <div>
+                            <div class="row">
+                                <%--<div class="col-sm-6">--%>
+                                    <asp:ContentPlaceHolder runat="server" ID="kpiNameHeader">
+                                    </asp:ContentPlaceHolder>
+                                <%--</div>--%>
+                                <%--<div class="col-sm-4 text-right" style="margin-top: 10px">
+                                    <img src="production/images/petstockvet.png" alt="" height="40" />
+                                </div>--%>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /sidebar menu -->
-                </div>
-            </div>
 
-            <!-- top navigation -->
-            <div class="top_nav navbar-fixed-top">
-                <div class="nav_menu">
-                    <nav>
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
-                        
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="production/images/img.jpg" alt=""><asp:Label ID="userName2" runat="server"></asp:Label>
-                    <span class="fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <%--<li><a href="Account/Login.aspx"><i class="fa fa-sign-out pull-right"></i>Log Out</a></li>--%>
-                                    <li>
-                                        <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/Account/Login" OnLoggingOut="Unnamed_LoggingOut" />
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div>
-                        <asp:ContentPlaceHolder runat="server" ID="kpiNameHeader">
-                        </asp:ContentPlaceHolder>
                     </div>
                 </div>
-            </div>
-            <!-- /top navigation -->
+                <!-- /top navigation -->
 
-            <!-- page content -->
-            <div>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    \
-                </asp:ContentPlaceHolder>
-            </div>
-            <!-- /page content -->
-
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Business Activity Monitoring by Computer Fanatics Limited
+                <!-- page content -->
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
                 </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
+                <!-- /page content -->
+
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Business Activity Monitoring by Computer Fanatics Limited
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+            </div>
         </div>
-    </div>
 
-    <%--Log user off the application automatically if user has been idle the the period of time specified in variable timeInSecondsAfterSessionOut
+        <%--Log user off the application automatically if user has been idle the the period of time specified in variable timeInSecondsAfterSessionOut
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script>
         $(function () {
@@ -216,49 +229,42 @@
         StartThisSessionTimer();
 </script>--%>
 
-    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
-    <script src="../vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script src="../vendors/Flot/jquery.flot.js"></script>
-    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="../vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script src="js/flot/jquery.flot.orderBars.js"></script>
-    <script src="js/flot/date.js"></script>
-    <script src="js/flot/jquery.flot.spline.js"></script>
-    <script src="js/flot/curvedLines.js"></script>
-    <!-- JQVMap -->
-    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js"></script>
-    <script src="js/datepicker/daterangepicker.js"></script>
+        <!-- jQuery -->
+        <script src="../vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="../vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="../vendors/nprogress/nprogress.js"></script>
+        <!-- Chart.js -->
+        <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+        <!-- gauge.js -->
+        <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+        <!-- iCheck -->
+        <script src="../vendors/iCheck/icheck.min.js"></script>
+        <!-- Skycons -->
+        <script src="../vendors/skycons/skycons.js"></script>
+        <!-- Flot -->
+        <script src="../vendors/Flot/jquery.flot.js"></script>
+        <script src="../vendors/Flot/jquery.flot.pie.js"></script>
+        <script src="../vendors/Flot/jquery.flot.time.js"></script>
+        <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+        <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+        <!-- JQVMap -->
+        <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+        <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <!-- bootstrap-daterangepicker -->
 
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+        <!-- Custom Theme Scripts -->
+        <script src="../build/js/custom.min.js"></script>
 
-    <!-- Flot -->
+        <!-- Flot -->
 
-    <!-- /gauge.js -->
-        </form>
+        <!-- /gauge.js -->
+    </form>
 </body>
 </html>

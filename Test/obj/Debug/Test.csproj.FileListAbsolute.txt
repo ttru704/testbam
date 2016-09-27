@@ -84,7 +84,7 @@ C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.Microsof
 C:\Users\students\Source\Repos\testbam\Test\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Documents.Core.xml
 C:\Users\students\Source\Repos\testbam\Test\bin\Telerik.Windows.Zip.xml
-C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll.licenses
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.dll
 C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.pdb
+C:\Users\students\Source\Repos\testbam\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache

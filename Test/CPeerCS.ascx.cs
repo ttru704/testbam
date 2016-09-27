@@ -35,6 +35,8 @@ namespace Test
                     List<usp_AvgDollarPerCustomerPeer_Result> avgDollarPerCustomerPeerList = avgDollarPerCustomerPeerBL.usp_AvgDollarPerCustomerPeer(start, end, branch, 4, time, 1, 1, 9);
                     DataTable avgDollarPerCustomerPeerDT = converter.ToDataTable(avgDollarPerCustomerPeerList);
                     RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerPeerRHC1, avgDollarPerCustomerPeerDT, "Name", "LineSeries", "Average_Dollar_per_Customer", "TimePeriod");
+
+                    AvgDollarPerCustomerPeerG1.DataBind();
                 }
                 //format Average Dollar per customer peer comparison chart
                 AvgDollarPerCustomerPeerRHC1.ChartTitle.Text = "Average Dollar per Customer - Peer";

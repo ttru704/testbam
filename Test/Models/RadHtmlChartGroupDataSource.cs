@@ -52,10 +52,10 @@ namespace Test.Models
             }
 
             for (int i = 0; i < NumDistinctValues; i++)
-            {
+            {   
                 //Construct the series name, tooltips template and labels format string
                 string seriesName = DistinctValuesDT.Rows[i][0].ToString();
-                string tooltipsTemplate = "Category: #=dataItem." + DataFieldX + i + "#<br />Value: #=kendo.format(\\'{0:C2}\\',dataItem." + DataFieldY + i + ")#";
+                string tooltipsTemplate =  seriesName + "<br />Time Period: #=dataItem." + DataFieldX + i + "#"  +"<br />Value: #=kendo.format(\\'{0:C2}\\',dataItem." + DataFieldY + i + ")#";
                 string labelsFormatString = "{0:N0}";
 
                 //Add the corresponding series type to the chart

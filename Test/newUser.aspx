@@ -6,13 +6,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
+<asp:Content ID="ContentTitle" ContentPlaceHolderID="kpiNameHeader" runat="Server">
+    <header style="padding: inherit; margin-top: 15px">
+        <h3>New User</h3>
+    </header>
+</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="right_col" role="main">
         <h2><%: Title %>.</h2>
         <p class="text-danger">
             <asp:Literal runat="server" ID="ErrorMessage" />
         </p>
-
+        <br />
         <div class="form-horizontal">
             <h4>Create a new account for employee</h4>
             <hr />

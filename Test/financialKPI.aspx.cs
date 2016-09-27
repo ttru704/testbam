@@ -40,7 +40,7 @@ namespace Test
                     AddPageView(RadTabStrip1.FindTabByText("Company"));
                     AddTab("Branch");
                     AddTab("Peer");
-                    AddTab("Product&Service");
+                    AddTab("ProductService");
                 }
             }
             else
@@ -85,17 +85,6 @@ namespace Test
             {
                 TimeDDL1.Visible = false;
             }
-        }
-        private long branch;
-        protected void BranchDDL1_SelectedIndexChanged(object sender, DropDownListEventArgs e)
-        {
-            branch = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
-            var branchValue = branch.ToString();
-
-            CountryODS1.SelectParameters.Clear();
-            CountryODS1.SelectParameters.Add("branchRef", TypeCode.Int64, branchValue);
-            CountryODS1.DataBind();
-            CountryDDL1.DataBind();
         }
 
         //protected void CountryCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
@@ -174,18 +163,6 @@ namespace Test
             //};
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        protected void Company_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void PopupButton_Click(object sender, EventArgs e)
         {
             Session["Branch"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
@@ -193,7 +170,10 @@ namespace Test
             Session["Country"] = Convert.ToInt64(CountryDDL1.SelectedItem.Value);
             Session["State"] = Convert.ToInt64(StateDDL1.SelectedItem.Value);
             Session["Region"] = Convert.ToInt64(RegionDDL1.SelectedItem.Value);
+            
         }
+
+        
     }
 
 }
