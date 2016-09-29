@@ -3,10 +3,12 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
+    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <telerik:RadPanelItem Width="100%">
                <ContentTemplate>
+                   <telerik:RadAjaxPanel runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
                     <%--Combobox for branch--%>
                     <telerik:RadComboBox RenderMode="Lightweight" ID="BranchCB1" OnSelectedIndexChanged="BranchCB1_SelectedIndexChanged" DataTextField="Branch_Name" DataValueField="Ref_Number" runat="server" Width="186px" CssClass="Display:none"
                         AutoPostBack="true" EmptyMessage="- Select a Branch -" DataSourceID="BranchDropDownODS1"
@@ -49,10 +51,7 @@
                     <%--COmbobox for state--%>
                     <telerik:RadComboBox RenderMode="Lightweight" ID="StateDDL1" OnSelectedIndexChanged="StateDDL1_SelectedIndexChanged" DataTextField="State_Name" DataValueField="State_Ref" runat="server" Width="186px"
                         AutoPostBack="true" EmptyMessage="- Select a State -" DataSourceID="StateODS1"
-                        Skin="Metro" AppendDataBoundItems="true">
-                        <Items>
-                            <telerik:RadComboBoxItem Text="All States" Value="0" />
-                        </Items>
+                        Skin="Metro">
                     </telerik:RadComboBox>
                     <%--Objectdatasource for state--%>
                     <asp:ObjectDataSource ID="StateODS1" runat="server" SelectMethod="usp_StateDropDownList" TypeName="Test.BLL.Controls.StateDropDownListBL">
@@ -64,10 +63,7 @@
                     <%--Combobox for region--%>
                     <telerik:RadComboBox RenderMode="Lightweight" OnSelectedIndexChanged="RegionDDL1_SelectedIndexChanged" ID="RegionDDL1" DataTextField="Region_Name" DataValueField="Region_Ref" runat="server" Width="186px"
                         AutoPostBack="true" EmptyMessage="- Select a Region -" DataSourceID="RegionODS1"
-                        Skin="Metro" AppendDataBoundItems="true">
-                        <Items>
-                            <telerik:RadComboBoxItem Text="All Regions" Value="0" />
-                        </Items>
+                        Skin="Metro" >
                         <DefaultItem Value="0" Visible="false" />
                     </telerik:RadComboBox>
                     <%--Objectdatasource for region--%>
@@ -76,6 +72,7 @@
                             <asp:ControlParameter ControlID="StateDDL1" PropertyName="SelectedValue" Name="stateRef" Type="Int64"></asp:ControlParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
+                       </telerik:RadAjaxPanel>
                    <br />
                    <br />
                    </ContentTemplate>

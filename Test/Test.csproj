@@ -214,7 +214,7 @@
     <Content Include="Account\ResetPasswordConfirmation.aspx" />
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
-    <Content Include="addPhoneNumber.aspx" />
+    <Content Include="userProfile.aspx" />
     <Content Include="bin\Telerik.Web.UI.Skins.dll" />
     <Content Include="build\css\custom.css" />
     <Content Include="build\css\custom.min.css" />
@@ -458,12 +458,30 @@
       <DependentUpon>VerifyPhoneNumber.aspx</DependentUpon>
     </Compile>
     <Content Include="bin\RadHtmlChartGroupDataSource.cs" />
-    <Compile Include="addPhoneNumber.aspx.cs">
-      <DependentUpon>addPhoneNumber.aspx</DependentUpon>
+    <Compile Include="BLL\Controls\GetKpiTypesBL.cs" />
+    <Compile Include="BLL\Controls\UserDropDownListBL.cs" />
+    <Compile Include="BLL\User\GetUserInfoBL.cs" />
+    <Compile Include="BLL\User\UpdateUserProfileBL.cs" />
+    <Compile Include="Models\Interface\Controls\IGetKpiTypesRepo.cs" />
+    <Compile Include="Models\Interface\Controls\IUserDropDownListRepo.cs" />
+    <Compile Include="Models\Interface\User\IGetUserInfoRepo.cs" />
+    <Compile Include="Models\Interface\User\IUpdateUserProfileRepo.cs" />
+    <Compile Include="Models\Repository\Controls\GetKpiTypesRepo.cs" />
+    <Compile Include="Models\Repository\Controls\UserDropDownListRepo.cs" />
+    <Compile Include="Models\Repository\User\GetUserInfoRepo.cs" />
+    <Compile Include="Models\Repository\User\UpdateUserProfileRepo.cs" />
+    <Compile Include="Models\usp_GetKpiTypes_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetUserInfo_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="userProfile.aspx.cs">
+      <DependentUpon>userProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="addPhoneNumber.aspx.designer.cs">
-      <DependentUpon>addPhoneNumber.aspx</DependentUpon>
+    <Compile Include="userProfile.aspx.designer.cs">
+      <DependentUpon>userProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

@@ -15,22 +15,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
     <div class="right_col" role="main">
-        <%--<telerik:RadAjaxManager ID="RadAjaxManager1" runat="server" DefaultLoadingPanelID="RadAjaxLoadingPanel1">
-            <AjaxSettings>
-                <telerik:AjaxSetting AjaxControlID="UserDDL1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="kpiG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
-                        <telerik:AjaxUpdatedControl ControlID="SqlDataSource1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-                <telerik:AjaxSetting AjaxControlID="KpiTypeDDL1">
-                    <UpdatedControls>
-                        <telerik:AjaxUpdatedControl ControlID="kpiG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
-                        <telerik:AjaxUpdatedControl ControlID="SqlDataSource1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
-                    </UpdatedControls>
-                </telerik:AjaxSetting>
-            </AjaxSettings>
-        </telerik:RadAjaxManager>--%>
         <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
         <h2><%: Title %></h2>
         <p class="text-danger">
@@ -47,28 +31,29 @@
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
                     <span style="height: 300px">
-                    <asp:Label runat="server" Text="User:" Width="70"></asp:Label>
-                    <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" OnSelectedIndexChanged="userDDL1_OnClientSelectedIndexChanged" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300"></telerik:RadDropDownList>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:KPIConnectionString %>' SelectCommand="usp_UserDropDownList" SelectCommandType="StoredProcedure">
-                        <SelectParameters>
-                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
-                        </SelectParameters>
-                    </asp:SqlDataSource>
+                        <asp:Label runat="server" Text="User:" Width="70"></asp:Label>
+                        <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" OnSelectedIndexChanged="userDDL1_OnClientSelectedIndexChanged" runat="server" DataSourceID="UserODS1" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300px"></telerik:RadDropDownList>
+
+                        <asp:ObjectDataSource ID="UserODS1" runat="server" SelectMethod="usp_UserDropDownList" TypeName="Test.BLL.Controls.UserDropDownListBL">
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
                     </span>
                     <br />
-                    <span  style="height: 300px">
-                    <asp:Label runat="server" Text="KPI Type:"  Width="70"></asp:Label>
-                    <telerik:RadComboBox ID="KpiTypeDDL1" runat="server" AutoPostBack="true" DataSourceID="SqlDataSource3" Width="300px"
-                        DataTextField="Name" DataValueField="Ref_Number"
-                        AppendDataBoundItems="true" Skin="Silk">
-                        <Items>
-                            <telerik:RadComboBoxItem Text="All" Value="0" Selected="true"></telerik:RadComboBoxItem>
-                        </Items>
-                    </telerik:RadComboBox>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:KPIConnectionString %>' SelectCommand="SELECT [Name], [Ref_Number] FROM [KPI_Types]"></asp:SqlDataSource>
+                    <span style="height: 300px">
+                        <asp:Label runat="server" Text="KPI Type:" Width="70"></asp:Label>
+                        <telerik:RadComboBox ID="KpiTypeDDL1" runat="server" AutoPostBack="true" DataSourceID="KpiTypeODS1" Width="300px"
+                            DataTextField="Name" DataValueField="Ref_Number"
+                            AppendDataBoundItems="true" Skin="Silk">
+                            <Items>
+                                <telerik:RadComboBoxItem Text="All" Value="0" Selected="true"></telerik:RadComboBoxItem>
+                            </Items>
+                        </telerik:RadComboBox>
+                        <asp:ObjectDataSource ID="KpiTypeODS1" runat="server" SelectMethod="usp_GetKpiTypes" TypeName="Test.BLL.Controls.GetKpiTypesBL"></asp:ObjectDataSource>
                     </span>
                     <br />
-                    <telerik:RadGrid runat="server" ID="kpiG1" CellSpacing="-1" GridLines="Both" DataSourceID="KPIGridODS1" OnSelectedCellChanged="kpiG1_SelectedCellChanged" Skin="MetroTouch" >
+                    <telerik:RadGrid runat="server" ID="kpiG1" CellSpacing="-1" GridLines="Both" DataSourceID="KPIGridODS1" OnSelectedCellChanged="kpiG1_SelectedCellChanged" Skin="MetroTouch">
                         <ClientSettings EnablePostBackOnRowClick="false">
                             <Selecting AllowRowSelect="true" />
                         </ClientSettings>
@@ -87,7 +72,7 @@
                         </MasterTableView>
                     </telerik:RadGrid>
 
-                    
+
                     <asp:ObjectDataSource ID="KPIGridODS1" runat="server" SelectMethod="usp_KPIGrid" TypeName="Test.BLL.Controls.KPIGridBL">
                         <SelectParameters>
                             <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int32"></asp:SessionParameter>

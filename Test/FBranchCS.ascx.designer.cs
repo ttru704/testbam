@@ -13,6 +13,15 @@ namespace Test {
     public partial class FBranchCS {
         
         /// <summary>
+        /// RadAjaxLoadingPanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
+        
+        /// <summary>
         /// RadPanelBar1 control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,22 @@ namespace Test {
         protected global::Telerik.Web.UI.RadPanelBar RadPanelBar1;
         
         /// <summary>
-        /// BranchDDL1 control.
+        /// BranchCBLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDropDownList BranchDDL1;
+        protected global::System.Web.UI.WebControls.Label BranchCBLabel;
+        
+        /// <summary>
+        /// BranchCB1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox BranchCB1;
         
         /// <summary>
         /// BranchDropDownODS1 control.

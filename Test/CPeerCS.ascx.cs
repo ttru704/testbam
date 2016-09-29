@@ -58,6 +58,31 @@ namespace Test
             }
         }
 
+        protected void BranchCB1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["Branch"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
+        }
+
+        protected void BranchTypeDDL1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["BranchType"] = Convert.ToInt64(BranchTypeDDL1.SelectedItem.Value);
+        }
+
+        protected void CountryDDL1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["Country"] = Convert.ToInt64(CountryDDL1.SelectedItem.Value);
+        }
+
+        protected void StateDDL1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["State"] = Convert.ToInt64(StateDDL1.SelectedItem.Value);
+        }
+
+        protected void RegionDDL1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["Region"] = Convert.ToInt64(RegionDDL1.SelectedItem.Value);
+        }
+
         //This is for grid exporting
         protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {

@@ -77,11 +77,7 @@ namespace Test
         protected void Page_Load(object sender, EventArgs e)
         {
             //Store current user's name
-            string userEmail = HttpContext.Current.User.Identity.Name;
-            KPIEntities db = new KPIEntities();
-            string userName = (from User_Profile in db.User_Profile
-                               where User_Profile.Email == userEmail
-                               select User_Profile.Name).Single();
+            string userName = Session["Name"] as string;
 
             //Set labels appear on the side bar and the top bar to be the current user's name
             userName1.Text = userName;
@@ -91,8 +87,6 @@ namespace Test
                 adminLink.Visible = true;
                 adminLink1.Visible = false;
                 adminLink2.Visible = false;
-                adminLink3.Visible = false;
-                adminLink4.Visible = false;
                 adminLink5.Visible = false;
             }
             else if (HttpContext.Current.User.IsInRole("Employee"))

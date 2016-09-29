@@ -22,7 +22,7 @@
         <div class="userInputs">
             <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>
             <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-            <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="MetroTouch"></telerik:RadAjaxLoadingPanel>
+            <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
             <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" Height="24px" Width="120px" Skin="Metro">
                 <Items>
                     <telerik:DropDownListItem Text="All Branches" Value="0" />
@@ -33,7 +33,7 @@
                 <ContentTemplate>
                     <div class="contButton">
 
-                        <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" >
+                        <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1" >
                             <%--Combobox for branch--%>
                             <telerik:RadLabel runat="server">Your Branch</telerik:RadLabel>
                             <br />

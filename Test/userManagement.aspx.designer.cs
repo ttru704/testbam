@@ -58,13 +58,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadDropDownList UserDDL1;
         
         /// <summary>
-        /// SqlDataSource2 control.
+        /// UserODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+        protected global::System.Web.UI.WebControls.ObjectDataSource UserODS1;
         
         /// <summary>
         /// KpiTypeDDL1 control.
@@ -76,13 +76,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadComboBox KpiTypeDDL1;
         
         /// <summary>
-        /// SqlDataSource3 control.
+        /// KpiTypeODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
+        protected global::System.Web.UI.WebControls.ObjectDataSource KpiTypeODS1;
         
         /// <summary>
         /// kpiG1 control.

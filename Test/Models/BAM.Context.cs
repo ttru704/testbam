@@ -1215,15 +1215,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("usp_UniqueCustomersSeenSingle", companyRefParameter);
         }
     
-        public virtual ObjectResult<usp_UserDropDownList_Result> usp_UserDropDownList(Nullable<int> companyRef)
-        {
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UserDropDownList_Result>("usp_UserDropDownList", companyRefParameter);
-        }
-    
         public virtual ObjectResult<usp_ViewableKpiList_Result> usp_ViewableKpiList(string userRef, Nullable<int> kpiType, string kpiTab)
         {
             var userRefParameter = userRef != null ?
@@ -1298,6 +1289,50 @@ namespace Test.Models
                 new ObjectParameter("TimeType", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeFromAnimalTypeEmployeeIndividual_Result>("usp_IncomeFromAnimalTypeEmployeeIndividual", startParameter, endParameter, companyRefParameter, staffNumberParameter, timeTypeParameter);
+        }
+    
+        public virtual int usp_UpdateUserProfile(string userRef, string name, string email, string phoneNumber)
+        {
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserProfile", userRefParameter, nameParameter, emailParameter, phoneNumberParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetUserInfo_Result> usp_GetUserInfo(string userName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetUserInfo_Result>("usp_GetUserInfo", userNameParameter);
+        }
+    
+        public virtual ObjectResult<usp_UserDropDownList_Result> usp_UserDropDownList(Nullable<long> companyRef)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UserDropDownList_Result>("usp_UserDropDownList", companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetKpiTypes_Result> usp_GetKpiTypes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetKpiTypes_Result>("usp_GetKpiTypes");
         }
     }
 }

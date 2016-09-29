@@ -72,6 +72,7 @@
         <AssociationConnector Association="KPIModel.FK_dbo_User_Logins_dbo_User_Profile_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="KPIModel.FK_dbo_User_Roles_dbo_User_Profile_User_Id" ManuallyRouted="false" />
         <AssociationConnector Association="KPIModel.Branch_Profile_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.FK_Product_Profile_Product_Profile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

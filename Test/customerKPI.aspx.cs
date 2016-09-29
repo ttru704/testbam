@@ -25,7 +25,7 @@ namespace Test
             {
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
-                Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
+                //Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
                 Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
 
                 if (!Page.IsPostBack)

@@ -5,8 +5,46 @@
 <div class="demo-container size-thin">
     <%--This export manager is for all the KPI charts--%>
     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
-
+    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
+    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server" DefaultLoadingPanelID="RadAjaxLoadingPanel1">
+        <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="BranchCB1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="BranchCB1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i2" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i3" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i4" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i5" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i6" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+        </AjaxSettings>
+    </telerik:RadAjaxManager>
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
+        <Items>
+            <telerik:RadPanelItem Width="100%" Height="30">
+                <ContentTemplate>
+                    <%--Label for branch combo box--%>
+                    <asp:Label ID="BranchCBLabel" runat="server" Text="Select your branch: "></asp:Label>
+                    <%--Combobox for branch--%>
+                    <telerik:RadComboBox RenderMode="Lightweight" ID="BranchCB1" DataTextField="Branch_Name" DataValueField="Ref_Number" runat="server" Width="186px" CssClass="Display:none"
+                        AutoPostBack="true" EmptyMessage="- Select a Branch -" DataSourceID="BranchDropDownODS1"
+                        Skin="Metro" AppendDataBoundItems="true">
+                        <Items>
+                            <telerik:RadComboBoxItem Value="0" Text="All Branches" Selected="true" />
+                        </Items>
+                    </telerik:RadComboBox>
+                    <%--Objectdatasource for branch combo box--%>
+                    <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.Controls.BranchDropDownListBL">
+                        <SelectParameters>
+                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+
+                        </SelectParameters>
+                    </asp:ObjectDataSource>
+                </ContentTemplate>
+            </telerik:RadPanelItem>
+        </Items>
         <Items>
             <%--Display Number of Unique Customers Seen branch comparison--%>
             <telerik:RadPanelItem Text="Number of Unique Customers Seen - Branch Comparison" Visible="false" Expanded="false">

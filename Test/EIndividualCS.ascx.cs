@@ -90,6 +90,12 @@ namespace Test
                 }
             }
         }
+
+        protected void EmployeeCB1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
+        {
+            Session["Employee"] = Convert.ToInt64(e.Value);
+        }
+
         protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||

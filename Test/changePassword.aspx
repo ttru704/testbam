@@ -63,7 +63,8 @@
 
                 <asp:PlaceHolder runat="server" ID="changePasswordHolder" Visible="false">
                     <div class="form-horizontal">
-                        <h4>Change Password Form</h4>
+                        <br />
+                        <h4>Change Your Password</h4>
                         <hr />
                         <%--Notify user if an account has been successfully created--%>
                         <div class="form-group">

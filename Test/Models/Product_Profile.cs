@@ -24,5 +24,7 @@ namespace Test.Models
     
         public virtual Category_Types Category_Types { get; set; }
         public virtual Company_Profile Company_Profile { get; set; }
+        public virtual Product_Profile Product_Profile1 { get; set; }
+        public virtual Product_Profile Product_Profile2 { get; set; }
     }
 }

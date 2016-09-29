@@ -49,24 +49,6 @@ namespace Test {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink2;
         
         /// <summary>
-        /// adminLink3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink3;
-        
-        /// <summary>
-        /// adminLink4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink4;
-        
-        /// <summary>
         /// adminLink5 control.
         /// </summary>
         /// <remarks>
@@ -76,6 +58,15 @@ namespace Test {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink5;
         
         /// <summary>
+        /// a2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor a2;
+        
+        /// <summary>
         /// adminLink control.
         /// </summary>
         /// <remarks>
@@ -83,15 +74,6 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink;
-        
-        /// <summary>
-        /// a1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor a1;
         
         /// <summary>
         /// userName2 control.

@@ -30,7 +30,8 @@ namespace Test
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
                 //Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
                 int? company = Session["CompanyRef"] as int?;
-                Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
+                //Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
+                Session["BranchRef"] = 0;
                 Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
                 Int64? productSerivce = Session["ProductService"] as Int64?;
 

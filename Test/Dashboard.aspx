@@ -12,6 +12,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
     <telerik:RadStyleSheetManager runat="server"></telerik:RadStyleSheetManager>
     <telerik:RadScriptManager runat="server"></telerik:RadScriptManager>
     <!-- page content -->
@@ -130,7 +131,7 @@
                 </div>
                 <%--Pie Chart 1--%>
                 <div class="col-sm-6 col-xs-12">
-                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
+                    <telerik:RadHtmlChart ID="IncomeByProductCategoryComRHC1" runat="server" Visible="false" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="IncomeByProductCategoryCompanyODS1" Skin="Bootstrap">
                         <ClientEvents OnLoad="chartLoad" />
                         <ChartTitle Text="Income by Product Category Companywide"></ChartTitle>
                         <PlotArea>
@@ -156,7 +157,7 @@
                 </div>
                 <%--Pie Chart 2--%>
                 <div class="col-sm-6 col-xs-12">
-                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
+                    <telerik:RadHtmlChart ID="IncomeByServiceActivityComRHC1" runat="server" Visible="false" RenderAs="Canvas" RenderMode="Lightweight" DataSourceID="IncomeByServiceActivityCompanyODS1" Skin="Material">
                         <ClientEvents OnLoad="chartLoad" />
                         <ChartTitle Text="Income by Service Activity Companywide"></ChartTitle>
                         <PlotArea>

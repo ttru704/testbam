@@ -22,6 +22,7 @@ namespace Test
                 DateTime? start = Session["StartDate"] as DateTime?;
                 DateTime? end = Session["EndDate"] as DateTime?;
                 Int64? company = Session["CompanyRef"] as Int64?;
+                Session["BranchRef"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
                 Int64? branch = Session["BranchRef"] as Int64?;
                 int? time = Session["Time"] as int?;
 

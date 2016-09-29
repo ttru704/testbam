@@ -584,6 +584,20 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Product_Profile_Product_Profile">
+    <End Role="Product_Profile" Type="Self.Product_Profile" Multiplicity="1" />
+    <End Role="Product_Profile1" Type="Self.Product_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Profile">
+        <PropertyRef Name="Company_Ref" />
+        <PropertyRef Name="Prd_Number" />
+      </Principal>
+      <Dependent Role="Product_Profile1">
+        <PropertyRef Name="Company_Ref" />
+        <PropertyRef Name="Prd_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="KFB_Business_Types">
     <End Role="Business_Types" Type="Self.Business_Types" Multiplicity="1" />
     <End Role="KPI_For_Business" Type="Self.KPI_For_Business" Multiplicity="*" />
@@ -939,6 +953,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   <Function Name="usp_EmployeeSearchBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_GetKpiTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_GetUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="usp_IncomeByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
     <Parameter Name="end" Type="date" Mode="In" />
@@ -1153,8 +1171,14 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   <Function Name="usp_UniqueCustomersSeenSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="bigint" Mode="In" />
   </Function>
+  <Function Name="usp_UpdateUserProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userRef" Type="nvarchar" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="phoneNumber" Type="nvarchar(max)" Mode="In" />
+  </Function>
   <Function Name="usp_UserDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="companyRef" Type="int" Mode="In" />
+    <Parameter Name="companyRef" Type="bigint" Mode="In" />
   </Function>
   <Function Name="usp_ViewableKpiList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userRef" Type="nvarchar" Mode="In" />
@@ -1272,6 +1296,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <AssociationSet Name="FK_dbo_User_Roles_dbo_User_Profile_User_Id" Association="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id">
       <End Role="User_Profile" EntitySet="User_Profile" />
       <End Role="User_Roles" EntitySet="User_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Profile_Product_Profile" Association="Self.FK_Product_Profile_Product_Profile">
+      <End Role="Product_Profile" EntitySet="Product_Profile" />
+      <End Role="Product_Profile1" EntitySet="Product_Profile" />
     </AssociationSet>
     <AssociationSet Name="KFB_Business_Types" Association="Self.KFB_Business_Types">
       <End Role="Business_Types" EntitySet="Business_Types" />

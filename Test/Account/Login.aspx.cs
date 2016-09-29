@@ -6,6 +6,9 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
 using Owin;
 using Test.Models;
+using Test.BLL;
+using Test.BLL.User;
+using System.Collections.Generic;
 
 namespace Test.Account
 {
@@ -41,21 +44,29 @@ namespace Test.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        KPIEntities db = new KPIEntities();
-                        var companyRef = (from User_Profile in db.User_Profile
-                                          where User_Profile.Email == Email.Text
-                                          select User_Profile.Company_Ref).Single();
+                        //KPIEntities db = new KPIEntities();
+                        //var companyRef = (from User_Profile in db.User_Profile
+                        //                  where User_Profile.Email == Email.Text
+                        //                  select User_Profile.Company_Ref).Single();
                         //var companyRef = from User_Profile in ab.User_Profile
                         //                 where User_Profile.Ref_Number == userId
                         //                 select User_Profile.Company_Ref;
-                        Session["CompanyRef"] = companyRef;
-                        var userRef = (from User_Profile in db.User_Profile
-                                       where User_Profile.Email == Email.Text
-                                       select User_Profile.Ref_Number).Single();
-                        Session["UserRef"] = userRef;
+                        //Session["CompanyRef"] = companyRef;
+                        //var userRef = (from User_Profile in db.User_Profile
+                        //               where User_Profile.Email == Email.Text
+                        //               select User_Profile.Ref_Number).Single();
+                        //Session["UserRef"] = userRef;
+
                         //Type t = sender.GetType();
                         //t.Name.ToString();
+                        GetUserInfoBL getUserInfoBL = new GetUserInfoBL();
+                        var a = getUserInfoBL.usp_GetUserInfo(Email.Text);
+                        Session["CompanyRef"] = a[0].Company_Ref;
+                        Session["UserRef"] = a[0].Ref_Number;
+                        Session["Name"] = a[0].Name;
+                        Session["UserName"] = Email.Text;
                         
+
                                 Response.Redirect("~/dashboard.aspx");
                         break;
                     case SignInStatus.LockedOut:

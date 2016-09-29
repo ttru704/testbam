@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="css/animate.css">
     <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="../documentation/Design/Login Page/Style.css">
-
+    <!--Bam icon-->
+    <link rel="shortcut icon" type="image/x-icon" href="../production/images/icon.ico" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 
@@ -57,9 +58,6 @@
 
 
                 <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" BackColor="#73879C" ForeColor="White" />
-                <a href="#">
-                    <p class="small">Forgot your password?</p>
-                </a>
 
 
                 <div class="checkbox">

@@ -3,15 +3,35 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
+    <telerik:RadAjaxManager runat="server" DefaultLoadingPanelID="RadAjaxLoadingPanel1">
+        <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="BranchCB1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="BranchCB1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i2" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i3" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i4" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="i5" LoadingPanelID="RadAjaxLoadingPanel1"></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+        </AjaxSettings>
+    </telerik:RadAjaxManager>
+    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
-            <telerik:RadPanelItem Width="100%">
+            <telerik:RadPanelItem Width="100%" Height="30">
                 <ContentTemplate>
-                    <telerik:RadDropDownList ID="BranchDDL1" runat="server" AppendDataBoundItems="True" DataSourceID="BranchDropDownODS1" DataTextField="Branch_Name" DataValueField="Ref_Number" height="24px" Width="120px" Skin="Metro">
+                    <%--Label for branch combo box--%>
+                    <asp:Label ID="BranchCBLabel" runat="server" Text="Select your branch: "></asp:Label>
+                    <%--Combobox for branch--%>
+                    <telerik:RadComboBox RenderMode="Lightweight" ID="BranchCB1" DataTextField="Branch_Name" DataValueField="Ref_Number" runat="server" Width="186px" CssClass="Display:none"
+                        AutoPostBack="true" EmptyMessage="- Select a Branch -" DataSourceID="BranchDropDownODS1"
+                        Skin="Metro" AppendDataBoundItems="true">
                         <Items>
-                            <telerik:DropDownListItem Text="All Branches" Value="0" />
+                            <telerik:RadComboBoxItem Value="0" Text="All Branches" Selected="true" />
                         </Items>
-                    </telerik:RadDropDownList>
+                    </telerik:RadComboBox>
+                    <%--Objectdatasource for branch combo box--%>
                     <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.Controls.BranchDropDownListBL">
                         <SelectParameters>
                             <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
@@ -304,14 +324,14 @@
 
         function exportAvgDollarPerTransactionBranchRHC1(sender, args) {
             exportRadHtmlChart('<%=AvgDollarPerTransactionBranchRHC1.ClientID%>')
-         }
-
-         function exportTransExcludeZeroTotalBranchRHC1(sender, args) {
-             exportRadHtmlChart('<%=TransExcludeZeroTotalBranchRHC1.ClientID%>')
         }
 
-        function exportRetailOnlySalesBranchRHC1(sender, args) {
-            exportRadHtmlChart('<%=RetailOnlySalesBranchRHC1.ClientID%>')
+        function exportTransExcludeZeroTotalBranchRHC1(sender, args) {
+            exportRadHtmlChart('<%=TransExcludeZeroTotalBranchRHC1.ClientID%>')
+         }
+
+         function exportRetailOnlySalesBranchRHC1(sender, args) {
+             exportRadHtmlChart('<%=RetailOnlySalesBranchRHC1.ClientID%>')
         }
         function exportServiceOnlySalesBranchRHC1(sender, args) {
             exportRadHtmlChart('<%=ServiceOnlySalesBranchRHC1.ClientID%>')

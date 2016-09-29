@@ -5,8 +5,25 @@
 <div class="demo-container size-thin">
     <%--This export manager is for every chart on the page--%>
     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
-
+    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
+        <Items>
+            <telerik:RadPanelItem Width="100%">
+                <ContentTemplate>
+                    <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server" LoadingPanelID="RadAjaxLoadingPanel1">
+                        <%--Employee combo box--%>
+                        <telerik:RadComboBox ID="EmployeeCB1" runat="server" Skin="Metro" DataSourceID="EmployeeODS1" DataTextField="Name" DataValueField="Stf_Number" AutoPostBack="true" EmptyMessage="Search for Employee" OnSelectedIndexChanged="EmployeeCB1_SelectedIndexChanged" MarkFirstMatch="True" Filter="Contains"></telerik:RadComboBox>
+                        <%--Datasource for employee combo box--%>
+                        <asp:ObjectDataSource ID="EmployeeODS1" runat="server" SelectMethod="usp_EmployeeSearchBox" TypeName="Test.BLL.Controls.EmployeeSearchBoxBL">
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
+
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                    </telerik:RadAjaxPanel>
+                </ContentTemplate>
+            </telerik:RadPanelItem>
+        </Items>
         <Items>
             <telerik:RadPanelItem Text="Number of Customers Seen By Employee" Expanded="False">
                 <ContentTemplate>
@@ -101,40 +118,40 @@
                     <div class="export">
                         <telerik:RadButton ID="IncomeByEmployeeIndividualEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByEmployeeIndividualRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                         <telerik:RadHtmlChart ID="IncomeByEmployeeIndividualRHC1" runat="server" Skin="Bootstrap">
-                        <ClientEvents OnLoad="formatIncomeByEmployeeIndividualRHC1" />
+                            <ClientEvents OnLoad="formatIncomeByEmployeeIndividualRHC1" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                             </Zoom>
-                    </telerik:RadHtmlChart>
-                    <%--Datasource--%>
-                    <asp:ObjectDataSource ID="IncomeByEmployeeIndividualODS1" runat="server" SelectMethod="usp_IncomeByEmployeeIndividual" TypeName="Test.BLL.Productivity.IncomeByEmployeeIndividualBL">
-                        <SelectParameters>
-                            <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                        </telerik:RadHtmlChart>
+                        <%--Datasource--%>
+                        <asp:ObjectDataSource ID="IncomeByEmployeeIndividualODS1" runat="server" SelectMethod="usp_IncomeByEmployeeIndividual" TypeName="Test.BLL.Productivity.IncomeByEmployeeIndividualBL">
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
 
-                            <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                    <%--Table--%>
+                                <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="Time" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                        <%--Table--%>
                         <br />
                         <br />
-                    <telerik:RadGrid ID="IncomeByEmployeeIndividualG1" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="IncomeByEmployeeIndividualODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
-                        <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
-                            <Selecting AllowRowSelect="True"></Selecting>
-                        </ClientSettings>
-                        <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView DataSourceID="IncomeByEmployeeIndividualODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
-                            <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ExportToCsvText="ExporttoCSV" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
-                            <Columns>
-                                <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
-                                <telerik:GridBoundColumn DataField="Income_By_Employee" HeaderText="Income" SortExpression="Income_By_Employee" UniqueName="Income_By_Employee" DataType="System.Decimal" FilterControlAltText="Filter Income_By_Employee column"></telerik:GridBoundColumn>
-                            </Columns>
-                        </MasterTableView>
-                    </telerik:RadGrid>
+                        <telerik:RadGrid ID="IncomeByEmployeeIndividualG1" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="IncomeByEmployeeIndividualODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
+                            <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
+                                <Selecting AllowRowSelect="True"></Selecting>
+                            </ClientSettings>
+                            <ExportSettings HideStructureColumns="true"></ExportSettings>
+                            <MasterTableView DataSourceID="IncomeByEmployeeIndividualODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                                <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ExportToCsvText="ExporttoCSV" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
+                                <Columns>
+                                    <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="Income_By_Employee" HeaderText="Income" SortExpression="Income_By_Employee" UniqueName="Income_By_Employee" DataType="System.Decimal" FilterControlAltText="Filter Income_By_Employee column"></telerik:GridBoundColumn>
+                                </Columns>
+                            </MasterTableView>
+                        </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <telerik:RadPanelItem Text="Income by Employee From Each Animal Type" Expanded="False">
@@ -143,25 +160,25 @@
                     <div class="export">
                         <telerik:RadButton ID="IncomeFromAnimalTypeEmployeeIndividualEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeFromAnimalTypeEmployeeIndividualRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
                         <telerik:RadHtmlChart ID="IncomeFromAnimalTypeEmployeeIndividualRHC1" runat="server" Skin="Metro">
-                        <ClientEvents OnLoad="formatIncomeFromAnimalTypeEmployeeIndividualRHC1" />
+                            <ClientEvents OnLoad="formatIncomeFromAnimalTypeEmployeeIndividualRHC1" />
                             <Pan Enabled="true" Lock="Y" />
                             <Zoom Enabled="true">
                                 <MouseWheel Enabled="true" Lock="Y" />
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                             </Zoom>
-                    </telerik:RadHtmlChart>
-                    <%--Datasource--%>
-                    <asp:ObjectDataSource ID="IncomeFromAnimalTypeEmployeeIndividualODS1" runat="server" SelectMethod="usp_IncomeFromAnimalTypeEmployeeIndividual" TypeName="Test.BLL.Productivity.IncomeFromAnimalTypeEmployeeIndividualBL">
-                        <SelectParameters>
-                            <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
+                        </telerik:RadHtmlChart>
+                        <%--Datasource--%>
+                        <asp:ObjectDataSource ID="IncomeFromAnimalTypeEmployeeIndividualODS1" runat="server" SelectMethod="usp_IncomeFromAnimalTypeEmployeeIndividual" TypeName="Test.BLL.Productivity.IncomeFromAnimalTypeEmployeeIndividualBL">
+                            <SelectParameters>
+                                <asp:SessionParameter SessionField="StartDate" DefaultValue="&#39;2015-01-01&#39;" Name="start" Type="DateTime"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="EndDate" DefaultValue="&#39;2015-12-31&#39;" Name="end" Type="DateTime"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int64"></asp:SessionParameter>
 
-                            <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="TIme" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
-                        </SelectParameters>
-                    </asp:ObjectDataSource>
-                    <%--Table--%>
+                                <asp:SessionParameter SessionField="Employee" DefaultValue="" Name="staffNumber" Type="Int64"></asp:SessionParameter>
+                                <asp:SessionParameter SessionField="TIme" DefaultValue="2" Name="timeType" Type="Int32"></asp:SessionParameter>
+                            </SelectParameters>
+                        </asp:ObjectDataSource>
+                        <%--Table--%>
                         <br />
                         <br />
                         <telerik:RadGrid ID="IncomeFromAnimalTypeEmployeeIndividualG1" OnItemCommand="ExportGridCustomiser" runat="server" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" DataSourceID="IncomeFromAnimalTypeEmployeeIndividualODS1">
@@ -177,7 +194,7 @@
                                     <telerik:GridBoundColumn DataField="Income_By_Vet_For_Each_Animal_Type" HeaderText="Income" SortExpression="Income_By_Vet_For_Each_Animal_Type" UniqueName="Income_By_Vet_For_Each_Animal_Type" DataType="System.Decimal" FilterControlAltText="Filter Income_By_Vet_For_Each_Animal_Type column"></telerik:GridBoundColumn>
                                 </Columns>
                             </MasterTableView>
-                    </telerik:RadGrid>
+                        </telerik:RadGrid>
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
@@ -312,13 +329,13 @@
         };
         function formatIncomeByEmployeeIndividualRHC1() {
             var chart3 = $find("<%=IncomeByEmployeeIndividualRHC1.ClientID%>");
-        chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart3.repaint();
+            chart3.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart3.repaint();
         };
         function formatIncomeFromAnimalTypeEmployeeIndividualRHC1() {
             var chart4 = $find("<%=IncomeFromAnimalTypeEmployeeIndividualRHC1.ClientID%>");
-        chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
-        chart4.repaint();
+            chart4.get_kendoWidget().options.valueAxis.labels.template = "#if(value <= 999) {# #=value# #}   else if (value >= 1000 && value <= 999999){# #=value / 1000#K #} else if(value >= 1000000 && value <= 999999999) {# #=value / 1000000#M #}  else if(value >= 1000000000 && value <= 999999999999) {# #=value / 1000000000#B #}#";
+            chart4.repaint();
         };
     </script>
 </telerik:RadScriptBlock>
