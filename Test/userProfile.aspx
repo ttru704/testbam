@@ -32,32 +32,26 @@
             <%--Input Boxes--%>
             <div class="form-group">
                 <%--Full name--%>
-                <asp:Label runat="server" AssociatedControlID="FullName" CssClass="col-md-2 control-label">Full Name
-                    <br />(<asp:Label ID="CurrentFullName" runat="server"></asp:Label>)
-
-                </asp:Label>
+                <asp:Label runat="server" AssociatedControlID="FullName" CssClass="col-md-2 control-label">Full Name</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="FullName" CssClass="form-control"/>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="FullName"
                         CssClass="text-danger" ErrorMessage="Your full Name is required." />
                 </div>
                 <%--Email Address--%>
-                <asp:Label runat="server" AssociatedControlID="EmailAddress" CssClass="col-md-2 control-label">Email Address
-                    <br />(<asp:Label ID="CurrentEmail" runat="server"></asp:Label>)
-
-                </asp:Label>
+                <asp:Label runat="server" AssociatedControlID="EmailAddress" CssClass="col-md-2 control-label">Email Address</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="EmailAddress"  CssClass="form-control" TextMode="Email" />
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="EmailAddress"
                         CssClass="text-danger" ErrorMessage="Your email address is required." />
                 </div>
                 <%--Contact Number--%>
-                <asp:Label runat="server" AssociatedControlID="ContactNumber" CssClass="col-md-2 control-label">Phone Number
-                    <br />(<asp:Label ID="CurrentContact" runat="server"></asp:Label>)</asp:Label>
+                <asp:Label runat="server" AssociatedControlID="ContactNumber" CssClass="col-md-2 control-label">Phone Number</asp:Label>
                 <div class="col-md-10">
                     <asp:TextBox runat="server" ID="ContactNumber"  CssClass="form-control" TextMode="Phone" />
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="ContactNumber"
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="ContactNumber" 
                         CssClass="text-danger" ErrorMessage="Your phone number is required." />
+                    <asp:RegularExpressionValidator Display="None" ControlToValidate = "ContactNumber" ID="RegularExpressionValidator1" ValidationExpression = "^[\s\S]{0,9}$" runat="server" ErrorMessage="Maximum 9 characters allowed." ></asp:RegularExpressionValidator>
                 </div>
             </div>
 

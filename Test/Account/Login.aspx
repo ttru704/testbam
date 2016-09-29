@@ -49,21 +49,15 @@
                 <br />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="The password field is required." />
 
-
-
-
                 <br />
-
-
-
 
                 <asp:Button runat="server" OnClick="LogIn" Text="Log in" CssClass="btn btn-default" BackColor="#73879C" ForeColor="White" />
 
-
+                <%--Visible False as the checkbox couldnt be removed from the metadata in time--%>
                 <div class="checkbox">
-                    <asp:CheckBox runat="server" ID="RememberMe" />
+                    <asp:CheckBox runat="server" ID="RememberMe" Visible="false" />
 
-                    <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="RememberMe" Visible="false">Remember me?</asp:Label>
                 </div>
 
 

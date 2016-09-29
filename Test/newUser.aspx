@@ -38,6 +38,16 @@
                 </div>
             </div>
 
+            <%--       User inputs Username--%>
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="Username" CssClass="col-md-2 control-label">Username </asp:Label>
+                <div class="col-md-10">
+                    <asp:TextBox runat="server" ID="Username" CssClass="form-control" TextMode="SingleLine" />
+                    <asp:RequiredFieldValidator runat="server" ControlToValidate="Username"
+                        CssClass="text-danger" ErrorMessage="The Name field is required." />
+                </div>
+            </div>
+
             <%--       User inputs email --%>
 
             <div class="form-group">

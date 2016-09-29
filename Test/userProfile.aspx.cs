@@ -18,13 +18,15 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
             string userName = Session["UserName"] as string;
             GetUserInfoBL getUserInfoBL = new GetUserInfoBL();
             List<usp_GetUserInfo_Result> getUserInfoList = getUserInfoBL.usp_GetUserInfo(userName);
-            CurrentFullName.Text = getUserInfoList[0].Name;
-            CurrentContact.Text = getUserInfoList[0].PhoneNumber;
-            CurrentEmail.Text = getUserInfoList[0].Email;
-
+            FullName.Text = getUserInfoList[0].Name;
+            ContactNumber.Text = getUserInfoList[0].PhoneNumber;
+            EmailAddress.Text = getUserInfoList[0].Email;
+            }
         }
         protected void SubmitEdit_Click(object sender, EventArgs e)
         {

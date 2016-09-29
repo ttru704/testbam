@@ -38,7 +38,7 @@ namespace Test
 
             //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
 
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref= a };
+            var user = new ApplicationUser() { UserName = Username.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref= a};
             IdentityResult result = manager.Create(user, Password.Text);
             var userID = user.Id;
             IdentityResult addrole = manager.AddToRole(userID, "Employee");
