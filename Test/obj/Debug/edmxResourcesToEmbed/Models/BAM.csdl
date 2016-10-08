@@ -401,6 +401,9 @@
     <NavigationProperty Name="User_Claims" Relationship="Self.FK_dbo_User_Claims_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Claims" />
     <NavigationProperty Name="User_Logins" Relationship="Self.FK_dbo_User_Logins_dbo_User_Profile_UserId" FromRole="User_Profile" ToRole="User_Logins" />
     <NavigationProperty Name="User_Roles" Relationship="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Roles" />
+    <Property Name="AccessStart" Type="DateTime" Precision="0" />
+    <Property Name="AccessEnd" Type="DateTime" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="User_Roles">
     <Key>
@@ -1199,11 +1202,6 @@
     <FunctionImport Name="usp_KPIForCompanyList" ReturnType="Collection(KPIModel.usp_KPIForCompanyList_Result)">
       <Parameter Name="companyRef" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="usp_KPIGrid" ReturnType="Collection(KPIModel.usp_KPIGrid_Result)">
-      <Parameter Name="companyRef" Mode="In" Type="Int32" />
-      <Parameter Name="userRef" Mode="In" Type="String" />
-      <Parameter Name="kpiType" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="usp_LargeAnimalsBranch" ReturnType="Collection(KPIModel.usp_LargeAnimalsBranch_Result)">
       <Parameter Name="start" Mode="In" Type="DateTime" />
       <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -1389,6 +1387,31 @@
       <Parameter Name="companyRef" Mode="In" Type="Int64" />
     </FunctionImport>
     <FunctionImport Name="usp_GetKpiTypes" ReturnType="Collection(KPIModel.usp_GetKpiTypes_Result)" />
+    <FunctionImport Name="usp_InsertIntoKpiForCompany">
+      <Parameter Name="kpiRef" Mode="In" Type="Int64" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_KPIListForCompany" ReturnType="Collection(KPIModel.usp_KPIListForCompany_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+      <Parameter Name="businessType" Mode="In" Type="Int64" />
+      <Parameter Name="kpiType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_DeleteFromKpiForCompany">
+      <Parameter Name="kpiRef" Mode="In" Type="Int64" />
+      <Parameter Name="companyRef" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="usp_CompanyList" ReturnType="Collection(KPIModel.usp_CompanyList_Result)" />
+    <FunctionImport Name="usp_KPIListForUser" ReturnType="Collection(KPIModel.usp_KPIListForUser_Result)">
+      <Parameter Name="companyRef" Mode="In" Type="Int32" />
+      <Parameter Name="userRef" Mode="In" Type="String" />
+      <Parameter Name="kpiType" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="usp_UpdateUserAccessDetail">
+      <Parameter Name="accessStart" Mode="In" Type="DateTime" />
+      <Parameter Name="accessEnd" Mode="In" Type="DateTime" />
+      <Parameter Name="status" Mode="In" Type="Int32" />
+      <Parameter Name="userRef" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="usp_AnimalsSeenBranch_Result">
     <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
@@ -1526,12 +1549,6 @@
   <ComplexType Name="usp_KPIForCompanyList_Result">
     <Property Type="Int64" Name="Kpi_For_Company" Nullable="false" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-  </ComplexType>
-  <ComplexType Name="usp_KPIGrid_Result">
-    <Property Type="Int64" Name="Kpi_For_Company" Nullable="true" />
-    <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
-    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
-    <Property Type="Boolean" Name="Viewable" Nullable="true" />
   </ComplexType>
   <ComplexType Name="usp_LargeAnimalsBranch_Result">
     <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
@@ -1696,5 +1713,21 @@
   <ComplexType Name="usp_GetKpiTypes_Result">
     <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
     <Property Type="Int64" Name="Ref_Number" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="usp_KPIListForCompany_Result">
+    <Property Type="Int64" Name="Kpi_For_Business" Nullable="true" />
+    <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="Viewable" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="usp_CompanyList_Result">
+    <Property Type="Int64" Name="Ref_Number" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="usp_KPIListForUser_Result">
+    <Property Type="Int64" Name="Kpi_For_Company" Nullable="true" />
+    <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+    <Property Type="Boolean" Name="Viewable" Nullable="true" />
   </ComplexType>
 </Schema>

@@ -31,49 +31,58 @@ namespace Test {
         protected global::System.Web.UI.WebControls.Label userName1;
         
         /// <summary>
-        /// adminLink1 control.
+        /// dashboard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink1;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor dashboard;
         
         /// <summary>
-        /// adminLink2 control.
+        /// displayKpi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor displayKpi;
         
         /// <summary>
-        /// adminLink5 control.
+        /// userManagement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink5;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor userManagement;
         
         /// <summary>
-        /// a2 control.
+        /// a1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor a2;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor a1;
         
         /// <summary>
-        /// adminLink control.
+        /// a3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminLink;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor a3;
+        
+        /// <summary>
+        /// adminstration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor adminstration;
         
         /// <summary>
         /// userName2 control.
@@ -85,13 +94,13 @@ namespace Test {
         protected global::System.Web.UI.WebControls.Label userName2;
         
         /// <summary>
-        /// kpiNameHeader control.
+        /// pageHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder kpiNameHeader;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder pageHeader;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

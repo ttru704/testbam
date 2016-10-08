@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
+using Test.BLL.Controls;
 using Test.BLL.Financial;
 using Test.Models;
 
@@ -22,6 +23,19 @@ namespace Test
             Int64? serviceRef = Session["Service"] as Int64?;
             Int64? productRef = Session["Product"] as Int64?;
 
+            //This loop will make radpanelitem visible if they are contained in the list below
+            string userRef = Session["UserRef"] as string;
+            ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+            List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "ProductService");
+
+            foreach (var element in viewableKpiList)
+            {
+                string name = element.Name;
+                string toolTip = element.Description;
+                RadPanelBar1.FindItemByText(name).Visible = true;
+                RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
+            }
+
             //Format Income by Service Individual chart
             IncomeByServiceIndividualRHC1.ChartTitle.Text = "Income by Service";
             IncomeByServiceIndividualRHC1.PlotArea.YAxis.TitleAppearance.Text = "Income";
@@ -33,18 +47,18 @@ namespace Test
             //format x axis based on the selected time type
             if (time == 1)
             {
-                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
             }
             else if (time == 2)
             {
-                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
             }
             else if (time == 3)
             {
-                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                IncomeByServiceIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                IncomeByProductIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
             }
 
             if (serviceRef != null)
@@ -117,8 +131,6 @@ namespace Test
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
                 e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
                 sender.ToString();
-            Type t = sender.GetType();
-            t.Name.ToString();
             RadGrid rg = (RadGrid)sender;
             string gridname = rg.DataSourceID;
 

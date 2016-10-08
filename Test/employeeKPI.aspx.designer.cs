@@ -13,24 +13,6 @@ namespace Test {
     public partial class employeekpi {
         
         /// <summary>
-        /// EmployeeCB1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox EmployeeCB1;
-        
-        /// <summary>
-        /// EmployeeODS1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource EmployeeODS1;
-        
-        /// <summary>
         /// TimeDDL1 control.
         /// </summary>
         /// <remarks>

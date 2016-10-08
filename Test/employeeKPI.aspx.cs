@@ -16,9 +16,8 @@ namespace Test
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-            if (authentication == true)
+            
+            if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();

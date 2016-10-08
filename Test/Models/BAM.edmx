@@ -355,6 +355,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Name="LockoutEndDateUtc" Type="datetime" />
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="AccessStart" Type="date" />
+          <Property Name="AccessEnd" Type="date" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="User_Roles">
           <Key>
@@ -935,6 +938,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         <Function Name="usp_BranchTypeDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="businessType" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_CompanyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_CountryDropDownList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="branchRef" Type="bigint" Mode="In" />
         </Function>
@@ -950,6 +954,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="companyRef" Type="bigint" Mode="In" />
           <Parameter Name="staffNumber" Type="bigint" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_DeleteFromKpiForCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kpiRef" Type="bigint" Mode="In" />
+          <Parameter Name="companyRef" Type="bigint" Mode="In" />
         </Function>
         <Function Name="usp_DeleteFromKpiForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="kpiRef" Type="int" Mode="In" />
@@ -1014,6 +1022,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="staffNumber" Type="bigint" Mode="In" />
           <Parameter Name="TimeType" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_InsertIntoKpiForCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="kpiRef" Type="bigint" Mode="In" />
+          <Parameter Name="companyRef" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="usp_InsertIntoKpiForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="kpiRef" Type="int" Mode="In" />
           <Parameter Name="userRef" Type="nvarchar" Mode="In" />
@@ -1025,7 +1037,12 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         <Function Name="usp_KPIForCompanyList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="companyRef" Type="int" Mode="In" />
         </Function>
-        <Function Name="usp_KPIGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="usp_KPIListForCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="bigint" Mode="In" />
+          <Parameter Name="businessType" Type="bigint" Mode="In" />
+          <Parameter Name="kpiType" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_KPIListForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="companyRef" Type="int" Mode="In" />
           <Parameter Name="userRef" Type="nvarchar" Mode="In" />
           <Parameter Name="kpiType" Type="int" Mode="In" />
@@ -1175,6 +1192,12 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         </Function>
         <Function Name="usp_UniqueCustomersSeenSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="companyRef" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_UpdateUserAccessDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="accessStart" Type="date" Mode="In" />
+          <Parameter Name="accessEnd" Type="date" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="userRef" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="usp_UpdateUserProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userRef" Type="nvarchar" Mode="In" />
@@ -1784,6 +1807,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <NavigationProperty Name="User_Claims" Relationship="Self.FK_dbo_User_Claims_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Claims" />
           <NavigationProperty Name="User_Logins" Relationship="Self.FK_dbo_User_Logins_dbo_User_Profile_UserId" FromRole="User_Profile" ToRole="User_Logins" />
           <NavigationProperty Name="User_Roles" Relationship="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Roles" />
+          <Property Name="AccessStart" Type="DateTime" Precision="0" />
+          <Property Name="AccessEnd" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="User_Roles">
           <Key>
@@ -2582,11 +2608,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <FunctionImport Name="usp_KPIForCompanyList" ReturnType="Collection(KPIModel.usp_KPIForCompanyList_Result)">
           <Parameter Name="companyRef" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="usp_KPIGrid" ReturnType="Collection(KPIModel.usp_KPIGrid_Result)">
-            <Parameter Name="companyRef" Mode="In" Type="Int32" />
-            <Parameter Name="userRef" Mode="In" Type="String" />
-            <Parameter Name="kpiType" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="usp_LargeAnimalsBranch" ReturnType="Collection(KPIModel.usp_LargeAnimalsBranch_Result)">
             <Parameter Name="start" Mode="In" Type="DateTime" />
             <Parameter Name="end" Mode="In" Type="DateTime" />
@@ -2772,6 +2793,31 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Parameter Name="companyRef" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="usp_GetKpiTypes" ReturnType="Collection(KPIModel.usp_GetKpiTypes_Result)" />
+          <FunctionImport Name="usp_InsertIntoKpiForCompany">
+            <Parameter Name="kpiRef" Mode="In" Type="Int64" />
+            <Parameter Name="companyRef" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_KPIListForCompany" ReturnType="Collection(KPIModel.usp_KPIListForCompany_Result)">
+            <Parameter Name="companyRef" Mode="In" Type="Int64" />
+            <Parameter Name="businessType" Mode="In" Type="Int64" />
+            <Parameter Name="kpiType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_DeleteFromKpiForCompany">
+            <Parameter Name="kpiRef" Mode="In" Type="Int64" />
+            <Parameter Name="companyRef" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_CompanyList" ReturnType="Collection(KPIModel.usp_CompanyList_Result)" />
+          <FunctionImport Name="usp_KPIListForUser" ReturnType="Collection(KPIModel.usp_KPIListForUser_Result)">
+            <Parameter Name="companyRef" Mode="In" Type="Int32" />
+            <Parameter Name="userRef" Mode="In" Type="String" />
+            <Parameter Name="kpiType" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UpdateUserAccessDetail">
+            <Parameter Name="accessStart" Mode="In" Type="DateTime" />
+            <Parameter Name="accessEnd" Mode="In" Type="DateTime" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="userRef" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_AnimalsSeenBranch_Result">
           <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
@@ -2909,12 +2955,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         <ComplexType Name="usp_KPIForCompanyList_Result">
           <Property Type="Int64" Name="Kpi_For_Company" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
-        </ComplexType>
-        <ComplexType Name="usp_KPIGrid_Result">
-          <Property Type="Int64" Name="Kpi_For_Company" Nullable="true" />
-          <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
-          <Property Type="Boolean" Name="Viewable" Nullable="true" />
         </ComplexType>
         <ComplexType Name="usp_LargeAnimalsBranch_Result">
           <Property Type="String" Name="Branch_Name" Nullable="false" MaxLength="100" />
@@ -3079,6 +3119,22 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         <ComplexType Name="usp_GetKpiTypes_Result">
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
           <Property Type="Int64" Name="Ref_Number" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="usp_KPIListForCompany_Result">
+          <Property Type="Int64" Name="Kpi_For_Business" Nullable="true" />
+          <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Viewable" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_CompanyList_Result">
+          <Property Type="Int64" Name="Ref_Number" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="usp_KPIListForUser_Result">
+          <Property Type="Int64" Name="Kpi_For_Company" Nullable="true" />
+          <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="Viewable" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3421,6 +3477,9 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <EntitySetMapping Name="User_Profile">
             <EntityTypeMapping TypeName="KPIModel.User_Profile">
               <MappingFragment StoreEntitySet="User_Profile">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AccessEnd" ColumnName="AccessEnd" />
+                <ScalarProperty Name="AccessStart" ColumnName="AccessStart" />
                 <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
                 <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -3712,16 +3771,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_KPIGrid" FunctionName="KPIModel.Store.usp_KPIGrid">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_KPIGrid_Result">
-                <ScalarProperty Name="Kpi_For_Company" ColumnName="Kpi_For_Company" />
-                <ScalarProperty Name="KpiType" ColumnName="KpiType" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Viewable" ColumnName="Viewable" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_LargeAnimalsBranch" FunctionName="KPIModel.Store.usp_LargeAnimalsBranch">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_LargeAnimalsBranch_Result">
@@ -3995,6 +4044,37 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_InsertIntoKpiForCompany" FunctionName="KPIModel.Store.usp_InsertIntoKpiForCompany" />
+          <FunctionImportMapping FunctionImportName="usp_KPIListForCompany" FunctionName="KPIModel.Store.usp_KPIListForCompany">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_KPIListForCompany_Result">
+                <ScalarProperty Name="Kpi_For_Business" ColumnName="Kpi_For_Business" />
+                <ScalarProperty Name="KpiType" ColumnName="KpiType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Viewable" ColumnName="Viewable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_DeleteFromKpiForCompany" FunctionName="KPIModel.Store.usp_DeleteFromKpiForCompany" />
+          <FunctionImportMapping FunctionImportName="usp_CompanyList" FunctionName="KPIModel.Store.usp_CompanyList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_CompanyList_Result">
+                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_KPIListForUser" FunctionName="KPIModel.Store.usp_KPIListForUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_KPIListForUser_Result">
+                <ScalarProperty Name="Kpi_For_Company" ColumnName="Kpi_For_Company" />
+                <ScalarProperty Name="KpiType" ColumnName="KpiType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Viewable" ColumnName="Viewable" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_UpdateUserAccessDetail" FunctionName="KPIModel.Store.usp_UpdateUserAccessDetail" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

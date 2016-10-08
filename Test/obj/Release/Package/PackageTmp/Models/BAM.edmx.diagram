@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="53f9dac4cf704127b3046a71af8e9847" Name="Diagram1">
+        <EntityTypeShape EntityType="KPIModel.Audit_Log" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Branch_Profile" Width="1.5" PointX="8.25" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Branch_Types" Width="1.5" PointX="6" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Business_Types" Width="1.5" PointX="0.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Category_Types" Width="1.5" PointX="3" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Client_Profile" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Company_Profile" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Configuration" Width="1.5" PointX="10.5" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Country_Profile" Width="1.5" PointX="6" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Key_Performance_Indexes" Width="1.5" PointX="0.75" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.KPI_For_Business" Width="1.5" PointX="3" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.KPI_For_Company" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.KPI_For_User" Width="1.5" PointX="10.5" PointY="31.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.KPI_Types" Width="1.5" PointX="1.5" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Param" Width="1.5" PointX="8.25" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Product_Profile" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Region_Profile" Width="1.5" PointX="6" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Role" Width="1.5" PointX="8.25" PointY="38.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Staff_Profile" Width="1.5" PointX="5.25" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Staff_Types" Width="1.5" PointX="3" PointY="33" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.State_Profile" Width="1.5" PointX="3.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Subject_Profile" Width="1.5" PointX="8.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Subject_Types" Width="1.5" PointX="3" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Table_Map" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Transaction_Items" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Transaction_Summary" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.User_Claims" Width="1.5" PointX="7.5" PointY="40.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.User_Logins" Width="1.5" PointX="7.5" PointY="43.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.User_Profile" Width="1.5" PointX="5.25" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.User_Roles" Width="1.5" PointX="10.5" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KPIModel.Connection_Profile" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="KPIModel.BRN_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.BRN_Country_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.BRN_Region_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.BRN_State_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CFG_Branch_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.BRT_Business_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CAT_Business_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CPY_Business_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KFB_Business_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.SBT_Business_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.STT_Business_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.PRD_Category_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CLN_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CFG_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KFC_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.PRD_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.STF_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.SUB_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.USR_Company_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CFG_Params" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.CFG_User_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.STP_Country_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KFB_Key_Performance_Indexs" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KPI_Kpi_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KFC_Kpi_for_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KFU_Kpi_for_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.KFU_User_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.REG_State_Profile" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.FK_dbo_User_Roles_dbo_Roles_Role_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.STP_Staff_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.SUB_Subject_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.FK_dbo_User_Claims_dbo_User_Profile_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.FK_dbo_User_Logins_dbo_User_Profile_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.FK_dbo_User_Roles_dbo_User_Profile_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.Branch_Profile_Types" ManuallyRouted="false" />
+        <AssociationConnector Association="KPIModel.FK_Product_Profile_Product_Profile" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

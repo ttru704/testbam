@@ -24,6 +24,9 @@ namespace Test
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                Response.Redirect("~/Account/Login.aspx");
+
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
 
             if (!IsPostBack)
@@ -58,10 +61,6 @@ namespace Test
                 IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
                 if (result.Succeeded)
                 {
-                    //var user = manager.FindById(User.Identity.GetUserId());
-                    //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                    //Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
-
                     Message.Text = "Your password has been changed successfully";
                 }
                 else

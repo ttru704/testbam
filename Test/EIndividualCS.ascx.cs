@@ -8,6 +8,7 @@ using Test.Models;
 using Test.BLL.Productivity;
 using System.Data;
 using Telerik.Web.UI;
+using Test.BLL.Controls;
 
 namespace Test
 {
@@ -22,6 +23,22 @@ namespace Test
                 Int64? company = Session["CompanyRef"] as Int64?;
                 long? employee = Session["Employee"] as long?;
                 int? time = Session["Time"] as int?;
+
+                // call the session that stores the user ref
+                string userRef = Session["UserRef"] as string;
+
+                //Store the list of kpi that the current user is allowed to view
+                ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+                List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 3, "Individual");
+
+                //loop through the list of kpi that current user is allowed to view then make these kpi visible to user
+                foreach (var element in viewableKpiList)
+                {
+                    string name = element.Name;
+                    string toolTip = element.Description;
+                    RadPanelBar1.FindItemByText(name).Visible = true;
+                    RadPanelBar1.FindItemByText(name).ToolTip = toolTip;
+                }
 
                 //Format number of customers seen by invidual employee chart
                 CustomersSeenByEmployeeIndividualRHC1.ChartTitle.Text = "Number of Customers Seen by Employee - Individual";
@@ -42,24 +59,24 @@ namespace Test
                 //format xaxis of charts based on selected time type
                 if (time == 1)
                 {
-                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
                 }
                 else if (time == 2)
                 {
-                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
                 }
                 else if (time == 3)
                 {
-                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    CustomersSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AnimalsSeenByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    IncomeByEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    IncomeFromAnimalTypeEmployeeIndividualRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
                 }
 
                 if (employee != null && start != null && end != null)
@@ -94,6 +111,33 @@ namespace Test
         protected void EmployeeCB1_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
         {
             Session["Employee"] = Convert.ToInt64(e.Value);
+
+            DateTime? start = Session["StartDate"] as DateTime?;
+            DateTime? end = Session["EndDate"] as DateTime?;
+            Int64? company = Session["CompanyRef"] as Int64?;
+            long? employee = Session["Employee"] as long?;
+            int? time = Session["Time"] as int?;
+            ListtoDataTableConverter converter = new ListtoDataTableConverter();
+
+            CustomersSeenByEmployeeIndividualBL customersSeenByEmployeeIndividualBL = new CustomersSeenByEmployeeIndividualBL();
+            List<usp_CustomersSeenByEmployeeIndividual_Result> customersSeenByEmployeeIndividualList = customersSeenByEmployeeIndividualBL.usp_CustomersSeenByEmployeeIndividual(start, end, company, employee, time);
+            DataTable customersSeenByEmployeeIndividualDT = converter.ToDataTable(customersSeenByEmployeeIndividualList);
+            RadHtmlChartGroupDataSource.GroupDataSource(CustomersSeenByEmployeeIndividualRHC1, customersSeenByEmployeeIndividualDT, "Employee_Name", "BarSeries", "Number_Of_Customers_Seen_By_An_Employee", "TimePeriod");
+
+            AnimalsSeenByEmployeeIndividualBL animalsSeenByEmployeeIndividualBL = new AnimalsSeenByEmployeeIndividualBL();
+            List<usp_AnimalsSeenByEmployeeIndividual_Result> animalsSeenByEmployeeIndividualList = animalsSeenByEmployeeIndividualBL.usp_AnimalsSeenByEmployeeIndividual(start, end, company, employee, time);
+            DataTable animalsSeenByEmployeeIndividualDT = converter.ToDataTable(animalsSeenByEmployeeIndividualList);
+            RadHtmlChartGroupDataSource.GroupDataSource(AnimalsSeenByEmployeeIndividualRHC1, animalsSeenByEmployeeIndividualDT, "Employee_Name", "BarSeries", "Number_Of_Animals_Seen_By_An_Employee", "TimePeriod");
+
+            IncomeByEmployeeIndividualBL incomeByEmployeeIndividualBL = new IncomeByEmployeeIndividualBL();
+            List<usp_IncomeByEmployeeIndividual_Result> incomeByEmployeeIndividualList = incomeByEmployeeIndividualBL.usp_IncomeByEmployeeIndividual(start, end, company, employee, time);
+            DataTable incomeByEmployeeIndividualDT = converter.ToDataTable(incomeByEmployeeIndividualList);
+            RadHtmlChartGroupDataSource.GroupDataSource(IncomeByEmployeeIndividualRHC1, incomeByEmployeeIndividualDT, "Employee_Name", "AreaSeries", "Income_By_Employee", "TimePeriod");
+
+            IncomeFromAnimalTypeEmployeeIndividualBL incomeFromAnimalTypeEmployeeIndividualBL = new IncomeFromAnimalTypeEmployeeIndividualBL();
+            List<usp_IncomeFromAnimalTypeEmployeeIndividual_Result> incomeFromAnimalTypeEmployeeIndividualList = incomeFromAnimalTypeEmployeeIndividualBL.usp_IncomeFromAnimalTypeEmployeeIndividual(start, end, company, employee, time);
+            DataTable incomeFromAnimalTypeEmployeeIndividualDT = converter.ToDataTable(incomeFromAnimalTypeEmployeeIndividualList);
+            RadHtmlChartGroupDataSource.GroupDataSource(IncomeFromAnimalTypeEmployeeIndividualRHC1, incomeFromAnimalTypeEmployeeIndividualDT, "Animal_Type_Name", "ColumnSeries", "Income_By_Vet_For_Each_Animal_Type", "TimePeriod");
         }
 
         protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
@@ -101,8 +145,6 @@ namespace Test
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
                 e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
                 sender.ToString();
-            Type t = sender.GetType();
-            t.Name.ToString();
             RadGrid rg = (RadGrid)sender;
             string gridname = rg.DataSourceID;
 

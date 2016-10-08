@@ -44,21 +44,6 @@ namespace Test.Account
                 switch (result)
                 {
                     case SignInStatus.Success:
-                        //KPIEntities db = new KPIEntities();
-                        //var companyRef = (from User_Profile in db.User_Profile
-                        //                  where User_Profile.Email == Email.Text
-                        //                  select User_Profile.Company_Ref).Single();
-                        //var companyRef = from User_Profile in ab.User_Profile
-                        //                 where User_Profile.Ref_Number == userId
-                        //                 select User_Profile.Company_Ref;
-                        //Session["CompanyRef"] = companyRef;
-                        //var userRef = (from User_Profile in db.User_Profile
-                        //               where User_Profile.Email == Email.Text
-                        //               select User_Profile.Ref_Number).Single();
-                        //Session["UserRef"] = userRef;
-
-                        //Type t = sender.GetType();
-                        //t.Name.ToString();
                         GetUserInfoBL getUserInfoBL = new GetUserInfoBL();
                         var a = getUserInfoBL.usp_GetUserInfo(Email.Text);
                         Session["CompanyRef"] = a[0].Company_Ref;

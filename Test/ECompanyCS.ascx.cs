@@ -90,27 +90,27 @@ namespace Test
                 //format xaxis based on selected time type
                 if (time == 1)
                 {
-                    CustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    IncomeByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    CustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    IncomeByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
                 }
                 else if (time == 2)
                 {
-                    CustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    IncomeByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    CustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    IncomeByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
                 }
                 else if (time == 3)
                 {
-                    CustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    IncomeByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    CustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AvgCustomersSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AvgAnimalsSeenByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    IncomeByEmployeeCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
                 }
 
             }
@@ -127,8 +127,6 @@ namespace Test
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
                 e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
                 sender.ToString();
-            Type t = sender.GetType();
-            t.Name.ToString();
             RadGrid rg = (RadGrid)sender;
             string gridname = rg.DataSourceID;
 

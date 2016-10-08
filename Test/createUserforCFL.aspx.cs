@@ -13,19 +13,12 @@ namespace Test
 {
     public partial class createUserforCFL : System.Web.UI.Page
     {
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-        //    Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-        //    if (authentication == true)
-        //    {
-        //        Response.Redirect("~/registerPageforCFL.aspx");
-        //    }
-        //    else
-        //    {
-        //        Response.Redirect("~/Account/Login.aspx");
-        //    }
-        //}
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            bool admin = Page.User.IsInRole("Admin");
+            if (HttpContext.Current.User.Identity.IsAuthenticated == false || admin == false)
+                Response.Redirect("~/Account/Login.aspx");
+        }
         protected void CreateUser_Click(object sender, EventArgs e)
         {
 
@@ -34,7 +27,7 @@ namespace Test
             //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
             //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
 
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref = Convert.ToInt64(companyIdDropdown.SelectedItem.Value) };
+            var user = new ApplicationUser() { UserName = Username.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref = Convert.ToInt64(companyIdDropdown.SelectedItem.Value) };
             IdentityResult result = manager.Create(user, Password.Text);
             var userID = user.Id;
             IdentityResult addrole = manager.AddToRole(userID, RoleDDL.SelectedItem.Text);

@@ -21,9 +21,7 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-            if (authentication == true)
+            if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
 
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
@@ -82,10 +80,6 @@ namespace Test
         {
             AddPageView(e.Tab);
             e.Tab.PageView.Selected = true;
-            if(e.Tab.PageView.Selected == true)
-            {
-                TimeDDL1.Visible = false;
-            }
         }
 
         //protected void CountryCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
@@ -103,76 +97,10 @@ namespace Test
         //}
 
 
-        //This is a class that help displaying chart with multiple branches
+        
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-
-            //BranchDropDownListBL branchDropDownListBL = new BranchDropDownListBL();
-            //List<usp_BranchDropDownList_Result> a = branchDropDownListBL.usp_BranchDropDownList(1);
-
-
-
-            //String.Format("{0: mmm yy}", dt.Columns["Year_Month"]);
-            //DateTime.ParseExact(dt.Columns["Year_Month"])
-
-            //TotalSalesCompanyRHC1.DataBind();
-            //RetailOnlySalesCompanyRHC1.DataBind();
-            //AvgDollarPerTransactionCompanyRHC1.DataBind();
-            //TransExcludeZeroTotalCompanyRHC1.DataBind();
-            //ServiceOnlySalesCompanyRHC1.DataBind();
-
-            //string labelsFormatString = "{0:n0}";
-            //if (TimeDDL1.SelectedValue == "1")
-            //{
-            //    //DateTime dateformat = Convert.ToDateTime(dt);
-            //    TotalSalesBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM yyyy";
-            //    TotalSalesBranchRHC1.ChartTitle.Text = "Total Sales Branch Comparison";
-            //    TotalSalesBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
-
-
-            //    TotalSalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Total Sales (000s)";
-            //    //TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = labelsFormatString;
-            //    TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.ClientTemplate = "#= value / 1000# ";
-            //    TotalSalesBranchRHC1.PlotArea.YAxis.LabelsAppearance.DataFormatString = "{0:N0}";
-
-
-
-            //    //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "MMM";
-            //    AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Average per Transaction Branch Comparison";
-            //    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Time Period";
-            //    AvgDollarPerTransactionBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "Average per Transaction";
-            //    RetailOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
-            //    ServiceOnlySalesBranchRHC1.PlotArea.YAxis.TitleAppearance.Text = "$";
-            //    RetailOnlySalesBranchRHC1.ChartTitle.Text = "Retail Only Sales Branch Comparison";
-            //    ServiceOnlySalesBranchRHC1.ChartTitle.Text = "Service Only Sales Branch Comparison";
-
-            //    //AvgPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.ClientTemplate = "#=kendo.parseDate(value, \'yyyy/MM/dd\')#"; -disappears and all the graphs below it too
-
-            //    //AvgPerTransactionBranchRHC1.PlotArea.XAxis.BaseUnit = "months";
-
-            //}
-            //else
-            //{
-            //    TotalSalesCompanyRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
-            //    TotalSalesCompanyRHC1.ChartTitle.Text = "Total Yearly Sales";
-            //    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
-
-            //    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.LabelsAppearance.DataFormatString = "yyyy";
-            //    AvgDollarPerTransactionBranchRHC1.ChartTitle.Text = "Total Yearly Sales";
-            //    AvgDollarPerTransactionBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
-            //};
-        }
-
-        protected void PopupButton_Click(object sender, EventArgs e)
-        {
-            Session["Branch"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
-            Session["BranchType"] = Convert.ToInt64(BranchTypeDDL1.SelectedItem.Value);
-            Session["Country"] = Convert.ToInt64(CountryDDL1.SelectedItem.Value);
-            Session["State"] = Convert.ToInt64(StateDDL1.SelectedItem.Value);
-            Session["Region"] = Convert.ToInt64(RegionDDL1.SelectedItem.Value);
-            
-        }
+        
+        
 
         
     }

@@ -22,6 +22,7 @@ namespace Test
             int? time = Session["Time"] as int?;
 
             //This loop will make radpanelitem visible if they are contained in the list below
+            //and also adds tooltip to radpanelitem
             string userRef = Session["UserRef"] as string;
             ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
             List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Company");
@@ -50,27 +51,27 @@ namespace Test
                 //Tiitle of x-axis changes accordingly to the selection of timetype dropdown list
                 if (time == 1)
                 {
-                    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
                 }
                 else if (time == 2)
                 {
-                    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
                 }
                 else if (time == 3)
                 {
-                    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    TotalSalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AvgDollarPerTransactionCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    TransExcludeZeroTotalCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    RetailOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    ServiceOnlySalesCompanyRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
                 }
         }
 
@@ -80,46 +81,36 @@ namespace Test
         }
 
 
-        //protected void addItem()
-        //{
-        //    /// //// //// ///// /////// /////////////////////////
-        //    ///REPLACE THIS WITH THE STORED PROCEDURE KPI LIST///
-        //    /////////////////////////////////////////////////////
-        //    // Also needs the Tooltip to be inside! store it as//
-        //    //var c or something                               //
-        //    /////////////////////////////////////////////////////
-        //    string userRef = Session["UserRef"] as string;
+        protected void addItem()
+        {
+            string userRef = Session["UserRef"] as string;
 
-        //    ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
-        //    List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Company");
+            ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
+            List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Company");
 
-        //    foreach (var element in viewableKpiList)
-        //    {
-        //        var name = element.Name;
-        //        var controlName = "FCompanyKPIControls/" + element.Control_Name + ".ascx";
-        //        var desc = element.Description;
+            foreach (var element in viewableKpiList)
+            {
+                var name = element.Name;
+                var controlName = "FCompanyKPIControls/" + element.Control_Name + ".ascx";
+                var desc = element.Description;
 
-        //        RadPanelItem item = new RadPanelItem();
-        //        item.Text = name;
-        //        item.Expanded = false;
-        //        item.ToolTip = desc;
-        //        RadPanelBar1.Items.Add(item);
+                RadPanelItem item = new RadPanelItem();
+                item.Text = name;
+                item.Expanded = false;
+                item.ToolTip = desc;
+                RadPanelBar1.Items.Add(item);
 
-        //        RadPanelItem childItem = new RadPanelItem();
-        //        childItem.Controls.Add(LoadControl(controlName));
-        //        item.Items.Add(childItem);
-
-        //        RadPanelBar1.FindItemByText(name).Visible=false;
-        //    }
-        //}
+                RadPanelItem childItem = new RadPanelItem();
+                childItem.Controls.Add(LoadControl(controlName));
+                item.Items.Add(childItem);
+            }
+        }
 
         protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)
         {
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
                 e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
                 sender.ToString();
-            Type t = sender.GetType();
-            t.Name.ToString();
             RadGrid rg = (RadGrid)sender;
             string gridname = rg.DataSourceID;
 

@@ -17,6 +17,10 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Page.User.IsInRole("Employee") == true)
+            {
+                Response.Redirect("~/financialKPI.aspx");
+            }
             bool admin = Page.User.IsInRole("Admin");
             if (HttpContext.Current.User.Identity.IsAuthenticated == true & admin == false)
             {
@@ -54,7 +58,7 @@ namespace Test
                     string totalSalesSingleLabelString = String.Format("{0:C0}K", (totalSalesSingleLabel / 1000));
                     Label1.Text = totalSalesSingleLabelString;
                 }
-                
+
 
 
 
@@ -176,8 +180,9 @@ namespace Test
             }
             else if (HttpContext.Current.User.Identity.IsAuthenticated == true & admin == true)
             {
-                Response.Redirect("~/createUserforCFL.aspx");
+                Response.Redirect("~/userProfile.aspx");
             }
+            
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

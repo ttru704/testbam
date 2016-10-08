@@ -19,9 +19,7 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-            if (authentication == true)
+            if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
@@ -100,14 +98,6 @@ namespace Test
            
 
 
-        }
-        protected void PopupButton_Click(object sender, EventArgs e)
-        {
-            Session["Branch"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
-            Session["BranchType"] = Convert.ToInt64(BranchTypeDDL1.SelectedItem.Value);
-            Session["Country"] = Convert.ToInt64(CountryDDL1.SelectedItem.Value);
-            Session["State"] = Convert.ToInt64(StateDDL1.SelectedItem.Value);
-            Session["Region"] = Convert.ToInt64(RegionDDL1.SelectedItem.Value);
         }
 
 

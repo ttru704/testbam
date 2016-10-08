@@ -14,17 +14,9 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-            Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-            if (authentication == true)
-            {
-                Int64? CompanyRef = Session["CompanyRef"] as Int64?;
-                var a = CompanyRef.Value;
-            }
-            else
-            {
+            bool employee = employee = Page.User.IsInRole("Employee");
+            if (!HttpContext.Current.User.Identity.IsAuthenticated || employee == true)
                 Response.Redirect("~/Account/Login.aspx");
-            }
         }
 
         protected void CreateUser_Click(object sender, EventArgs e)
@@ -33,11 +25,6 @@ namespace Test
             var a = CompanyRef.Value;
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-
-            //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
-
-            //var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-
             var user = new ApplicationUser() { UserName = Username.Text, Email = Email.Text, Name = NameTextbox.Text, Company_Ref= a};
             IdentityResult result = manager.Create(user, Password.Text);
             var userID = user.Id;
@@ -45,11 +32,6 @@ namespace Test
 
             if (result.Succeeded)
             {
-                //Commented this line out because it triggers logging in user after they have been registered sucessfully. It will cause exception when admin or clinic manager register a new user (it is triggered when result is succeeded)
-                //signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-
-                //IdentityHelper.RedirectToReturnUrl("~/dashboard", Response);
-
                 Message.Text = "A new user has been sucessfully created";
             }
             else

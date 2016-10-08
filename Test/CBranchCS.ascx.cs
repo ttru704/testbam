@@ -22,8 +22,8 @@ namespace Test
                 DateTime? start = Session["StartDate"] as DateTime?;
                 DateTime? end = Session["EndDate"] as DateTime?;
                 Int64? company = Session["CompanyRef"] as Int64?;
-                Session["BranchRef"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
-                Int64? branch = Session["BranchRef"] as Int64?;
+                //Session["BranchRef"] = Convert.ToInt64(BranchCB1.SelectedItem.Value);
+                Int64? branch = Convert.ToInt64(BranchCB1.SelectedItem.Value);
                 int? time = Session["Time"] as int?;
 
                 // call the session that stores the user ref
@@ -117,30 +117,30 @@ namespace Test
                 //format xaxis of chart based on selected time type
                 if (time == 1)
                 {
-                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
-                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
+                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
                 }
                 else if (time == 2)
                 {
-                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
-                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
+                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
                 }
                 else if (time == 3)
                 {
-                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
-                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                    UniqueCustomersSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AnimalsSeenBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    AvgDollarPerCustomerBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    NewCustomersBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    SmallAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
+                    LargeAnimalsBranchRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
                 }
 
             }
@@ -166,8 +166,6 @@ namespace Test
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
                 e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
                 sender.ToString();
-            Type t = sender.GetType();
-            t.Name.ToString();
             RadGrid rg = (RadGrid)sender;
             string gridname = rg.DataSourceID;
 

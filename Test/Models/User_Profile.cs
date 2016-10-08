@@ -40,6 +40,9 @@ namespace Test.Models
         public Nullable<System.DateTime> LockoutEndDateUtc { get; set; }
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
+        public Nullable<System.DateTime> AccessStart { get; set; }
+        public Nullable<System.DateTime> AccessEnd { get; set; }
+        public string Status { get; set; }
     
         public virtual Company_Profile Company_Profile { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

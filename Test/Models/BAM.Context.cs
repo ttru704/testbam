@@ -694,23 +694,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIForCompanyList_Result>("usp_KPIForCompanyList", companyRefParameter);
         }
     
-        public virtual ObjectResult<usp_KPIGrid_Result> usp_KPIGrid(Nullable<int> companyRef, string userRef, Nullable<int> kpiType)
-        {
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var userRefParameter = userRef != null ?
-                new ObjectParameter("userRef", userRef) :
-                new ObjectParameter("userRef", typeof(string));
-    
-            var kpiTypeParameter = kpiType.HasValue ?
-                new ObjectParameter("kpiType", kpiType) :
-                new ObjectParameter("kpiType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIGrid_Result>("usp_KPIGrid", companyRefParameter, userRefParameter, kpiTypeParameter);
-        }
-    
         public virtual ObjectResult<usp_LargeAnimalsBranch_Result> usp_LargeAnimalsBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -1333,6 +1316,92 @@ namespace Test.Models
         public virtual ObjectResult<usp_GetKpiTypes_Result> usp_GetKpiTypes()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetKpiTypes_Result>("usp_GetKpiTypes");
+        }
+    
+        public virtual int usp_InsertIntoKpiForCompany(Nullable<long> kpiRef, Nullable<long> companyRef)
+        {
+            var kpiRefParameter = kpiRef.HasValue ?
+                new ObjectParameter("kpiRef", kpiRef) :
+                new ObjectParameter("kpiRef", typeof(long));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertIntoKpiForCompany", kpiRefParameter, companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_KPIListForCompany_Result> usp_KPIListForCompany(Nullable<long> companyRef, Nullable<long> businessType, Nullable<int> kpiType)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            var businessTypeParameter = businessType.HasValue ?
+                new ObjectParameter("businessType", businessType) :
+                new ObjectParameter("businessType", typeof(long));
+    
+            var kpiTypeParameter = kpiType.HasValue ?
+                new ObjectParameter("kpiType", kpiType) :
+                new ObjectParameter("kpiType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIListForCompany_Result>("usp_KPIListForCompany", companyRefParameter, businessTypeParameter, kpiTypeParameter);
+        }
+    
+        public virtual int usp_DeleteFromKpiForCompany(Nullable<long> kpiRef, Nullable<long> companyRef)
+        {
+            var kpiRefParameter = kpiRef.HasValue ?
+                new ObjectParameter("kpiRef", kpiRef) :
+                new ObjectParameter("kpiRef", typeof(long));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_DeleteFromKpiForCompany", kpiRefParameter, companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_CompanyList_Result> usp_CompanyList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CompanyList_Result>("usp_CompanyList");
+        }
+    
+        public virtual ObjectResult<usp_KPIListForUser_Result> usp_KPIListForUser(Nullable<int> companyRef, string userRef, Nullable<int> kpiType)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            var kpiTypeParameter = kpiType.HasValue ?
+                new ObjectParameter("kpiType", kpiType) :
+                new ObjectParameter("kpiType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIListForUser_Result>("usp_KPIListForUser", companyRefParameter, userRefParameter, kpiTypeParameter);
+        }
+    
+        public virtual int usp_UpdateUserAccessDetail(Nullable<System.DateTime> accessStart, Nullable<System.DateTime> accessEnd, Nullable<int> status, string userRef)
+        {
+            var accessStartParameter = accessStart.HasValue ?
+                new ObjectParameter("accessStart", accessStart) :
+                new ObjectParameter("accessStart", typeof(System.DateTime));
+    
+            var accessEndParameter = accessEnd.HasValue ?
+                new ObjectParameter("accessEnd", accessEnd) :
+                new ObjectParameter("accessEnd", typeof(System.DateTime));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserAccessDetail", accessStartParameter, accessEndParameter, statusParameter, userRefParameter);
         }
     }
 }

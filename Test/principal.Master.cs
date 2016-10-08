@@ -84,14 +84,14 @@ namespace Test
             userName2.Text = userName;
             if (HttpContext.Current.User.IsInRole("Admin"))
             {
-                adminLink.Visible = true;
-                adminLink1.Visible = false;
-                adminLink2.Visible = false;
-                adminLink5.Visible = false;
+                adminstration.Visible = true;
+                dashboard.Visible = false;
+                displayKpi.Visible = false;
+                userManagement.Visible = false;
             }
             else if (HttpContext.Current.User.IsInRole("Employee"))
             {
-                adminLink5.Visible = false;
+                userManagement.Visible = false;
             }
         }
 

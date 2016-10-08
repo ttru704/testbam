@@ -47,15 +47,15 @@ namespace Test
             //format x axis of chart
             if (time == 1)
             {
-                AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Monthly";
+                AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Month";
             }
             else if (time == 2)
             {
-                AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Yearly";
+                AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Year";
             }
             else if (time == 3)
             {
-                AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Weekly";
+                AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
             }
 
 
@@ -76,8 +76,7 @@ namespace Test
             if (e.CommandName == Telerik.Web.UI.RadGrid.ExportToWordCommandName ||
                 e.CommandName == Telerik.Web.UI.RadGrid.ExportToExcelCommandName || e.CommandName == Telerik.Web.UI.RadGrid.ExportToPdfCommandName)
                 sender.ToString();
-            Type t = sender.GetType();
-            t.Name.ToString();
+            
             RadGrid rg = (RadGrid)sender;
             string gridname = rg.DataSourceID;
 
