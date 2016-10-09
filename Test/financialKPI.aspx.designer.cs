@@ -49,15 +49,6 @@ namespace Test {
         protected global::Telerik.Web.UI.RadDatePicker DatePicker2;
         
         /// <summary>
-        /// CompanyDDL1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CompanyDDL1;
-        
-        /// <summary>
         /// Button1 control.
         /// </summary>
         /// <remarks>

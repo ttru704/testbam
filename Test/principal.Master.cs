@@ -21,10 +21,6 @@ namespace Test
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            //Session["IsAuthenticated"] = HttpContext.Current.User.Identity.IsAuthenticated;
-            //Boolean? authentication = Session["IsAuthenticated"] as Boolean?;
-            //if (authentication == true)
-            //{
             // The code below helps to protect against XSRF attacks
             var requestCookie = Request.Cookies[AntiXsrfTokenKey];
             Guid requestCookieGuidValue;
@@ -82,6 +78,8 @@ namespace Test
             //Set labels appear on the side bar and the top bar to be the current user's name
             userName1.Text = userName;
             userName2.Text = userName;
+
+            //Defines which Page links on the left column menu are visible depending on the user
             if (HttpContext.Current.User.IsInRole("Admin"))
             {
                 adminstration.Visible = true;
@@ -94,9 +92,10 @@ namespace Test
                 userManagement.Visible = false;
             }
         }
-
+        
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
+            //Signs out the user
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             //Destroy all the sessions
             Session.Abandon();

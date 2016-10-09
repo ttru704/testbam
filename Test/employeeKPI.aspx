@@ -2,8 +2,7 @@
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
+
 
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="pageHeader" runat="Server">
     <header style="padding: inherit; margin-top: 15px">

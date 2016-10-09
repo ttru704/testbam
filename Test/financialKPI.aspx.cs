@@ -4,16 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 using Telerik.Web.UI;
-using Test.Models;
-using Telerik.Web.UI.HtmlChart;
-using System.ComponentModel;
-using Test.BLL.Financial;
-using System.Reflection;
-using Test.BLL;
 
 namespace Test
 {
@@ -21,18 +12,18 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Check if the user is authenticated, if not redirect to login page)
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
-
+                //Store session variables based on slected controls
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
-                //Session["Company"] = Convert.ToInt32(CompanyDDL1.SelectedItem.Value);
                 int? company = Session["CompanyRef"] as int?;
-                //Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
                 Session["BranchRef"] = 0;
                 Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
                 Int64? productSerivce = Session["ProductService"] as Int64?;
 
+                //Adds the specific Tabs if it's not a postback (or else it keeps adding)
                 if (!Page.IsPostBack)
                 {
                     AddTab("Company");
@@ -48,7 +39,7 @@ namespace Test
             }
         }
 
-        //This is for the RadTabStrip to work
+        //Actual function to add the Tab 
         private void AddTab(string tabName)
         {
             RadTab tab = new RadTab();
@@ -56,7 +47,7 @@ namespace Test
             tab.Width = Unit.Pixel(200);
             RadTabStrip1.Tabs.Add(tab);
         }
-
+        //Calls the user control which has teh content for the PageView
         protected void RadMultiPage1_PageViewCreated(object sender, RadMultiPageEventArgs e)
         {
             string userControlName = "F" + e.PageView.ID + "CS.ascx";
@@ -66,7 +57,7 @@ namespace Test
 
             e.PageView.Controls.Add(userControl);
         }
-
+        //Adds the PageView for the respective tab
         private void AddPageView(RadTab tab)
         {
             RadPageView pageView = new RadPageView();
@@ -76,6 +67,7 @@ namespace Test
             tab.PageViewID = pageView.ID;
         }
 
+        //Shows correct PageView for the selected Tab
         protected void RadTabStrip1_TabClick(object sender, RadTabStripEventArgs e)
         {
             AddPageView(e.Tab);

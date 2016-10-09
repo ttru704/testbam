@@ -37,8 +37,9 @@
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
+    <%--Mainly for the Pawprint logo beside BAM--%>
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
+<%--    <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
@@ -47,15 +48,13 @@
     <!-- bootstrap-progressbar -->
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />--%>
     
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="../production/images/icon.ico" />
-    <%--For accordions--%>
 
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+
 </head>
 
 <body class="nav-md">
@@ -234,39 +233,39 @@
         <!-- jQuery -->
         <script src="../vendors/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap -->
+        <%--If removed, Logout dropdown won't work--%>
         <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- FastClick -->
+        <%--Apparently redcues the 300ms delay between a physical click and click event--%>
         <script src="../vendors/fastclick/lib/fastclick.js"></script>
         <!-- NProgress -->
-        <script src="../vendors/nprogress/nprogress.js"></script>
+<%--        <script src="../vendors/nprogress/nprogress.js"></script>--%>
         <!-- Chart.js -->
-        <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+        <%--<script src="../vendors/Chart.js/dist/Chart.min.js"></script>--%>
         <!-- gauge.js -->
-        <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+<%--        <script src="../vendors/gauge.js/dist/gauge.min.js"></script>--%>
         <!-- bootstrap-progressbar -->
-        <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<%--        <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>--%>
         <!-- iCheck -->
-        <script src="../vendors/iCheck/icheck.min.js"></script>
+        <%--<script src="../vendors/iCheck/icheck.min.js"></script>--%>
         <!-- Skycons -->
-        <script src="../vendors/skycons/skycons.js"></script>
+<%--        <script src="../vendors/skycons/skycons.js"></script>--%>
         <!-- Flot -->
+<%--        Seems fine to comment out
         <script src="../vendors/Flot/jquery.flot.js"></script>
         <script src="../vendors/Flot/jquery.flot.pie.js"></script>
         <script src="../vendors/Flot/jquery.flot.time.js"></script>
         <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-        <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+        <script src="../vendors/Flot/jquery.flot.resize.js"></script>--%>
         <!-- JQVMap -->
+<%--        Seems fine to comment out
         <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
         <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+        <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>--%>
         <!-- bootstrap-daterangepicker -->
 
         <!-- Custom Theme Scripts -->
         <script src="../build/js/custom.min.js"></script>
-
-        <!-- Flot -->
-
-        <!-- /gauge.js -->
     </form>
 </body>
 </html>
