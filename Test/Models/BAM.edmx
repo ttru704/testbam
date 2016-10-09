@@ -357,7 +357,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="AccessStart" Type="date" />
           <Property Name="AccessEnd" Type="date" />
-          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Status" Type="nchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="User_Roles">
           <Key>
@@ -966,9 +966,15 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         <Function Name="usp_EmployeeSearchBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="companyRef" Type="int" Mode="In" />
         </Function>
+        <Function Name="usp_GetAllUserAccessInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="companyRef" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="usp_GetKpiTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="usp_GetUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="userName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="usp_GetUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userRef" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="usp_IncomeByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="start" Type="date" Mode="In" />
@@ -1192,6 +1198,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
         </Function>
         <Function Name="usp_UniqueCustomersSeenSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="companyRef" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="usp_UpdateIsAdminStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userName" Type="nvarchar" Mode="In" />
+          <Parameter Name="status" Type="varchar" Mode="In" />
         </Function>
         <Function Name="usp_UpdateUserAccessDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="accessStart" Type="date" Mode="In" />
@@ -1809,7 +1819,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <NavigationProperty Name="User_Roles" Relationship="Self.FK_dbo_User_Roles_dbo_User_Profile_User_Id" FromRole="User_Profile" ToRole="User_Roles" />
           <Property Name="AccessStart" Type="DateTime" Precision="0" />
           <Property Name="AccessEnd" Type="DateTime" Precision="0" />
-          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="User_Roles">
           <Key>
@@ -2786,12 +2796,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="email" Mode="In" Type="String" />
             <Parameter Name="phoneNumber" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="usp_GetUserInfo" ReturnType="Collection(KPIModel.usp_GetUserInfo_Result)">
-          <Parameter Name="userName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="usp_UserDropDownList" ReturnType="Collection(KPIModel.usp_UserDropDownList_Result)">
-          <Parameter Name="companyRef" Mode="In" Type="Int64" />
-          </FunctionImport>
           <FunctionImport Name="usp_GetKpiTypes" ReturnType="Collection(KPIModel.usp_GetKpiTypes_Result)" />
           <FunctionImport Name="usp_InsertIntoKpiForCompany">
             <Parameter Name="kpiRef" Mode="In" Type="Int64" />
@@ -2817,6 +2821,22 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             <Parameter Name="accessEnd" Mode="In" Type="DateTime" />
             <Parameter Name="status" Mode="In" Type="Int32" />
             <Parameter Name="userRef" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetUserInfo" ReturnType="Collection(KPIModel.usp_GetUserInfo_Result)">
+          <Parameter Name="userName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UpdateIsAdminStatus">
+            <Parameter Name="userName" Mode="In" Type="String" />
+            <Parameter Name="status" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetUserName" ReturnType="Collection(String)">
+          <Parameter Name="userRef" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="usp_UserDropDownList" ReturnType="Collection(KPIModel.usp_UserDropDownList_Result)">
+          <Parameter Name="companyRef" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="usp_GetAllUserAccessInfo" ReturnType="Collection(KPIModel.usp_GetAllUserAccessInfo_Result)">
+            <Parameter Name="companyRef" Mode="In" Type="Int64" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="usp_AnimalsSeenBranch_Result">
@@ -3105,17 +3125,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="usp_GetUserInfo_Result">
-          <Property Type="String" Name="Ref_Number" Nullable="false" MaxLength="128" />
-          <Property Type="Int64" Name="Company_Ref" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
-          <Property Type="String" Name="PhoneNumber" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="usp_UserDropDownList_Result">
-          <Property Type="String" Name="Ref_Number" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
-        </ComplexType>
         <ComplexType Name="usp_GetKpiTypes_Result">
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
           <Property Type="Int64" Name="Ref_Number" Nullable="false" />
@@ -3135,6 +3144,27 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
           <Property Type="String" Name="KpiType" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Name" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="Viewable" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="usp_GetUserInfo_Result">
+          <Property Type="String" Name="Ref_Number" Nullable="false" MaxLength="128" />
+          <Property Type="Int64" Name="Company_Ref" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+          <Property Type="Boolean" Name="Is_Admin" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" />
+          <Property Type="DateTime" Name="AccessStart" Nullable="true" />
+          <Property Type="DateTime" Name="AccessEnd" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="usp_UserDropDownList_Result">
+          <Property Type="String" Name="Ref_Number" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="usp_GetAllUserAccessInfo_Result">
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="AccessStart" Nullable="true" />
+          <Property Type="DateTime" Name="AccessEnd" Nullable="true" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="1" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -4017,25 +4047,6 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_UpdateUserProfile" FunctionName="KPIModel.Store.usp_UpdateUserProfile" />
-          <FunctionImportMapping FunctionImportName="usp_GetUserInfo" FunctionName="KPIModel.Store.usp_GetUserInfo">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_GetUserInfo_Result">
-                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
-                <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="usp_UserDropDownList" FunctionName="KPIModel.Store.usp_UserDropDownList">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="KPIModel.usp_UserDropDownList_Result">
-                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_GetKpiTypes" FunctionName="KPIModel.Store.usp_GetKpiTypes">
             <ResultMapping>
               <ComplexTypeMapping TypeName="KPIModel.usp_GetKpiTypes_Result">
@@ -4075,6 +4086,41 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="usp_UpdateUserAccessDetail" FunctionName="KPIModel.Store.usp_UpdateUserAccessDetail" />
+          <FunctionImportMapping FunctionImportName="usp_GetUserInfo" FunctionName="KPIModel.Store.usp_GetUserInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_GetUserInfo_Result">
+                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+                <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AccessStart" ColumnName="AccessStart" />
+                <ScalarProperty Name="AccessEnd" ColumnName="AccessEnd" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_UpdateIsAdminStatus" FunctionName="KPIModel.Store.usp_UpdateIsAdminStatus" />
+          <FunctionImportMapping FunctionImportName="usp_GetUserName" FunctionName="KPIModel.Store.usp_GetUserName" />
+          <FunctionImportMapping FunctionImportName="usp_UserDropDownList" FunctionName="KPIModel.Store.usp_UserDropDownList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_UserDropDownList_Result">
+                <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="usp_GetAllUserAccessInfo" FunctionName="KPIModel.Store.usp_GetAllUserAccessInfo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="KPIModel.usp_GetAllUserAccessInfo_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccessStart" ColumnName="AccessStart" />
+                <ScalarProperty Name="AccessEnd" ColumnName="AccessEnd" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

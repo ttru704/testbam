@@ -10,6 +10,7 @@
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="EmployeeCB1">
                 <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="EmployeeCB1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""/>
                     <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmployeeIndividualRHC1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                     <telerik:AjaxUpdatedControl ControlID="CustomersSeenByEmployeeIndividualG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                     <telerik:AjaxUpdatedControl ControlID="AnimalsSeenByEmployeeIndividualRHC1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>

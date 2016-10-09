@@ -4,6 +4,25 @@
 
 <div class="demo-container size-thin">
     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
+    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
+    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+        <AjaxSettings>
+            <telerik:AjaxSetting AjaxControlID="ServiceSB1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="ServiceSB1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="IncomeByServiceIndividualRHC1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="IncomeByServiceIndividualG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="ProductSB1">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="ProductSB1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="IncomeByProductIndividualRHC1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="IncomeByProductIndividualG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+        </AjaxSettings>
+    </telerik:RadAjaxManager>
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             

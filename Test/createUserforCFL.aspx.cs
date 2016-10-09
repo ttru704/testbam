@@ -8,6 +8,7 @@ using Owin;
 using Test.Models;
 using System.Collections.Generic;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Test.BLL.Controls;
 
 namespace Test
 {
@@ -31,7 +32,8 @@ namespace Test
             IdentityResult result = manager.Create(user, Password.Text);
             var userID = user.Id;
             IdentityResult addrole = manager.AddToRole(userID, RoleDDL.SelectedItem.Text);
-
+            UpdateIsAdminStatusBL updateIsAdminStatusBL = new UpdateIsAdminStatusBL();
+            updateIsAdminStatusBL.usp_UpdateIsAdminStatus(Username.Text, RoleDDL.SelectedItem.Text);
             //Almost worked. BUt gets the logged in user's ID
             //User.Identity.GetUserId()
 

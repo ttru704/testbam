@@ -11,14 +11,9 @@ namespace Test.Models
 {
     using System;
     
-    public partial class usp_GetUserInfo_Result
+    public partial class usp_GetAllUserAccessInfo_Result
     {
-        public string Ref_Number { get; set; }
-        public long Company_Ref { get; set; }
         public string Name { get; set; }
-        public string Email { get; set; }
-        public Nullable<bool> Is_Admin { get; set; }
-        public string PhoneNumber { get; set; }
         public Nullable<System.DateTime> AccessStart { get; set; }
         public Nullable<System.DateTime> AccessEnd { get; set; }
         public string Status { get; set; }

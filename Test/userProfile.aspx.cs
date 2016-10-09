@@ -23,12 +23,12 @@ namespace Test
 
             if (!IsPostBack)
             {
-            string userName = Session["UserName"] as string;
-            GetUserInfoBL getUserInfoBL = new GetUserInfoBL();
-            List<usp_GetUserInfo_Result> getUserInfoList = getUserInfoBL.usp_GetUserInfo(userName);
-            FullName.Text = getUserInfoList[0].Name;
-            ContactNumber.Text = getUserInfoList[0].PhoneNumber;
-            EmailAddress.Text = getUserInfoList[0].Email;
+                string userName = Session["UserName"] as string;
+                GetUserInfoBL getUserInfoBL = new GetUserInfoBL();
+                List<usp_GetUserInfo_Result> getUserInfoList = getUserInfoBL.usp_GetUserInfo(userName);
+                FullName.Text = getUserInfoList[0].Name;
+                ContactNumber.Text = getUserInfoList[0].PhoneNumber;
+                EmailAddress.Text = getUserInfoList[0].Email;
             }
         }
         protected void SubmitEdit_Click(object sender, EventArgs e)

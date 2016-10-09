@@ -121,13 +121,13 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource RegionODS1;
         
         /// <summary>
-        /// Button1 control.
+        /// GoButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton Button1;
+        protected global::Telerik.Web.UI.RadButton GoButton;
         
         /// <summary>
         /// RadClientExportManager1 control.

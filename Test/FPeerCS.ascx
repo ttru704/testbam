@@ -8,7 +8,8 @@
         <Items>
             <telerik:RadPanelItem Width="100%">
                <ContentTemplate>
-                   <div style="display:inline-block"><telerik:RadAjaxPanel runat="server" RenderMode="Block" LoadingPanelID="RadAjaxLoadingPanel1" >
+                   <div style="display:inline-block">
+                    <telerik:RadAjaxPanel runat="server" RenderMode="Block" LoadingPanelID="RadAjaxLoadingPanel1" >
                     <%--Combobox for branch--%>
                     <telerik:RadComboBox RenderMode="Lightweight"  ID="BranchCB1" OnSelectedIndexChanged="BranchCB1_SelectedIndexChanged" DataTextField="Branch_Name" DataValueField="Ref_Number" runat="server" Width="186px" CssClass="Display:none"
                         AutoPostBack="true" EmptyMessage="- Select a Branch -" DataSourceID="BranchDropDownODS1"
@@ -73,7 +74,7 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                        </telerik:RadAjaxPanel></div>
-                   <telerik:RadButton ID="Button1" runat="server" Text="Go" Skin="Metro" CssClass="display:inline-block"></telerik:RadButton>
+                   <telerik:RadButton ID="GoButton" runat="server" Text="Go" Skin="Metro" CssClass="display:inline-block"></telerik:RadButton>
                    <br />
                    <br />
                    </ContentTemplate>

@@ -10,7 +10,7 @@
 namespace Test {
     
     
-    public partial class manageUserAccess {
+    public partial class manageUserAccessForCFL {
         
         /// <summary>
         /// RadScriptManager1 control.
@@ -56,6 +56,24 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Message;
+        
+        /// <summary>
+        /// CompanyDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList CompanyDDL1;
+        
+        /// <summary>
+        /// CompanyListODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource CompanyListODS1;
         
         /// <summary>
         /// UserDDL1 control.
@@ -110,5 +128,23 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton Update;
+        
+        /// <summary>
+        /// GetAllUserAccessInfoG1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid GetAllUserAccessInfoG1;
+        
+        /// <summary>
+        /// GetAllUserAccessInfoODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource GetAllUserAccessInfoODS1;
     }
 }

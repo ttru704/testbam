@@ -16,59 +16,68 @@ namespace Test.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //RegisterHyperLink.NavigateUrl = "Register";
-            ////// Enable this once you have account confirmation enabled for password reset functionality
-            //////ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            //OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            //if (!String.IsNullOrEmpty(returnUrl))
-            //{
-            //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            //}
             
         }
 
         protected void LogIn(object sender, EventArgs e)
 
         {
-            if (IsValid)
+            GetUserInfoBL getUserInfoBL1 = new GetUserInfoBL();
+            var a = getUserInfoBL1.usp_GetUserInfo(Email.Text);
+            DateTime? accessStart = a[0].AccessStart;
+            DateTime? accessEnd = a[0].AccessEnd;
+            string status = a[0].Status;
+            Boolean? isAdmin = a[0].Is_Admin;
+            
+            if(accessStart < DateTime.Now && DateTime.Now < accessEnd && status == "A" || isAdmin == true)
             {
-                // Validate the user password
-                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger lockout, change to shouldLockout: true
-                var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
-                switch (result)
+                
+                if (IsValid)
                 {
-                    case SignInStatus.Success:
-                        GetUserInfoBL getUserInfoBL = new GetUserInfoBL();
-                        var a = getUserInfoBL.usp_GetUserInfo(Email.Text);
-                        Session["CompanyRef"] = a[0].Company_Ref;
-                        Session["UserRef"] = a[0].Ref_Number;
-                        Session["Name"] = a[0].Name;
-                        Session["UserName"] = Email.Text;
-                        
+                    // Validate the user password
+                    var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                    var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
 
-                                Response.Redirect("~/dashboard.aspx");
-                        break;
-                    case SignInStatus.LockedOut:
-                        Response.Redirect("/Account/Lockout");
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}",
-                                                        Request.QueryString["ReturnUrl"],
-                                                        RememberMe.Checked),
-                                          true);
-                        break;
-                    case SignInStatus.Failure:
-                    default:
-                        FailureText.Text = "Invalid login attempt";
-                        ErrorMessage.Visible = true;
-                        break;
+                    // This doesn't count login failures towards account lockout
+                    // To enable password failures to trigger lockout, change to shouldLockout: true
+                    var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
+
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            GetUserInfoBL getUserInfoBL2 = new GetUserInfoBL();
+                            var b = getUserInfoBL2.usp_GetUserInfo(Email.Text);
+                            Session["CompanyRef"] = a[0].Company_Ref;
+                            Session["UserRef"] = a[0].Ref_Number;
+                            Session["Name"] = a[0].Name;
+                            Session["UserName"] = Email.Text;
+                            Session["AccessStart"] = a[0].AccessStart;
+                            Session["AccessEnd"] = a[0].AccessEnd;
+                            Session["Status"] = a[0].Status;
+
+                            Response.Redirect("~/dashboard.aspx");
+                            break;
+                        case SignInStatus.LockedOut:
+                            Response.Redirect("/Account/Lockout");
+                            break;
+                        case SignInStatus.RequiresVerification:
+                            Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}",
+                                                            Request.QueryString["ReturnUrl"],
+                                                            RememberMe.Checked),
+                                              true);
+                            break;
+                        case SignInStatus.Failure:
+                        default:
+                            FailureText.Text = "Invalid login attempt";
+                            ErrorMessage.Visible = true;
+                            break;
+                    }
                 }
+            }
+            else
+            {
+                Session.Abandon();
+                Response.Redirect("~/Account/Login.aspx");
             }
         }
     }

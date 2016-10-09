@@ -3,10 +3,11 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
 <div class="demo-container size-thin">
-    <telerik:RadAjaxManager runat="server">
+    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
         <AjaxSettings>
-            <telerik:AjaxSetting AjaxControlID="BranchCB1">
+            <telerik:AjaxSetting AjaxControlID="BranchCB1" >
                 <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="BranchCB1" UpdatePanelCssClass="" LoadingPanelID="RadAjaxLoadingPanel1"/>
                     <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchRHC1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                     <telerik:AjaxUpdatedControl ControlID="TotalSalesBranchG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                     <telerik:AjaxUpdatedControl ControlID="AvgDollarPerTransactionBranchRHC1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
@@ -19,9 +20,10 @@
                     <telerik:AjaxUpdatedControl ControlID="ServiceOnlySalesBranchG1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                 </UpdatedControls>
             </telerik:AjaxSetting>
-            </AjaxSettings>
+        </AjaxSettings>
+        <ClientEvents OnResponseEnd="ResponseEnd"/>
     </telerik:RadAjaxManager>
-    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
+    <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1"  runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
     <telerik:RadPanelBar RenderMode="Lightweight" runat="server" ID="RadPanelBar1" Width="100%" Skin="MetroTouch">
         <Items>
             <telerik:RadPanelItem Width="100%" Height="30">
@@ -36,6 +38,7 @@
                             <telerik:RadComboBoxItem Value="0" Text="All Branches" Selected="true" />
                         </Items>
                     </telerik:RadComboBox>
+
 
                     <%--Objectdatasource for branch combo box--%>
                     <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.Controls.BranchDropDownListBL">
@@ -421,5 +424,15 @@
             chart5.repaint();
         };
 
+        //Hide radloadingpanel when request is completed
+        var currentLoadingPanel = null;
+        var currentUpdatedControl = null;
+
+        function ResponseEnd() {
+        ajaxManager = $find("<%= RadAjaxManager1.ClientID %>");
+            //hide the loading panel without knowing the updated control
+            if (currentLoadingPanel != null)
+            ajaxManager.hideLoadingPanels();
+                }
     </script>
 </telerik:RadScriptBlock>

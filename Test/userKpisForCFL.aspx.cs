@@ -9,18 +9,18 @@ using Test.BLL.Controls;
 
 namespace Test
 {
-    public partial class userKpis : System.Web.UI.Page
+    public partial class userKpisForCFL : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            bool employee = Page.User.IsInRole("Employee");
-            if (HttpContext.Current.User.Identity.IsAuthenticated == false || employee == true)
+            bool admin = Page.User.IsInRole("Admin");
+            if (HttpContext.Current.User.Identity.IsAuthenticated == false || admin == false)
                 Response.Redirect("~/Account/Login.aspx");
         }
 
         protected void kpiG1_SelectedCellChanged(object sender, EventArgs e)
         {
-           
+
         }
         protected void userDDL1_OnClientSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace Test
         protected void Update_Click(object sender, EventArgs e)
         {
             string userRef = UserDDL1.SelectedItem.Value.ToString();
-            
+
             foreach (GridDataItem item in KPIListForUserG1.Items)
             {
                 CheckBox checkBox = item["CheckBoxTemplateColumn"].FindControl("viewableCB") as CheckBox;

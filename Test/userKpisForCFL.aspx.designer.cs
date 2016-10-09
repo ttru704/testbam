@@ -10,7 +10,7 @@
 namespace Test {
     
     
-    public partial class manageUserAccess {
+    public partial class userKpisForCFL {
         
         /// <summary>
         /// RadScriptManager1 control.
@@ -20,15 +20,6 @@ namespace Test {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadScriptManager RadScriptManager1;
-        
-        /// <summary>
-        /// RadAjaxManager1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
         
         /// <summary>
         /// RadAjaxLoadingPanel1 control.
@@ -49,13 +40,31 @@ namespace Test {
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
-        /// Message control.
+        /// Update control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Message;
+        protected global::Telerik.Web.UI.RadButton Update;
+        
+        /// <summary>
+        /// CompanyDDL1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadDropDownList CompanyDDL1;
+        
+        /// <summary>
+        /// CompanyListODS1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource CompanyListODS1;
         
         /// <summary>
         /// UserDDL1 control.
@@ -76,39 +85,39 @@ namespace Test {
         protected global::System.Web.UI.WebControls.ObjectDataSource UserODS1;
         
         /// <summary>
-        /// StartDate control.
+        /// KpiTypeDDL1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker StartDate;
+        protected global::Telerik.Web.UI.RadComboBox KpiTypeDDL1;
         
         /// <summary>
-        /// EndDate control.
+        /// KpiTypeODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadDatePicker EndDate;
+        protected global::System.Web.UI.WebControls.ObjectDataSource KpiTypeODS1;
         
         /// <summary>
-        /// StatusToggle control.
+        /// KPIListForUserG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadToggleButton StatusToggle;
+        protected global::Telerik.Web.UI.RadGrid KPIListForUserG1;
         
         /// <summary>
-        /// Update control.
+        /// KPIListForUserODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton Update;
+        protected global::System.Web.UI.WebControls.ObjectDataSource KPIListForUserODS1;
     }
 }

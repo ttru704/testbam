@@ -109,7 +109,9 @@
                                         <a runat="server" id="userManagement"><i class="fa fa-edit"></i>User Management<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="newUser.aspx">Create New User</a></li>
+                                            <li><a href="manageUserAccess.aspx">User Access</a></li>
                                             <li><a href="userKpis.aspx">User KPIs</a></li>
+                                            
                                         </ul>
                                     </li>
                                     <li>
@@ -123,7 +125,9 @@
                                         <a runat="server" id="adminstration" visible="false"><i class="fa fa-clone"></i>Administration<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="createUserforCFL.aspx">Create New User</a></li>
+                                            <li><a href="manageUserAccessForCFL.aspx">Manage User Access</a></li>
                                             <li><a href="companyKpis.aspx">Company KPIs</a></li>
+                                            <li><a href="userKpisForCFL.aspx">User KPIs</a></li>
                                         </ul>
                                     </li>
                                 </ul>

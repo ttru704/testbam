@@ -876,25 +876,6 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_UpdateUserProfile" FunctionName="KPIModel.Store.usp_UpdateUserProfile" />
-    <FunctionImportMapping FunctionImportName="usp_GetUserInfo" FunctionName="KPIModel.Store.usp_GetUserInfo">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_GetUserInfo_Result">
-          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
-          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="usp_UserDropDownList" FunctionName="KPIModel.Store.usp_UserDropDownList">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="KPIModel.usp_UserDropDownList_Result">
-          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_GetKpiTypes" FunctionName="KPIModel.Store.usp_GetKpiTypes">
       <ResultMapping>
         <ComplexTypeMapping TypeName="KPIModel.usp_GetKpiTypes_Result">
@@ -934,5 +915,40 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="usp_UpdateUserAccessDetail" FunctionName="KPIModel.Store.usp_UpdateUserAccessDetail" />
+    <FunctionImportMapping FunctionImportName="usp_GetUserInfo" FunctionName="KPIModel.Store.usp_GetUserInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_GetUserInfo_Result">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Company_Ref" ColumnName="Company_Ref" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="AccessStart" ColumnName="AccessStart" />
+          <ScalarProperty Name="AccessEnd" ColumnName="AccessEnd" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_UpdateIsAdminStatus" FunctionName="KPIModel.Store.usp_UpdateIsAdminStatus" />
+    <FunctionImportMapping FunctionImportName="usp_GetUserName" FunctionName="KPIModel.Store.usp_GetUserName" />
+    <FunctionImportMapping FunctionImportName="usp_UserDropDownList" FunctionName="KPIModel.Store.usp_UserDropDownList">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_UserDropDownList_Result">
+          <ScalarProperty Name="Ref_Number" ColumnName="Ref_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_GetAllUserAccessInfo" FunctionName="KPIModel.Store.usp_GetAllUserAccessInfo">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="KPIModel.usp_GetAllUserAccessInfo_Result">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AccessStart" ColumnName="AccessStart" />
+          <ScalarProperty Name="AccessEnd" ColumnName="AccessEnd" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

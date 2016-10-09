@@ -10,6 +10,10 @@ using Telerik.Charting;
 using System.Drawing;
 using Test.Models;
 using Test.BLL.Controls;
+using Microsoft.AspNet.Identity;
+using System.Web.Security;
+using System.Net;
+using System.Web.Configuration;
 
 namespace Test
 {
@@ -21,30 +25,16 @@ namespace Test
             {
                 Response.Redirect("~/financialKPI.aspx");
             }
+
+            
             bool admin = Page.User.IsInRole("Admin");
             if (HttpContext.Current.User.Identity.IsAuthenticated == true & admin == false)
             {
                 //Use this to store list of control name which will be used to display which kpis logged in clinic user can see
                 string userRef = Session["UserRef"] as string;
                 Int64? company = Session["CompanyRef"] as Int64?;
-                //ViewableKpiListBL viewableKpiListBL = new ViewableKpiListBL();
-                //List<usp_ViewableKpiList_Result> viewableKpiList = viewableKpiListBL.usp_ViewableKpiList(userRef, 1, "Company");
-
-
-                //var index = viewableKpiList.ElementAt(0);
-                //var name = index.Name;
-                //var control = index.Control_Name;
-
-                //foreach (var element in viewableKpiList)
-                //{
-                //    var a = element.Name;
-                //    var b = element.Control_Name;
-                //    var c = element.Description;
-
-                //}
                 TotalSalesCompanyRHC1.DataBind();
-
-                //IncomeByProductCategoryComRHC1.Appearance.FillStyle.BackgroundColor = ChartColors.GetColor();
+                
 
                 IncomeByProductCategoryComRHC1.DataBind();
                 IncomeByServiceActivityComRHC1.DataBind();
@@ -184,7 +174,6 @@ namespace Test
             }
             
         }
-
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             

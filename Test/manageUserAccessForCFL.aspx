@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="manageUserAccess.aspx.cs" Inherits="Test.manageUserAccess" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/principal.Master" AutoEventWireup="true" CodeBehind="manageUserAccessForCFL.aspx.cs" Inherits="Test.manageUserAccessForCFL" %>
 
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
@@ -17,6 +17,12 @@
             <telerik:AjaxSetting AjaxControlID="CompanyDDL1">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="UserDDL1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="GetAllUserAccessInfoG1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                </UpdatedControls>
+            </telerik:AjaxSetting>
+            <telerik:AjaxSetting AjaxControlID="Update">
+                <UpdatedControls>
+                    <telerik:AjaxUpdatedControl ControlID="GetAllUserAccessInfoG1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -38,16 +44,24 @@
                 </div>
             </div>
 
+            <%--Company dropdownlist--%>
+            <div class="form-group">
+                <asp:Label runat="server" AssociatedControlID="CompanyDDL1" CssClass="col-md-2 control-label">Company:  </asp:Label>
+                <div class="col-md-10">
+                    <telerik:RadDropDownList ID="CompanyDDL1"  DataTextField="Name" DataValueField="Ref_Number" runat="server" DataSourceID="CompanyListODS1" Width="300px" AutoPostBack="true" Skin="Silk"></telerik:RadDropDownList>
+                        <asp:ObjectDataSource ID="CompanyListODS1" runat="server" SelectMethod="usp_CompanyList" TypeName="Test.BLL.Controls.CompanyListBL"></asp:ObjectDataSource>
+                </div>
+            </div>
+
             <%--User dropdownlist--%>
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="UserDDL1" CssClass="col-md-2 control-label">User:  </asp:Label>
                 <div class="col-md-10">
-                    <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" runat="server" DataSourceID="UserODS1" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300px"></telerik:RadDropDownList>
+                    <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" runat="server" DataSourceID="UserODS1" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300px" OnSelectedIndexChanged="UserDDL1_SelectedIndexChanged"></telerik:RadDropDownList>
 
                         <asp:ObjectDataSource ID="UserODS1" runat="server" SelectMethod="usp_UserDropDownList" TypeName="Test.BLL.Controls.UserDropDownListBL">
                             <SelectParameters>
-                                <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
-
+                                <asp:ControlParameter ControlID="CompanyDDL1" PropertyName="SelectedValue" Name="companyRef" Type="Int64"></asp:ControlParameter>
 
                             </SelectParameters>
                         </asp:ObjectDataSource>
@@ -95,7 +109,6 @@
                     </telerik:RadToggleButton>
                 </div>
             </div>
-
             <%--Submit changes to the database thru the Onclick event--%>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
@@ -103,7 +116,23 @@
                 </div>
             </div>
 
-            
+            <div class="form-horizontal">
+                <telerik:RadGrid ID="GetAllUserAccessInfoG1" runat="server" DataSourceID="GetAllUserAccessInfoODS1" Skin="Metro">
+                    <MasterTableView DataSourceID="GetAllUserAccessInfoODS1" AutoGenerateColumns="False">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="AccessStart" HeaderText="From" SortExpression="AccessStart" UniqueName="AccessStart" DataType="System.DateTime" FilterControlAltText="Filter AccessStart column"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="AccessEnd" HeaderText="To" SortExpression="AccessEnd" UniqueName="AccessEnd" DataType="System.DateTime" FilterControlAltText="Filter AccessEnd column"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="Status" HeaderText="Status" SortExpression="Status" UniqueName="Status" FilterControlAltText="Filter Status column"></telerik:GridBoundColumn>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+                <asp:ObjectDataSource ID="GetAllUserAccessInfoODS1" runat="server" SelectMethod="usp_GetAllUserAccessInfo" TypeName="Test.BLL.User.GetAllUserAccessInfoBL">
+                    <SelectParameters>
+                                <asp:ControlParameter ControlID="CompanyDDL1" PropertyName="SelectedValue" Name="companyRef" Type="Int64"></asp:ControlParameter>
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+            </div>
 
         </div>
     </div>

@@ -219,6 +219,7 @@
     <Content Include="build\js\custom.js" />
     <Content Include="build\js\custom.min.js" />
     <Content Include="manageUserAccess.aspx" />
+    <Content Include="manageUserAccessForCFL.aspx" />
     <Content Include="production\calendar.html" />
     <Content Include="production\chartjs.html" />
     <Content Include="production\chartjs2.html" />
@@ -274,6 +275,7 @@
     <Content Include="production\widgets.html" />
     <Content Include="production\xx.html" />
     <Content Include="companyKpis.aspx" />
+    <Content Include="userKpisForCFL.aspx" />
     <Content Include="userProfile.aspx" />
     <Content Include="bin\Telerik.Web.UI.Skins.dll" />
     <Content Include="build\css\custom.css" />
@@ -3883,8 +3885,12 @@
     <Compile Include="BLL\Controls\GetKpiTypesBL.cs" />
     <Compile Include="BLL\Controls\InsertIntoKpiForCompanyBL.cs" />
     <Compile Include="BLL\Controls\KPIListForCompanyBL.cs" />
+    <Compile Include="BLL\Controls\UpdateIsAdminStatusBL.cs" />
+    <Compile Include="BLL\Controls\UpdateUserAccessDetailBL.cs" />
     <Compile Include="BLL\Controls\UserDropDownListBL.cs" />
+    <Compile Include="BLL\User\GetAllUserAccessInfoBL.cs" />
     <Compile Include="BLL\User\GetUserInfoBL.cs" />
+    <Compile Include="BLL\User\GetUserNameBL.cs" />
     <Compile Include="BLL\User\UpdateUserProfileBL.cs" />
     <Compile Include="manageUserAccess.aspx.cs">
       <DependentUpon>manageUserAccess.aspx</DependentUpon>
@@ -3893,11 +3899,22 @@
     <Compile Include="manageUserAccess.aspx.designer.cs">
       <DependentUpon>manageUserAccess.aspx</DependentUpon>
     </Compile>
+    <Compile Include="manageUserAccessForCFL.aspx.cs">
+      <DependentUpon>manageUserAccessForCFL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageUserAccessForCFL.aspx.designer.cs">
+      <DependentUpon>manageUserAccessForCFL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Interface\Controls\ICompanyListRepo.cs" />
     <Compile Include="Models\Interface\Controls\IDeleteFromKpiForCompanyRepo.cs" />
     <Compile Include="Models\Interface\Controls\IGetKpiTypesRepo.cs" />
+    <Compile Include="Models\Interface\User\IGetAllUserAccessInfoRepo.cs" />
+    <Compile Include="Models\Interface\User\IGetUserNameRepo.cs" />
     <Compile Include="Models\Interface\Controls\IInsertIntoKpiForCompanyRepo.cs" />
     <Compile Include="Models\Interface\Controls\IKPIListForCompanyRepo.cs" />
+    <Compile Include="Models\Interface\Controls\IUpdateIsAdminStatusRepo.cs" />
+    <Compile Include="Models\Interface\Controls\IUpdateUserAccessDetailRepo.cs" />
     <Compile Include="Models\Interface\Controls\IUserDropDownListRepo.cs" />
     <Compile Include="Models\Interface\User\IGetUserInfoRepo.cs" />
     <Compile Include="Models\Interface\User\IUpdateUserProfileRepo.cs" />
@@ -3906,10 +3923,17 @@
     <Compile Include="Models\Repository\Controls\GetKpiTypesRepo.cs" />
     <Compile Include="Models\Repository\Controls\InsertIntoKpiForCompanyRepo.cs" />
     <Compile Include="Models\Repository\Controls\KPIListForCompanyRepo.cs" />
+    <Compile Include="Models\Repository\Controls\UpdateIsAdminStatusRepo.cs" />
+    <Compile Include="Models\Repository\Controls\UpdateUserAccessDetailRepo.cs" />
     <Compile Include="Models\Repository\Controls\UserDropDownListRepo.cs" />
+    <Compile Include="Models\Repository\User\GetAllUserAccessInfoRepo.cs" />
     <Compile Include="Models\Repository\User\GetUserInfoRepo.cs" />
+    <Compile Include="Models\Repository\User\GetUserNameRepo.cs" />
     <Compile Include="Models\Repository\User\UpdateUserProfileRepo.cs" />
     <Compile Include="Models\usp_CompanyList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetAllUserAccessInfo_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_GetKpiTypes_Result.cs">
@@ -3930,6 +3954,13 @@
     </Compile>
     <Compile Include="companyKpis.aspx.designer.cs">
       <DependentUpon>companyKpis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userKpisForCFL.aspx.cs">
+      <DependentUpon>userKpisForCFL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userKpisForCFL.aspx.designer.cs">
+      <DependentUpon>userKpisForCFL.aspx</DependentUpon>
     </Compile>
     <Compile Include="userProfile.aspx.cs">
       <DependentUpon>userProfile.aspx</DependentUpon>

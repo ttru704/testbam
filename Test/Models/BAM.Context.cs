@@ -1295,24 +1295,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserProfile", userRefParameter, nameParameter, emailParameter, phoneNumberParameter);
         }
     
-        public virtual ObjectResult<usp_GetUserInfo_Result> usp_GetUserInfo(string userName)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("userName", userName) :
-                new ObjectParameter("userName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetUserInfo_Result>("usp_GetUserInfo", userNameParameter);
-        }
-    
-        public virtual ObjectResult<usp_UserDropDownList_Result> usp_UserDropDownList(Nullable<long> companyRef)
-        {
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UserDropDownList_Result>("usp_UserDropDownList", companyRefParameter);
-        }
-    
         public virtual ObjectResult<usp_GetKpiTypes_Result> usp_GetKpiTypes()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetKpiTypes_Result>("usp_GetKpiTypes");
@@ -1402,6 +1384,55 @@ namespace Test.Models
                 new ObjectParameter("userRef", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserAccessDetail", accessStartParameter, accessEndParameter, statusParameter, userRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetUserInfo_Result> usp_GetUserInfo(string userName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetUserInfo_Result>("usp_GetUserInfo", userNameParameter);
+        }
+    
+        public virtual int usp_UpdateIsAdminStatus(string userName, string status)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateIsAdminStatus", userNameParameter, statusParameter);
+        }
+    
+        public virtual ObjectResult<string> usp_GetUserName(string userRef)
+        {
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_GetUserName", userRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_UserDropDownList_Result> usp_UserDropDownList(Nullable<long> companyRef)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UserDropDownList_Result>("usp_UserDropDownList", companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetAllUserAccessInfo_Result> usp_GetAllUserAccessInfo(Nullable<long> companyRef)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetAllUserAccessInfo_Result>("usp_GetAllUserAccessInfo", companyRefParameter);
         }
     }
 }

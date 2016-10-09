@@ -81,27 +81,6 @@ namespace Test
             AddPageView(e.Tab);
             e.Tab.PageView.Selected = true;
         }
-
-        //protected void CountryCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
-        //{
-        //    StateDDL1.Text = "";
-        //    RegionDDL1.Text = "";
-        //    RegionDDL1.Items.Clear();
-        //    StateDDL1.DataBind();
-        //}
-        //protected void StateCB_SelectedIndexChanged(object sender, RadComboBoxSelectedIndexChangedEventArgs e)
-        //{
-        //    RegionDDL1.Text = "";
-        //    RegionDDL1.AppendDataBoundItems = true;
-        //    RegionDDL1.DataBind();
-        //}
-
-
-        
-
-        
-        
-
         
     }
 

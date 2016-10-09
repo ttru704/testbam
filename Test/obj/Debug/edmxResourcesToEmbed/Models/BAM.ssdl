@@ -352,7 +352,7 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
     <Property Name="AccessFailedCount" Type="int" Nullable="false" />
     <Property Name="AccessStart" Type="date" />
     <Property Name="AccessEnd" Type="date" />
-    <Property Name="Status" Type="nchar" MaxLength="10" />
+    <Property Name="Status" Type="nchar" MaxLength="1" />
   </EntityType>
   <EntityType Name="User_Roles">
     <Key>
@@ -961,9 +961,15 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   <Function Name="usp_EmployeeSearchBox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="int" Mode="In" />
   </Function>
+  <Function Name="usp_GetAllUserAccessInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="companyRef" Type="bigint" Mode="In" />
+  </Function>
   <Function Name="usp_GetKpiTypes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="usp_GetUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="userName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_GetUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userRef" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="usp_IncomeByEmployeeCompany" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="start" Type="date" Mode="In" />
@@ -1187,6 +1193,10 @@ warning 6002: The table/view 'KPI.dbo.Connection_Profile' does not have a primar
   </Function>
   <Function Name="usp_UniqueCustomersSeenSingle" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="companyRef" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="usp_UpdateIsAdminStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userName" Type="nvarchar" Mode="In" />
+    <Parameter Name="status" Type="varchar" Mode="In" />
   </Function>
   <Function Name="usp_UpdateUserAccessDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="accessStart" Type="date" Mode="In" />
