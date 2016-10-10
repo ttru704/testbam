@@ -71,11 +71,11 @@
                                 <asp:ControlParameter ControlID="StateDDL1" PropertyName="SelectedValue" Name="stateRef" Type="Int64"></asp:ControlParameter>
                             </SelectParameters>
                         </asp:ObjectDataSource>
-                        </telerik:RadAjaxPanel>
+                    </telerik:RadAjaxPanel>
                     <telerik:RadButton ID="Button1" runat="server" Text="Go" Skin="Metro"></telerik:RadButton>
-                        <br />
-                        <br />
-                    
+                    <br />
+                    <br />
+
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
@@ -85,16 +85,19 @@
                 <ContentTemplate>
                     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
                     <%--Chart--%>
+                    <br />
                     <div class="export">
                         <telerik:RadButton ID="AvgDollarPerCustomerPeerEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerCustomerPeerRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
-                        <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" RenderAs="Canvas" RenderMode="Lightweight" runat="server" Skin="Bootstrap">
-                            <ClientEvents OnLoad="formatAvgDollarPerCustomerPeerRHC1" />
-                            <Pan Enabled="true" Lock="Y" />
-                            <Zoom Enabled="true">
-                                <MouseWheel Enabled="true" Lock="Y" />
-                                <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
-                            </Zoom>
-                        </telerik:RadHtmlChart>
+                        <div class="border">
+                            <telerik:RadHtmlChart ID="AvgDollarPerCustomerPeerRHC1" RenderAs="Canvas" RenderMode="Lightweight" runat="server" Skin="Bootstrap">
+                                <ClientEvents OnLoad="formatAvgDollarPerCustomerPeerRHC1" />
+                                <Pan Enabled="true" Lock="Y" />
+                                <Zoom Enabled="true">
+                                    <MouseWheel Enabled="true" Lock="Y" />
+                                    <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
+                                </Zoom>
+                            </telerik:RadHtmlChart>
+                        </div>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgDollarPerCustomerPeerODS1" runat="server" SelectMethod="usp_AvgDollarPerCustomerPeer" TypeName="Test.BLL.Customer.AvgDollarPerCustomerPeerBL">
@@ -110,14 +113,14 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <br />
-                    <br />
-                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" RenderMode="Lightweight" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro">
+                    <hr />
+                    <div class="padding" />
+                    <telerik:RadGrid ID="AvgDollarPerCustomerPeerG1" RenderMode="Lightweight" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="AvgDollarPerCustomerPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView DataSourceID="AvgDollarPerCustomerPeerODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                        <MasterTableView DataSourceID="AvgDollarPerCustomerPeerODS1" Width="100%" AllowFilteringByColumn="True" CommandItemDisplay="Top" AutoGenerateColumns="False">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
@@ -125,7 +128,9 @@
                                 <telerik:GridBoundColumn DataField="Average_Dollar_per_Customer" HeaderText="Average Dollar per Customer" SortExpression="Average_Dollar_per_Customer" UniqueName="Average_Dollar_per_Customer" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Customer column"></telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
+                        <FilterMenu RenderMode="Lightweight"></FilterMenu>
                     </telerik:RadGrid>
+                    </div>
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
@@ -144,14 +149,14 @@
         function exportRadHtmlChart(chartId) {
             var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
             var manager = $find('<%=RadClientExportManager1.ClientID%>');
-        var pdfSettings = {
-            fileName: chartTitle
+            var pdfSettings = {
+                fileName: chartTitle
 
-        };
+            };
 
-        manager.set_pdfSettings(pdfSettings);
-        manager.exportPDF($("#" + chartId));
-    }
+            manager.set_pdfSettings(pdfSettings);
+            manager.exportPDF($("#" + chartId));
+        }
 
     <%--For panning and zooming--%>
         (function (global) {

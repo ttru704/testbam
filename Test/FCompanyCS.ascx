@@ -167,7 +167,6 @@
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
 
-
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" AllowFilteringByColumn="True" DataSourceID="AvgDollarPerTransactionCompanyODS1">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
