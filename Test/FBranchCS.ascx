@@ -84,7 +84,7 @@
                     <%--Table--%>
                     <hr />
                     <div class="padding">
-                        <telerik:RadGrid ID="TotalSalesBranchG1" RenderMode="Lightweight" runat="server" DataSourceID="TotalSalesBranchODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Total Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
+                        <telerik:RadGrid ID="TotalSalesBranchG1" RenderMode="Lightweight" runat="server" DataSourceID="TotalSalesBranchODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" ExportSettings-FileName="Total Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                 <Selecting AllowRowSelect="True" />
@@ -103,7 +103,6 @@
                                 </Columns>
                             </MasterTableView>
                             <FilterMenu RenderMode="Lightweight"></FilterMenu>
-                            <HeaderContextMenu RenderMode="Lightweight"></HeaderContextMenu>
                         </telerik:RadGrid>
                     </div>
                 </ContentTemplate>
@@ -139,7 +138,7 @@
                     <%--Table--%>
                     <hr />
                     <div class="padding">
-                        <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1" CellSpacing="-1" GridLines="Both" AllowSorting="True" AllowPaging="True" Skin="Metro" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison" OnItemCommand="ExportGridCustomiser">
+                        <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1"  AllowSorting="True" AllowPaging="True" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison" OnItemCommand="ExportGridCustomiser">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                 <Selecting AllowRowSelect="True" />
@@ -159,7 +158,6 @@
                                 </Columns>
                             </MasterTableView>
                             <FilterMenu RenderMode="Lightweight"></FilterMenu>
-                            <HeaderContextMenu RenderMode="Lightweight"></HeaderContextMenu>
                         </telerik:RadGrid>
                     </div>
                     <%--Datasource--%>
@@ -206,7 +204,7 @@
                     <%--Table--%>
                     <hr />
                     <div class="padding">
-                        <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Transactions Excluding Zero Total Bills Branch Comparison" OnItemCommand="ExportGridCustomiser">
+                        <telerik:RadGrid ID="TransExcludeZeroTotalBranchG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="TransExcludeZeroTotalBranchODS1" ShowGroupPanel="True" ExportSettings-FileName="Transactions Excluding Zero Total Bills Branch Comparison" OnItemCommand="ExportGridCustomiser">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                 <Selecting AllowRowSelect="True" />
@@ -224,7 +222,6 @@
                                 </Columns>
                             </MasterTableView>
                             <FilterMenu RenderMode="Lightweight"></FilterMenu>
-                            <HeaderContextMenu RenderMode="Lightweight"></HeaderContextMenu>
                         </telerik:RadGrid>
                     </div>
                 </ContentTemplate>
@@ -261,7 +258,7 @@
                     <%--Table--%>
                     <hr />
                     <div class="padding">
-                        <telerik:RadGrid ID="RetailOnlySalesBranchG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="RetailOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Retail Only Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
+                        <telerik:RadGrid ID="RetailOnlySalesBranchG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="RetailOnlySalesBranchODS1" ShowGroupPanel="True" ExportSettings-FileName="Retail Only Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                 <Selecting AllowRowSelect="True" />
@@ -279,7 +276,6 @@
                                 </Columns>
                             </MasterTableView>
                             <FilterMenu RenderMode="Lightweight"></FilterMenu>
-                            <HeaderContextMenu RenderMode="Lightweight"></HeaderContextMenu>
                         </telerik:RadGrid>
                     </div>
                 </ContentTemplate>
@@ -316,7 +312,7 @@
                     <%--Table--%>
                     <hr />
                     <div class="padding">
-                        <telerik:RadGrid ID="ServiceOnlySalesBranchG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ServiceOnlySalesBranchODS1" ShowGroupPanel="True" Skin="Metro" CellSpacing="-1" GridLines="Both" ExportSettings-FileName="Service Only Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
+                        <telerik:RadGrid ID="ServiceOnlySalesBranchG1" RenderMode="Lightweight" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="ServiceOnlySalesBranchODS1" ShowGroupPanel="True" ExportSettings-FileName="Service Only Sales Branch Comparison" OnItemCommand="ExportGridCustomiser">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                 <Selecting AllowRowSelect="True" />
@@ -334,7 +330,6 @@
                                 </Columns>
                             </MasterTableView>
                             <FilterMenu RenderMode="Lightweight"></FilterMenu>
-                            <HeaderContextMenu RenderMode="Lightweight"></HeaderContextMenu>
                         </telerik:RadGrid>
                     </div>
                 </ContentTemplate>

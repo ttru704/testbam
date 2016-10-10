@@ -10,7 +10,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <telerik:RadStyleSheetManager runat="server"></telerik:RadStyleSheetManager>
     <telerik:RadScriptManager ID="ScriptManager1" runat="server">
     </telerik:RadScriptManager>
     <div class="right_col" role="main">

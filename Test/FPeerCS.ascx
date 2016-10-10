@@ -44,8 +44,6 @@
                     <asp:ObjectDataSource ID="CountryODS1" runat="server" SelectMethod="usp_CountryDropDownList" TypeName="Test.BLL.Controls.CountryDropDownListBL">
                         <SelectParameters>
                             <asp:ControlParameter ControlID="BranchCB1" PropertyName="SelectedValue" Name="branchRef" Type="Int64"></asp:ControlParameter>
-
-
                         </SelectParameters>
                     </asp:ObjectDataSource>
 
@@ -92,6 +90,7 @@
                     <br />
                     <div class="export">
                         <telerik:RadButton ID="AvgDollarPerTransactionPeerEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgDollarPerTransactionPeerRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <div class="border">
                         <telerik:RadHtmlChart ID="AvgDollarPerTransactionPeerRHC1" RenderMode="Lightweight" RenderAs="Canvas" runat="server" Skin="Bootstrap">
                             <ClientEvents OnLoad="formatAvgDollarPerTransactionPeerRHC1" />
                             <Pan Enabled="true" Lock="Y" />
@@ -100,6 +99,7 @@
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                             </Zoom>
                         </telerik:RadHtmlChart>
+                            </div>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgDollarPerTransactionPeerODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionPeer" TypeName="Test.BLL.Financial.AvgDollarPerTransactionPeerBL">
@@ -118,13 +118,13 @@
 
                     <%--Table--%>
                     <hr />
-                    <br />
-                    <telerik:RadGrid ID="AvgDollarPerTransactionPeerG1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" Skin="Metro" OnItemCommand="ExportGridCustomiser" ExportSettings-FileName="Average Dollar per Transaction Peer Comparison">
+                    <div class="padding">
+                    <telerik:RadGrid ID="AvgDollarPerTransactionPeerG1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionPeerODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True" OnItemCommand="ExportGridCustomiser" ExportSettings-FileName="Average Dollar per Transaction Peer Comparison">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="AvgDollarPerTransactionPeerODS1" AutoGenerateColumns="False">
+                        <MasterTableView Width="100%" CommandItemDisplay="Top" DataSourceID="AvgDollarPerTransactionPeerODS1" AllowFilteringByColumn="true" AutoGenerateColumns="False">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
@@ -132,7 +132,9 @@
                                 <telerik:GridBoundColumn DataField="Average_Dollar_per_Transaction" HeaderText="Average Dollar per Transaction" SortExpression="Average_Dollar_per_Transaction" UniqueName="Average_Dollar_per_Transaction" DataType="System.Decimal" FilterControlAltText="Filter Average_Dollar_per_Transaction column"></telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
+                        <FilterMenu RenderMode="Lightweight"></FilterMenu>
                     </telerik:RadGrid>
+                        </div>
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
