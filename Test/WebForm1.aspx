@@ -38,8 +38,6 @@
                             <asp:ObjectDataSource ID="StateODS1" runat="server" SelectMethod="usp_StateDropDownList" TypeName="Test.BLL.Controls.StateDropDownListBL">
                                 <SelectParameters>
                                     <asp:ControlParameter ControlID="CountryDDL1" PropertyName="SelectedValue" Name="countryRef" Type="Int64"></asp:ControlParameter>
-
-
                                 </SelectParameters>
                             </asp:ObjectDataSource>
                             <telerik:RadComboBox RenderMode="Lightweight" ID="RegionDDL1" DataTextField="Region_Name" DataValueField="Region_Ref" runat="server" Width="186px"
