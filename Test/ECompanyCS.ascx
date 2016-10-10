@@ -12,8 +12,10 @@
             <telerik:RadPanelItem Text="Number of Customers Seen by Employee - Company" Visible="false" Expanded="False">
                 <ContentTemplate>
                     <%--Chart--%>
+                    <br />
                     <div class="export">
                         <telerik:RadButton ID="CustomersSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportCustomersSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <div class="border">
                         <telerik:RadHtmlChart ID="CustomersSeenByEmployeeCompanyRHC1" RenderAs="Canvas" RenderMode="Lightweight" Width="100%" runat="server" CssClass="MonthlyExport" Skin="Bootstrap">
                             <ClientEvents OnLoad="formatCustomersSeenByEmployeeCompanyRHC1" />
                             <Pan Enabled="true" Lock="X" />
@@ -22,17 +24,18 @@
                                 <Selection Enabled="true" Lock="X" ModifierKey="Shift" />
                             </Zoom>
                         </telerik:RadHtmlChart>
+                            </div>
                     </div>
                     <%--Table--%>
-                    <br />
-                    <br />
-                    <telerik:RadGrid ID="CustomersSeenByEmployeeCompanyG1" RenderMode="Lightweight" OnItemCommand="ExportGridCustomiser" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="CustomersSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
+                    <hr />
+                    <div class="padding">
+                    <telerik:RadGrid ID="CustomersSeenByEmployeeCompanyG1" RenderMode="Lightweight" OnItemCommand="ExportGridCustomiser" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="CustomersSeenByEmployeeCompanyODS1" ShowGroupPanel="True">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView AutoGenerateColumns="False" Width="100%" CommandItemDisplay="Top" DataSourceID="CustomersSeenByEmployeeCompanyODS1">
+                        <MasterTableView AutoGenerateColumns="False" Width="100%" CommandItemDisplay="Top" AllowFilteringByColumn="True" DataSourceID="CustomersSeenByEmployeeCompanyODS1">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name">
@@ -43,7 +46,9 @@
                                 </telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
-                    </telerik:RadGrid>
+                    <FilterMenu RenderMode="Lightweight"></FilterMenu>
+                        </telerik:RadGrid>
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="CustomersSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_CustomersSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.CustomersSeenByEmployeeCompanyBL">
                         <SelectParameters>
@@ -60,8 +65,10 @@
             <telerik:RadPanelItem Text="Number of Animals Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
+                    <br />
                     <div class="export">
                         <telerik:RadButton ID="AnimalsSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAnimalsSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <div class="border">
                         <telerik:RadHtmlChart ID="AnimalsSeenByEmployeeCompanyRHC1" RenderAs="Canvas" RenderMode="Lightweight" runat="server" Skin="Metro">
                             <ClientEvents OnLoad="formatAnimalsSeenByEmployeeCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
@@ -70,6 +77,7 @@
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                             </Zoom>
                         </telerik:RadHtmlChart>
+                            </div>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AnimalsSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AnimalsSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AnimalsSeenByEmployeeCompanyBL">
@@ -82,15 +90,15 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <br />
-                    <br />
+                    <hr />
+                    <div class="padding">
                     <telerik:RadGrid ID="AnimalsSeenByEmployeeCompanyG1" RenderMode="Lightweight" OnItemCommand="ExportGridCustomiser" runat="server" AllowPaging="True" AllowSorting="True" DataSourceID="AnimalsSeenByEmployeeCompanyODS1" ShowGroupPanel="True" Skin="Metro">
                         <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                         <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView AutoGenerateColumns="False" Width="100%" CommandItemDisplay="Top" DataSourceID="AnimalsSeenByEmployeeCompanyODS1">
+                        <MasterTableView AutoGenerateColumns="False" Width="100%" CommandItemDisplay="Top" AllowFilteringByColumn="True" DataSourceID="AnimalsSeenByEmployeeCompanyODS1">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Employee_Name" FilterControlAltText="Filter Employee_Name column" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name">
@@ -101,15 +109,19 @@
                                 </telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
-                    </telerik:RadGrid>
+                    <FilterMenu RenderMode="Lightweight"></FilterMenu>
+                        </telerik:RadGrid>
+                    </div>
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--Average Number of Customers Seen by Employee - Company--%>
             <telerik:RadPanelItem Text="Average Customers Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
+                    <br />
                     <div class="export">
                         <telerik:RadButton ID="AvgCustomersSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgCustomersSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <div class="border">
                         <telerik:RadHtmlChart ID="AvgCustomersSeenByEmployeeCompanyRHC1" RenderAs="Canvas" RenderMode="Lightweight" runat="server" Skin="Bootstrap">
                             <ClientEvents OnLoad="formatAvgCustomersSeenByEmployeeCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
@@ -118,6 +130,7 @@
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                             </Zoom>
                         </telerik:RadHtmlChart>
+                        </div>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgCustomersSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AvgCustomersSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AvgCustomersSeenByEmployeeCompanyBL">
@@ -130,29 +143,33 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <br />
-                    <br />
+                    <hr />
+                    <div class="padding">
                     <telerik:RadGrid ID="AvgCustomersSeenByEmployeeCompanyG1" RenderMode="Lightweight" OnItemCommand="ExportGridCustomiser" runat="server" DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" AllowPaging="False" AllowSorting="False">
+                        <MasterTableView DataSourceID="AvgCustomersSeenByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" AllowFilteringByColumn="True">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="Number_Of_Customers_Seen_By_An_Employee" HeaderText="Number Of Customers Seen" SortExpression="Number_Of_Customers_Seen_By_An_Employee" UniqueName="Number_Of_Customers_Seen_By_An_Employee" DataType="System.Decimal" FilterControlAltText="Filter Number_Of_Customers_Seen_By_An_Employee column"></telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
-                    </telerik:RadGrid>
+                    <FilterMenu RenderMode="Lightweight"></FilterMenu>
+                        </telerik:RadGrid>
+                    </div>
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--Average Number of Animals Seen by Employee - Company--%>
             <telerik:RadPanelItem Text="Average Animals Seen by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
+                    <br />
                     <div class="export">
                         <telerik:RadButton ID="AvgAnimalsSeenByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportAvgAnimalsSeenByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <div class="border">
                         <telerik:RadHtmlChart ID="AvgAnimalsSeenByEmployeeCompanyRHC1" RenderAs="Canvas" RenderMode="Lightweight" runat="server" Skin="Bootstrap">
                             <ClientEvents OnLoad="formatAvgAnimalsSeenByEmployeeCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
@@ -162,7 +179,7 @@
                             </Zoom>
                         </telerik:RadHtmlChart>
                     </div>
-                    >
+                    </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgAnimalsSeenByEmployeeCompanyODS1" runat="server" SelectMethod="usp_AvgAnimalsSeenByEmployeeCompany" TypeName="Test.BLL.Productivity.AvgAnimalsSeenByEmployeeCompanyBL">
                         <SelectParameters>
@@ -174,29 +191,33 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <br />
-                    <br />
+                    <hr />
+                    <div class="padding">
                     <telerik:RadGrid ID="AvgAnimalsSeenByEmployeeCompanyG1" RenderMode="Lightweight" OnItemCommand="ExportGridCustomiser" runat="server" DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                        <MasterTableView DataSourceID="AvgAnimalsSeenByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AllowFilteringByColumn="True" AutoGenerateColumns="False">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="TimePeriod" HeaderText="Time Period" SortExpression="TimePeriod" UniqueName="TimePeriod" FilterControlAltText="Filter TimePeriod column"></telerik:GridBoundColumn>
                                 <telerik:GridBoundColumn DataField="Average_Number_Of_Animals_Seen_By_Employee" HeaderText="Average Number Of Animals Seen" SortExpression="Average_Number_Of_Animals_Seen_By_Employee" UniqueName="Average_Number_Of_Animals_Seen_By_Employee" DataType="System.Decimal" FilterControlAltText="Filter Average_Number_Of_Animals_Seen_By_Employee column"></telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
-                    </telerik:RadGrid>
+                    <FilterMenu RenderMode="Lightweight"></FilterMenu>
+                        </telerik:RadGrid>
+                    </div>
                 </ContentTemplate>
             </telerik:RadPanelItem>
             <%--Income by Employee - Company--%>
             <telerik:RadPanelItem Text="Income by Employee - Company" Visible="false" Expanded="false">
                 <ContentTemplate>
                     <%--Chart--%>
+                    <br />
                     <div class="export">
                         <telerik:RadButton ID="IncomeByEmployeeCompanyEB" RenderMode="Lightweight" CssClass="ExportButton" runat="server" OnClientClicked="exportIncomeByEmployeeCompanyRHC1" Text="Export to PDF" AutoPostBack="false" UseSubmitBehavior="false"></telerik:RadButton>
+                        <div class="border">
                         <telerik:RadHtmlChart ID="IncomeByEmployeeCompanyRHC1" RenderAs="Canvas" RenderMode="Lightweight" runat="server" Skin="Metro">
                             <ClientEvents OnLoad="formatIncomeByEmployeeCompanyRHC1" />
                             <Pan Enabled="true" Lock="Y" />
@@ -205,6 +226,7 @@
                                 <Selection Enabled="true" Lock="Y" ModifierKey="Shift" />
                             </Zoom>
                         </telerik:RadHtmlChart>
+                            </div>
                     </div>
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="IncomeByEmployeeCompanyODS1" runat="server" SelectMethod="usp_IncomeByEmployeeCompany" TypeName="Test.BLL.Productivity.IncomeByEmployeeCompanyBL">
@@ -217,14 +239,14 @@
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
-                    <br />
-                    <br />
+                    <hr />
+                    <div class="padding">
                     <telerik:RadGrid ID="IncomeByEmployeeCompanyG1" RenderMode="Lightweight" runat="server" OnItemCommand="ExportGridCustomiser" DataSourceID="IncomeByEmployeeCompanyODS1" AllowPaging="True" AllowSorting="True" ShowGroupPanel="True">
                         <ClientSettings AllowDragToGroup="True" AllowColumnsReorder="True" ReorderColumnsOnClient="True">
                             <Selecting AllowRowSelect="True"></Selecting>
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-                        <MasterTableView DataSourceID="IncomeByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False">
+                        <MasterTableView DataSourceID="IncomeByEmployeeCompanyODS1" Width="100%" CommandItemDisplay="Top" AllowFilteringByColumn="True" AutoGenerateColumns="False">
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />
                             <Columns>
                                 <telerik:GridBoundColumn DataField="Employee_Name" HeaderText="Employee" SortExpression="Employee_Name" UniqueName="Employee_Name" FilterControlAltText="Filter Employee_Name column"></telerik:GridBoundColumn>
@@ -232,7 +254,9 @@
                                 <telerik:GridBoundColumn DataField="Income_By_Employee" HeaderText="Income" SortExpression="Income_By_Employee" UniqueName="Income_By_Employee" DataType="System.Decimal" FilterControlAltText="Filter Income_By_Employee column"></telerik:GridBoundColumn>
                             </Columns>
                         </MasterTableView>
-                    </telerik:RadGrid>
+                    <FilterMenu RenderMode="Lightweight"></FilterMenu>
+                        </telerik:RadGrid>
+                    </div>
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
