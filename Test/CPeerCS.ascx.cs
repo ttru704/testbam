@@ -53,7 +53,7 @@ namespace Test
                     DataTable avgDollarPerCustomerPeerDT = converter.ToDataTable(avgDollarPerCustomerPeerList);
                     RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerCustomerPeerRHC1, avgDollarPerCustomerPeerDT, "Name", "LineSeries", "Average_Dollar_per_Customer", "TimePeriod");
 
-                    AvgDollarPerCustomerPeerG1.DataBind();
+                    AvgDollarPerCustomerPeerGridG1.DataBind();
                 }
                 //format Average Dollar per customer peer comparison chart
                 AvgDollarPerCustomerPeerRHC1.ChartTitle.Text = "Average Dollar per Customer - Peer";

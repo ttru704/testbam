@@ -157,21 +157,21 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart AvgDollarPerTransactionPeerRHC1;
         
         /// <summary>
-        /// AvgDollarPerTransactionPeerODS1 control.
+        /// AvgDollarPerTransactionPeerGridODS1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource AvgDollarPerTransactionPeerODS1;
+        protected global::System.Web.UI.WebControls.ObjectDataSource AvgDollarPerTransactionPeerGridODS1;
         
         /// <summary>
-        /// AvgDollarPerTransactionPeerG1 control.
+        /// AvgDollarPerTransactionPeerGridG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid AvgDollarPerTransactionPeerG1;
+        protected global::Telerik.Web.UI.RadGrid AvgDollarPerTransactionPeerGridG1;
     }
 }

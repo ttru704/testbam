@@ -27,7 +27,9 @@
             <telerik:RadPanelItem Width="100%">
                 <ContentTemplate>
                         <%--Employee combo box--%>
+                    <div style="margin:10px">
                         <telerik:RadComboBox ID="EmployeeCB1" runat="server" Skin="Metro" DataSourceID="EmployeeODS1" DataTextField="Name" DataValueField="Stf_Number" AutoPostBack="true" EmptyMessage="Search for Employee" OnSelectedIndexChanged="EmployeeCB1_SelectedIndexChanged" MarkFirstMatch="True" Filter="Contains" Width="300px"></telerik:RadComboBox>
+                        </div>
                         <%--Datasource for employee combo box--%>
                         <asp:ObjectDataSource ID="EmployeeODS1" runat="server" SelectMethod="usp_EmployeeSearchBox" TypeName="Test.BLL.Controls.EmployeeSearchBoxBL">
                             <SelectParameters>

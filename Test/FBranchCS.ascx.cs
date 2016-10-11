@@ -10,6 +10,30 @@ using Test.BLL.Controls;
 using Test.BLL.Financial;
 using Test.Models;
 
+/// <summary>
+/// - These Sessions are still defined here because the variables are needed to form the datasource for the Chart. 
+/// - The Datasource for chart is done here, so that the GroupDataSource can be used to group the data for the branches. 
+/// - This allows us to graph the data in separates lines/bars/series for the charts
+/// 
+/// - Only tries to set the variables from session when session variables have been stored. Uses StartDate session as a check
+/// 
+/// KPIs
+/// - On this page, it checks which KPIs a user can see via a stored procedure.
+/// - For each KPI the user is allowed to see, the tooltip is set, and the KPI radpanel item is set to visible
+/// - The 1 in (userRef, 1, "Branch Comparison") represents the KPI type (hardcoded).
+///     1 = Financial
+///     2 = Customer
+///     3 = Employee
+/// 
+/// 
+/// GroupDataSource + List to Datatable converter ( in the Models Folder) is used to group data for the branch KPIs
+/// List to DataTable converter is necessary to convert the output of the stored procedure to a format that is useable by the chartgroup data source
+/// 
+/// Other Formatting of charts are done below
+/// 
+/// Export for the Grid is done here in the codebehind as normal.
+/// </summary>
+
 namespace Test
 {
     public partial class FBranchCS : System.Web.UI.UserControl
@@ -21,7 +45,6 @@ namespace Test
                 DateTime? start = Session["StartDate"] as DateTime?;
                 DateTime? end = Session["EndDate"] as DateTime?;
                 Int64? company = Session["CompanyRef"] as Int64?;
-                
                 Int64? branch = Convert.ToInt64(BranchCB1.SelectedItem.Value);
                 int? time = Session["Time"] as int?;
 

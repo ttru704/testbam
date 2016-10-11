@@ -27,17 +27,18 @@
         <div class="form-horizontal">
             <telerik:RadButton ID="Update" runat="server" Text="Update" OnClick="Update_Click" Skin="Silk"></telerik:RadButton>
             <br />
+            <br />
             <asp:UpdatePanel runat="server">
                 <ContentTemplate>
-            <%--Company dropdownlist--%>
-            <div class="form-group">
-                <asp:Label runat="server" AssociatedControlID="CompanyDDL1" CssClass="col-md-2 control-label">Company:  </asp:Label>
-                <div class="col-md-10">
-                    <telerik:RadDropDownList ID="CompanyDDL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" DataSourceID="CompanyListODS1" Width="300px" AutoPostBack="true" Skin="Silk"></telerik:RadDropDownList>
+                    <%--Company dropdownlist--%>
+                    <div>
+                        <asp:Label runat="server" Text="Company:" Width="70"></asp:Label>
+                        <telerik:RadDropDownList ID="CompanyDDL1" DataTextField="Name" DataValueField="Ref_Number" runat="server" DataSourceID="CompanyListODS1" Width="300px" AutoPostBack="true" Skin="Silk"></telerik:RadDropDownList>
                         <asp:ObjectDataSource ID="CompanyListODS1" runat="server" SelectMethod="usp_CompanyList" TypeName="Test.BLL.Controls.CompanyListBL"></asp:ObjectDataSource>
-                </div>
-            </div>
-                    <span style="height: 300px">
+                    </div>
+                    
+                    <br />
+                    <div>
                         <asp:Label runat="server" Text="User:" Width="70"></asp:Label>
                         <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" OnSelectedIndexChanged="userDDL1_OnClientSelectedIndexChanged" runat="server" DataSourceID="UserODS1" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300px"></telerik:RadDropDownList>
 
@@ -47,9 +48,9 @@
 
                             </SelectParameters>
                         </asp:ObjectDataSource>
-                    </span>
+                    </div>
                     <br />
-                    <span style="height: 300px">
+                    <div>
                         <asp:Label runat="server" Text="KPI Type:" Width="70"></asp:Label>
                         <telerik:RadComboBox ID="KpiTypeDDL1" runat="server" AutoPostBack="true" DataSourceID="KpiTypeODS1" Width="300px"
                             DataTextField="Name" DataValueField="Ref_Number"
@@ -59,7 +60,8 @@
                             </Items>
                         </telerik:RadComboBox>
                         <asp:ObjectDataSource ID="KpiTypeODS1" runat="server" SelectMethod="usp_GetKpiTypes" TypeName="Test.BLL.Controls.GetKpiTypesBL"></asp:ObjectDataSource>
-                    </span>
+                    </div>
+                    <br />
                     <br />
                     <telerik:RadGrid runat="server" ID="KPIListForUserG1" CellSpacing="-1" GridLines="Both" DataSourceID="KPIListForUserODS1" OnSelectedCellChanged="kpiG1_SelectedCellChanged" Skin="MetroTouch">
                         <ClientSettings EnablePostBackOnRowClick="false">
@@ -89,7 +91,7 @@
                             <asp:ControlParameter ControlID="KpiTypeDDL1" PropertyName="SelectedValue" Name="kpiType" Type="Int32"></asp:ControlParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
-            </ContentTemplate>
+                </ContentTemplate>
             </asp:UpdatePanel>
         </div>
     </div>

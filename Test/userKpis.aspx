@@ -52,7 +52,8 @@
                         <asp:ObjectDataSource ID="KpiTypeODS1" runat="server" SelectMethod="usp_GetKpiTypes" TypeName="Test.BLL.Controls.GetKpiTypesBL"></asp:ObjectDataSource>
                     </span>
                     <br />
-                    <telerik:RadGrid runat="server" ID="KPIListForUserG1" CellSpacing="-1" GridLines="Both" DataSourceID="KPIListForUserODS1" OnSelectedCellChanged="kpiG1_SelectedCellChanged" Skin="MetroTouch">
+                    <br />
+                    <telerik:RadGrid runat="server" ID="KPIListForUserG1" DataSourceID="KPIListForUserODS1" OnSelectedCellChanged="kpiG1_SelectedCellChanged">
                         <ClientSettings EnablePostBackOnRowClick="false">
                             <Selecting AllowRowSelect="true" />
                         </ClientSettings>

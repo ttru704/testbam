@@ -33,6 +33,8 @@ namespace Test.Models
         public long Business_Type { get; set; }
         public System.DateTime Last_Updated { get; set; }
         public long Bs2_Number { get; set; }
+        public Nullable<System.DateTime> AccessStart { get; set; }
+        public Nullable<System.DateTime> AccessEnd { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Branch_Profile> Branch_Profile { get; set; }

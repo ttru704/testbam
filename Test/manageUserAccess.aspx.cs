@@ -23,6 +23,8 @@ namespace Test
 
             UpdateUserAccessDetailBL updateUserAccessDetailBL = new UpdateUserAccessDetailBL();
             updateUserAccessDetailBL.usp_UpdateUserAccessDetail(startDate, endDate, status, userRef);
+
+            GetAllUserAccessInfoG1.DataBind();
         }
     }
 }

@@ -22,19 +22,19 @@
             <telerik:RadStyleSheetManager ID="RadStyleSheetManager1" runat="server"></telerik:RadStyleSheetManager>
             <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
             <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" Skin="Metro"></telerik:RadAjaxLoadingPanel>
-            <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="24px" Width="120px" Skin="Metro">
+            <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="29px" Width="120px" Skin="Metro">
                 <Items>
                     <telerik:DropDownListItem Text="Weekly" Value="3" />
                     <telerik:DropDownListItem Text="Monthly" Value="1" Selected="true" />
                     <telerik:DropDownListItem Text="Yearly" Value="2" />
                 </Items>
             </telerik:RadDropDownList>
-            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-08-01" SelectedDate="2015-08-01" Height="24px" Width="120px" Skin="Metro">
+            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-08-01" SelectedDate="2015-08-01" Height="29px" Width="120px" Skin="Metro">
                 <DatePopupButton
                     CssClass="rcCalPopup"
                     Width="2em" />
             </telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-12-31" SelectedDate="2015-12-31" Height="24px" Width="120px" Skin="Metro">
+            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2015-12-31" SelectedDate="2015-12-31" Height="29px" Width="120px" Skin="Metro">
                 <DatePopupButton
                     CssClass="rcCalPopup"
                     Width="2em" />

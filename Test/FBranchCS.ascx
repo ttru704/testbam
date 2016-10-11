@@ -2,6 +2,16 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
+<%--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    Please refer to FCompanyCS.ascx for a comprehensive explanation for the user controls.
+    The logic of this page is similar to the Company user controls, however there are a few variations.
+
+    Variations:
+    - Chart data is done differently; through the code behind. A better explanation is given in the codebehind.
+    - There is an ajax manager for the loading control panels. This does not exist on the normal company page as it is the first page that loads.
+    - A Branch combo box is added inside the loading Panel. This is 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
+
 <div class="demo-container size-thin">
     <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
         <AjaxSettings>
@@ -29,15 +39,19 @@
             <telerik:RadPanelItem Width="100%" Height="30">
                 <ContentTemplate>
                     <%--Label for branch combo box--%>
-                    <asp:Label ID="BranchCBLabel" runat="server" Text="Select your branch: "></asp:Label>
+                    <div style="display: inline-block; padding:10px">
+                        <asp:Label ID="BranchCBLabel" runat="server" Text="Select your branch: "></asp:Label>
+                    </div>
                     <%--Combobox for branch--%>
-                    <telerik:RadComboBox RenderMode="Lightweight" ID="BranchCB1" DataTextField="Branch_Name" DataValueField="Ref_Number" runat="server" Width="186px"
-                        AutoPostBack="true" EmptyMessage="- Select a Branch -" DataSourceID="BranchDropDownODS1"
-                        Skin="Metro" AppendDataBoundItems="true">
-                        <Items>
-                            <telerik:RadComboBoxItem Value="0" Text="All Branches" Selected="true" />
-                        </Items>
-                    </telerik:RadComboBox>
+                    <div style="display: inline-block; margin:10px 10px 10px 0px">
+                        <telerik:RadComboBox RenderMode="Lightweight" ID="BranchCB1" DataTextField="Branch_Name" DataValueField="Ref_Number" runat="server" Width="186px"
+                            AutoPostBack="true" EmptyMessage="- Select a Branch -" DataSourceID="BranchDropDownODS1"
+                            Skin="Metro" AppendDataBoundItems="true">
+                            <Items>
+                                <telerik:RadComboBoxItem Value="0" Text="All Branches" Selected="true" />
+                            </Items>
+                        </telerik:RadComboBox>
+                    </div>
 
                     <%--Objectdatasource for branch combo box--%>
                     <asp:ObjectDataSource ID="BranchDropDownODS1" runat="server" SelectMethod="usp_BranchDropDownList" TypeName="Test.BLL.Controls.BranchDropDownListBL">
@@ -45,7 +59,7 @@
                             <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
-
+                    <br />
                 </ContentTemplate>
             </telerik:RadPanelItem>
         </Items>
@@ -74,11 +88,11 @@
                     <%--DataSource--%>
                     <asp:ObjectDataSource ID="TotalSalesBranchODS1" runat="server" SelectMethod="usp_TotalSalesBranch" TypeName="Test.BLL.Financial.TotalSalesBranchBL">
                         <SelectParameters>
-                            <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015/04/01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015/09/01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:SessionParameter SessionField="Start" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="End" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
-                            <asp:SessionParameter SessionField="BranchRef" DefaultValue="" Name="branchRef" Type="Int64"></asp:SessionParameter>
-                            <asp:ControlParameter ControlID="TimeDDL1" Name="timeType" PropertyName="SelectedValue" Type="Int32" DefaultValue="1" />
+                            <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="TimeType" Name="timeType" Type="Int32" DefaultValue=""></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
@@ -138,7 +152,7 @@
                     <%--Table--%>
                     <hr />
                     <div class="padding">
-                        <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1"  AllowSorting="True" AllowPaging="True" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison" OnItemCommand="ExportGridCustomiser">
+                        <telerik:RadGrid ID="RadGrid1" RenderMode="Lightweight" runat="server" DataSourceID="AvgDollarPerTransactionBranchODS1" AllowSorting="True" AllowPaging="True" ShowGroupPanel="True" ExportSettings-FileName="Average Dollar per Transaction Branch Comparison" OnItemCommand="ExportGridCustomiser">
                             <GroupingSettings CollapseAllTooltip="Collapse all groups"></GroupingSettings>
                             <ClientSettings AllowColumnsReorder="True" AllowDragToGroup="True" ReorderColumnsOnClient="True">
                                 <Selecting AllowRowSelect="True" />
@@ -163,11 +177,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="AvgDollarPerTransactionBranchODS1" runat="server" SelectMethod="usp_AvgDollarPerTransactionBranch" TypeName="Test.BLL.Financial.AvgDollarPerTransactionBranchBL">
                         <SelectParameters>
-                            <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:SessionParameter SessionField="Start" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="End" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
-                            <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="TimeType" Name="timeType" Type="Int32" DefaultValue=""></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                 </ContentTemplate>
@@ -193,12 +207,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="TransExcludeZeroTotalBranchODS1" runat="server" SelectMethod="usp_TransExcludeZeroTotalBranch" TypeName="Test.BLL.Financial.TransExcludeZeroTotalBranchBL">
                         <SelectParameters>
-                            <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:SessionParameter SessionField="Start" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="End" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
-
-                            <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="TimeType" Name="timeType" Type="Int32" DefaultValue=""></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
@@ -247,12 +260,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="RetailOnlySalesBranchODS1" runat="server" SelectMethod="usp_RetailOnlySalesBranch" TypeName="Test.BLL.Financial.RetailOnlySalesBranchBL">
                         <SelectParameters>
-                            <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:SessionParameter SessionField="Start" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="End" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
-
-                            <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="TimeType" Name="timeType" Type="Int32" DefaultValue=""></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
@@ -301,12 +313,11 @@
                     <%--Datasource--%>
                     <asp:ObjectDataSource ID="ServiceOnlySalesBranchODS1" runat="server" SelectMethod="usp_ServiceOnlySalesBranch" TypeName="Test.BLL.Financial.ServiceOnlySalesBranchBL">
                         <SelectParameters>
-                            <asp:ControlParameter ControlID="DatePicker1" DefaultValue="2015-04-01" Name="start" PropertyName="SelectedDate" Type="DateTime" />
-                            <asp:ControlParameter ControlID="DatePicker2" DefaultValue="2015-09-01" Name="end" PropertyName="SelectedDate" Type="DateTime" />
+                            <asp:SessionParameter SessionField="Start" DefaultValue="" Name="start" Type="DateTime"></asp:SessionParameter>
+                            <asp:SessionParameter SessionField="End" DefaultValue="" Name="end" Type="DateTime"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
                             <asp:SessionParameter SessionField="BranchRef" Name="branchRef" Type="Int64"></asp:SessionParameter>
-
-                            <asp:ControlParameter ControlID="TimeDDL1" DefaultValue="1" Name="timeType" PropertyName="SelectedValue" Type="Int32" />
+                            <asp:SessionParameter SessionField="TimeType" Name="timeType" Type="Int32" DefaultValue=""></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>
                     <%--Table--%>
@@ -360,12 +371,12 @@
         }
         function exportServiceOnlySalesBranchRHC1(sender, args) {
             exportRadHtmlChart('<%=ServiceOnlySalesBranchRHC1.ClientID%>')
-         }
+        }
 
 
-         function exportRadHtmlChart(chartId) {
-             var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
-             var manager = $find('<%=RadClientExportManager1.ClientID%>');
+        function exportRadHtmlChart(chartId) {
+            var chartTitle = $find(chartId).get_kendoWidget().options.title.text;
+            var manager = $find('<%=RadClientExportManager1.ClientID%>');
             var pdfSettings = {
                 fileName: chartTitle
 

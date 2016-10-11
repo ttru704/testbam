@@ -5,7 +5,7 @@
 
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="pageHeader" runat="Server">
     <header style="padding: inherit; margin-top: 15px">
-        <h3>User Access</h3>
+        <h3>Manage User Access</h3>
     </header>
 </asp:Content>
 
@@ -114,7 +114,7 @@
                     <telerik:RadButton ID="Update" runat="server" OnClick="Update_Click" Skin="Metro" Text="Update"></telerik:RadButton>
                 </div>
             </div>
-
+            <%--Grid displays access information of all users of the chosen company--%>
             <div class="form-horizontal">
                 <telerik:RadGrid ID="GetAllUserAccessInfoG1" runat="server" DataSourceID="GetAllUserAccessInfoODS1" Skin="Metro">
                     <MasterTableView DataSourceID="GetAllUserAccessInfoODS1" AutoGenerateColumns="False">

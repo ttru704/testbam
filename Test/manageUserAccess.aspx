@@ -5,7 +5,7 @@
 
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="pageHeader" runat="Server">
     <header style="padding: inherit; margin-top: 15px">
-        <h3>User Access</h3>
+        <h3>Manage User Access</h3>
     </header>
 </asp:Content>
 
@@ -13,9 +13,9 @@
     <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
     <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
         <AjaxSettings>
-            <telerik:AjaxSetting AjaxControlID="CompanyDDL1">
+            <telerik:AjaxSetting AjaxControlID="Update">
                 <UpdatedControls>
-                    <telerik:AjaxUpdatedControl ControlID="UserDDL1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
+                    <telerik:AjaxUpdatedControl ControlID="GetAllUserAccessInfoG1" LoadingPanelID="RadAjaxLoadingPanel1" UpdatePanelCssClass=""></telerik:AjaxUpdatedControl>
                 </UpdatedControls>
             </telerik:AjaxSetting>
         </AjaxSettings>
@@ -30,7 +30,7 @@
         <div class="form-horizontal">
             <h4>Manage the user access</h4>
             <hr />
-            <%--Notify user if an account has been successfully created--%>
+            <%--Notify clinic manager the time period that the company has subscribed to BAM--%>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <asp:Label ID="Message" runat="server"></asp:Label>
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <asp:Label runat="server" AssociatedControlID="UserDDL1" CssClass="col-md-2 control-label">User:  </asp:Label>
                 <div class="col-md-10">
-                    <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="true" runat="server" DataSourceID="UserODS1" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300px"></telerik:RadDropDownList>
+                    <telerik:RadDropDownList ID="UserDDL1" AutoPostBack="false" runat="server" DataSourceID="UserODS1" DataTextField="Name" DataValueField="Ref_Number" Skin="Silk" Width="300px"></telerik:RadDropDownList>
 
                         <asp:ObjectDataSource ID="UserODS1" runat="server" SelectMethod="usp_UserDropDownList" TypeName="Test.BLL.Controls.UserDropDownListBL">
                             <SelectParameters>
@@ -102,7 +102,25 @@
                 </div>
             </div>
 
-            
+            <%--Grid displays access information of all users of the chosen company--%>
+            <div class="form-horizontal">
+                <telerik:RadGrid ID="GetAllUserAccessInfoG1" runat="server" DataSourceID="GetAllUserAccessInfoODS1" Skin="Metro" CellSpacing="-1" GridLines="Both">
+                    <MasterTableView DataSourceID="GetAllUserAccessInfoODS1" AutoGenerateColumns="False">
+                        <Columns>
+                            <telerik:GridBoundColumn DataField="Name" HeaderText="Name" SortExpression="Name" UniqueName="Name" FilterControlAltText="Filter Name column"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="AccessStart" HeaderText="From" SortExpression="AccessStart" UniqueName="AccessStart" DataType="System.DateTime" FilterControlAltText="Filter AccessStart column"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="AccessEnd" HeaderText="To" SortExpression="AccessEnd" UniqueName="AccessEnd" DataType="System.DateTime" FilterControlAltText="Filter AccessEnd column"></telerik:GridBoundColumn>
+                            <telerik:GridBoundColumn DataField="Status" HeaderText="Status" SortExpression="Status" UniqueName="Status" FilterControlAltText="Filter Status column"></telerik:GridBoundColumn>
+                        </Columns>
+                    </MasterTableView>
+                </telerik:RadGrid>
+                <asp:ObjectDataSource ID="GetAllUserAccessInfoODS1" runat="server" SelectMethod="usp_GetAllUserAccessInfo" TypeName="Test.BLL.User.GetAllUserAccessInfoBL">
+                    <SelectParameters>
+                        <asp:SessionParameter SessionField="CompanyRef" Name="companyRef" Type="Int64"></asp:SessionParameter>
+
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+            </div>
 
         </div>
     </div>

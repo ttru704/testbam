@@ -3,9 +3,21 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
+<%---////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     The Single KPIs:
+        - Done through a Stored Procedure just for "single" values
+        - A % Change is also calculated through store procedure (% sign is just added in the codebehind)
+        - The Dahsboard can fit 6 single KPIs most comfortably
+        - The font of the "From last month.." can be cut out time to time, needs to scale font to fit on the one line
+        - Large numbers such as total sales have been formatted to save space (shortened + k / M / B...etc) done in Js below
+        - Sign and color change done in codebehind
+        -
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
+
+
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="pageHeader" runat="Server">
     <header style="padding: inherit; margin-top: 15px">
-        <h3>As at 14th of May</h3>
+        <h3>As at 21st of Aug</h3>
     </header>
 </asp:Content>
 
@@ -120,8 +132,8 @@
                     </telerik:RadHtmlChart>
                     <asp:ObjectDataSource ID="TotalSalesCompanyODS1" runat="server" SelectMethod="usp_TotalSalesCompany" TypeName="Test.BLL.Financial.TotalSalesCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2015/12/01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2016/04/30" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/03/01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/08/21" Name="end" Type="DateTime" />
                             <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
                             <asp:Parameter DefaultValue="1" Name="timeType" Type="Int32" />
                         </SelectParameters>
@@ -144,8 +156,8 @@
                     </telerik:RadHtmlChart>
                     <asp:ObjectDataSource ID="IncomeByProductCategoryCompanyODS1" runat="server" SelectMethod="usp_IncomeByProductCategoryCompany" TypeName="Test.BLL.Financial.IncomeByProductCategoryCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/03/01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/08/21" Name="end" Type="DateTime" />
                             <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
 
 
@@ -170,8 +182,8 @@
                     </telerik:RadHtmlChart>
                     <asp:ObjectDataSource ID="IncomeByServiceActivityCompanyODS1" runat="server" SelectMethod="usp_IncomeByServiceActivityCompany" TypeName="Test.BLL.Financial.IncomeByServiceActivityCompanyBL">
                         <SelectParameters>
-                            <asp:Parameter DefaultValue="2015-01-01" Name="start" Type="DateTime" />
-                            <asp:Parameter DefaultValue="2015-12-31" Name="end" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/03/01" Name="start" Type="DateTime" />
+                            <asp:Parameter DefaultValue="2016/08/21" Name="end" Type="DateTime" />
                             <asp:SessionParameter SessionField="CompanyRef" DefaultValue="" Name="companyRef" Type="Int32"></asp:SessionParameter>
                         </SelectParameters>
                     </asp:ObjectDataSource>

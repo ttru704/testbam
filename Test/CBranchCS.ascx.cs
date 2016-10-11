@@ -11,6 +11,12 @@ using Test.BLL.Controls;
 using Test.BLL.Customer;
 using Test.Models;
 
+
+
+
+
+
+
 namespace Test
 {
     public partial class CBranchCS : System.Web.UI.UserControl
@@ -145,20 +151,6 @@ namespace Test
 
             }
         }
-
-        protected void RadGrid2_ExcelMLWorkBookCreated(object sender, GridExcelMLWorkBookCreatedEventArgs e)
-        {
-            foreach (RowElement row in e.WorkBook.Worksheets[0].Table.Rows)
-            {
-                row.Cells[0].StyleValue = "Style1";
-            }
-
-            StyleElement style = new StyleElement("Style1");
-            style.InteriorStyle.Pattern = InteriorPatternType.Solid;
-            style.InteriorStyle.Color = System.Drawing.Color.LightGray;
-            e.WorkBook.Styles.Add(style);
-        }
-        
 
         //This is for grid exporting
         protected void ExportGridCustomiser(object sender, Telerik.Web.UI.GridCommandEventArgs e)

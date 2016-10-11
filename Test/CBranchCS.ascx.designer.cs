@@ -94,13 +94,13 @@ namespace Test {
         protected global::Telerik.Web.UI.RadHtmlChart UniqueCustomersSeenBranchRHC1;
         
         /// <summary>
-        /// RadGrid2 control.
+        /// UniqueCustomersSeenBranchG1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid RadGrid2;
+        protected global::Telerik.Web.UI.RadGrid UniqueCustomersSeenBranchG1;
         
         /// <summary>
         /// UniqueCustomersSeenBranchODC1 control.

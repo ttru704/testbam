@@ -21,11 +21,11 @@ namespace Test
         {
             if (HttpContext.Current.User.Identity.IsAuthenticated == true)
             {
+                //Store session variables based on slected controls
                 Session["StartDate"] = DatePicker1.SelectedDate.GetValueOrDefault();
                 Session["EndDate"] = DatePicker2.SelectedDate.GetValueOrDefault();
-                //Session["BranchRef"] = Convert.ToInt64(BranchDDL1.SelectedItem.Value);
+                Session["BranchRef"] = 0;
                 Session["Time"] = Convert.ToInt32(TimeDDL1.SelectedItem.Value);
-
                 if (!Page.IsPostBack)
                 {
                     AddTab("Company");

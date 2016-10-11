@@ -2,6 +2,15 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
+<%--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    This is the Main Scorecard Page - Financial
+
+    - Mainly used to hold the controls that are accessible by all the KPIs (eg Datepicker and TimeType Picker)
+    - Holds The RadTabStrip - for the different perspectives (Company, Branch, Peer...etc)
+    - Holds the related RadMultiPage too - eg. the pageview for the tabstrip
+    - All of which are added through the code-behind (refer to that Financial.aspx.cs)
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
+
 <%--Header For the top of the Page--%>
 <asp:Content ID="ContentTitle" ContentPlaceHolderID="pageHeader" runat="Server">
     <header style="padding: inherit; margin-top: 15px">

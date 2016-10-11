@@ -60,6 +60,27 @@ namespace Test.Models
         public virtual DbSet<User_Roles> User_Roles { get; set; }
         public virtual DbSet<Connection_Profile> Connection_Profile { get; set; }
     
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
         public virtual ObjectResult<usp_AnimalsSeenBranch_Result> usp_AnimalsSeenBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -159,31 +180,6 @@ namespace Test.Models
                 new ObjectParameter("TimeType", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AnimalsSeenCompany_Result>("usp_AnimalsSeenCompany", startParameter, endParameter, companyRefParameter, timeTypeParameter);
-        }
-    
-        public virtual ObjectResult<usp_AnimalsSeenPeer_Result> usp_AnimalsSeenPeer(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> branchRef, Nullable<int> size, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var branchRefParameter = branchRef.HasValue ?
-                new ObjectParameter("branchRef", branchRef) :
-                new ObjectParameter("branchRef", typeof(int));
-    
-            var sizeParameter = size.HasValue ?
-                new ObjectParameter("size", size) :
-                new ObjectParameter("size", typeof(int));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AnimalsSeenPeer_Result>("usp_AnimalsSeenPeer", startParameter, endParameter, branchRefParameter, sizeParameter, timeTypeParameter);
         }
     
         public virtual ObjectResult<Nullable<double>> usp_AnimalsSeenSingle(Nullable<long> companyRef)
@@ -329,6 +325,47 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerCustomerPeer_Result>("usp_AvgDollarPerCustomerPeer", startParameter, endParameter, branchRefParameter, branchTypeParameter, timeTypeParameter, countryParameter, stateParameter, regionParameter);
         }
     
+        public virtual ObjectResult<usp_AvgDollarPerCustomerPeerGrid_Result> usp_AvgDollarPerCustomerPeerGrid(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<long> branchType, Nullable<int> timeType, Nullable<long> country, Nullable<long> state, Nullable<long> region)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(long));
+    
+            var branchTypeParameter = branchType.HasValue ?
+                new ObjectParameter("branchType", branchType) :
+                new ObjectParameter("branchType", typeof(long));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("country", country) :
+                new ObjectParameter("country", typeof(long));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(long));
+    
+            var regionParameter = region.HasValue ?
+                new ObjectParameter("region", region) :
+                new ObjectParameter("region", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerCustomerPeerGrid_Result>("usp_AvgDollarPerCustomerPeerGrid", startParameter, endParameter, companyRefParameter, branchRefParameter, branchTypeParameter, timeTypeParameter, countryParameter, stateParameter, regionParameter);
+        }
+    
         public virtual ObjectResult<Nullable<double>> usp_AvgDollarPerCustomerSingle(Nullable<long> companyRef)
         {
             var companyRefParameter = companyRef.HasValue ?
@@ -430,6 +467,47 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerTransactionPeer_Result>("usp_AvgDollarPerTransactionPeer", startParameter, endParameter, branchRefParameter, branchTypeParameter, timeTypeParameter, countryParameter, stateParameter, regionParameter);
         }
     
+        public virtual ObjectResult<usp_AvgDollarPerTransactionPeerGrid_Result> usp_AvgDollarPerTransactionPeerGrid(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<long> branchType, Nullable<int> timeType, Nullable<long> country, Nullable<long> state, Nullable<long> region)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(long));
+    
+            var branchTypeParameter = branchType.HasValue ?
+                new ObjectParameter("branchType", branchType) :
+                new ObjectParameter("branchType", typeof(long));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            var countryParameter = country.HasValue ?
+                new ObjectParameter("country", country) :
+                new ObjectParameter("country", typeof(long));
+    
+            var stateParameter = state.HasValue ?
+                new ObjectParameter("state", state) :
+                new ObjectParameter("state", typeof(long));
+    
+            var regionParameter = region.HasValue ?
+                new ObjectParameter("region", region) :
+                new ObjectParameter("region", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_AvgDollarPerTransactionPeerGrid_Result>("usp_AvgDollarPerTransactionPeerGrid", startParameter, endParameter, companyRefParameter, branchRefParameter, branchTypeParameter, timeTypeParameter, countryParameter, stateParameter, regionParameter);
+        }
+    
         public virtual ObjectResult<Nullable<double>> usp_AvgDollarPerTransactionSingle(Nullable<long> companyRef)
         {
             var companyRefParameter = companyRef.HasValue ?
@@ -455,6 +533,11 @@ namespace Test.Models
                 new ObjectParameter("businessType", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_BranchTypeDropDownList_Result>("usp_BranchTypeDropDownList", businessTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_CompanyList_Result> usp_CompanyList()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CompanyList_Result>("usp_CompanyList");
         }
     
         public virtual ObjectResult<usp_CountryDropDownList_Result> usp_CountryDropDownList(Nullable<long> branchRef)
@@ -512,6 +595,19 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CustomersSeenByEmployeeIndividual_Result>("usp_CustomersSeenByEmployeeIndividual", startParameter, endParameter, companyRefParameter, staffNumberParameter, timeTypeParameter);
         }
     
+        public virtual int usp_DeleteFromKpiForCompany(Nullable<long> kpiRef, Nullable<long> companyRef)
+        {
+            var kpiRefParameter = kpiRef.HasValue ?
+                new ObjectParameter("kpiRef", kpiRef) :
+                new ObjectParameter("kpiRef", typeof(long));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_DeleteFromKpiForCompany", kpiRefParameter, companyRefParameter);
+        }
+    
         public virtual int usp_DeleteFromKpiForUser(Nullable<int> kpiRef, string userRef)
         {
             var kpiRefParameter = kpiRef.HasValue ?
@@ -532,6 +628,47 @@ namespace Test.Models
                 new ObjectParameter("companyRef", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_EmployeeSearchBox_Result>("usp_EmployeeSearchBox", companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetAllUserAccessInfo_Result> usp_GetAllUserAccessInfo(Nullable<long> companyRef)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetAllUserAccessInfo_Result>("usp_GetAllUserAccessInfo", companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetCompanyAccessDetail_Result> usp_GetCompanyAccessDetail(Nullable<long> companyRef)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetCompanyAccessDetail_Result>("usp_GetCompanyAccessDetail", companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_GetKpiTypes_Result> usp_GetKpiTypes()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetKpiTypes_Result>("usp_GetKpiTypes");
+        }
+    
+        public virtual ObjectResult<usp_GetUserInfo_Result> usp_GetUserInfo(string userName)
+        {
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetUserInfo_Result>("usp_GetUserInfo", userNameParameter);
+        }
+    
+        public virtual ObjectResult<string> usp_GetUserName(string userRef)
+        {
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_GetUserName", userRefParameter);
         }
     
         public virtual ObjectResult<usp_IncomeByEmployeeCompany_Result> usp_IncomeByEmployeeCompany(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<int> timeType)
@@ -580,6 +717,23 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByEmployeeIndividual_Result>("usp_IncomeByEmployeeIndividual", startParameter, endParameter, companyRefParameter, staffNumberParameter, timeTypeParameter);
         }
     
+        public virtual ObjectResult<usp_IncomeByProductCategoryCompany_Result> usp_IncomeByProductCategoryCompany(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByProductCategoryCompany_Result>("usp_IncomeByProductCategoryCompany", startParameter, endParameter, companyRefParameter);
+        }
+    
         public virtual ObjectResult<usp_IncomeByProductIndividual_Result> usp_IncomeByProductIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> productNumnber, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -605,7 +759,7 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByProductIndividual_Result>("usp_IncomeByProductIndividual", startParameter, endParameter, companyRefParameter, productNumnberParameter, timeTypeParameter);
         }
     
-        public virtual ObjectResult<usp_IncomeByProductServiceIndividual_Result> usp_IncomeByProductServiceIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> companyRef, Nullable<long> productNumnber, string productClass, Nullable<int> timeType)
+        public virtual ObjectResult<usp_IncomeByServiceActivityCompany_Result> usp_IncomeByServiceActivityCompany(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef)
         {
             var startParameter = start.HasValue ?
                 new ObjectParameter("start", start) :
@@ -617,21 +771,9 @@ namespace Test.Models
     
             var companyRefParameter = companyRef.HasValue ?
                 new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
+                new ObjectParameter("companyRef", typeof(long));
     
-            var productNumnberParameter = productNumnber.HasValue ?
-                new ObjectParameter("productNumnber", productNumnber) :
-                new ObjectParameter("productNumnber", typeof(long));
-    
-            var productClassParameter = productClass != null ?
-                new ObjectParameter("productClass", productClass) :
-                new ObjectParameter("productClass", typeof(string));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByProductServiceIndividual_Result>("usp_IncomeByProductServiceIndividual", startParameter, endParameter, companyRefParameter, productNumnberParameter, productClassParameter, timeTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByServiceActivityCompany_Result>("usp_IncomeByServiceActivityCompany", startParameter, endParameter, companyRefParameter);
         }
     
         public virtual ObjectResult<usp_IncomeByServiceIndividual_Result> usp_IncomeByServiceIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> productNumnber, Nullable<int> timeType)
@@ -659,6 +801,44 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByServiceIndividual_Result>("usp_IncomeByServiceIndividual", startParameter, endParameter, companyRefParameter, productNumnberParameter, timeTypeParameter);
         }
     
+        public virtual ObjectResult<usp_IncomeFromAnimalTypeEmployeeIndividual_Result> usp_IncomeFromAnimalTypeEmployeeIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> staffNumber, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            var staffNumberParameter = staffNumber.HasValue ?
+                new ObjectParameter("staffNumber", staffNumber) :
+                new ObjectParameter("staffNumber", typeof(long));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeFromAnimalTypeEmployeeIndividual_Result>("usp_IncomeFromAnimalTypeEmployeeIndividual", startParameter, endParameter, companyRefParameter, staffNumberParameter, timeTypeParameter);
+        }
+    
+        public virtual int usp_InsertIntoKpiForCompany(Nullable<long> kpiRef, Nullable<long> companyRef)
+        {
+            var kpiRefParameter = kpiRef.HasValue ?
+                new ObjectParameter("kpiRef", kpiRef) :
+                new ObjectParameter("kpiRef", typeof(long));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertIntoKpiForCompany", kpiRefParameter, companyRefParameter);
+        }
+    
         public virtual int usp_InsertIntoKpiForUser(Nullable<int> kpiRef, string userRef)
         {
             var kpiRefParameter = kpiRef.HasValue ?
@@ -672,7 +852,16 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertIntoKpiForUser", kpiRefParameter, userRefParameter);
         }
     
-        public virtual int usp_InsertKpiForCompany(Nullable<long> companyRef, Nullable<long> businessType)
+        public virtual ObjectResult<usp_KPIForCompanyList_Result> usp_KPIForCompanyList(Nullable<int> companyRef)
+        {
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIForCompanyList_Result>("usp_KPIForCompanyList", companyRefParameter);
+        }
+    
+        public virtual ObjectResult<usp_KPIListForCompany_Result> usp_KPIListForCompany(Nullable<long> companyRef, Nullable<long> businessType, Nullable<int> kpiType)
         {
             var companyRefParameter = companyRef.HasValue ?
                 new ObjectParameter("companyRef", companyRef) :
@@ -682,16 +871,28 @@ namespace Test.Models
                 new ObjectParameter("businessType", businessType) :
                 new ObjectParameter("businessType", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertKpiForCompany", companyRefParameter, businessTypeParameter);
+            var kpiTypeParameter = kpiType.HasValue ?
+                new ObjectParameter("kpiType", kpiType) :
+                new ObjectParameter("kpiType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIListForCompany_Result>("usp_KPIListForCompany", companyRefParameter, businessTypeParameter, kpiTypeParameter);
         }
     
-        public virtual ObjectResult<usp_KPIForCompanyList_Result> usp_KPIForCompanyList(Nullable<int> companyRef)
+        public virtual ObjectResult<usp_KPIListForUser_Result> usp_KPIListForUser(Nullable<int> companyRef, string userRef, Nullable<int> kpiType)
         {
             var companyRefParameter = companyRef.HasValue ?
                 new ObjectParameter("companyRef", companyRef) :
                 new ObjectParameter("companyRef", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIForCompanyList_Result>("usp_KPIForCompanyList", companyRefParameter);
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            var kpiTypeParameter = kpiType.HasValue ?
+                new ObjectParameter("kpiType", kpiType) :
+                new ObjectParameter("kpiType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIListForUser_Result>("usp_KPIListForUser", companyRefParameter, userRefParameter, kpiTypeParameter);
         }
     
         public virtual ObjectResult<usp_LargeAnimalsBranch_Result> usp_LargeAnimalsBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<int> timeType)
@@ -717,6 +918,31 @@ namespace Test.Models
                 new ObjectParameter("TimeType", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_LargeAnimalsBranch_Result>("usp_LargeAnimalsBranch", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
+        }
+    
+        public virtual ObjectResult<usp_LargeAnimalsBranchTest_Result> usp_LargeAnimalsBranchTest(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<int> timeType)
+        {
+            var startParameter = start.HasValue ?
+                new ObjectParameter("start", start) :
+                new ObjectParameter("start", typeof(System.DateTime));
+    
+            var endParameter = end.HasValue ?
+                new ObjectParameter("end", end) :
+                new ObjectParameter("end", typeof(System.DateTime));
+    
+            var companyRefParameter = companyRef.HasValue ?
+                new ObjectParameter("companyRef", companyRef) :
+                new ObjectParameter("companyRef", typeof(long));
+    
+            var branchRefParameter = branchRef.HasValue ?
+                new ObjectParameter("branchRef", branchRef) :
+                new ObjectParameter("branchRef", typeof(long));
+    
+            var timeTypeParameter = timeType.HasValue ?
+                new ObjectParameter("TimeType", timeType) :
+                new ObjectParameter("TimeType", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_LargeAnimalsBranchTest_Result>("usp_LargeAnimalsBranchTest", startParameter, endParameter, companyRefParameter, branchRefParameter, timeTypeParameter);
         }
     
         public virtual ObjectResult<usp_LargeAnimalsCompany_Result> usp_LargeAnimalsCompany(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<int> timeType)
@@ -901,11 +1127,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_RetailOnlySalesCompany_Result>("usp_RetailOnlySalesCompany", startParameter, endParameter, companyRefParameter, timeTypeParameter);
         }
     
-        public virtual ObjectResult<usp_SearchContextForProductServiceSB_Result> usp_SearchContextForProductServiceSB()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_SearchContextForProductServiceSB_Result>("usp_SearchContextForProductServiceSB");
-        }
-    
         public virtual ObjectResult<usp_ServiceOnlySalesBranch_Result> usp_ServiceOnlySalesBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -1071,6 +1292,23 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("usp_TotalSalesSingle", companyRefParameter);
         }
     
+        public virtual int usp_TransactionLoad(Nullable<long> cmp_Number, Nullable<long> brn_Number, string xmlInput)
+        {
+            var cmp_NumberParameter = cmp_Number.HasValue ?
+                new ObjectParameter("Cmp_Number", cmp_Number) :
+                new ObjectParameter("Cmp_Number", typeof(long));
+    
+            var brn_NumberParameter = brn_Number.HasValue ?
+                new ObjectParameter("Brn_Number", brn_Number) :
+                new ObjectParameter("Brn_Number", typeof(long));
+    
+            var xmlInputParameter = xmlInput != null ?
+                new ObjectParameter("XmlInput", xmlInput) :
+                new ObjectParameter("XmlInput", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_TransactionLoad", cmp_NumberParameter, brn_NumberParameter, xmlInputParameter);
+        }
+    
         public virtual ObjectResult<usp_TransExcludeZeroTotalBranch_Result> usp_TransExcludeZeroTotalBranch(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> branchRef, Nullable<int> timeType)
         {
             var startParameter = start.HasValue ?
@@ -1172,23 +1410,6 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UniqueCustomersSeenCompany_Result>("usp_UniqueCustomersSeenCompany", startParameter, endParameter, companyRefParameter, timeTypeParameter);
         }
     
-        public virtual ObjectResult<usp_UniqueCustomersSeenIndustry_Result> usp_UniqueCustomersSeenIndustry(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UniqueCustomersSeenIndustry_Result>("usp_UniqueCustomersSeenIndustry", startParameter, endParameter, timeTypeParameter);
-        }
-    
         public virtual ObjectResult<Nullable<double>> usp_UniqueCustomersSeenSingle(Nullable<long> companyRef)
         {
             var companyRefParameter = companyRef.HasValue ?
@@ -1198,171 +1419,34 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<double>>("usp_UniqueCustomersSeenSingle", companyRefParameter);
         }
     
-        public virtual ObjectResult<usp_ViewableKpiList_Result> usp_ViewableKpiList(string userRef, Nullable<int> kpiType, string kpiTab)
+        public virtual int usp_UpdateCompanyAccessDetail(Nullable<System.DateTime> accessStart, Nullable<System.DateTime> accessEnd, Nullable<long> companyRef)
         {
-            var userRefParameter = userRef != null ?
-                new ObjectParameter("userRef", userRef) :
-                new ObjectParameter("userRef", typeof(string));
+            var accessStartParameter = accessStart.HasValue ?
+                new ObjectParameter("accessStart", accessStart) :
+                new ObjectParameter("accessStart", typeof(System.DateTime));
     
-            var kpiTypeParameter = kpiType.HasValue ?
-                new ObjectParameter("kpiType", kpiType) :
-                new ObjectParameter("kpiType", typeof(int));
-    
-            var kpiTabParameter = kpiTab != null ?
-                new ObjectParameter("kpiTab", kpiTab) :
-                new ObjectParameter("kpiTab", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ViewableKpiList_Result>("usp_ViewableKpiList", userRefParameter, kpiTypeParameter, kpiTabParameter);
-        }
-    
-        public virtual ObjectResult<usp_IncomeByProductCategoryCompany_Result> usp_IncomeByProductCategoryCompany(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
+            var accessEndParameter = accessEnd.HasValue ?
+                new ObjectParameter("accessEnd", accessEnd) :
+                new ObjectParameter("accessEnd", typeof(System.DateTime));
     
             var companyRefParameter = companyRef.HasValue ?
                 new ObjectParameter("companyRef", companyRef) :
                 new ObjectParameter("companyRef", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByProductCategoryCompany_Result>("usp_IncomeByProductCategoryCompany", startParameter, endParameter, companyRefParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateCompanyAccessDetail", accessStartParameter, accessEndParameter, companyRefParameter);
         }
     
-        public virtual ObjectResult<usp_IncomeByServiceActivityCompany_Result> usp_IncomeByServiceActivityCompany(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef)
+        public virtual int usp_UpdateIsAdminStatus(string userName, string status)
         {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
+            var userNameParameter = userName != null ?
+                new ObjectParameter("userName", userName) :
+                new ObjectParameter("userName", typeof(string));
     
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
+            var statusParameter = status != null ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(string));
     
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeByServiceActivityCompany_Result>("usp_IncomeByServiceActivityCompany", startParameter, endParameter, companyRefParameter);
-        }
-    
-        public virtual ObjectResult<usp_IncomeFromAnimalTypeEmployeeIndividual_Result> usp_IncomeFromAnimalTypeEmployeeIndividual(Nullable<System.DateTime> start, Nullable<System.DateTime> end, Nullable<long> companyRef, Nullable<long> staffNumber, Nullable<int> timeType)
-        {
-            var startParameter = start.HasValue ?
-                new ObjectParameter("start", start) :
-                new ObjectParameter("start", typeof(System.DateTime));
-    
-            var endParameter = end.HasValue ?
-                new ObjectParameter("end", end) :
-                new ObjectParameter("end", typeof(System.DateTime));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(long));
-    
-            var staffNumberParameter = staffNumber.HasValue ?
-                new ObjectParameter("staffNumber", staffNumber) :
-                new ObjectParameter("staffNumber", typeof(long));
-    
-            var timeTypeParameter = timeType.HasValue ?
-                new ObjectParameter("TimeType", timeType) :
-                new ObjectParameter("TimeType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_IncomeFromAnimalTypeEmployeeIndividual_Result>("usp_IncomeFromAnimalTypeEmployeeIndividual", startParameter, endParameter, companyRefParameter, staffNumberParameter, timeTypeParameter);
-        }
-    
-        public virtual int usp_UpdateUserProfile(string userRef, string name, string email, string phoneNumber)
-        {
-            var userRefParameter = userRef != null ?
-                new ObjectParameter("userRef", userRef) :
-                new ObjectParameter("userRef", typeof(string));
-    
-            var nameParameter = name != null ?
-                new ObjectParameter("name", name) :
-                new ObjectParameter("name", typeof(string));
-    
-            var emailParameter = email != null ?
-                new ObjectParameter("email", email) :
-                new ObjectParameter("email", typeof(string));
-    
-            var phoneNumberParameter = phoneNumber != null ?
-                new ObjectParameter("phoneNumber", phoneNumber) :
-                new ObjectParameter("phoneNumber", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserProfile", userRefParameter, nameParameter, emailParameter, phoneNumberParameter);
-        }
-    
-        public virtual ObjectResult<usp_GetKpiTypes_Result> usp_GetKpiTypes()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetKpiTypes_Result>("usp_GetKpiTypes");
-        }
-    
-        public virtual int usp_InsertIntoKpiForCompany(Nullable<long> kpiRef, Nullable<long> companyRef)
-        {
-            var kpiRefParameter = kpiRef.HasValue ?
-                new ObjectParameter("kpiRef", kpiRef) :
-                new ObjectParameter("kpiRef", typeof(long));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_InsertIntoKpiForCompany", kpiRefParameter, companyRefParameter);
-        }
-    
-        public virtual ObjectResult<usp_KPIListForCompany_Result> usp_KPIListForCompany(Nullable<long> companyRef, Nullable<long> businessType, Nullable<int> kpiType)
-        {
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(long));
-    
-            var businessTypeParameter = businessType.HasValue ?
-                new ObjectParameter("businessType", businessType) :
-                new ObjectParameter("businessType", typeof(long));
-    
-            var kpiTypeParameter = kpiType.HasValue ?
-                new ObjectParameter("kpiType", kpiType) :
-                new ObjectParameter("kpiType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIListForCompany_Result>("usp_KPIListForCompany", companyRefParameter, businessTypeParameter, kpiTypeParameter);
-        }
-    
-        public virtual int usp_DeleteFromKpiForCompany(Nullable<long> kpiRef, Nullable<long> companyRef)
-        {
-            var kpiRefParameter = kpiRef.HasValue ?
-                new ObjectParameter("kpiRef", kpiRef) :
-                new ObjectParameter("kpiRef", typeof(long));
-    
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(long));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_DeleteFromKpiForCompany", kpiRefParameter, companyRefParameter);
-        }
-    
-        public virtual ObjectResult<usp_CompanyList_Result> usp_CompanyList()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_CompanyList_Result>("usp_CompanyList");
-        }
-    
-        public virtual ObjectResult<usp_KPIListForUser_Result> usp_KPIListForUser(Nullable<int> companyRef, string userRef, Nullable<int> kpiType)
-        {
-            var companyRefParameter = companyRef.HasValue ?
-                new ObjectParameter("companyRef", companyRef) :
-                new ObjectParameter("companyRef", typeof(int));
-    
-            var userRefParameter = userRef != null ?
-                new ObjectParameter("userRef", userRef) :
-                new ObjectParameter("userRef", typeof(string));
-    
-            var kpiTypeParameter = kpiType.HasValue ?
-                new ObjectParameter("kpiType", kpiType) :
-                new ObjectParameter("kpiType", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_KPIListForUser_Result>("usp_KPIListForUser", companyRefParameter, userRefParameter, kpiTypeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateIsAdminStatus", userNameParameter, statusParameter);
         }
     
         public virtual int usp_UpdateUserAccessDetail(Nullable<System.DateTime> accessStart, Nullable<System.DateTime> accessEnd, Nullable<int> status, string userRef)
@@ -1386,35 +1470,25 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserAccessDetail", accessStartParameter, accessEndParameter, statusParameter, userRefParameter);
         }
     
-        public virtual ObjectResult<usp_GetUserInfo_Result> usp_GetUserInfo(string userName)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("userName", userName) :
-                new ObjectParameter("userName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetUserInfo_Result>("usp_GetUserInfo", userNameParameter);
-        }
-    
-        public virtual int usp_UpdateIsAdminStatus(string userName, string status)
-        {
-            var userNameParameter = userName != null ?
-                new ObjectParameter("userName", userName) :
-                new ObjectParameter("userName", typeof(string));
-    
-            var statusParameter = status != null ?
-                new ObjectParameter("status", status) :
-                new ObjectParameter("status", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateIsAdminStatus", userNameParameter, statusParameter);
-        }
-    
-        public virtual ObjectResult<string> usp_GetUserName(string userRef)
+        public virtual int usp_UpdateUserProfile(string userRef, string name, string email, string phoneNumber)
         {
             var userRefParameter = userRef != null ?
                 new ObjectParameter("userRef", userRef) :
                 new ObjectParameter("userRef", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_GetUserName", userRefParameter);
+            var nameParameter = name != null ?
+                new ObjectParameter("name", name) :
+                new ObjectParameter("name", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("usp_UpdateUserProfile", userRefParameter, nameParameter, emailParameter, phoneNumberParameter);
         }
     
         public virtual ObjectResult<usp_UserDropDownList_Result> usp_UserDropDownList(Nullable<long> companyRef)
@@ -1426,13 +1500,30 @@ namespace Test.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_UserDropDownList_Result>("usp_UserDropDownList", companyRefParameter);
         }
     
-        public virtual ObjectResult<usp_GetAllUserAccessInfo_Result> usp_GetAllUserAccessInfo(Nullable<long> companyRef)
+        public virtual ObjectResult<usp_ViewableKpiList_Result> usp_ViewableKpiList(string userRef, Nullable<int> kpiType, string kpiTab)
+        {
+            var userRefParameter = userRef != null ?
+                new ObjectParameter("userRef", userRef) :
+                new ObjectParameter("userRef", typeof(string));
+    
+            var kpiTypeParameter = kpiType.HasValue ?
+                new ObjectParameter("kpiType", kpiType) :
+                new ObjectParameter("kpiType", typeof(int));
+    
+            var kpiTabParameter = kpiTab != null ?
+                new ObjectParameter("kpiTab", kpiTab) :
+                new ObjectParameter("kpiTab", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_ViewableKpiList_Result>("usp_ViewableKpiList", userRefParameter, kpiTypeParameter, kpiTabParameter);
+        }
+    
+        public virtual ObjectResult<string> usp_GetCompanyName(Nullable<long> companyRef)
         {
             var companyRefParameter = companyRef.HasValue ?
                 new ObjectParameter("companyRef", companyRef) :
                 new ObjectParameter("companyRef", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<usp_GetAllUserAccessInfo_Result>("usp_GetAllUserAccessInfo", companyRefParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_GetCompanyName", companyRefParameter);
         }
     }
 }

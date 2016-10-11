@@ -21,7 +21,7 @@
         <br />
         <%--Datepickers and input--%>
         <div class="userInputs">
-            <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="24px" Width="120px" Skin="Metro">
+            <telerik:RadDropDownList ID="TimeDDL1" runat="server" Height="29px" Width="120px" Skin="Metro">
                 <Items>
                     <telerik:DropDownListItem Text="Weekly" Value="3" Selected="true" />
                     <telerik:DropDownListItem Text="Monthly" Value="1" />
@@ -29,12 +29,12 @@
                 </Items>
             </telerik:RadDropDownList>
 
-            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2016-06-06" SelectedDate="2016-06-06" Height="24px" Width="120px" Skin="Metro">
+            <telerik:RadDatePicker ID="DatePicker1" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2016-06-06" SelectedDate="2016-06-06" Height="29px" Width="120px" Skin="Metro">
                 <DatePopupButton
                     CssClass="rcCalPopup"
                     Width="2em" />
             </telerik:RadDatePicker>
-            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2016-06-26" SelectedDate="2016-06-26" Height="24px" Width="120px" Skin="Metro">
+            <telerik:RadDatePicker ID="DatePicker2" runat="server" PopupDirection="BottomLeft" DateInput-EmptyMessage="2016-06-26" SelectedDate="2016-06-26" Height="29px" Width="120px" Skin="Metro">
                 <DatePopupButton
                     CssClass="rcCalPopup"
                     Width="2em" />

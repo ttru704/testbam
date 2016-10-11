@@ -14,7 +14,7 @@ namespace Test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            GetAllUserAccessInfoG1.DataBind();
         }
 
         protected void Update_Click(object sender, EventArgs e)

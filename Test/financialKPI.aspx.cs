@@ -6,6 +6,15 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Telerik.Web.UI;
 
+/// <summary>
+/// Outline:
+/// - Checks if the User is authenticated before showing KPIs
+/// - Stores the Session values based on pickers
+/// - If the Page is not postback, add the tabs ( or else will add tabs every refresh)
+/// - The Page Views are created and paired with the correct tab
+/// - Makes it so that upon tab click, it shows the right page View
+/// </summary>
+
 namespace Test
 {
     public partial class financialkpi : System.Web.UI.Page
@@ -47,7 +56,7 @@ namespace Test
             tab.Width = Unit.Pixel(200);
             RadTabStrip1.Tabs.Add(tab);
         }
-        //Calls the user control which has teh content for the PageView
+        //Calls the user control which has the content for the PageView
         protected void RadMultiPage1_PageViewCreated(object sender, RadMultiPageEventArgs e)
         {
             string userControlName = "F" + e.PageView.ID + "CS.ascx";

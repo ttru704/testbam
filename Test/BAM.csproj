@@ -218,8 +218,20 @@
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="build\js\custom.js" />
     <Content Include="build\js\custom.min.js" />
+    <Content Include="Comments.html" />
+    <Content Include="manageCompanyAccessForCFL.aspx" />
     <Content Include="manageUserAccess.aspx" />
     <Content Include="manageUserAccessForCFL.aspx" />
+    <Content Include="Models\BAM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BAM.edmx</DependentUpon>
+      <LastGenOutput>BAM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\BAM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BAM.edmx</DependentUpon>
+      <LastGenOutput>BAM.cs</LastGenOutput>
+    </Content>
     <Content Include="production\calendar.html" />
     <Content Include="production\chartjs.html" />
     <Content Include="production\chartjs2.html" />
@@ -282,12 +294,6 @@
     <Content Include="build\css\custom.min.css" />
     <Content Include="CBranchCS.ascx" />
     <Content Include="CCompanyCS.ascx" />
-    <Content Include="CCompanyKPIControls\AnimalsSeenCompany.ascx" />
-    <Content Include="CCompanyKPIControls\AvgDollarPerCustomerCompany.ascx" />
-    <Content Include="CCompanyKPIControls\LargeAnimalsCompany.ascx" />
-    <Content Include="CCompanyKPIControls\NewCustomersCompany.ascx" />
-    <Content Include="CCompanyKPIControls\SmallAnimalsCompany.ascx" />
-    <Content Include="CCompanyKPIControls\UniqueCustomersSeenCompany.ascx" />
     <Content Include="changePassword.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -304,15 +310,7 @@
     <Content Include="EIndividualCS.ascx" />
     <Content Include="employeeKPI.aspx" />
     <Content Include="FBranchCS.ascx" />
-    <Content Include="FBranchKPIControls\TotalSalesBranch.ascx" />
     <Content Include="FCompanyCS.ascx" />
-    <Content Include="FCompanyKPIControls\AvgDollarPerTransactionCompany.ascx" />
-    <Content Include="FCompanyKPIControls\IncomeByProductCategoryCompany.ascx" />
-    <Content Include="FCompanyKPIControls\IncomeByServiceActivityCompany.ascx" />
-    <Content Include="FCompanyKPIControls\RetailOnlySalesCompany.ascx" />
-    <Content Include="FCompanyKPIControls\ServiceOnlySalesCompany.ascx" />
-    <Content Include="FCompanyKPIControls\TotalSalesCompany.ascx" />
-    <Content Include="FCompanyKPIControls\TransExcludeZeroTotalCompany.ascx" />
     <Content Include="financialKPI.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -324,16 +322,6 @@
     </Content>
     <Content Include="FPeerCS.ascx" />
     <Content Include="FProductServiceCS.ascx" />
-    <Content Include="Models\BAM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BAM.edmx</DependentUpon>
-      <LastGenOutput>BAM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\BAM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BAM.edmx</DependentUpon>
-      <LastGenOutput>BAM.cs</LastGenOutput>
-    </Content>
     <Content Include="userKpis.aspx" />
     <Content Include="principal.Master" />
     <Content Include="createUserforCFL.aspx" />
@@ -3888,10 +3876,22 @@
     <Compile Include="BLL\Controls\UpdateIsAdminStatusBL.cs" />
     <Compile Include="BLL\Controls\UpdateUserAccessDetailBL.cs" />
     <Compile Include="BLL\Controls\UserDropDownListBL.cs" />
+    <Compile Include="BLL\Customer\AvgDollarPerCustomerPeerGridBL.cs" />
+    <Compile Include="BLL\Financial\AvgDollarPerTransactionPeerGridBL.cs" />
     <Compile Include="BLL\User\GetAllUserAccessInfoBL.cs" />
+    <Compile Include="BLL\User\GetCompanyAccessDetailBL.cs" />
+    <Compile Include="BLL\User\GetCompanyNameBL.cs" />
     <Compile Include="BLL\User\GetUserInfoBL.cs" />
     <Compile Include="BLL\User\GetUserNameBL.cs" />
+    <Compile Include="BLL\User\UpdateCompanyAccessDetailBL.cs" />
     <Compile Include="BLL\User\UpdateUserProfileBL.cs" />
+    <Compile Include="manageCompanyAccessForCFL.aspx.cs">
+      <DependentUpon>manageCompanyAccessForCFL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="manageCompanyAccessForCFL.aspx.designer.cs">
+      <DependentUpon>manageCompanyAccessForCFL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="manageUserAccess.aspx.cs">
       <DependentUpon>manageUserAccess.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3906,10 +3906,59 @@
     <Compile Include="manageUserAccessForCFL.aspx.designer.cs">
       <DependentUpon>manageUserAccessForCFL.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Audit_Log.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BAM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BAM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BAM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BAM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BAM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Branch_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Branch_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Business_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Client_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Company_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Configuration.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Connection_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Interface\Controls\ICompanyListRepo.cs" />
     <Compile Include="Models\Interface\Controls\IDeleteFromKpiForCompanyRepo.cs" />
     <Compile Include="Models\Interface\Controls\IGetKpiTypesRepo.cs" />
+    <Compile Include="Models\Interface\Customer\IAvgDollarPerCustomerPeerGridRepo.cs" />
+    <Compile Include="Models\Interface\Financial\IAvgDollarPerTransactionPeerGridRepo.cs" />
     <Compile Include="Models\Interface\User\IGetAllUserAccessInfoRepo.cs" />
+    <Compile Include="Models\Interface\User\IGetCompanyAccessDetailRepo.cs" />
+    <Compile Include="Models\Interface\User\IGetCompanyNameRepo.cs" />
     <Compile Include="Models\Interface\User\IGetUserNameRepo.cs" />
     <Compile Include="Models\Interface\Controls\IInsertIntoKpiForCompanyRepo.cs" />
     <Compile Include="Models\Interface\Controls\IKPIListForCompanyRepo.cs" />
@@ -3917,7 +3966,32 @@
     <Compile Include="Models\Interface\Controls\IUpdateUserAccessDetailRepo.cs" />
     <Compile Include="Models\Interface\Controls\IUserDropDownListRepo.cs" />
     <Compile Include="Models\Interface\User\IGetUserInfoRepo.cs" />
+    <Compile Include="Models\Interface\User\IUpdateCompanyAccessDetailRepo.cs" />
     <Compile Include="Models\Interface\User\IUpdateUserProfileRepo.cs" />
+    <Compile Include="Models\Key_Performance_Indexes.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KPI_For_Business.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KPI_For_Company.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KPI_For_User.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KPI_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Param.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Region_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Repository\Controls\CompanyListRepo.cs" />
     <Compile Include="Models\Repository\Controls\DeleteFromKpiForCompanyRepo.cs" />
     <Compile Include="Models\Repository\Controls\GetKpiTypesRepo.cs" />
@@ -3926,14 +4000,131 @@
     <Compile Include="Models\Repository\Controls\UpdateIsAdminStatusRepo.cs" />
     <Compile Include="Models\Repository\Controls\UpdateUserAccessDetailRepo.cs" />
     <Compile Include="Models\Repository\Controls\UserDropDownListRepo.cs" />
+    <Compile Include="Models\Repository\Customer\AvgDollarPerCustomerPeerGridRepo.cs" />
+    <Compile Include="Models\Repository\Financial\AvgDollarPerTransactionPeerGridRepo.cs" />
     <Compile Include="Models\Repository\User\GetAllUserAccessInfoRepo.cs" />
+    <Compile Include="Models\Repository\User\GetCompanyAccessDetailRepo.cs" />
+    <Compile Include="Models\Repository\User\GetCompanyNameRepo.cs" />
     <Compile Include="Models\Repository\User\GetUserInfoRepo.cs" />
     <Compile Include="Models\Repository\User\GetUserNameRepo.cs" />
+    <Compile Include="Models\Repository\User\UpdateCompanyAccessDetailRepo.cs" />
     <Compile Include="Models\Repository\User\UpdateUserProfileRepo.cs" />
+    <Compile Include="companyKpis.aspx.cs">
+      <DependentUpon>companyKpis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="companyKpis.aspx.designer.cs">
+      <DependentUpon>companyKpis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Staff_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\State_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Subject_Types.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Table_Map.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaction_Items.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaction_Summary.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_Claims.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_Logins.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_Profile.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User_Roles.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AnimalsSeenBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AnimalsSeenByEmployeeCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AnimalsSeenByEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AnimalsSeenCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgAnimalsSeenByEmployeeCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgCustomersSeenByEmployeeCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerCustomerBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerCustomerCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerCustomerPeerGrid_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerCustomerPeer_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerTransactionBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerTransactionCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerTransactionPeerGrid_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_AvgDollarPerTransactionPeer_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_BranchDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_BranchTypeDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_CompanyList_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_CountryDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CustomersSeenByEmployeeCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_CustomersSeenByEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_EmployeeSearchBox_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_GetAllUserAccessInfo_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_GetCompanyAccessDetail_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_GetKpiTypes_Result.cs">
@@ -3942,18 +4133,104 @@
     <Compile Include="Models\usp_GetUserInfo_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\usp_IncomeByEmployeeCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByProductCategoryCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByProductIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByServiceActivityCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeByServiceIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_IncomeFromAnimalTypeEmployeeIndividual_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_KPIForCompanyList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\usp_KPIListForCompany_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usp_KPIListForUser_Result.cs">
       <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="companyKpis.aspx.cs">
-      <DependentUpon>companyKpis.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
+    <Compile Include="Models\usp_LargeAnimalsBranchTest_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
-    <Compile Include="companyKpis.aspx.designer.cs">
-      <DependentUpon>companyKpis.aspx</DependentUpon>
+    <Compile Include="Models\usp_LargeAnimalsBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_LargeAnimalsCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_MissedCharge_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_NewCustomersBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_NewCustomersCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_ProductServiceNameSearchBox_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RegionDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RetailOnlySalesBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_RetailOnlySalesCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_ServiceOnlySalesBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_ServiceOnlySalesCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_SmallAnimalsBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_SmallAnimalsCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_StateDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_TotalSalesBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_TotalSalesCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_TransExcludeZeroTotalBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_TransExcludeZeroTotalCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_UniqueCustomersSeenBranch_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_UniqueCustomersSeenCompany_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_UserDropDownList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usp_ViewableKpiList_Result.cs">
+      <DependentUpon>BAM.tt</DependentUpon>
     </Compile>
     <Compile Include="userKpisForCFL.aspx.cs">
       <DependentUpon>userKpisForCFL.aspx</DependentUpon>
@@ -4039,7 +4316,6 @@
     <Compile Include="BLL\Productivity\IncomeFromAnimalTypeEmployeeIndividualBL.cs" />
     <Compile Include="BLL\Controls\ProductServiceNameSearchBoxBL.cs" />
     <Compile Include="BLL\Controls\RegionDropDownListBL.cs" />
-    <Compile Include="BLL\Controls\SearchContextForProductServiceSBBL.cs" />
     <Compile Include="BLL\Controls\StateDropDownListBL.cs" />
     <Compile Include="CBranchCS.ascx.cs">
       <DependentUpon>CBranchCS.ascx</DependentUpon>
@@ -4054,48 +4330,6 @@
     </Compile>
     <Compile Include="CCompanyCS.ascx.designer.cs">
       <DependentUpon>CCompanyCS.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\AnimalsSeenCompany.ascx.cs">
-      <DependentUpon>AnimalsSeenCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\AnimalsSeenCompany.ascx.designer.cs">
-      <DependentUpon>AnimalsSeenCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\AvgDollarPerCustomerCompany.ascx.cs">
-      <DependentUpon>AvgDollarPerCustomerCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\AvgDollarPerCustomerCompany.ascx.designer.cs">
-      <DependentUpon>AvgDollarPerCustomerCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\LargeAnimalsCompany.ascx.cs">
-      <DependentUpon>LargeAnimalsCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\LargeAnimalsCompany.ascx.designer.cs">
-      <DependentUpon>LargeAnimalsCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\NewCustomersCompany.ascx.cs">
-      <DependentUpon>NewCustomersCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\NewCustomersCompany.ascx.designer.cs">
-      <DependentUpon>NewCustomersCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\SmallAnimalsCompany.ascx.cs">
-      <DependentUpon>SmallAnimalsCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\SmallAnimalsCompany.ascx.designer.cs">
-      <DependentUpon>SmallAnimalsCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\UniqueCustomersSeenCompany.ascx.cs">
-      <DependentUpon>UniqueCustomersSeenCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CCompanyKPIControls\UniqueCustomersSeenCompany.ascx.designer.cs">
-      <DependentUpon>UniqueCustomersSeenCompany.ascx</DependentUpon>
     </Compile>
     <Compile Include="changePassword.aspx.cs">
       <DependentUpon>changePassword.aspx</DependentUpon>
@@ -4174,61 +4408,12 @@
     <Compile Include="FBranchCS.ascx.designer.cs">
       <DependentUpon>FBranchCS.ascx</DependentUpon>
     </Compile>
-    <Compile Include="FBranchKPIControls\TotalSalesBranch.ascx.cs">
-      <DependentUpon>TotalSalesBranch.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FBranchKPIControls\TotalSalesBranch.ascx.designer.cs">
-      <DependentUpon>TotalSalesBranch.ascx</DependentUpon>
-    </Compile>
     <Compile Include="FCompanyCS.ascx.cs">
       <DependentUpon>FCompanyCS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FCompanyCS.ascx.designer.cs">
       <DependentUpon>FCompanyCS.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\AvgDollarPerTransactionCompany.ascx.cs">
-      <DependentUpon>AvgDollarPerTransactionCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\AvgDollarPerTransactionCompany.ascx.designer.cs">
-      <DependentUpon>AvgDollarPerTransactionCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\IncomeByProductCategoryCompany.ascx.cs">
-      <DependentUpon>IncomeByProductCategoryCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\IncomeByProductCategoryCompany.ascx.designer.cs">
-      <DependentUpon>IncomeByProductCategoryCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\IncomeByServiceActivityCompany.ascx.cs">
-      <DependentUpon>IncomeByServiceActivityCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\IncomeByServiceActivityCompany.ascx.designer.cs">
-      <DependentUpon>IncomeByServiceActivityCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\RetailOnlySalesCompany.ascx.cs">
-      <DependentUpon>RetailOnlySalesCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\RetailOnlySalesCompany.ascx.designer.cs">
-      <DependentUpon>RetailOnlySalesCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\ServiceOnlySalesCompany.ascx.cs">
-      <DependentUpon>ServiceOnlySalesCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\ServiceOnlySalesCompany.ascx.designer.cs">
-      <DependentUpon>ServiceOnlySalesCompany.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\TransExcludeZeroTotalCompany.ascx.cs">
-      <DependentUpon>TransExcludeZeroTotalCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\TransExcludeZeroTotalCompany.ascx.designer.cs">
-      <DependentUpon>TransExcludeZeroTotalCompany.ascx</DependentUpon>
     </Compile>
     <Compile Include="financialKPI.aspx.cs">
       <DependentUpon>financialKPI.aspx</DependentUpon>
@@ -4244,88 +4429,12 @@
     <Compile Include="FProductServiceCS.ascx.designer.cs">
       <DependentUpon>FProductServiceCS.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Audit_Log.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BAM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BAM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BAM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BAM.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Branch_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Branch_Types.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Business_Types.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Category_Types.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Client_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Company_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Configuration.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Connection_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Country_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Interface\Controls\IDeleteFromKpiForUserRepo.cs" />
     <Compile Include="Models\Interface\Controls\IInsertIntoKpiForUserRepo.cs" />
     <Compile Include="Models\Interface\Controls\IKPIListForUserRepo.cs" />
     <Compile Include="Models\Interface\Financial\IIncomeByProductIndividualRepo.cs" />
-    <Compile Include="Models\Key_Performance_Indexes.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KPI_For_Business.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KPI_For_Company.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KPI_For_User.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KPI_Types.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Param.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Product_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Region_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Repository\Controls\DeleteFromKpiForUserRepo.cs" />
     <Compile Include="Models\Repository\Controls\InsertIntoKpiForUserRepo.cs" />
-    <Compile Include="FCompanyKPIControls\TotalSalesCompany.ascx.cs">
-      <DependentUpon>TotalSalesCompany.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FCompanyKPIControls\TotalSalesCompany.ascx.designer.cs">
-      <DependentUpon>TotalSalesCompany.ascx</DependentUpon>
-    </Compile>
     <Compile Include="FPeerCS.ascx.cs">
       <DependentUpon>FPeerCS.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4347,204 +4456,6 @@
     <Compile Include="Models\Repository\Controls\KPIListForUserRepo.cs" />
     <Compile Include="Models\Repository\Controls\ViewableKpiListRepo.cs" />
     <Compile Include="Models\Repository\Financial\IncomeByProductIndividualRepo.cs" />
-    <Compile Include="Models\Role.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Staff_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Staff_Types.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\State_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Subject_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Subject_Types.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Table_Map.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transaction_Items.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Transaction_Summary.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User_Claims.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User_Logins.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User_Profile.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User_Roles.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AnimalsSeenBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AnimalsSeenByEmployeeCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AnimalsSeenByEmployeeIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AnimalsSeenCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AnimalsSeenPeer_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgAnimalsSeenByEmployeeCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgCustomersSeenByEmployeeCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgDollarPerCustomerBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgDollarPerCustomerCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgDollarPerCustomerPeer_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgDollarPerTransactionBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgDollarPerTransactionCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_AvgDollarPerTransactionPeer_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_BranchDropDownList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_BranchTypeDropDownList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_CountryDropDownList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_CustomersSeenByEmployeeCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_CustomersSeenByEmployeeIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_EmployeeSearchBox_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByEmployeeCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByEmployeeIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByProductCategoryCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByProductIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByProductServiceIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByServiceActivityCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeByServiceIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_IncomeFromAnimalTypeEmployeeIndividual_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_KPIForCompanyList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_LargeAnimalsBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_LargeAnimalsCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_MissedCharge_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_NewCustomersBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_NewCustomersCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_ProductServiceNameSearchBox_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_RegionDropDownList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_RetailOnlySalesBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_RetailOnlySalesCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_SearchContextForProductServiceSB_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_ServiceOnlySalesBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_ServiceOnlySalesCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_SmallAnimalsBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_SmallAnimalsCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_StateDropDownList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_TotalSalesBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_TotalSalesCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_TransExcludeZeroTotalBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_TransExcludeZeroTotalCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_UniqueCustomersSeenBranch_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_UniqueCustomersSeenCompany_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_UniqueCustomersSeenIndustry_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_UserDropDownList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\usp_ViewableKpiList_Result.cs">
-      <DependentUpon>BAM.tt</DependentUpon>
-    </Compile>
     <Compile Include="userKpis.aspx.cs">
       <DependentUpon>userKpis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4599,7 +4510,6 @@
     <Compile Include="Models\Interface\Controls\IEmployeeSearchBoxRepo.cs" />
     <Compile Include="Models\Interface\Controls\IProductServiceNameSearchBoxRepo.cs" />
     <Compile Include="Models\Interface\Controls\IRegionDropDownListRepo.cs" />
-    <Compile Include="Models\Interface\Controls\ISearchContextForProductServiceSBRepo.cs" />
     <Compile Include="Models\Interface\Controls\IStateDropDownListRepo.cs" />
     <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeCompanyRepo.cs" />
     <Compile Include="Models\Interface\Productivity\IAnimalsSeenByEmployeeIndividualRepo.cs" />
@@ -4666,7 +4576,6 @@
     <Compile Include="Models\Repository\Productivity\IncomeFromAnimalTypeEmployeeIndividualRepo.cs" />
     <Compile Include="Models\Repository\Controls\ProductServiceNameSearchBoxRepo.cs" />
     <Compile Include="Models\Repository\Controls\RegionDropDownListRepo.cs" />
-    <Compile Include="Models\Repository\Controls\SearchContextForProductServiceSBRepo.cs" />
     <Compile Include="Models\Repository\Controls\StateDropDownListRepo.cs" />
     <Compile Include="principal.Master.cs">
       <DependentUpon>principal.Master</DependentUpon>

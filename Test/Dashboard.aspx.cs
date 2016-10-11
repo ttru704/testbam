@@ -1,20 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Test.BLL.Financial;
 using Test.BLL.Customer;
-using Telerik.Charting;
-using System.Drawing;
-using Test.Models;
-using Test.BLL.Controls;
-using Microsoft.AspNet.Identity;
-using System.Web.Security;
-using System.Net;
-using System.Web.Configuration;
 
+
+/// <summary>
+///  - The two pie charts are binded here
+///  - The formatting of the label is done here
+///  - For Each Value of the % change, there is an if else statement to decide the direction of the arrow (up/down) and the color
+///    (green / red)
+/// </summary>
 namespace Test
 {
     public partial class Dashboard : System.Web.UI.Page
@@ -173,15 +170,6 @@ namespace Test
                 Response.Redirect("~/userProfile.aspx");
             }
             
-        }
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void FormView1_PageIndexChanging(object sender, FormViewPageEventArgs e)
-        {
-
         }
 
     }

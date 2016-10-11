@@ -8,6 +8,10 @@ using Telerik.Web.UI;
 using Test.BLL.Controls;
 using Test.Models;
 
+/// <summary>
+/// Page Load
+/// - Gets the Required sessions for the page. These sessions are used to get the variables for running the 
+/// </summary>
 namespace Test
 {
     public partial class FCompanyCS : System.Web.UI.UserControl
@@ -15,10 +19,10 @@ namespace Test
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            DateTime? start = Session["StartDate"] as DateTime?;
-            DateTime? end = Session["EndDate"] as DateTime?;
-            Int64? company = Session["CompanyRef"] as Int64?;
-            int? branch = Session["Branch"] as int?;
+            //DateTime? start = Session["StartDate"] as DateTime?;
+            //DateTime? end = Session["EndDate"] as DateTime?;
+            //Int64? company = Session["CompanyRef"] as Int64?;
+            //int? branch = Session["Branch"] as int?;
             int? time = Session["Time"] as int?;
 
             //This loop will make radpanelitem visible if they are contained in the list below

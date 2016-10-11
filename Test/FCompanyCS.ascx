@@ -2,6 +2,34 @@
 <%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Charting" TagPrefix="telerik" %>
 
+<%--////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    This user control has all the KPIs for FINANCIAL + COMPANY-WIDE perspective
+
+    Overall Layout
+    - A div contains the export manager for the whole page and the Radpanelbar
+    - The RadPanelBar contains the RadPanelItems
+    - Each PanelItem has a div for both the chart and the grid (none for the datasource for obvious reasons)
+    - All Scripts are placed in a RadScriptBlock at the bottom of the page
+
+    Chart
+    - Each Chart has enabled Zoom and Pan
+    - Series to be plot are configured on this page, with the Label appearance configures on the codebehind (for the axes title)
+    - The Y axes labels are formatted through kendo ui and javascript at the bottom to shorten the figure and add the K or M ...etc for the figure
+
+    Grid
+    - Contents are directly from the ObjectDataSource
+
+    Export
+    - The Chart has a extra surrounding div which includes the export button
+    - The class export is used in this div to show and hide the export button based on hover in the JS below
+    - CHART export: is in the javascript below
+    - GRID export: this is in the actual Grid control. The types and formatting are done in the codebehind
+
+    ObjectDataSource:
+    - Takes values from the Financial.aspx.cs page. NOT this controls' codebehind.
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////--%>
+
 <div class="demo-container size-thin">
     <%--Export Manager for exporting--%>
     <telerik:RadClientExportManager runat="server" ID="RadClientExportManager1"></telerik:RadClientExportManager>
@@ -81,7 +109,7 @@
                             <Selecting AllowRowSelect="True" />
                         </ClientSettings>
                         <ExportSettings HideStructureColumns="true"></ExportSettings>
-
+                        <%--Sets all the extra controls of the table. Eg. filter row is added to the top, show the different export buttons. Also defines what the columns of the table are.--%>
                         <MasterTableView Width="100%" CommandItemDisplay="Top" AutoGenerateColumns="False" AllowFilteringByColumn="True" DataSourceID="TotalSalesCompanyODS">
                             <%--Display export button on radgrid--%>
                             <CommandItemSettings ShowPrintButton="true" ShowExportToWordButton="true" ShowExportToExcelButton="true" ShowExportToPdfButton="true" ShowAddNewRecordButton="False" ShowRefreshButton="False" />

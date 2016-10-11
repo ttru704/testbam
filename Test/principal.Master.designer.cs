@@ -13,13 +13,13 @@ namespace Test {
     public partial class principal {
         
         /// <summary>
-        /// userName1 control.
+        /// companyNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userName1;
+        protected global::System.Web.UI.WebControls.Label companyNameLabel;
         
         /// <summary>
         /// dashboard control.
@@ -76,13 +76,13 @@ namespace Test {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor adminstration;
         
         /// <summary>
-        /// userName2 control.
+        /// userNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userName2;
+        protected global::System.Web.UI.WebControls.Label userNameLabel;
         
         /// <summary>
         /// pageHeader control.

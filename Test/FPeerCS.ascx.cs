@@ -10,6 +10,11 @@ using Test.Models;
 using Test.BLL.Controls;
 using Telerik.Web.UI;
 
+/// <summary>
+/// Only addition is: upon dropdown change, update the session value based on selected item
+/// Peer comparison does not work if all the dropdowns are not selected
+/// </summary>
+
 namespace Test
 {
     public partial class FPeerCS : System.Web.UI.UserControl
@@ -57,7 +62,7 @@ namespace Test
             {
                 AvgDollarPerTransactionPeerRHC1.PlotArea.XAxis.TitleAppearance.Text = "Week";
             }
-
+            
 
             if (branch != null && branchType != null && country != null && state != null && region != null)
             {
@@ -67,7 +72,7 @@ namespace Test
                 List<usp_AvgDollarPerTransactionPeer_Result> avgDollarPerTransactionPeerList = avgDollarPerTransactionPeerBL.usp_AvgDollarPerTransactionPeer(start, end, branch, branchType, time, country, state, region);
                 DataTable avgDollarPerTransactionPeerDT = converter.ToDataTable(avgDollarPerTransactionPeerList);
                 RadHtmlChartGroupDataSource.GroupDataSource(AvgDollarPerTransactionPeerRHC1, avgDollarPerTransactionPeerDT, "Name", "LineSeries", "Average_Dollar_per_Transaction", "TimePeriod");
-
+                
             }
         }
         
@@ -113,7 +118,6 @@ namespace Test
         {
             Session["Region"] = Convert.ToInt64(RegionDDL1.SelectedItem.Value);
         }
-
         
     }
 }

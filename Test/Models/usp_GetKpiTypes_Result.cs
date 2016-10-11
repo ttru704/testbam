@@ -13,7 +13,7 @@ namespace Test.Models
     
     public partial class usp_GetKpiTypes_Result
     {
-        public string Name { get; set; }
         public long Ref_Number { get; set; }
+        public string Name { get; set; }
     }
 }

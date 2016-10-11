@@ -74,10 +74,10 @@ namespace Test
         {
             //Store current user's name
             string userName = Session["Name"] as string;
-
+            string companyName = Session["CompanyName"] as string;
             //Set labels appear on the side bar and the top bar to be the current user's name
-            userName1.Text = userName;
-            userName2.Text = userName;
+            companyNameLabel.Text = userName;
+            userNameLabel.Text = userName;
 
             //Defines which Page links on the left column menu are visible depending on the user
             if (HttpContext.Current.User.IsInRole("Admin"))
@@ -90,6 +90,7 @@ namespace Test
             else if (HttpContext.Current.User.IsInRole("Employee"))
             {
                 userManagement.Visible = false;
+                dashboard.Visible = false;
             }
         }
         
